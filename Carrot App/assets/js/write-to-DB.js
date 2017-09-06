@@ -41,3 +41,11 @@ function writeToUserRewards() {
     });
     console.log("Wrote to User Rewards");
 }
+
+function readFromUsers(){
+    firebaseRef.child('Users').on("value", function(snapshot){
+        console.table(snapshot.val());
+    }, function (error){
+        console.log("Error: " + error.code);
+    });
+}
