@@ -8,5 +8,20 @@
     </head>
     <body>
         <h1>Welcome to Carrot!</h1>
+
+        <!-- This is to initialize Firebase and it should always be before other script tags -->
+        <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+        <script>
+          var config = {
+            apiKey: "AIzaSyDUlfMoY9Aq0nOGnZt_ovhRDaUtOJUnZ04",
+            authDomain: "carrot-app.firebaseapp.com",
+            databaseURL: "https://carrot-app.firebaseio.com",
+            projectId: "carrot-app",
+            storageBucket: "carrot-app.appspot.com",
+            messagingSenderId: "132005725857"
+          };
+          firebase.initializeApp(config);
+        </script>
+        <!-- End of Firebase init code block -->
     </body>
 </html>
