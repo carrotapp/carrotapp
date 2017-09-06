@@ -31,15 +31,14 @@ function writeToUserRewards() {
             rewards[i] = rewards[i].trim();
             points[i] = points[i].trim();
         }
+        console.log("Writing to User Rewards");
+        firebaseRef.child("User Rewards").push({
+            User: document.getElementById('UserRewardsUser').value,
+            Rewards: rewards,
+            Points: points
+        });
+        console.log("Wrote to User Rewards");
     }
-
-    console.log("Writing to User Rewards");
-    firebaseRef.child("User Rewards").push({
-        User: document.getElementById('RewardsName').value,
-        Rewards: rewards,
-        Points: points
-    });
-    console.log("Wrote to User Rewards");
 }
 
 function readFromUsers(){
