@@ -1,0 +1,21 @@
+<div class="registration container-fluid">
+  <div class="row justify-content-md-center">
+    <a [routerLink]="['/login']"><img class="carrotPicture" src="../../assets/img/carrot.png" alt="Carrot Icon"></a>
+    <br>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="col-md-4">
+      <custom-textfield [inputType]="'text'" [placeholderText]="'Full Name'" class="col-md-4 customTextFieldStyle"></custom-textfield>
+      <br>
+      <custom-textfield [inputType]="'email'" [placeholderText]="'Email'" class="col-md-4 customTextFieldStyle"></custom-textfield>
+      <br>
+      <custom-textfield [inputType]="'password'" [placeholderText]="'Password'" class="col-md-4 customTextFieldStyle"></custom-textfield>
+      <br>
+      <custom-textfield [inputType]="'password'" [placeholderText]="'Confirm Password'" class="col-md-4 customTextFieldStyle"></custom-textfield>
+      <div class="row">
+        <custom-button [text]="'Back'" [link]="'/login'" class="col align-self-start"></custom-button>
+        <custom-button [text]="'Register'" [link]="'/thanks'" class="col align-self-end text-right"></custom-button>
+      </div>
+    </div>
+  </div>
+</div>
