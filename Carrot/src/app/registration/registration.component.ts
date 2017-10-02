@@ -1,21 +1,23 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
-@Component({
+@Component ({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
+
 export class RegistrationComponent implements OnInit {
   database = firebase.auth();
   email = '';
   password = '';
   confirmPassword = '';
 
-  constructor(public af: AngularFireDatabase) { }
+  constructor(public af: AngularFireDatabase, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
   }
@@ -33,6 +35,7 @@ export class RegistrationComponent implements OnInit {
           }
         });
         alert('Registered successfully!');
+        this.router.navigate(['/login']);
       }
     } else {
       alert('Fill out all the fields.');
@@ -48,6 +51,11 @@ export class RegistrationComponent implements OnInit {
      const token = result.credential.accessToken;
      // The signed-in user info.
      const user = result.user;
+     alert('Registered successfully!');
+     this.navigate();
     });
+    function navigate() {
+      this.router.navigate(['/login']);
+    }
   }
 }

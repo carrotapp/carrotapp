@@ -25,3 +25,22 @@
     border-bottom: 2px solid #f3a422;
     border-left: 2px solid #f3a422;
 }
+
+.googleButton{
+    padding: 0px;
+    margin: 0px;
+    height: 45px;
+    width: 190px;
+    background-color: transparent;
+    background-image: url("./btn_google_signin_dark_normal_web.png");
+    border: none;
+    box-shadow: none;
+}
+
+.googleButton:hover{
+    background-image: url("./btn_google_signin_dark_focus_web.png");
+}
+
+.googleButton:focus{
+    background-image: url("./btn_google_signin_dark_pressed_web.png");
+}

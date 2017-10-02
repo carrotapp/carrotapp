@@ -19,9 +19,12 @@
       <input type="password" placeholder="Confirm Password" class="form-control textfield" [(ngModel)]="confirmPassword" required>
       <div class="row">
         <custom-button [text]="'Back'" [link]="'/login'" class="col align-self-start"></custom-button>
-        <custom-button [text]="'Register'" [link]="'/login'" (click)="register()" class="col align-self-end text-right"></custom-button>
+        <custom-button [text]="'Register'" (click)="register()" class="col align-self-end text-right"></custom-button>
       </div>
-      <custom-button [text]="'Google'" (click)="googlePopup()" [link]="'/login'" class="col align-self-start"></custom-button>
+      <div class="row justify-content-center">
+          <button type="button" (click)="googlePopup()" class="googleButton text-center m-0 p-0"></button>          
+        <!-- <custom-button [text]="'Google'" (click)="googlePopup()" [link]="'/login'" class="col-md-4 text-center"></custom-button> -->
+      </div>
     </div>
   </div>
 </div>
