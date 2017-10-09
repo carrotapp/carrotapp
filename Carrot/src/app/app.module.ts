@@ -13,6 +13,10 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { SidebarComponent } from './navigation/sidebar/sidebar.component';
+import { NavbarComponent } from './navigation/navbar/navbar.component';
+import { PanelComponent } from './navigation/panel/panel.component';
+import { MainPanelComponent } from './navigation/main-panel/main-panel.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDUlfMoY9Aq0nOGnZt_ovhRDaUtOJUnZ04',
@@ -29,7 +33,11 @@ export const firebaseConfig = {
     RegistrationComponent,
     LoginComponent,
     CustomButtonComponent,
-    CustomTextfieldComponent
+    CustomTextfieldComponent,
+    SidebarComponent,
+    NavbarComponent,
+    PanelComponent,
+    MainPanelComponent
   ],
   imports: [
     BrowserModule,

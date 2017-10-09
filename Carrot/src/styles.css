@@ -1,2 +1,16 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+/* This is to ensure that all components experience a smooth change */
+*{
+    transition: all 800ms ease;
+    -webkit-transition: all 800ms ease;;
+    -o-transition: all 800ms ease;
+    -ms-transition: all 800ms ease;
+    -moz-transition: all 800ms ease;
+}
+/* shaddow effect */
+.shadow{
+    box-shadow: 2px 2px 2px silver;
+}
