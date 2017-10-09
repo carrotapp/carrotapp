@@ -27,13 +27,23 @@ export class LoginComponent implements OnInit {
     console.log(this.password);
 
 
-    firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function (res) {
-      console.log("Success");
-      alert("Success");
-    }).catch(function (error) {
-       console.log("Error");
-       alert("Error with email");
-    });
+    if(this.email.includes("@gmail")){
+      this.googlePopup();
+    }else{
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function (res) {
+        console.log("Success");
+        alert("Success");
+      }).catch(function (error) {
+         console.log("Error");
+         alert("Error with email");
+      });
+    }
+
+
+    
+
+
+
   }
 
   googlePopup() {

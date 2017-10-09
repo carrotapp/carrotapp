@@ -14,7 +14,7 @@
       <custom-textfield id="confirmPassword" [inputType]="'password'" [placeholderText]="'Confirm Password'" class="col-md-4 customTextFieldStyle"></custom-textfield> -->
       <input type="email" placeholder="Email" class="form-control textfield" [(ngModel)]="email" required>
       <br>
-      <input type="password" placeholder="Password" class="form-control textfield" [(ngModel)]="password" required>
+      <input type="password" placeholder="Password" class="form-control textfield" [(ngModel)]="password" required minlength="8">
       <br>
       <input type="password" placeholder="Confirm Password" class="form-control textfield" [(ngModel)]="confirmPassword" required>
       <div class="row">

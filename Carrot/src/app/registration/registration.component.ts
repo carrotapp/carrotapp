@@ -24,19 +24,28 @@ export class RegistrationComponent implements OnInit {
 
   register() {
     if (this.email !== '' && this.password !== '' && this.confirmPassword !== '') {
-      if (this.password !== this.confirmPassword) {
-        alert('Password do not match');
-      } else {
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).catch(function (error) {
-          const errorMessage = error.message;
-          const errorCode = error.name;
-          if (errorCode === 'auth/email-already-in-use') {
-            alert('A user with that email already exists');
-          }
-        });
-        alert('Registered successfully!');
-        this.router.navigate(['/login']);
+      if(this.password.length >= 8){
+
+        if (this.password !== this.confirmPassword) {
+          alert('Password do not match');
+        } else {
+          firebase.auth().createUserWithEmailAndPassword(this.email, this.password).catch(function (error) {
+            const errorMessage = error.message;
+            const errorCode = error.name;
+            if (errorCode === 'auth/email-already-in-use') {
+              alert('A user with that email already exists');
+            }
+          });
+          alert('Registered successfully!');
+          this.router.navigate(['/login']);
+        }
+
+      }else{
+        alert('Error: Minimun password length is eight');
+        this.password = '';
+        this.confirmPassword = '';
       }
+      
     } else {
       alert('Fill out all the fields.');
     }
