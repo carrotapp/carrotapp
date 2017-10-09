@@ -35,7 +35,7 @@ export class RegistrationComponent implements OnInit {
           }
         });
         alert('Registered successfully!');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/firstTimeUser']);
       }
     } else {
       alert('Fill out all the fields.');
