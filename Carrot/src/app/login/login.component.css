@@ -1,13 +1,13 @@
-.registration{
+.registration {
     padding-top: 50px;
 }
 
-.carrotPicture{
+.carrotPicture {
     height: 160px;
     margin: auto;
 }
 
-.textfield{
+.textfield {
     border: none;
     border-bottom: 2px solid #00cc99;
     border-left: 2px solid #00cc99;
@@ -19,16 +19,16 @@
     margin-top: 30px;
 }
 
-.textfield:invalid:not(content){
+.textfield:invalid:not(content) {
     box-shadow: none !important;
     border: none;
     border-bottom: 2px solid #f3a422;
     border-left: 2px solid #f3a422;
 }
 
-.googleButton{
+.googleButton {
     padding: 0px;
-    margin: 0px;
+    margin: 20px;
     height: 45px;
     width: 190px;
     background-color: transparent;
@@ -37,10 +37,21 @@
     box-shadow: none;
 }
 
-.googleButton:hover{
+.googleButton:hover {
     background-image: url("./btn_google_signin_dark_focus_web.png");
 }
 
-.googleButton:focus{
+.googleButton:focus {
     background-image: url("./btn_google_signin_dark_pressed_web.png");
+}
+
+.or {
+    font-family: Roboto;
+    color: #00cc99;
+    text-align: center;
+    margin-left: 30px;
+}
+
+.margin-40-left {
+    margin-left: -40px;
 }

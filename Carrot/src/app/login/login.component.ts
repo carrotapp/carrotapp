@@ -1,10 +1,11 @@
+import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,94 +13,60 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  database = firebase.auth();
   email = '';
   password = '';
+  data: FirebaseListObservable<any[]>;
 
-  constructor(private af: AngularFireAuth, private route: ActivatedRoute, private router: Router) {
-    
+  constructor(public afDB: AngularFireDatabase, public afAuth: AngularFireAuth, public router: Router) {
   }
 
   signIn() {
-
-    console.log(this.email);
-    console.log(this.password);
-
-
-    firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function (res) {
-      console.log("Success");
-      alert("Success");
-    }).catch(function (error) {
-       console.log("Error");
-       alert("Error with email");
-    });
+    this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password).then(
+      (success) => {
+        alert('Logged in');
+      }).catch(
+      (err) => {
+        alert('Error: ' + err.message);
+      });
   }
 
   googlePopup() {
-    console.log(this.email);
-    console.log(this.password);
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('profile');
     provider.addScope('email');
-    firebase.auth().signInWithPopup(provider).then(function (result) {
-      // This gives you a Google Access Token.
-      const token = result.credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
+    this.afAuth.auth.signInWithPopup(provider).then(
+      (success) => {
+        this.data.forEach(element => {
+          const uid: String = this.afAuth.auth.currentUser.uid;
+          let flag: Boolean;
+          for (let i = 0; i < element.length; i++) {
+            if (element[i].user === uid) {
+              flag = false;
+              break;
+            }
+          }
+          if (flag === undefined) {
+            this.pushToDB(this.afAuth.auth.currentUser.uid);
+          } else {
+            this.router.navigate(['/register']);
+          }
+        });
+      }).catch(
+      (err) => {
+        console.log('Error: ' + err);
+      });
+  }
 
-      console.log("Success");
-      
-      alert("Logged in");    
-
-      this.router.run(
-        () =>  this.router.navigate(['/register'])
-      );
-
-    }).catch(function (result) {
-      console.log("Error");
+  pushToDB(uid: any) {
+    const userRewards = this.afDB.database.ref('/User Rewards').push();
+    userRewards.set({
+      user: uid
     });
+    this.router.navigate(['/register']);
   }
-
-
-
-isLogged: boolean;
-fieldType:string;
-fieldHolder:string;
-next:string;
-input_value:string;
-
- user:object = {
- user_email:'',
- user_password:'',
- }
- isFound:boolean;
-submit(){
-  
-if(this.isFound == true){
-this.fieldType = 'password';
-this.fieldHolder= 'Password';
-this.next='Login'
-this.input_value ='';
-
-  } else{
-alert(' User Email does not exist')
-  }
-}
-
-/* End */
-
-
-/*
-  constructor() {
- this.fieldType ='email';;
- this.fieldHolder= 'Email';
- this.next='Next'
-  }
-  */
 
   ngOnInit() {
-    
+    this.data = this.afDB.list('/User Rewards');
   }
 
 }

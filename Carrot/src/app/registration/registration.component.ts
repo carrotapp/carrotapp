@@ -1,42 +1,41 @@
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
-@Component ({
+@Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
 
 export class RegistrationComponent implements OnInit {
-  database = firebase.auth();
   email = '';
   password = '';
   confirmPassword = '';
 
-  constructor(public af: AngularFireDatabase, private route: ActivatedRoute, private router: Router) { }
+  constructor(public afDB: AngularFireDatabase, public afAuth: AngularFireAuth, public router: Router) { }
 
   ngOnInit() {
   }
 
   register() {
     if (this.email !== '' && this.password !== '' && this.confirmPassword !== '') {
-      if (this.password !== this.confirmPassword) {
-        alert('Password do not match');
+      if (this.password.length >= 8) {
+        if (this.password !== this.confirmPassword) {
+          alert('Password do not match');
+        } else {
+          this.signIn();
+        }
+
       } else {
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).catch(function (error) {
-          const errorMessage = error.message;
-          const errorCode = error.name;
-          if (errorCode === 'auth/email-already-in-use') {
-            alert('A user with that email already exists');
-          }
-        });
-        alert('Registered successfully!');
-        this.router.navigate(['/login']);
+        alert('Error: Minimum password length is 8');
+        this.password = '';
+        this.confirmPassword = '';
       }
+
     } else {
       alert('Fill out all the fields.');
     }
@@ -46,16 +45,35 @@ export class RegistrationComponent implements OnInit {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('profile');
     provider.addScope('email');
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-     // This gives you a Google Access Token.
-     const token = result.credential.accessToken;
-     // The signed-in user info.
-     const user = result.user;
-     alert('Registered successfully!');
-     this.navigate();
+    this.afAuth.auth.signInWithPopup(provider).then(
+      (success) => {
+        this.pushToDB(this.afAuth.auth.currentUser.uid);
+      }).catch(
+      (err) => {
+        console.log('Error: ' + err);
+      });
+  }
+
+  pushToDB(uid: any) {
+    const userRewards = this.afDB.database.ref('/User Rewards').push();
+    userRewards.set({
+      user: uid
     });
-    function navigate() {
-      this.router.navigate(['/login']);
-    }
+    alert('Registered successfully!');
+    this.router.navigate(['/login']);
+  }
+
+  signIn() {
+    this.afAuth.auth.createUserWithEmailAndPassword(this.email, this.password).then(
+      (success) => {
+        this.pushToDB(this.afAuth.auth.currentUser.uid);
+      }).catch(
+      (err) => {
+        if (err.message === 'The email address is already in use by another account.') {
+          alert(err.message);
+        } else {
+          console.log('Error: ' + err.message);
+        }
+      });
   }
 }

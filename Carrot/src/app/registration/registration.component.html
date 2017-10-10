@@ -1,26 +1,23 @@
 <div class="registration container-fluid">
   <div class="row justify-content-center">
-    <a [routerLink]="['/login']"><img class="carrotPicture" src="../../assets/img/carrot.png" alt="Carrot Icon"></a>
-    <br>
+      <a [routerLink]="['/login']">
+          <img class="carrotPicture" src="../../assets/img/carrot.png" alt="Carrot Icon">
+      </a>
+      <br>
   </div>
   <div class="row justify-content-md-center">
-    <div class="col-md-4">
-      <!-- <custom-textfield [inputType]="'text'" [placeholderText]="'Full Name'" class="col-md-4 customTextFieldStyle"></custom-textfield>
-      <br> -->
-      <!-- <custom-textfield id="email" [inputType]="'email'" [placeholderText]="'Email'" class="col-md-4 customTextFieldStyle"></custom-textfield>
-      <br>
-      <custom-textfield id="password" [inputType]="'password'" [placeholderText]="'Password'" class="col-md-4 customTextFieldStyle"></custom-textfield>
-      <br>
-      <custom-textfield id="confirmPassword" [inputType]="'password'" [placeholderText]="'Confirm Password'" class="col-md-4 customTextFieldStyle"></custom-textfield> -->
-      <input type="email" placeholder="Email" class="form-control textfield" [(ngModel)]="email" required>
-      <br>
-      <input type="password" placeholder="Password" class="form-control textfield" [(ngModel)]="password" required>
-      <br>
-      <input type="password" placeholder="Confirm Password" class="form-control textfield" [(ngModel)]="confirmPassword" required>
-      <div class="row">
-        <custom-button [text]="'Back'" [link]="'/login'" class="col align-self-start"></custom-button>
-        <custom-button [text]="'Register'" (click)="register()" class="col align-self-end text-right"></custom-button>
+      <div class="col-md-4">
+          <input type="email" placeholder="Email" class="form-control textfield" [(ngModel)]="email" required>
+          <br>
+          <input type="password" placeholder="Password" class="form-control textfield" [(ngModel)]="password" required>
+          <br>
+          <input type="password" placeholder="Confirm Password" class="form-control textfield" [(ngModel)]="confirmPassword" required>
       </div>
-    </div>
+  </div>
+  <div class="row  justify-content-md-center margin-40-left">
+      <div class="col-md-4">
+        <custom-button [text]="'Register'" (click)="register()" class="col-md-12"></custom-button>
+          <custom-button [text]="'Back'" [routerLink]="'/login'" class="col-md-12"></custom-button>
+      </div>
   </div>
 </div>

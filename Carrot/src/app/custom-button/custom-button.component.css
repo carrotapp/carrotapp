@@ -1,7 +1,11 @@
 .styledButtons{
     height: 45px;
-    width: 100px;
+    width: 100%;
     margin: 20px 0px;
     color: white;
     background: #00cc99;
+}
+
+.styledButtons:hover{
+    cursor: pointer;
 }
