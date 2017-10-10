@@ -10,9 +10,6 @@ export class CustomButtonComponent implements OnInit {
   @Input()
   text: String;
 
-  @Input()
-  link: String;
-
   constructor() { }
 
   ngOnInit() {

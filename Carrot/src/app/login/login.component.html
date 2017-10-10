@@ -1,27 +1,30 @@
 <div class="registration container-fluid align-middle">
     <div class="row justify-content-center">
-      <a [routerLink]="['/login']"><img class="carrotPicture" src="../../assets/img/default.png" alt="Carrot Icon"></a>
+        <a [routerLink]="['/login']">
+            <img class="carrotPicture" src="../../assets/img/default.png" alt="Carrot Icon">
+        </a>
     </div>
-    <br>  
+    <br>
     <div class="row justify-content-md-center">
-      <div class="col-md-4">
-        <input type="email" placeholder="Email" class="form-control textfield" [(ngModel)]="email" required>
-        
-        <input type="password" placeholder="Password" class="form-control textfield" [(ngModel)]="password" required>
-        
-        <div class="row">
-          <custom-button text="Login" (click)="signIn()" [link]="'/login'" class="col align-self-start"></custom-button>
-          <custom-button [text]="'Register'" [link]="'/register'" class="col align-self-end text-right"></custom-button>
+        <div class="col-md-4">
+            <input type="email" placeholder="Email" class="form-control textfield" [(ngModel)]="email" required>
+
+            <input type="password" placeholder="Password" class="form-control textfield" [(ngModel)]="password" required>
         </div>
-        <div class="row justify-content-center">
-            <button type="button" (click)="googlePopup()" class="googleButton text-center m-0 p-0"></button>          
-        </div>
-        <!-- <div class="row text-center">
-          <custom-button text="Login" (click)="signIn()" [link]="'/login'" class="col align-center"></custom-button>
-          <custom-button text="Google" (click) = "googlePopup()" [link]="'/login'" class="col align-center"></custom-button>
-          <br>
-          <custom-button [text]="'Register'" [link]="'/register'"></custom-button>
-        </div>       -->
-      </div>
+
     </div>
-  </div>
+    <div class="row justify-content-md-center margin-40-left">
+        <div class="col-md-4 ">
+            <custom-button text="Login" (click)="signIn()" [routerLink]="'/login'" class=" col align-self-start"></custom-button>
+            <h6 class="or">or</h6>
+            <custom-button [text]="'Register'" [routerLink]="'/register'" class=" col align-self-start"></custom-button>
+
+        </div>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-md-2">
+
+            <button type="button" (click)="googlePopup()" class="googleButton col align-self-start"></button>
+        </div>
+    </div>
+</div>
