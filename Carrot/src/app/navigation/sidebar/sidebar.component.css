@@ -1,6 +1,27 @@
 .slideBar{
-max-width: 266px;
-min-width: 25%;
-height: 100%; 
-padding: 0.5%;
+min-width: 266px;
+max-width: 25%;
+margin: 0;
+background-color: #ffffff;
+height: 100%;
+float: left;
+opacity: 2;
+z-index: 10;
+}
+.slideBar-container{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
+.slidebar-fill{
+    height: inherit;
+    width: inherit;
+    background-color: #1E1E1E;
+    opacity: 0.6;
+    z-index: -1;
+}
+.box{
+    padding: 5px;
+    width: inherit;
 }

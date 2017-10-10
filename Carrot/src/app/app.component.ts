@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  
+  showSideBar:boolean;
+  sidebar_toggle(){
+    this.showSideBar = !this.showSideBar;
+  }
+  constructor() { 
+    this.showSideBar=true;
+  }
 }

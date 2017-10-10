@@ -12,5 +12,29 @@
 }
 /* shaddow effect */
 .shadow{
-    box-shadow: 2px 2px 2px silver;
+    box-shadow: 2px 2px 2px 2px silver;
+}
+/* Global Helpers */
+
+.col-blocks-3{
+    width: 33.3%;
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.center{
+    text-align: center;
+}
+
+.right{
+    text-align: right;
+}
+
+.selectable{
+    color:#5C5C5C;
+    cursor: pointer;
+}
+.selectable:hover{
+    color: #262626;
 }
