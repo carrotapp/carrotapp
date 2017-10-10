@@ -1,0 +1,31 @@
+
+  
+  <div class="col-md-12">
+    <div  *ngFor="let item of data | async" class="card_select">
+      <div class="card_img_div">
+        <img class="card_img" src="{{item.Image}}" alt="wool">
+    </div>
+
+    <h1 class = "provider_name">{{item.Name}}</h1>
+    <div class="div_add" >
+      <button class="btn add_button">Add Reward <i class="fa fa-chevron-right"></i></button>
+    </div>
+  </div>
+</div>
+
+            
+
+            <!-- <div class="row justify-content-center m-0">
+                <div class="col-md-6">
+                  <div class="card_select">
+                    <div class="card_img_div">
+                      <img class="card_img" src="https://images.forbes.com/media/lists/companies/pick-n-pay-stores_416x416.jpg" alt="wool">
+                  </div>
+              
+                  <h1 class = "provider_name">Lihle</h1>
+                  <div class="div_add" >
+                    <button class="btn add_button">Add Reward <i class="fa fa-chevron-right"></i></button>
+                  </div>
+                </div>
+              </div>
+                          </div> -->

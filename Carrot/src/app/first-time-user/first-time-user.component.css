@@ -1,0 +1,58 @@
+/*  css for the card  */
+
+.card_select {
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 7px; 
+    margin: 6px;
+    float: left;
+    margin-left: 20px;
+}
+
+.provider_name {
+    font-size: 160%;
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    margin-top: 5px;
+}
+
+
+
+.add_button {
+    width: 250px;
+    height: 100%;
+   padding: 5px;
+    border: 1px solid #17CFA1;
+    border-radius: 2px;
+    background-color: #535657;
+    color: aliceblue;
+     border-bottom-left-radius: 7px; border-bottom-right-radius: 7px
+    
+}
+
+.add_button:hover {
+        background-color: aliceblue;
+    color:  #535657;
+     border-bottom-left-radius: 7px; border-bottom-right-radius: 7px
+    
+}
+
+.div_add{
+    background-color: #535657; height: 100%; border-bottom-left-radius: 7px; border-bottom-right-radius: 7px;
+}
+
+.card_img{
+    border-radius: 3px; max-height: 250px; max-width: 250px;  min-height: 250px; min-width: 250px;
+}
+
+.card_img_div{
+     height: 250px;
+     border-bottom: 1px solid 
+}
+
+
+
+/*  css for the card  */
+
