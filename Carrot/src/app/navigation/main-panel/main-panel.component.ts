@@ -1,4 +1,5 @@
-import { Component, OnInit,Injectable } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NavigationTogglesService } from '../../services/navigation/navigation-toggles.service';
 
 @Component({
   selector: 'app-main-panel',
@@ -6,16 +7,15 @@ import { Component, OnInit,Injectable } from '@angular/core';
   styleUrls: ['./main-panel.component.css']
 })
 
+
 export class MainPanelComponent implements OnInit {
-  showSideBar:boolean;
-  sidebar_toggle(){
-    this.showSideBar = !this.showSideBar;
-  }
-  constructor() { 
-    this.showSideBar=true;
-  }
+  
+  constructor() {  }
 
   ngOnInit() {
+  }
+  get getShowSideBar() {
+    return NavigationTogglesService.ShowSideBar;
   }
 
 }

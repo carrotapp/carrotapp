@@ -1,4 +1,4 @@
-<app-sidebar></app-sidebar>
+<app-sidebar *ngIf="getShowSideBar" class="ease"></app-sidebar>
 <div class="panel shadow">
 <router-outlet name="activity-panel"></router-outlet>
 </div>

@@ -1,9 +1,17 @@
 import { Injectable } from '@angular/core';
-
-export const ShowSideBar:boolean = false;
-
+/*
+  @Author: Sixolile Mtengwana
+*/
 @Injectable()
 export class NavigationTogglesService {
-  constructor() { 
+   static ShowSideBar:boolean = false;
+   static togglesidebarstyleClass: String;
+  //Start of Constructor
+   constructor() { 
+    NavigationTogglesService.ShowSideBar = false;
+    NavigationTogglesService.togglesidebarstyleClass = "hidden";
+  }
+  sidebar_toggle():void{
+    NavigationTogglesService.ShowSideBar = !NavigationTogglesService.ShowSideBar;
   }
 }

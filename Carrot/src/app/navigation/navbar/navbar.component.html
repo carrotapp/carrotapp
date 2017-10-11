@@ -1,6 +1,6 @@
 <div class="navbar shadow">
 <div class="col-blocks-3">
- <span class="selectable fa fa-navicon" (click)="sidebar_toggle()"></span>
+ <span class="selectable fa fa-navicon" (click)="sidebar_toggle()" *ngIf="getShowSideBar === false"></span>
 </div>
 <div class="col-blocks-3 center">
   <span class="selectable"  [routerLink]="['/login']">CARROT</span>

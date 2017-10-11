@@ -16,6 +16,9 @@ import { SidebarComponent } from './navigation/sidebar/sidebar.component';
 import { NavbarComponent } from './navigation/navbar/navbar.component';
 import { PanelComponent } from './navigation/panel/panel.component';
 import { MainPanelComponent } from './navigation/main-panel/main-panel.component';
+//Service Import
+import { NavigationTogglesService } from './services/navigation/navigation-toggles.service';
+
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDUlfMoY9Aq0nOGnZt_ovhRDaUtOJUnZ04',
@@ -46,7 +49,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [ AngularFireAuth , AngularFireDatabaseModule],
+  providers: [ AngularFireAuth , AngularFireDatabaseModule , NavigationTogglesService ], // Injected The Service
   bootstrap: [AppComponent]
 })
 export class AppModule { }
