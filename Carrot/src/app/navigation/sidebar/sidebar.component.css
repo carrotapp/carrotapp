@@ -17,11 +17,11 @@ z-index: 10;
 .slidebar-fill{
     height: inherit;
     width: inherit;
-    background-color: #1E1E1E;
     opacity: 0.6;
     z-index: -1;
+    padding: 5px;
 }
 .box{
     padding: 5px;
-    width: inherit;
+    width: 100%;
 }

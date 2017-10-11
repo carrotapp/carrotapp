@@ -38,3 +38,6 @@
 .selectable:hover{
     color: #262626;
 }
+.left{
+    text-align: left;
+}
