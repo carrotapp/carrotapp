@@ -4,13 +4,13 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-first-time-user',
-  templateUrl: './first-time-user.component.html',
-  styleUrls: ['./first-time-user.component.css']
+  selector: 'app-rewards',
+  templateUrl: './rewards.component.html',
+  styleUrls: ['./rewards.component.css']
 })
-export class FirstTimeUserComponent implements OnInit {
-  data: FirebaseListObservable<any[]>;
 
+export class RewardsComponent implements OnInit {
+  data: FirebaseListObservable<any[]>;
 
   constructor(af: AngularFireDatabase) {
     this.data = af.list('/Rewards');

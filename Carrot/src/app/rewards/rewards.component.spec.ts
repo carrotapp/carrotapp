@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FirstTimeUserComponent } from './first-time-user.component';
+import { RewardsComponent } from './rewards.component';
 
-describe('FirstTimeUserComponent', () => {
-  let component: FirstTimeUserComponent;
-  let fixture: ComponentFixture<FirstTimeUserComponent>;
+describe('RewardsComponent', () => {
+  let component: RewardsComponent;
+  let fixture: ComponentFixture<RewardsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FirstTimeUserComponent ]
+      declarations: [ RewardsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FirstTimeUserComponent);
+    fixture = TestBed.createComponent(RewardsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

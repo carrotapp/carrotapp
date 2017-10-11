@@ -11,7 +11,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { FirstTimeUserComponent } from './first-time-user/first-time-user.component';
+import { RewardsComponent } from './rewards/rewards.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDUlfMoY9Aq0nOGnZt_ovhRDaUtOJUnZ04',
@@ -28,7 +28,7 @@ export const firebaseConfig = {
     RegistrationComponent,
     LoginComponent,
     CustomButtonComponent,
-    FirstTimeUserComponent
+    RewardsComponent
   ],
   imports: [
     BrowserModule,

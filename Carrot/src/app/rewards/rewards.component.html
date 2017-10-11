@@ -1,0 +1,13 @@
+<div class="row m-0 text-center justify-content-center">
+  <div *ngFor="let item of data | async">
+    <div class="card col p-0 m-4" style="width: 15rem;">
+      <img class="card-img-top img-fluid img-rounded" style="margin-top: 15px;" src="{{item.Image}}" alt="Card image cap">
+      <div class="card-body p-0">
+        <h4 class="card-title">{{item.Name}}</h4>
+        <button class="btn add_button">Add Reward
+          <i class="fa fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
