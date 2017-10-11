@@ -60,7 +60,7 @@ export class RegistrationComponent implements OnInit {
       user: uid
     });
     alert('Registered successfully!');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/rewards']);
   }
 
   signIn() {

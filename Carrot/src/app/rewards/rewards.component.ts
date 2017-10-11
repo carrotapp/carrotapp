@@ -12,11 +12,28 @@ import { Component, OnInit } from '@angular/core';
 export class RewardsComponent implements OnInit {
   data: FirebaseListObservable<any[]>;
 
-  constructor(af: AngularFireDatabase) {
-    this.data = af.list('/Rewards');
-   }
+  constructor(public afDB: AngularFireDatabase, public afAuth: AngularFireAuth) {
+    this.data = afDB.list('/Rewards');
+  }
 
   ngOnInit() {
+  }
+
+  addRewards(rewardName: String) {
+    let key = '';
+    const users: FirebaseListObservable<any[]> = this.afDB.list('/User Rewards');
+    users.forEach(element => {
+      const uid: String = this.afAuth.auth.currentUser.uid;
+      for (let i = 0; i < element.length; i++) {
+        if (element[i].user === uid) {
+          key = element[i].$key;
+          const userRewards = this.afDB.database.ref('/User Rewards/' + key + '/Rewards/' + rewardName);
+          userRewards.set(0);
+          break;
+        }
+      }
+    });
+    alert('Reward added!');
   }
 
 }
