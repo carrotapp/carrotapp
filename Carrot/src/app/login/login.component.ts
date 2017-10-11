@@ -21,6 +21,9 @@ export class LoginComponent implements OnInit {
   }
 
   signIn() {
+    if (this.email.includes('@gmail.com')) {
+      this.googlePopup();
+    } else {
     this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password).then(
       (success) => {
         alert('Logged in');
@@ -28,6 +31,7 @@ export class LoginComponent implements OnInit {
       (err) => {
         alert('Error: ' + err.message);
       });
+    }
   }
 
   googlePopup() {
