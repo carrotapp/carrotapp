@@ -1,8 +1,12 @@
+<<<<<<< HEAD
+=======
+import { Component, OnInit } from '@angular/core';
+>>>>>>> Dev-Lihle&Ernst
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-rewards',
@@ -14,8 +18,31 @@ export class RewardsComponent implements OnInit {
   data: FirebaseListObservable<any[]>;
   flag = true;
 
+<<<<<<< HEAD
   constructor(public afDB: AngularFireDatabase, public afAuth: AngularFireAuth, public router: Router) {
     this.data = afDB.list('/Rewards');
+=======
+
+  constructor(public afDB: AngularFireDatabase, public afAuth: AngularFireAuth, public router: Router) {
+    
+   
+
+    try {
+      if(this.afAuth.auth.currentUser.uid === null){
+        console.log("null");
+      }else{
+        //console.log(this.afAuth.auth.currentUser.uid);
+        this.data = afDB.list('/Rewards');   
+      }
+    } catch (error) {
+      console.log(error);
+      if(error = "TypeError: Cannot read property 'uid' of null"){
+        alert("You are not Logged in");
+        this.router.navigate(['/']);
+      }
+    }
+    
+>>>>>>> Dev-Lihle&Ernst
   }
 
   ngOnInit() {
