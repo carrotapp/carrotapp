@@ -13,47 +13,59 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 
 export class RewardsComponent implements OnInit {
   data: FirebaseListObservable<any[]>;
+  flag = true;
 
 
   constructor(public afDB: AngularFireDatabase, public afAuth: AngularFireAuth, public router: Router) {
-    
-   
-
     try {
-      if(this.afAuth.auth.currentUser.uid === null){
-        console.log("null");
-      }else{
-        //console.log(this.afAuth.auth.currentUser.uid);
-        this.data = afDB.list('/Rewards');   
+      if (this.afAuth.auth.currentUser.uid === null) {
+        console.log('null');
+      } else {
+        // console.log(this.afAuth.auth.currentUser.uid);
+        this.data = afDB.list('/Rewards');
       }
     } catch (error) {
       console.log(error);
-      if(error = "TypeError: Cannot read property 'uid' of null"){
-        alert("You are not Logged in");
+      if (error = 'TypeError: Cannot read property "uid" of null') {
+        alert('You are not Logged in');
         this.router.navigate(['/']);
       }
     }
-    
   }
 
   ngOnInit() {
   }
 
   addRewards(rewardName: String) {
-    let key = '';
+    this.flag = true;
     const users: FirebaseListObservable<any[]> = this.afDB.list('/User Rewards');
     users.forEach(element => {
       const uid: String = this.afAuth.auth.currentUser.uid;
       for (let i = 0; i < element.length; i++) {
         if (element[i].user === uid) {
-          key = element[i].$key;
-          const userRewards = this.afDB.database.ref('/User Rewards/' + key + '/Rewards/' + rewardName);
-          userRewards.set(0);
-          break;
+          const rewards: FirebaseListObservable<any[]> = this.afDB.list('/User Rewards/' + element[i].$key + '/Rewards');
+          rewards.forEach(rewardsElement => {
+            console.log(this.flag);
+            if (this.flag) {
+              for (let j = 0; j < rewardsElement.length; j++) {
+                if (rewardsElement[j].$key === rewardName) {
+                  this.flag = false;
+                  break;
+                }
+              }
+            }
+            if (this.flag) {
+              const userRewards = this.afDB.database.ref('/User Rewards/' + element[i].$key + '/Rewards/' + rewardName);
+              userRewards.set(0);
+              this.flag = false;
+              alert('Reward added!');
+              this.router.navigate(['/register']);
+            } else {
+              alert('You already have that reward');
+            }
+          });
         }
       }
     });
-    alert('Reward added!');
   }
-
 }
