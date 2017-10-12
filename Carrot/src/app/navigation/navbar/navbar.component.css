@@ -1,11 +1,24 @@
-.navbar{
-    top:0;
-    left:0;
-    width: 100%;
-    float: left;
-    font-size: 20px;
-    padding: 0.05%;
-    font-weight: 900;
-    position: static;
-    background-color: #ffffff;
+.navbar {
+  top: 0;
+  left: 0;
+  width: 100%;
+  float: left;
+  font-size: 1em;
+  padding: 0.05%;
+  font-weight: 900;
+  position: static;
+  height:60px;
+  background-color: black;
+}
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.selectable {
+  color: #ffffff ;
+  cursor: pointer;
 }
