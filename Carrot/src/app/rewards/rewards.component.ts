@@ -21,7 +21,6 @@ export class RewardsComponent implements OnInit {
       if (this.afAuth.auth.currentUser.uid === null) {
         console.log('null');
       } else {
-        // console.log(this.afAuth.auth.currentUser.uid);
         this.data = afDB.list('/Rewards');
       }
     } catch (error) {
@@ -45,7 +44,6 @@ export class RewardsComponent implements OnInit {
         if (element[i].user === uid) {
           const rewards: FirebaseListObservable<any[]> = this.afDB.list('/User Rewards/' + element[i].$key + '/Rewards');
           rewards.forEach(rewardsElement => {
-            console.log(this.flag);
             if (this.flag) {
               for (let j = 0; j < rewardsElement.length; j++) {
                 if (rewardsElement[j].$key === rewardName) {
@@ -57,10 +55,10 @@ export class RewardsComponent implements OnInit {
             if (this.flag) {
               const userRewards = this.afDB.database.ref('/User Rewards/' + element[i].$key + '/Rewards/' + rewardName);
               userRewards.set(0);
-              this.flag = false;
+              this.flag = undefined;
               alert('Reward added!');
-              this.router.navigate(['/register']);
-            } else {
+            } else if (this.flag === false) {
+              this.flag = undefined;
               alert('You already have that reward');
             }
           });
