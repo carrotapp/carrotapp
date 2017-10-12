@@ -20,6 +20,7 @@ import { MainPanelComponent } from './navigation/main-panel/main-panel.component
 import { NavigationTogglesService } from './services/navigation/navigation-toggles.service';
 import { MoreComponent } from './more/more.component';
 import { FooterComponent } from './navigation/footer/footer.component';
+import { ExpandedInfoComponent } from './expanded-info/expanded-info.component';
 
 
 export const firebaseConfig = {
@@ -43,7 +44,8 @@ export const firebaseConfig = {
     PanelComponent,
     MainPanelComponent,
     MoreComponent,
-    FooterComponent
+    FooterComponent,
+    ExpandedInfoComponent
   ],
   imports: [
     BrowserModule,
