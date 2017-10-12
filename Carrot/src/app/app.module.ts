@@ -11,6 +11,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { RewardsComponent } from './rewards/rewards.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDUlfMoY9Aq0nOGnZt_ovhRDaUtOJUnZ04',
@@ -26,7 +28,9 @@ export const firebaseConfig = {
     AppComponent,
     RegistrationComponent,
     LoginComponent,
-    CustomButtonComponent
+    CustomButtonComponent,
+    RewardsComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

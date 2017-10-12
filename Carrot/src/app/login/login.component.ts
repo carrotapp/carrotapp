@@ -24,13 +24,13 @@ export class LoginComponent implements OnInit {
     if (this.email.includes('@gmail.com')) {
       this.googlePopup();
     } else {
-    this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password).then(
-      (success) => {
-        alert('Logged in');
-      }).catch(
-      (err) => {
-        alert('Error: ' + err.message);
-      });
+      this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password).then(
+        (success) => {
+          this.router.navigate(['/rewards']);
+        }).catch(
+        (err) => {
+          alert('Error: ' + err.message);
+        });
     }
   }
 
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           if (flag === undefined) {
             this.pushToDB(this.afAuth.auth.currentUser.uid);
           } else {
-            this.router.navigate(['/register']);
+            this.router.navigate(['/rewards']);
           }
         });
       }).catch(
@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
     userRewards.set({
       user: uid
     });
-    this.router.navigate(['/register']);
+    this.router.navigate(['/rewards']);
   }
 
   ngOnInit() {
