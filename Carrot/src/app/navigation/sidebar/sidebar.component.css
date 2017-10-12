@@ -2,10 +2,11 @@
 min-width: 266px;
 max-width: 25%;
 margin: 0;
-background-color: #ffffff;
+background-color: #000000;
 height: 100%;
 float: left;
 z-index: 10;
+color: #ffffff;
 }
 .slideBar-container{
     height: 100%;
@@ -24,4 +25,5 @@ z-index: 10;
 .box{
     padding: 5px;
     width: 100%;
+    color: #ffffff;
 }
