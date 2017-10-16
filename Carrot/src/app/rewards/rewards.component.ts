@@ -13,19 +13,15 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 
 export class RewardsComponent implements OnInit {
   data: FirebaseListObservable<any[]>;
-  flag = true;
-
 
   constructor(public afDB: AngularFireDatabase, public afAuth: AngularFireAuth, public router: Router) {
     try {
       if (this.afAuth.auth.currentUser.uid === null) {
         console.log('null');
       } else {
-        // console.log(this.afAuth.auth.currentUser.uid);
         this.data = afDB.list('/Rewards');
       }
     } catch (error) {
-      console.log(error);
       if (error = 'TypeError: Cannot read property "uid" of null') {
         alert('You are not Logged in');
         this.router.navigate(['/']);
@@ -37,7 +33,7 @@ export class RewardsComponent implements OnInit {
   }
 
   addRewards(rewardName: String) {
-    this.flag = true;
+    let flag = true;
     const users: FirebaseListObservable<any[]> = this.afDB.list('/User Rewards');
     users.forEach(element => {
       const uid: String = this.afAuth.auth.currentUser.uid;
@@ -45,22 +41,21 @@ export class RewardsComponent implements OnInit {
         if (element[i].user === uid) {
           const rewards: FirebaseListObservable<any[]> = this.afDB.list('/User Rewards/' + element[i].$key + '/Rewards');
           rewards.forEach(rewardsElement => {
-            console.log(this.flag);
-            if (this.flag) {
+            if (flag) {
               for (let j = 0; j < rewardsElement.length; j++) {
                 if (rewardsElement[j].$key === rewardName) {
-                  this.flag = false;
+                  flag = false;
                   break;
                 }
               }
             }
-            if (this.flag) {
+            if (flag) {
               const userRewards = this.afDB.database.ref('/User Rewards/' + element[i].$key + '/Rewards/' + rewardName);
               userRewards.set(0);
-              this.flag = false;
+              flag = undefined;
               alert('Reward added!');
-              this.router.navigate(['/register']);
-            } else {
+            } else if (flag === false) {
+              flag = undefined;
               alert('You already have that reward');
             }
           });
