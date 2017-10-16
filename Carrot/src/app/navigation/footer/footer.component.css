@@ -1,0 +1,17 @@
+.my-footer {
+    bottom: 0;
+     width: 100%;
+     float: right;
+     font-size: 1em;
+     padding: 0.05%;
+     height: 60px;
+     background-color: black;
+     position: fixed;
+     width: 100%;
+   }
+   
+   .text-color {
+     color: #ffffff ;
+     text-align: center;
+   }
+   

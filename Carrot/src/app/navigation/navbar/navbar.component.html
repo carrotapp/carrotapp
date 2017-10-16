@@ -1,0 +1,31 @@
+<!--<div class="navbar shadow">
+<div class="col-blocks-3">
+ <span class="selectable fa fa-navicon" (click)="sidebar_toggle()" *ngIf="getShowSideBar === false"></span>
+</div>
+<div class="col-blocks-3 center">
+  <span class="selectable"  [routerLink]="['/login']">CARROT</span>
+</div>
+<div class="col-blocks-3 right">
+  <span class="selectable">More</span>
+</div>
+</div>-->
+
+<div class="navbar shadow">
+  <div class="container-fluid">
+      <div class="row justify-content-end">
+          <div class="col-md-4">
+              <span class="selectable fa fa-navicon " (click)="sidebar_toggle()" *ngIf="getShowSideBar === false"></span>
+          </div>
+      </div>
+      <div class="row justify-content-start">
+          <div class="col-md-4">
+              <div class="selectable" [routerLink]="['/expandedInfo']">CARROT</div>
+          </div>
+      </div>
+      <div class="row justify-content-start">
+          <div class="col-md-4">
+              <div class="selectable">More</div>
+          </div>
+      </div>
+  </div>
+</div>

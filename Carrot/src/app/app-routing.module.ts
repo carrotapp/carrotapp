@@ -4,6 +4,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { RewardsComponent } from './rewards/rewards.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PanelComponent } from './navigation/panel/panel.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -11,6 +12,7 @@ const routes: Routes = [
     { path: 'register', component: RegistrationComponent },
     { path: 'rewards', component: RewardsComponent },
     { path: '404', component: NotFoundComponent },
+    { path: 'main', component: PanelComponent},
     { path: '**', redirectTo: '404' },
 
 ];

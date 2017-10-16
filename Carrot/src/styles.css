@@ -1,3 +1,44 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import url('./assets/font-awesome-4.7.0/css/font-awesome.min.css');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+/* This is to ensure that all components experience a smooth change */
+*{
+    transition: all 800ms ease;
+    -webkit-transition: all 800ms ease;;
+    -o-transition: all 800ms ease;
+    -ms-transition: all 800ms ease;
+    -moz-transition: all 800ms ease;
+}
+/* shaddow effect */
+.shadow{
+    box-shadow: 1px 1px 1px 1px silver;
+}
+/* Global Helpers */
+
+.col-blocks-3{
+    width: 33.3%;
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.center{
+    text-align: center;
+}
+
+.right{
+    text-align: right;
+}
+
+.selectable{
+    color:#f2f2f2;
+    cursor: pointer;
+}
+.selectable:hover{
+    color: #262626;
+}
+.left{
+    text-align: left;
+}

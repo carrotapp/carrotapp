@@ -13,6 +13,13 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { RewardsComponent } from './rewards/rewards.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { NavbarComponent } from './navigation/navbar/navbar.component';
+import { PanelComponent } from './navigation/panel/panel.component';
+import { SidebarComponent } from './navigation/sidebar/sidebar.component';
+import { MainPanelComponent } from './navigation/main-panel/main-panel.component';
+import { FooterComponent } from './navigation/footer/footer.component';
+// service imports
+import { NavigationTogglesService } from './services/navigation/navigation-toggles.service';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDUlfMoY9Aq0nOGnZt_ovhRDaUtOJUnZ04',
@@ -30,7 +37,12 @@ export const firebaseConfig = {
     LoginComponent,
     CustomButtonComponent,
     RewardsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    NavbarComponent,
+    PanelComponent,
+    SidebarComponent,
+    MainPanelComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +52,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [ AngularFireAuth , AngularFireDatabaseModule],
+  providers: [ AngularFireAuth , AngularFireDatabaseModule,  NavigationTogglesService], // Dependancy Injection
   bootstrap: [AppComponent]
 })
 export class AppModule { }
