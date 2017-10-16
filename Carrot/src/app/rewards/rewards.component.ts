@@ -23,7 +23,7 @@ export class RewardsComponent implements OnInit {
       }
     } catch (error) {
       if (error = 'TypeError: Cannot read property "uid" of null') {
-        alert('You are not Logged in');
+        alert('You are not logged in');
         this.router.navigate(['/']);
       }
     }

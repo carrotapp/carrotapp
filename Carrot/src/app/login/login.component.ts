@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           if (flag === undefined) {
             this.pushToDB(this.afAuth.auth.currentUser.uid);
           } else {
-            this.router.navigate(['/rewards']);
+            this.router.navigate(['/dashboard']);
           }
         });
       }).catch(
@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
     userRewards.set({
       user: uid
     });
-    this.router.navigate(['/rewards']);
+    this.router.navigate(['/dashboard']);
   }
 
   ngOnInit() {

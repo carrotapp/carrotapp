@@ -1,3 +1,4 @@
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -11,8 +12,9 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegistrationComponent },
     { path: 'rewards', component: RewardsComponent },
-    { path: '404', component: NotFoundComponent },
     { path: 'main', component: PanelComponent},
+    { path: 'dashboard', component: DashboardComponent},
+    { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '404' },
 
 ];

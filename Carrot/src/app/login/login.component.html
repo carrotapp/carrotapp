@@ -8,22 +8,18 @@
     <div class="row justify-content-md-center">
         <div class="col-md-4">
             <input type="email" placeholder="Email" class="form-control textfield" [(ngModel)]="email" required>
-
             <input type="password" placeholder="Password" class="form-control textfield" [(ngModel)]="password" required>
         </div>
-
     </div>
     <div class="row justify-content-md-center margin-40-left">
         <div class="col-md-4 ">
-            <custom-button text="Login" (click)="signIn()" [routerLink]="'/login'" class=" col align-self-start"></custom-button>
+            <custom-button text="Login" (click)="signIn()" class=" col align-self-start"></custom-button>
             <h6 class="or">or</h6>
             <custom-button [text]="'Register'" [routerLink]="'/register'" class=" col align-self-start"></custom-button>
-
         </div>
     </div>
     <div class="row justify-content-md-center">
         <div class="col-md-2">
-
             <button type="button" (click)="googlePopup()" class="googleButton col align-self-start"></button>
         </div>
     </div>
