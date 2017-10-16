@@ -32,7 +32,7 @@ export class RewardsComponent implements OnInit {
   ngOnInit() {
   }
 
-  addRewards(rewardName: String) {
+  addRewards(key: String) {
     let flag = true;
     const users: FirebaseListObservable<any[]> = this.afDB.list('/User Rewards');
     users.forEach(element => {
@@ -43,14 +43,14 @@ export class RewardsComponent implements OnInit {
           rewards.forEach(rewardsElement => {
             if (flag) {
               for (let j = 0; j < rewardsElement.length; j++) {
-                if (rewardsElement[j].$key === rewardName) {
+                if (rewardsElement[j].$key === key) {
                   flag = false;
                   break;
                 }
               }
             }
             if (flag) {
-              const userRewards = this.afDB.database.ref('/User Rewards/' + element[i].$key + '/Rewards/' + rewardName);
+              const userRewards = this.afDB.database.ref('/User Rewards/' + element[i].$key + '/Rewards/' + key);
               userRewards.set(0);
               flag = undefined;
               alert('Reward added!');

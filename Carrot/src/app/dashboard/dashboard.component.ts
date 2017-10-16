@@ -40,4 +40,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
+  navigate() {
+    this.router.navigate(['/rewards']);
+  }
+
 }
