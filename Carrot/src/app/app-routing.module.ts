@@ -11,8 +11,8 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegistrationComponent },
     { path: 'rewards', component: RewardsComponent },
-    { path: '404', component: NotFoundComponent },
     { path: 'main', component: PanelComponent},
+    { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '404' },
 
 ];
