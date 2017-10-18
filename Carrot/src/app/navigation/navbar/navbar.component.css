@@ -7,8 +7,7 @@
     padding: 0.05%;
     font-weight: 900;
     position: static;
-    height:60px;
-    background-color: black;
+    height:50px;
   }
   .center {
     text-align: center;
@@ -19,6 +18,10 @@
   }
   
   .selectable {
-    color: #ffffff ;
-    cursor: pointer;
+    color: #888989 ;
+    cursor: pointer; 
+  }
+
+  .col-md-3{
+    width: 33.3%
   }

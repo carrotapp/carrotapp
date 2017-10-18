@@ -13,18 +13,18 @@
 <div class="navbar shadow">
   <div class="container-fluid">
       <div class="row justify-content-end">
-          <div class="col-md-4">
-              <span class="selectable fa fa-navicon " (click)="sidebar_toggle()" *ngIf="getShowSideBar === false"></span>
+          <div class="col-md-3">
+              <span class="selectable fa fa-bars" (click)="sidebar_toggle()"></span>
           </div>
       </div>
       <div class="row justify-content-start">
-          <div class="col-md-4">
+          <div class="col-md-3">
               <div class="selectable" [routerLink]="['/expandedInfo']">CARROT</div>
           </div>
       </div>
       <div class="row justify-content-start">
-          <div class="col-md-4">
-              <div class="selectable">More</div>
+          <div class="col-md-3"> 
+              <div class="selectable fa fa-ellipsis-v"></div> 
           </div>
       </div>
   </div>

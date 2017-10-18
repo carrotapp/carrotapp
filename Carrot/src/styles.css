@@ -5,7 +5,7 @@
 
 /* This is to ensure that all components experience a smooth change */
 *{
-    transition: all 800ms ease;
+     transition: all 800ms ease;
     -webkit-transition: all 800ms ease;;
     -o-transition: all 800ms ease;
     -ms-transition: all 800ms ease;
@@ -14,6 +14,9 @@
 /* shaddow effect */
 .shadow{
     box-shadow: 1px 1px 1px 1px silver;
+}
+.shadow-right{
+    box-shadow:  2px 0px 2px  0px  silver;
 }
 /* Global Helpers */
 
@@ -32,12 +35,12 @@
     text-align: right;
 }
 
-.selectable{
+.selectable {
     color:#f2f2f2;
     cursor: pointer;
 }
-.selectable:hover{
-    color: #262626;
+.selectable :hover {
+    color: #1D1F20;
 }
 .left{
     text-align: left;

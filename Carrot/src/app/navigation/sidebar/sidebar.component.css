@@ -1,28 +1,35 @@
-.slideBar{
-    min-width: 266px;
-    width: 25%;
-    margin: 0;
-    background-color: #000000;
+.show{
+    width: 266px;
+    margin-top: 5px;
+    margin-left: 0.5px;
+    display: block;
+    height:inherit;
+    background-color: #ffffff;
     height: 100%;
     float: left;
-    color: #ffffff;
+    color: #1D1F20;
+    overflow-x: hidden;
+    overflow-y:  auto;
     }
-    .slideBar-container{
-        height: 100%;
-        width: 100%;
-        position: fixed;
+    .default{
+        width: 1px;
+        height:100%;
+        display: block;
+        border-right: 2px solid #ffffff;
+        margin-top: 5px;
+        margin-left: 0.5px;
+        overflow: hidden;
         float: left;
+        background-color: #ffffff;
+        box-shadow: none;
     }
-    
-    .slidebar-fill{
-        height: inherit;
-        width:100%;
-        opacity: 0.6;
-        z-index: -1;
-        padding: 5px;
-    }
-    .box{
-        padding: 5px;
+        
+    .showbox{
+        padding: 10px;
         width: 100%;
         color: #ffffff;
+        display: block;
+    }
+    .defaultbox{
+        display: none
     }

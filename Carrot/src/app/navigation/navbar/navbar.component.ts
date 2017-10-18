@@ -6,7 +6,7 @@ import { NavigationTogglesService } from '../../services/navigation/navigation-t
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  ShowSideBar:boolean = false;
+  ShowSideBar:string = 'default';
 
   constructor( public navtoggle : NavigationTogglesService ) { 
     this.ShowSideBar = NavigationTogglesService.ShowSideBar;
@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   sidebar_toggle():void {
     this.navtoggle.sidebar_toggle();
    }
-   get getShowSideBar() {
+   get getShowSideBar() {  
     return NavigationTogglesService.ShowSideBar;
   }
   ngOnInit() {
