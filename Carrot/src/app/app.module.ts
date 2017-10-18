@@ -1,3 +1,4 @@
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { DatabaseService } from './services/database/database.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -45,7 +46,8 @@ export const firebaseConfig = {
     SidebarComponent,
     MainPanelComponent,
     FooterComponent,
-    InfoComponent
+    InfoComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
