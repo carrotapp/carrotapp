@@ -17,7 +17,6 @@
         display: block;
         border-right: 2px solid #ffffff;
         margin-top: 5px;
-        margin-left: 0.5px;
         overflow: hidden;
         float: left;
         background-color: #ffffff;
@@ -32,4 +31,12 @@
     }
     .defaultbox{
         display: none
+    }
+    .box{
+        padding: 5px;
+    }
+    .profile-image{
+        border-radius: 100%;
+        width:85%;    
+        background-color: #DADADA;
     }

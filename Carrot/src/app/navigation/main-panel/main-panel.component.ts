@@ -14,8 +14,5 @@ export class MainPanelComponent implements OnInit {
 
   ngOnInit() {
   }
-  get getShowSideBar() {
-    return NavigationTogglesService.ShowSideBar;
-  }
 
 }

@@ -8,21 +8,22 @@ import { NavigationTogglesService } from '../../services/navigation/navigation-t
 })
 export class SidebarComponent implements OnInit {
   
-  constructor( public navtoggle : NavigationTogglesService ) { 
+  // The purpose of this import is to access the none static methods in this service
+  constructor( public navtoggle : NavigationTogglesService ) {  
     }
-    sidebarhover_In():void{
-      if(NavigationTogglesService.ShowSideBar != 'show') this.sidebar_toggle();
-    }
-    sidebarhover_Out():void{
-      if(NavigationTogglesService.ShowSideBar != 'default') this.sidebar_toggle();
+  // Reaction of the sidebar due to hovering
+    sidebarhover(state):void{
+      NavigationTogglesService.ShowSideBar = state;
     }
 
- sidebar_toggle():void {
+ // This method is for external buttons that wish to change the state of the sidebar toggle
+ sidebar():void {
   this.navtoggle.sidebar_toggle();  
  }
   ngOnInit() {
   }
-  get getShowSideBar() {
+   // Get the State of the sidebar 
+  get state() {
     return NavigationTogglesService.ShowSideBar;
   }
 }
