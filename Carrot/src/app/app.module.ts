@@ -1,3 +1,4 @@
+import { DatabaseService } from './services/database/database.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -54,7 +55,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [ AngularFireAuth , AngularFireDatabaseModule,  NavigationTogglesService], // Dependancy Injection
+  providers: [DatabaseService, NavigationTogglesService], // Dependancy Injection
   bootstrap: [AppComponent]
 })
 export class AppModule { }
