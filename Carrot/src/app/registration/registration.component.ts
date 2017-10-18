@@ -1,9 +1,5 @@
-import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { Observable } from 'rxjs/Observable';
-import * as firebase from 'firebase/app';
+import { DatabaseService } from './../services/database/database.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-registration',
@@ -11,15 +7,12 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./registration.component.css']
 })
 
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent {
   email = '';
   password = '';
   confirmPassword = '';
 
-  constructor(public afDB: AngularFireDatabase, public afAuth: AngularFireAuth, public router: Router) { }
-
-  ngOnInit() {
-  }
+  constructor(private databaseService: DatabaseService) { }
 
   register() {
     if (this.email !== '' && this.password !== '' && this.confirmPassword !== '') {
@@ -27,7 +20,7 @@ export class RegistrationComponent implements OnInit {
         if (this.password !== this.confirmPassword) {
           alert('Password do not match');
         } else {
-          this.signIn();
+          this.databaseService.signUp(this.email, this.password);
         }
 
       } else {
@@ -39,41 +32,5 @@ export class RegistrationComponent implements OnInit {
     } else {
       alert('Fill out all the fields.');
     }
-  }
-
-  googlePopup() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    provider.addScope('profile');
-    provider.addScope('email');
-    this.afAuth.auth.signInWithPopup(provider).then(
-      (success) => {
-        this.pushToDB(this.afAuth.auth.currentUser.uid);
-      }).catch(
-      (err) => {
-        console.log('Error: ' + err);
-      });
-  }
-
-  pushToDB(uid: any) {
-    const userRewards = this.afDB.database.ref('/User Rewards').push();
-    userRewards.set({
-      user: uid
-    });
-    alert('Registered successfully!');
-    this.router.navigate(['/rewards']);
-  }
-
-  signIn() {
-    this.afAuth.auth.createUserWithEmailAndPassword(this.email, this.password).then(
-      (success) => {
-        this.pushToDB(this.afAuth.auth.currentUser.uid);
-      }).catch(
-      (err) => {
-        if (err.message === 'The email address is already in use by another account.') {
-          alert(err.message);
-        } else {
-          console.log('Error: ' + err.message);
-        }
-      });
   }
 }
