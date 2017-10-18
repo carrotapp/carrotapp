@@ -20,6 +20,7 @@ import { MainPanelComponent } from './navigation/main-panel/main-panel.component
 import { FooterComponent } from './navigation/footer/footer.component';
 // service imports
 import { NavigationTogglesService } from './services/navigation/navigation-toggles.service';
+import { InfoComponent } from './navigation/info/info.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDUlfMoY9Aq0nOGnZt_ovhRDaUtOJUnZ04',
@@ -42,7 +43,8 @@ export const firebaseConfig = {
     PanelComponent,
     SidebarComponent,
     MainPanelComponent,
-    FooterComponent
+    FooterComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,

@@ -36,7 +36,7 @@
 }
 
 .selectable {
-    color:#f2f2f2;
+    color:#888989;
     cursor: pointer;
 }
 .selectable :hover {

@@ -1,8 +1,9 @@
 
-  <div class="  right shadow-right" [ngClass]="getShowSideBar" (mouseenter)="sidebarhover_In()" (mouseleave)="sidebarhover_Out()">
+  <div class="box right shadow-right" [ngClass]="state" (mouseenter)="sidebarhover('show')" (mouseleave)="sidebarhover('default')">
       <div class="box right">
-          <span class="fa fa-arrow-left selectable" (click)="sidebar_toggle()"></span>
-      </div><div class="slidebar-fill left">
-      // This is where the content of the SIDE will GO!!!    
-      </div>     
+          <span class="fa fa-arrow-left selectable" (click)="sidebar()"></span>
+      </div>
+      <div class="box center">
+    <img src="../../assets/img/default.png" alt="" class="profile-image">
+</div>     
   </div> 
