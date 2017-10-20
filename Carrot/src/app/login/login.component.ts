@@ -19,4 +19,8 @@ export class LoginComponent {
     this.databaseService.signIn(this.email, this.password);
   }
 
+  googlePopup() {
+    this.databaseService.googlePopup();
+  }
+
 }
