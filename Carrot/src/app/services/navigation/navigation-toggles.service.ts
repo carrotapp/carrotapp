@@ -13,11 +13,20 @@ export class NavigationTogglesService {
   }
 
   // Toggles
+  //Sidebar
   sidebar_toggle():void{
     if(NavigationTogglesService.ShowSideBar === 'default')
     NavigationTogglesService.ShowSideBar = 'show';
   
     else NavigationTogglesService.ShowSideBar = 'default';
     console.log(NavigationTogglesService.ShowSideBar);
+  }
+  // toolbar
+  toolbar_toggle():void{
+    if(NavigationTogglesService.toolbartoggle === 'default')
+    NavigationTogglesService.toolbartoggle = 'show';
+  
+    else NavigationTogglesService.toolbartoggle = 'default';
+    console.log(NavigationTogglesService.toolbartoggle);
   }
 }

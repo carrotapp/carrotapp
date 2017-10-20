@@ -18,6 +18,9 @@
 .shadow-right{
     box-shadow:  2px 0px 2px  0px  silver;
 }
+.shadow-left{
+    box-shadow: 0px  0px  0px   2px silver;
+}
 /* Global Helpers */
 
 .col-blocks-3{
