@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
               this.myItems = dataElement;
 
               this.rewards.push(
-                new Rewards(this.myItems)
+                new Rewards(this.myItems, element[i].$value)
               );
               console.log(this.rewards);
             });
@@ -62,13 +62,15 @@ export class Rewards {
   RewardName;
   Name;
   Ratio;
+  Value;
 
-  constructor(array) {
+  constructor(array, Value) {
     this.Currency = array[0].$value;
     this.Image = array[1].$value;
     this.RewardName = array[2].$value;
     this.Name = array[3].$value;
     this.Ratio = array[4].$value;
+    this.Value = Value;
   }
 
 }
