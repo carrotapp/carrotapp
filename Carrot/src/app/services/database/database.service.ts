@@ -21,7 +21,7 @@ export class DatabaseService {
         } else {
             this.afAuth.auth.signInWithEmailAndPassword(email, password).then(
                 (success) => {
-                    this.router.navigate(['/rewards']);
+                    this.router.navigate(['/dashboard']);
                 }).catch(
                 (err) => {
                     alert('Error: ' + err.message);
@@ -143,5 +143,13 @@ export class DatabaseService {
 
       getRewards() {
           return this.rewards;
+      }
+
+      getRewardsData(key) {
+        return this.afDB.list('/Rewards/' + key);
+      }
+
+      getUID() {
+          return this.afAuth.auth.currentUser.uid;
       }
 }

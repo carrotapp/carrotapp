@@ -24,6 +24,7 @@ import { FooterComponent } from './navigation/footer/footer.component';
 import { NavigationTogglesService } from './services/navigation/navigation-toggles.service';
 import { InfoComponent } from './navigation/info/info.component';
 
+
 export const firebaseConfig = {
   apiKey: 'AIzaSyDUlfMoY9Aq0nOGnZt_ovhRDaUtOJUnZ04',
   authDomain: 'carrot-app.firebaseapp.com',
@@ -47,7 +48,8 @@ export const firebaseConfig = {
     MainPanelComponent,
     FooterComponent,
     InfoComponent,
-    DashboardComponent
+    DashboardComponent,
+    
   ],
   imports: [
     BrowserModule,
