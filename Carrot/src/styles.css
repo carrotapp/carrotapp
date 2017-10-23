@@ -1,6 +1,7 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import url('./assets/font-awesome-4.7.0/css/font-awesome.min.css');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('./themes.css');
 
 
 /* This is to ensure that all components experience a smooth change */
@@ -10,13 +11,6 @@
     -o-transition: all 800ms ease;
     -ms-transition: all 800ms ease;
     -moz-transition: all 800ms ease;
-}
-/* shaddow effect */
-.shadow{
-    box-shadow: 1px 1px 1px 1px silver;
-}
-.shadow-right{
-    box-shadow:  2px 0px 2px  0px  silver;
 }
 /* Global Helpers */
 
@@ -34,7 +28,6 @@
 .right{
     text-align: right;
 }
-
 .selectable {
     color:#888989;
     cursor: pointer;
@@ -44,4 +37,13 @@
 }
 .left{
     text-align: left;
+}
+.block{
+    display: block; 
+    padding: 5px;
+}
+
+/* Font Sizes */
+.lrg{
+    font-size: 1.5em;
 }

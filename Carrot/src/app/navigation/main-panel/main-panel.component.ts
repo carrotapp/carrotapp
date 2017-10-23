@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavigationTogglesService } from '../../services/navigation/navigation-toggles.service';
-
+import { ThemesService } from '../../services/themes.service';
 @Component({
   selector: 'app-main-panel',
   templateUrl: './main-panel.component.html',
@@ -8,11 +8,14 @@ import { NavigationTogglesService } from '../../services/navigation/navigation-t
 })
 
 
-export class MainPanelComponent implements OnInit {
+export class MainPanelComponent {
   
-  constructor() {  }
+  constructor(public themes: ThemesService) {  }
 
-  ngOnInit() {
+  get theme():string{
+    console.log(this.themes.getTheme());
+    return this.themes.getTheme();
   }
 
+ 
 }

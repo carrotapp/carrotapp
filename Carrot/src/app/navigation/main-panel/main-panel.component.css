@@ -1,6 +1,22 @@
 .panel{
-    height:100%;
-    width: 100%;
+    height:inherit;
+    width: inherit;
     padding: 10px;
+    display:inline; 
+    overflow-x: hidden;
+    overflow-y: auto;
     /*  */
+}
+.main {
+    margin-top: -19px;
+    width: auto;
+    background-color:#FDFFFF;
+    color: black;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    word-break: keep-all;
+    text-align: left;
+    padding: 5px;
+    border: 5px thick black;
 }

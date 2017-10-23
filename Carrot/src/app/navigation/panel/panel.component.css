@@ -1,5 +1,9 @@
 .panel{
     position:fixed;
     width:100%;
-    height:100%;
+    height:94%;
+    margin-top:  45px;
+    float: left;
+    opacity: .9;
+    overflow:hidden;
 }

@@ -1,0 +1,170 @@
+/* 
+Author(s)  : Zahirah Ismail, Sixolile Mtengwana, Ernst Kaese, Lihle Mdikili
+Since      : 21st October 2017
+Version    : 0.0.1
+*/
+
+/* These are id's for themes that are going to be dynamically added to the application */
+/* Default*/
+#default-master{
+    background-color : linear-gradient(90deg,#FFFFFF,#FFFFFF) ;
+}
+#default-item-selector{
+    color: #F0F0F0;
+}
+/* Shadows */
+.default-shadow{
+    box-shadow: 0.5px 0.5px 0.5px 0.5px rgb(214, 208, 208);
+}
+.default-shadow-right{
+    box-shadow:  0.5px 0px 0.5px  0px  rgb(214, 208, 208);
+}
+.default-shadow-left{
+    box-shadow: 0px  0px  0px   0.5px rgb(214, 208, 208);
+}
+/* Dark Theme */
+/* Master*/
+#dark-master{
+    background-color : linear-gradient(90deg,#111111,#505050);
+}
+
+#dark-item-selector{
+    color: #000000;
+}
+/* Parent */
+#dark-parent{
+    background-color: #1E1E1E;
+    color: #C2C2C3;
+}
+
+#dark-parent-item{
+    color: #C2C2C3; 
+}
+#dark-parent-item .selectable:hover{
+    background-color: #424242;
+    color: #C2C2C3;
+    font-weight: 900;
+}
+/* Sub Parent */
+#dark-sub-parent{
+    background-color: #252526;
+    color: #CCCCCC;
+}
+#dark-sub-parent-item{
+    color: #CCCCCC;
+}
+
+#dark-sub-parent-item .selectable:hover{
+    color: #3F3F46;
+    background-color: #3F3F46;
+}
+/* Child */
+#dark-child{
+    background-color: #333333;
+    color: #ADADAD;
+}
+#dark-child-item{
+    color: #ADADAD;
+}
+#dark-child-item .selectable:hover{
+    background-color: #333333;
+    color: #FFFFFF;
+}
+/* Sub Child */
+#dark-sub-child{
+    background-color: #444444;
+    color: #C3C3C3;
+}
+#dark-sub-child-item{
+    background-color: #444444;
+    color: #C3C3C3;
+}
+
+#dark-sub-child-item .selectable:hover{
+    background-color: #444444;
+    color: #B2B2B4;
+}
+/* Shadows */
+.dark-shadow{
+    box-shadow: 0.5px 0.5px 0.5px 0.5px #111111;
+}
+.dark-shadow-right{
+    box-shadow: 0.5px 0.5px 0.5px  0px  #111111;
+}
+.dark-shadow-left{
+    box-shadow: 0px  0px  0px  0.5px #111111;
+}
+/* End of DarkTheme */
+/* Fun Theme */
+/* Master*/
+
+#fun-master{
+    background-color : linear-gradient(90deg,#AEEFDD,#5BDFBB);
+}
+
+#fun-item-selector{
+    color: #5BDFBB;
+}
+/* Parent */
+#fun-parent{
+    background-color: #5BD2B5;
+    color: #FFFFFF;
+}
+
+#fun-parent-item{
+    color: #FFFFFF; 
+}
+#fun-parent-item .selectable:hover{
+    background-color: #5BD2B5;
+    color: #FFFFFF;
+    font-weight: 900;
+}
+/* Sub Parent */
+#fun-sub-parent{
+    background-color: #F9F9F9;
+    color: #6D6D6D;
+}
+#fun-sub-parent-item{
+    color: #6D6D6D;
+}
+
+#fun-sub-parent-item .selectable:hover{
+    color: #6D6D6D;
+    background-color: #F9F9F9;
+}
+/* Child */
+#fun-child{
+    background-color: 67AA9D;
+    color: #ADADAD;
+}
+#fun-child-item{
+    color: #ADADAD;
+}
+#fun-child-item .selectable:hover{
+    background-color: #67AA9D;
+    color: #FFFFFF;
+}
+/* Sub Child */
+#fun-sub-child{
+    background-color: #F9F9F9;
+    color: #C3C3C3;
+}
+#fun-sub-child-item{
+    background-color: #F9F9F9;
+    color: #C3C3C3;
+}
+
+#fun-sub-child-item .selectable:hover{
+    background-color: #F9F9F9;
+    color: #B2B2B4;
+}
+/* Shadows*/
+.fun-shadow{
+    box-shadow: 0.5px 0.5px 0.5px 0.5px rgb(214, 208, 208);
+}
+.fun-shadow-right{
+    box-shadow:  0.5px 0px 0.5px  0px  rgb(214, 208, 208);
+}
+.fun-shadow-left{
+    box-shadow: 0px  0px  0px   0.5px rgb(214, 208, 208);
+}
