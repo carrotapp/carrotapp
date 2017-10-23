@@ -13,20 +13,10 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
   rewards: Rewards[] = [];
 
-  constructor(public afDB: AngularFireDatabase, public afAuth: AngularFireAuth, public router: Router, private ds: DatabaseService) {
+  constructor(private ds: DatabaseService) {
 
-    try {
-      if (afAuth.auth.currentUser.uid === null) {
-        console.log('null');
-      } else {
-        this.rewards = ds.getRewardsArray(afAuth.auth.currentUser.uid, afDB);
-      }
-
-    } catch (error) {
-      if (error = 'TypeError: Cannot read property "uid" of null') {
-        alert('You are not logged in');
-        this.router.navigate(['/']);
-      }
+    if(ds.checkLoggedIn()){
+      this.rewards = ds.getRewardsArray();
     }
 
   }

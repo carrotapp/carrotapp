@@ -130,18 +130,15 @@ export class DatabaseService {
         });
       }
 
-      getRewardsArray(user, afDB){
-        try {
-            if (user === null) {
-              console.log('null');
-            } else {
+      getRewardsArray(){
+
               this.userRewards = this.getUsersRewards();
       
               this.userRewards.forEach(element => {
                 const id: String = this.afAuth.auth.currentUser.uid;
                 for (let i = 0; i < element.length; i++) {
                   
-                  this.data = afDB.list('/Rewards/' + element[i].$key);
+                  this.data = this.afDB.list('/Rewards/' + element[i].$key);
                   this.data.forEach(dataElement => {
                     this.myItems = dataElement;
       
@@ -154,13 +151,7 @@ export class DatabaseService {
               });
 
               return this.rewardsArray;
-            }
-          } catch (error) {
-            if (error = 'TypeError: Cannot read property "uid" of null') {
-              alert('You are not logged in');
-              this.router.navigate(['/']);
-            }
-          }
+            
       }
 
       getUsersRewards() {
