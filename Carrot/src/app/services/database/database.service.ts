@@ -1,3 +1,4 @@
+import { Rewards } from './../../dashboard/Rewards';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -9,6 +10,9 @@ export class DatabaseService {
     userRewards: FirebaseListObservable<any[]>;
     rewards: FirebaseListObservable<any[]>;
     rewardsOfUser: FirebaseListObservable<any[]>;
+    data: FirebaseListObservable<any[]>;
+    rewardsArray: Rewards[] = [];
+    myItems: any[];
 
     constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router) {
         this.userRewards = afDB.list('/User Rewards');
@@ -124,6 +128,30 @@ export class DatabaseService {
             }
           }
         });
+      }
+
+      getRewardsArray(){
+
+              this.userRewards = this.getUsersRewards();
+      
+              this.userRewards.forEach(element => {
+                const id: String = this.afAuth.auth.currentUser.uid;
+                for (let i = 0; i < element.length; i++) {
+                  
+                  this.data = this.afDB.list('/Rewards/' + element[i].$key);
+                  this.data.forEach(dataElement => {
+                    this.myItems = dataElement;
+      
+                    this.rewardsArray.push(
+                      new Rewards(this.myItems, element[i].$value)
+                    );
+                    console.log(this.rewardsArray);
+                  });
+              }
+              });
+
+              return this.rewardsArray;
+            
       }
 
       getUsersRewards() {

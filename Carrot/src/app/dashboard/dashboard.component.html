@@ -2,14 +2,18 @@
  <div class="row m-0 text-center justify-content-center">
     <div *ngFor="let reward of rewards">
       <div class="card col p-0 m-4" style="width: 15rem;">
+          
           <img class="card-img-top img-fluid img-rounded" style="margin-top: 15px;" src="{{reward.Image}}" alt="Card image cap">
         <div class="card-body p-0">
               <h4 class="card-title">{{reward.RewardName}}</h4>
         
         <button class="btn add_button">
-           {{reward.Currency}}: {{reward.Value}}<br>
+           {{reward.Currency}}: {{reward.Value}}
+           <br>
            
-           
+           <!-- R: {{reward.Value / reward.Ratio}}
+           <br> -->
+
           </button>
       </div>
     </div>
