@@ -1,6 +1,7 @@
 <app-sidebar></app-sidebar>
-<div class="panel">
-<!-- <router-outlet name="activitypanel"></router-outlet> -->
-Main
+        <div class="panel">
+         <div id="{{theme + '-sub-child'}}" class="main shadow">
+                        <router-outlet id="{{theme+'-sub-child-item'}}"></router-outlet>
+                            </div>
 <app-toolbar></app-toolbar>
 </div>

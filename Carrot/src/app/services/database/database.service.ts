@@ -11,7 +11,8 @@ export class DatabaseService {
     rewardsOfUser: FirebaseListObservable<any[]>;
 
     constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router) {
-        this.userRewards = this.afDB.list('/User Rewards');
+        this.userRewards = afDB.list('/User Rewards');
+        this.rewards = afDB.list('/Rewards');
     }
 
     signIn(email, password) {
@@ -83,7 +84,6 @@ export class DatabaseService {
             if (this.afAuth.auth.currentUser.uid === null) {
               console.log('null');
             } else {
-              this.rewards = this.afDB.list('/Rewards');
               return true;
             }
           } catch (error) {
@@ -127,10 +127,9 @@ export class DatabaseService {
       }
 
       getUsersRewards() {
-        const data: FirebaseListObservable<any[]> = this.afDB.list('/User Rewards');
         let key;
         const uid: String = this.afAuth.auth.currentUser.uid;
-        data.forEach(element => {
+        this.userRewards.forEach(element => {
           for (let i = 0; i < element.length; i++) {
             if (element[i].user === uid) {
               key = element[i].$key;

@@ -1,9 +1,9 @@
 
-  <div class="box right shadow" [ngClass]="state" (mouseenter)="sidebarhover('show')" (mouseleave)="sidebarhover('default')">
+  <div id="{{theme+'-sub-parent'}}"class="right shadow" [ngClass]="state" (mouseenter)="sidebarhover('show')" (mouseleave)="sidebarhover('default')">
       <div class="box right">
-          <span class="fa fa-arrow-left selectable" (click)="sidebar()"></span>
+          <span id="{{theme+'-sub-parent-item'}}" class="fa fa-caret-left lrg selectable" (click)="sidebar()"></span>
       </div>
       <div class="box center">
-    <img src="../../assets/img/default.png" alt="" class="profile-image">
+    <img src="../../assets/img/default.png" alt="{ { user.name } } Profile Image" class="rounded-circle">
 </div>     
   </div> 

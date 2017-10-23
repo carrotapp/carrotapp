@@ -1,0 +1,136 @@
+/* 
+Author(s)  : Zahirah Ismail, Sixolile Mtengwana, Ernst Kaese, Lihle Mdikili
+Since      : 21st October 2017
+Version    : 0.0.1
+*/
+
+/* These are id's for themes that are going to be dynamically added to the application */
+
+/* Dark Theme */
+/* Master*/
+#default-master{
+    background-color : linear-gradient(90deg,#FFFFFF,#FFFFFF) ;
+}
+#dark-master{
+    background-color : linear-gradient(90deg,#505050,#B8B8B8);
+}
+
+#dark-item-selector{
+    color: #000000;
+}
+/* Parent */
+#dark-parent{
+    background-color: #1E1E1E;
+    color: #C2C2C3;
+}
+
+#dark-parent-item{
+    color: #C2C2C3; 
+}
+#dark-parent-item .selectable:hover{
+    background-color: #424242;
+    color: #C2C2C3;
+    font-weight: 900;
+}
+/* Sub Parent */
+#dark-sub-parent{
+    background-color: #252526;
+    color: #CCCCCC;
+}
+#dark-sub-parent-item{
+    color: #CCCCCC;
+}
+
+#dark-sub-parent-item .selectable:hover{
+    color: #3F3F46;
+    background-color: #3F3F46;
+}
+/* Child */
+#dark-child{
+    background-color: #333333;
+    color: #ADADAD;
+}
+#dark-child-item{
+    color: #ADADAD;
+}
+#dark-child-item .selectable:hover{
+    background-color: #333333;
+    color: #FFFFFF;
+}
+/* Sub Child */
+#dark-sub-child{
+    background-color: #444444;
+    color: #C3C3C3;
+}
+#dark-sub-child-item{
+    background-color: #444444;
+    color: #C3C3C3;
+}
+
+#dark-sub-child-item .selectable:hover{
+    background-color: #444444;
+    color: #B2B2B4;
+}
+/* Fun Theme */
+/* Master*/
+
+#fun-master{
+    background-color : linear-gradient(90deg,#505050,#B8B8B8);
+}
+
+#fun-item-selector{
+    color: #000000;
+}
+/* Parent */
+#fun-parent{
+    background-color: #1E1E1E;
+    color: #C2C2C3;
+}
+
+#fun-parent-item{
+    color: #C2C2C3; 
+}
+#fun-parent-item .selectable:hover{
+    background-color: #424242;
+    color: #C2C2C3;
+    font-weight: 900;
+}
+/* Sub Parent */
+#fun-sub-parent{
+    background-color: #252526;
+    color: #CCCCCC;
+}
+#fun-sub-parent-item{
+    color: #CCCCCC;
+}
+
+#fun-sub-parent-item .selectable:hover{
+    color: #3F3F46;
+    background-color: #3F3F46;
+}
+/* Child */
+#fun-child{
+    background-color: #333333;
+    color: #ADADAD;
+}
+#fun-child-item{
+    color: #ADADAD;
+}
+#fun-child-item .selectable:hover{
+    background-color: #333333;
+    color: #FFFFFF;
+}
+/* Sub Child */
+#fun-sub-child{
+    background-color: #444444;
+    color: #C3C3C3;
+}
+#fun-sub-child-item{
+    background-color: #444444;
+    color: #C3C3C3;
+}
+
+#fun-sub-child-item .selectable:hover{
+    background-color: #444444;
+    color: #B2B2B4;
+}

@@ -1,0 +1,16 @@
+.add_button {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #17CFA1;
+    border-radius: 2px;
+    background-color: #535657;
+    color: aliceblue;
+    border-radius: 0px 0px 5px 5px;
+    margin: 0px;
+}
+
+.add_button:hover {
+    background-color: aliceblue;
+    color:  #535657;
+    cursor: pointer;
+}

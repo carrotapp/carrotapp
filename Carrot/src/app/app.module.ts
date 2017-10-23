@@ -22,6 +22,7 @@ import { MainPanelComponent } from './navigation/main-panel/main-panel.component
 import { FooterComponent } from './navigation/footer/footer.component';
 // service imports
 import { NavigationTogglesService } from './services/navigation/navigation-toggles.service';
+import { ThemesService} from './services/themes.service';
 import { InfoComponent } from './navigation/info/info.component';
 import { ToolbarComponent } from './navigation/toolbar/toolbar.component';
 
@@ -59,7 +60,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [DatabaseService, NavigationTogglesService], // Dependancy Injection
+  providers: [DatabaseService, NavigationTogglesService,ThemesService], // Dependancy Injection
   bootstrap: [AppComponent]
 })
 export class AppModule { }
