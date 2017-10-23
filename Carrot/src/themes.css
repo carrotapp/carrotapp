@@ -135,14 +135,14 @@ Version    : 0.0.1
 /* Child */
 #fun-child{
     background-color: 67AA9D;
-    color: #ADADAD;
+    color: #6D6F75;
 }
 #fun-child-item{
-    color: #ADADAD;
+    color: #6D6F75;
 }
 #fun-child-item .selectable:hover{
     background-color: #67AA9D;
-    color: #FFFFFF;
+    color: #6D6F75;
 }
 /* Sub Child */
 #fun-sub-child{
@@ -166,5 +166,87 @@ Version    : 0.0.1
     box-shadow:  0.5px 0px 0.5px  0px  rgb(214, 208, 208);
 }
 .fun-shadow-left{
+    box-shadow: 0px  0px  0px   0.5px rgb(214, 208, 208);
+}
+/* Blind */
+/* Master*/
+
+#blind-master{
+    background-color : linear-gradient(90deg,#5072B8,#738FC6);
+}
+
+#blind-item-selector{
+    color: #5072B8;
+    font-weight: 900;
+}
+/* Parent */
+#blind-parent{
+    background-color: #5072B8;
+    color: #FEFEFE;
+    font-weight: 900;
+}
+
+#blind-parent-item{
+    color: #FEFEFE; 
+    font-weight: 900;
+}
+#blind-parent-item .selectable:hover{
+    background-color: #5072B8;
+    color: #FEFEFE;
+    font-weight: 900;
+}
+/* Sub Parent */
+#blind-sub-parent{
+    background-color: #EEF0F2;
+    color: #1D2129;
+    font-weight: 900;
+}
+#blind-sub-parent-item{
+    color: #1D2129;
+    font-weight: 900;
+}
+
+#blind-sub-parent-item .selectable:hover{
+    color: #1D2129;
+    background-color: #EEF0F2;
+    font-weight: 900;
+}
+/* Child */
+#blind-child{
+    background-color: #C3CFE6;
+    color: #1D2129;
+    font-weight: 900;
+}
+#blind-child-item{
+    color: #1D2129;
+    font-weight: 900;
+}
+#blind-child-item .selectable:hover{
+    background-color: #C3CFE6;
+    color: #020202;
+    font-weight: 900;
+}
+/* Sub Child */
+#blind-sub-child{
+    background-color: #F9F9F9;
+    color: #FEFEFE;
+}
+#blind-sub-child-item{
+    background-color: #F9F9F9;
+    color: #FEFEFE;
+}
+
+#blind-sub-child-item .selectable:hover{
+    background-color: #F9F9F9;
+    color: #FEFEFE;
+}
+/* Shadows*/
+.blind-shadow{
+    box-shadow: 0.5px 0.5px 0.5px 0.5px rgb(214, 208, 208);
+}
+.blind-shadow-right{
+    box-shadow:  0.5px 0px 0.5px  0px  rgb(214, 208, 208);
+}
+.blind-shadow-left{
     box-shadow: 0px  0px  0px   0.5px rgb(214, 208, 208);
 }
