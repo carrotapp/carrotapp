@@ -1,4 +1,4 @@
-  <div id="{{theme+'-child'}}"class ="box right shadow show"  [ngClass]="state" >
+  <div id="{{theme+'-child'}}"class ="box right {{ theme+'-shadow' }} show"  [ngClass]="state" >
     <div id="{{theme+'-child'}}" class="box center ">
               <i id="{{theme+'-child-item'}}"class=" selectable fa fa-pencil lrg block "></i>
               <!-- Edits -->
@@ -6,13 +6,13 @@
               <i id="{{theme+'-child-item'}}"class=" selectable fa fa-eraser lrg block"></i>
               <i id="{{theme+'-child-item'}}"class=" selectable fa fa-leaf lrg block" (click)="paints()"></i> <!-- fa fa-tint-->
               <!-- Paints -->
-              <div id="{{theme+'-child'}}"class="box center" *ngIf=" isColor ">
+              <div id="{ {theme+'-child' }}"class="box center" *ngIf=" isColor ">
               <i id="default-item-selector"class=" fa fa-circle lrg block selectable" (click)="setTheme('default');paints() "></i>
               <i id="dark-item-selector"class=" fa fa-circle lrg block selectable" (click)=" setTheme('dark');paints() "></i>
               <i id="dark-item-selector"class=" fa fa-circle lrg block selectable" (click)=" setTheme('fun');paints() "></i> 
               <i id="dark-child-item"class=" fa fa-eye lrg block selectable" (click)=" log();paints() " ></i>    
               </div>
-              <!-- <i class=" fa fa-circle lrg block"></i>
+              <!-- <i class=" fa fa-circle lrg block"></i> -->
               <!-- Configuration -->
               <i id="{{theme+'-child-item'}}"class=" selectable fa fa-gears lrg block"></i>
     </div>   

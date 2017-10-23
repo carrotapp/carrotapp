@@ -5,14 +5,24 @@ Version    : 0.0.1
 */
 
 /* These are id's for themes that are going to be dynamically added to the application */
-
-/* Dark Theme */
-/* Master*/
+/* Default*/
 #default-master{
     background-color : linear-gradient(90deg,#FFFFFF,#FFFFFF) ;
 }
+/* Shadows */
+.default-shadow{
+    box-shadow: 0.5px 0.5px 0.5px 0.5px rgb(214, 208, 208);
+}
+.default-shadow-right{
+    box-shadow:  0.5px 0px 0.5px  0px  rgb(214, 208, 208);
+}
+.default-shadow-left{
+    box-shadow: 0px  0px  0px   0.5px rgb(214, 208, 208);
+}
+/* Dark Theme */
+/* Master*/
 #dark-master{
-    background-color : linear-gradient(90deg,#505050,#B8B8B8);
+    background-color : linear-gradient(90deg,#111111,#505050);
 }
 
 #dark-item-selector{
@@ -71,6 +81,17 @@ Version    : 0.0.1
     background-color: #444444;
     color: #B2B2B4;
 }
+/* Shadows */
+.dark-shadow{
+    box-shadow: 0.5px 0.5px 0.5px 0.5px #111111;
+}
+.dark-shadow-right{
+    box-shadow: 0.5px 0.5px 0.5px  0px  #111111;
+}
+.dark-shadow-left{
+    box-shadow: 0px  0px  0px  0.5px #111111;
+}
+/* End of DarkTheme */
 /* Fun Theme */
 /* Master*/
 
