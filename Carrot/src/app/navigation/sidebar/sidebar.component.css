@@ -1,7 +1,6 @@
 .show{
     width: 266px;
     margin-top: 5px;
-    margin-left: 0.5px;
     display: block;
     height:inherit;
     background-color: #ffffff;
@@ -16,7 +15,7 @@
         width: 1px;
         height:100%;
         display: block;
-        border-right: 2px solid #ffffff;
+        border-right: 1px solid #ffffff00;
         margin-top: 5px;
         overflow: hidden;
         float: left;
@@ -41,3 +40,4 @@
         width:85%;    
         background-color: #DADADA;
     }
+ 

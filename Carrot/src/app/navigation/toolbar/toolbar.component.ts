@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationTogglesService } from '../../services/navigation/navigation-toggles.service';
+import { ThemesService } from '../../services/themes.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,8 +8,8 @@ import { NavigationTogglesService } from '../../services/navigation/navigation-t
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-
-  constructor( public toolbarObj : NavigationTogglesService ) { }
+  isColor:boolean;
+  constructor( public toolbarObj : NavigationTogglesService,public themes: ThemesService ) { }
 
   ngOnInit() {
   }
@@ -16,9 +17,23 @@ export class ToolbarComponent implements OnInit {
  toolbar():void {
   this.toolbarObj.toolbar_toggle();  
  }
+ paints():void{
+ this.isColor = !this.isColor;
+ }
+ log():void{
+   console.log('clicked');
+ }
+
   // Retrieving State
   get state() {
     return NavigationTogglesService.toolbartoggle;
+  }
+  //theme
+  get theme():string{
+    return this.themes.getTheme();
+  }
+  setTheme(theme:string):void{
+    this.themes.setTheme(theme);
   }
 
 }

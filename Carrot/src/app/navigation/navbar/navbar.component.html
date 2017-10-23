@@ -1,30 +1,18 @@
-<!--<div class="navbar shadow">
-<div class="col-blocks-3">
- <span class="selectable fa fa-navicon" (click)="sidebar_toggle()" *ngIf="getShowSideBar === false"></span>
-</div>
-<div class="col-blocks-3 center">
-  <span class="selectable"  [routerLink]="['/login']">CARROT</span>
-</div>
-<div class="col-blocks-3 right">
-  <span class="selectable">More</span>
-</div>
-</div>-->
-
-<div class="navbar shadow">
+<div class="navbar shadow" id="{{theme+'-parent'}}">
   <div class="container-fluid">
       <div class="row justify-content-end">
           <div class="col-md-3">
-              <span class="selectable fa fa-bars" (click)="sidebar_toggle()"></span>
+              <span id="{{theme+'-parent-item'}}"class="selectable fa fa-bars" (click)="sidebar_toggle()"></span>
           </div>
       </div>
       <div class="row justify-content-start">
           <div class="col-md-3">
-              <div class="selectable" [routerLink]="['/expandedInfo']">CARROT</div>
+              <div id="{{theme+'-parent-item'}}"class="selectable" [routerLink]="['/expandedInfo']">CARROT</div>
           </div>
       </div>
       <div class="row justify-content-start">
           <div class="col-md-3"> 
-              <div class="selectable fa fa-ellipsis-v" (click)="toolbar()"></div> 
+              <div  id="{{theme+'-parent-item'}}" class="selectable fa fa-ellipsis-v" (click)="toolbar()"></div> 
           </div>
       </div>
   </div>

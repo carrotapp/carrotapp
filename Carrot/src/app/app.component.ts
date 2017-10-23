@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ThemesService } from './services/themes.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor(public themes :ThemesService ){}
+  get theme():string{
+    console.log(this.themes.getTheme());
+    return this.themes.getTheme();
+  }
 }
