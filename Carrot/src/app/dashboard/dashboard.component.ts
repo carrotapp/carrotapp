@@ -18,7 +18,7 @@ export class DashboardComponent {
   }
 
   navigate() {
-    this.router.navigate(['/rewards']);
+    this.router.navigate(['/info']);
   }
 
 }
