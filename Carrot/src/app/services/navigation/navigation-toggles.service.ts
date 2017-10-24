@@ -1,7 +1,4 @@
 import { Injectable } from '@angular/core';
-/*
-  @Author: Sixolile Mtengwana
-*/
 @Injectable()
 export class NavigationTogglesService {
    static ShowSideBar:string;

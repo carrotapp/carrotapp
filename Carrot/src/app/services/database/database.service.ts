@@ -51,7 +51,7 @@ export class DatabaseService {
                     if (flag === undefined) {
                         this.pushToUserRewards(this.afAuth.auth.currentUser.uid);
                     } else {
-                        this.router.navigate(['/dashboard']);
+                        this.router.navigate(['/main']);
                     }
                 });
             }).catch(
