@@ -1,3 +1,16 @@
-<p>
-  info works!
-</p>
+<div class="container text" *ngFor="let info of rewards | async ">
+  <div class="row ">
+      <div class="col-md-2">
+          <img class="rewards-icon " src={{info.image}} alt="icon of rewards program ">
+      </div>
+      <div class="col-md-10 ">
+          <h3>{{info.name}}</h3>
+          <h5 class="balance">Available points:</h5>
+
+     </div>
+  </div>
+
+ <div class="row">
+      <iframe class="frame">{{info.infoUrl}}</iframe>
+  </div>
+</div>
