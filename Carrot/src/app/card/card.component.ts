@@ -8,6 +8,12 @@ import { ThemesService } from '../services/themes.service';
 export class CardComponent  {
   @Input('name') 
   name:string;
+  
+  @Input('provider') 
+  provider:string;
+
+  @Input('ratio') 
+  ratio:string;
 
   @Input('imgUrl') 
   imgUrl:string;
@@ -16,9 +22,15 @@ export class CardComponent  {
   points:number;
 
 
+  @Input('currency') 
+  currency:number;
+
   @Input('balance') 
   balance:number;
   
+  @Input('infoUrl') 
+  infoUrl:string;
+
   @Input('summary') summary:string
 
 constructor( public themes : ThemesService ) {

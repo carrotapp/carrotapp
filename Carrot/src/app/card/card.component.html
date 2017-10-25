@@ -3,29 +3,29 @@
     <div class="sub-card">
         <img [(src)]="imgUrl" alt=" user image " class="img">
        </div>
-       <h1>  {{name}} </h1>
+       <h1 class="{{theme+'-child-item'}}">  {{name}} </h1>
        <div class="footer">
-         <div class="item">
-            {{ points}} pts
+         <div class="item {{theme+'-child-item'}}">
+            {{ points +' '+ currency}}
          </div>  
-         <div class="item">
+         <div class="item {{theme+'-child-item'}}">
              {{ balance }} zar
          </div>
        </div>
  </div>
 
-  <div class="layer center">
-      <div class="title">
-          {{name}}
+  <div class="layer center {{theme+'-child'}}">
+      <div class="title {{theme+'-child-item'}}">
+          {{provider}}
       </div>
-      <div class="summary">
+      <div class="summary {{theme+'-child-item'}}">
            Summray of Rewards Programme 
-          <div class="footer">
-              <div class="item">
-                   points   pts
+          <div class="footer {{theme+'-child-item'}}">
+              <div class="item {{theme+'-child-item'}}">
+                {{ points +' '+ currency}}
               </div>
-              <div class="item">
-                   Balance zar
+              <div class="item {{theme+'-child-item'}}">
+                {{ balance }} zar
               </div>
           </div>
       </div>
