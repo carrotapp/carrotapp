@@ -18,5 +18,6 @@
     word-break: keep-all;
     text-align: left;
     padding: 5px;
+    padding-bottom: 25px;
     border: 5px thick black;
 }
