@@ -16,7 +16,6 @@ export class NavigationTogglesService {
     NavigationTogglesService.ShowSideBar = 'show';
   
     else NavigationTogglesService.ShowSideBar = 'default';
-    console.log(NavigationTogglesService.ShowSideBar);
   }
   // toolbar
   toolbar_toggle():void{
@@ -24,6 +23,5 @@ export class NavigationTogglesService {
     NavigationTogglesService.toolbartoggle = 'show';
   
     else NavigationTogglesService.toolbartoggle = 'default';
-    console.log(NavigationTogglesService.toolbartoggle);
   }
 }

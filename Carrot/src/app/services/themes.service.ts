@@ -14,7 +14,6 @@ export class ThemesService {
   setTheme(theme):void{
     if(this.isThemeExists(theme)){
       ThemesService.theme = theme;  
-      console.log(ThemesService.theme)  
     } else{
       alert('NONONO');
     }

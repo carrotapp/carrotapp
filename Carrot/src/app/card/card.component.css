@@ -1,0 +1,37 @@
+.card{
+   width: 266px;
+  height: 266px;
+  border-bottom:1px solid #747474;
+  overflow: hidden;
+  float: left;
+}
+.maincard{
+    width: inherit;
+    height: inherit;
+    padding: 10px;
+}
+.sub-card{
+    height: 80%;
+    width: inherit;
+    padding: 10px;
+    font-family: 'Hindi'
+}
+img{
+    height: inherit;
+    opacity: .9;
+}
+h1, .title{
+    font-size: 1em;
+    font-weight: 900;
+}
+/* Overlay */
+.layer{
+    position: absolute;
+    height: inherit;
+    width: inherit;
+    display: none;
+    margin: 0;
+}
+.card:hover .layer{
+    display: block;
+}

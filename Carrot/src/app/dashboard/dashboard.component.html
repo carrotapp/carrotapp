@@ -1,11 +1,10 @@
 
- <div class="row m-0 text-center justify-content-center">
+ <!-- <div class="row m-0 text-center justify-content-center">
     <div *ngFor="let reward of rewards">
       <div class="card col p-0 m-4" style="width: 15rem;">
-          
           <img class="card-img-top img-fluid img-rounded" style="margin-top: 15px;" src="{{reward.Image}}" alt="Card image cap">
         <div class="card-body p-0">
-              <h4 class="card-title">{{reward.RewardName}}</h4>
+              <h4 class="card-title">{{reg }}</h4>
         
         <button class="btn add_button">
            {{reward.Currency}}: {{reward.Value}}
@@ -14,13 +13,16 @@
            <!-- R: {{reward.Value / reward.Ratio}}
            <br> -->
 
-          </button>
+          <!-- </button>
       </div>
     </div>
   </div>
+  </div> -->
+  <div class="row m-0 text-center justify-content-left">
+  <app-card *ngFor="let reward of rewards" [name]="reward.name" [imgUrl]="reward.Image" [balance]="reward.Value / reward.Ratio" [points]="reward.Currency">
+    loading card
+  </app-card>
   </div>
- 
- 
  
  <!-- <div class="row m-0 text-center justify-content-center">
   <div *ngFor="let item of userRewards | async">

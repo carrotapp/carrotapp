@@ -28,7 +28,6 @@ export class SidebarComponent {
   }
   //theme
   get theme():string{
-    console.log(this.themes.getTheme());
     return this.themes.getTheme();
   }
   

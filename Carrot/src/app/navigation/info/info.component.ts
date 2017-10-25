@@ -14,6 +14,7 @@ export class InfoComponent implements OnInit {
 
  constructor(public dbs: DatabaseService) {
     this.rewards = dbs.getRewardsArray();
+    console.log(this.rewards)
   }
 
  ngOnInit() {

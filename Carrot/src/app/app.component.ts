@@ -11,7 +11,6 @@ export class AppComponent {
 
   constructor(public themes :ThemesService ){}
   get theme():string{
-    console.log(this.themes.getTheme());
     return this.themes.getTheme();
   }
 }

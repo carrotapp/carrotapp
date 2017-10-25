@@ -25,6 +25,7 @@ import { NavigationTogglesService } from './services/navigation/navigation-toggl
 import { ThemesService} from './services/themes.service';
 import { InfoComponent } from './navigation/info/info.component';
 import { ToolbarComponent } from './navigation/toolbar/toolbar.component';
+import { CardComponent } from './card/card.component';
 
 
 export const firebaseConfig = {
@@ -51,7 +52,8 @@ export const firebaseConfig = {
     FooterComponent,
     InfoComponent,
     DashboardComponent,
-    ToolbarComponent, 
+    ToolbarComponent,
+    CardComponent, 
   ],
   imports: [
     BrowserModule,

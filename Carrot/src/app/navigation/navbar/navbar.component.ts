@@ -14,7 +14,6 @@ export class NavbarComponent{
     
   
   get theme():string{
-      console.log(this.themes.getTheme());
       return this.themes.getTheme();
     }
   

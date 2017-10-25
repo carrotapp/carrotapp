@@ -8,6 +8,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { PanelComponent } from './navigation/panel/panel.component';
 import { InfoComponent } from "./navigation/info/info.component";
 
+import { CardComponent } from './card/card.component';
+
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'Info', component: InfoComponent },
@@ -15,6 +17,7 @@ const routes: Routes = [
     { path: 'register', component: RegistrationComponent },
     { path: 'rewards', component: RewardsComponent },
     { path: 'main', component: PanelComponent},
+    { path: 'card', component: CardComponent},
     { path: 'dashboard', component: DashboardComponent},
     { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '404' },

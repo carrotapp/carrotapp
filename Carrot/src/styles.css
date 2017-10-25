@@ -1,6 +1,14 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import url('./assets/font-awesome-4.7.0/css/font-awesome.min.css');
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+/* @import url('https://fonts.googleapis.com/css?family=Roboto'); */
+@font-face{ 
+font-family: 'Hindi';
+src:url('https://fonts.googleapis.com/css?family=Hind+Siliguri');
+}
+@font-face{ 
+    font-family: 'Roboto';
+    src:url('https://fonts.googleapis.com/css?family=Roboto');
+    }
 @import url('./themes.css');
 
 

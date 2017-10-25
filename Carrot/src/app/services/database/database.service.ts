@@ -25,7 +25,7 @@ export class DatabaseService {
         } else {
             this.afAuth.auth.signInWithEmailAndPassword(email, password).then(
                 (success) => {
-                    this.router.navigate(['/dashboard']);
+                    this.router.navigate(['/main']);
                 }).catch(
                 (err) => {
                     alert('Error: ' + err.message);
