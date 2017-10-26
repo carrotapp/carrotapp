@@ -53,7 +53,7 @@ export const firebaseConfig = {
     InfoComponent,
     DashboardComponent,
     ToolbarComponent,
-    CardComponent, 
+    CardComponent,
   ],
   imports: [
     BrowserModule,

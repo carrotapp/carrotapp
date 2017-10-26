@@ -6,7 +6,7 @@ import { RewardsComponent } from './rewards/rewards.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PanelComponent } from './navigation/panel/panel.component';
-import { InfoComponent } from "./navigation/info/info.component";
+import { InfoComponent } from './navigation/info/info.component';
 
 import { CardComponent } from './card/card.component';
 

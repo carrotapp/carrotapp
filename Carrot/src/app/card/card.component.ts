@@ -5,45 +5,33 @@ import { ThemesService } from '../services/themes.service';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css']
 })
-export class CardComponent  {
-  @Input('name') 
-  name:string;
-  
-  @Input('provider') 
-  provider:string;
+export class CardComponent {
+  @Input('name') name: string;
 
-  @Input('ratio') 
-  ratio:string;
+  @Input('provider') provider: string;
 
-  @Input('imgUrl') 
-  imgUrl:string;
+  @Input('ratio') ratio: string;
 
-  @Input('points') 
-  points:number;
+  @Input('imgUrl') imgUrl: string;
 
+  @Input('points') points: number;
 
-  @Input('currency') 
-  currency:number;
+  @Input('currency') currency: number;
 
-  @Input('balance') 
-  balance:number;
-  
-  @Input('infoUrl') 
-  infoUrl:string;
+  @Input('balance') balance: number;
 
-  @Input('summary') summary:string
+  @Input('infoUrl') infoUrl: string;
 
-constructor( public themes : ThemesService ) {
-  // this.name = "Sixolile";
-  // this.imgUrl = "./assets/img/carrot.png";
-  // this.points = 20000;
-  // this.balance = 200;
-  // this.summary = "Ipsum Lorem..."
- }
-  onclick():void{
+  @Input('summary') summary: string;
+
+  constructor(public themes: ThemesService) {
+  }
+
+  onclick(): void {
     console.log('Clicked');
   }
-  get theme(){
+
+  get theme() {
     return this.themes.getTheme();
   }
 }

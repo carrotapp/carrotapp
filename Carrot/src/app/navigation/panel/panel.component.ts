@@ -10,7 +10,7 @@ export class PanelComponent {
 
   constructor(public themes: ThemesService) { }
 
-  get theme():string{
+  get theme(): string {
     return this.themes.getTheme();
   }
 }

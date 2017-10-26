@@ -9,12 +9,12 @@ import { ThemesService } from '../../services/themes.service';
 
 
 export class MainPanelComponent {
-  
-  constructor(public themes: ThemesService) {  }
 
-  get theme():string{
-        return this.themes.getTheme();
+  constructor(public themes: ThemesService) { }
+
+  get theme(): string {
+    return this.themes.getTheme();
   }
 
- 
+
 }
