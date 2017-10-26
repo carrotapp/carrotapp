@@ -10,34 +10,35 @@
     overflow-x: hidden;
     overflow-y:  auto;
     z-index: 1;
-    }
-    .default{
-        width: 1px;
-        height:100%;
-        display: block;
-        border-right: 1px solid #ffffff00;
-        margin-top: 5px;
-        overflow: hidden;
-        float: left;
-        background-color: #ffffff;
-        box-shadow: none;
-    }
-        
-    .showbox{
-        padding: 10px;
-        width: 100%;
-        color: #ffffff;
-        display: block;
-    }
-    .defaultbox{
-        display: none
-    }
-    .box{
-        padding: 5px;
-    }
-    .profile-image{
-        border-radius: 100%;
-        width:85%;    
-        background-color: #DADADA;
-    }
- 
+}
+
+.default{
+    width: 1px;
+    height:100%;
+    display: block;
+    border-right: 1px solid #ffffff00;
+    margin-top: 5px;
+    overflow: hidden;
+    float: left;
+    background-color: #ffffff;
+    box-shadow: none;
+}
+
+.showbox{
+    padding: 10px;
+    width: 100%;
+    color: #ffffff;
+    display: block;
+}
+
+.defaultbox{
+    display: none;
+}
+
+.box{
+    padding: 5px;
+}
+
+.profile-image{
+    width:85%;
+}
