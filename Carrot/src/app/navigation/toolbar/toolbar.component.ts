@@ -8,31 +8,31 @@ import { ThemesService } from '../../services/themes.service';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-  isColor:boolean;
-  constructor( public toolbarObj : NavigationTogglesService,public themes: ThemesService ) { }
+  isColor: boolean;
+  constructor(public toolbarObj: NavigationTogglesService, public themes: ThemesService) { }
 
   ngOnInit() {
   }
- //toggling 
- toolbar():void {
-  this.toolbarObj.toolbar_toggle();  
- }
- paints():void{
- this.isColor = !this.isColor;
- }
- log():void{
-   console.log('clicked');
- }
+  // toggling
+  toolbar(): void {
+    this.toolbarObj.toolbar_toggle();
+  }
+  paints(): void {
+    this.isColor = !this.isColor;
+  }
+  log(): void {
+    console.log('clicked');
+  }
 
   // Retrieving State
   get state() {
     return NavigationTogglesService.toolbartoggle;
   }
-  //theme
-  get theme():string{
+  // theme
+  get theme(): string {
     return this.themes.getTheme();
   }
-  setTheme(theme:string):void{
+  setTheme(theme: string): void {
     this.themes.setTheme(theme);
   }
 

@@ -7,20 +7,20 @@ import { ThemesService } from '../../services/themes.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent{
-  
-  constructor( public navtoggle : NavigationTogglesService,public themes: ThemesService ) { 
+export class NavbarComponent {
+
+  constructor(public navtoggle: NavigationTogglesService, public themes: ThemesService) {
   }
-    
-  
-  get theme():string{
-      return this.themes.getTheme();
-    }
-  
-  sidebar_toggle():void {
+
+
+  get theme(): string {
+    return this.themes.getTheme();
+  }
+
+  sidebar_toggle(): void {
     this.navtoggle.sidebar_toggle();
-   }
-  toolbar() : void {
+  }
+  toolbar(): void {
     this.navtoggle.toolbar_toggle();
   }
 }

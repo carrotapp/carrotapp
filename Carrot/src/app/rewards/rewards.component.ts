@@ -1,4 +1,4 @@
-import { FirebaseListObservable } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
 import { DatabaseService } from '../services/database/database.service';
 import { Component } from '@angular/core';
 
@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
 })
 
 export class RewardsComponent {
-  data: FirebaseListObservable<any[]>;
+  data: Observable<any[]>;
 
   constructor(private databaseService: DatabaseService) {
     if (databaseService.checkLoggedIn()) {

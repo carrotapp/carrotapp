@@ -9,8 +9,8 @@ import { ThemesService } from './services/themes.service';
 export class AppComponent {
   title = 'app';
 
-  constructor(public themes :ThemesService ){}
-  get theme():string{
+  constructor(public themes: ThemesService) { }
+  get theme(): string {
     return this.themes.getTheme();
   }
 }
