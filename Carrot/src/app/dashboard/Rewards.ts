@@ -1,20 +1,21 @@
 export class Rewards {
   Currency;
   Image;
-  RewardName;
+  ProviderName;
   Name;
   Ratio;
-  Value;
-  MoreInfo;
+  // Value;
+  infoUrl;
 
-  constructor(array, Value) {
-    this.Currency = array[0].$value;
-    this.Image = array[1].$value;
-    this.RewardName = array[2].$value;
-    this.Name = array[3].$value;
-    this.Ratio = array[4].$value;
-    this.Value = Value;
-    this.MoreInfo = array[5].$value;
+  // constructor(array, Value) {
+  constructor(array) {
+    this.Currency = array.Currency;
+    this.Image = array.Image;
+    this.ProviderName = array.ProviderName;
+    this.Name = array.Name;
+    this.Ratio = array.Ratio;
+    // this.Value = Value;
+    this.infoUrl = array.infoUrl;
   }
 
 }

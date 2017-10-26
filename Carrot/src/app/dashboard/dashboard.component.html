@@ -1,8 +1,6 @@
-loading Dashboard
-  <div class="row m-0 text-center justify-content-left">
-  <app-card *ngFor="let reward of rewards" [name]="reward.RewardName" [imgUrl]="reward.Image" [balance]="reward.Value / reward.Ratio" [currency]="reward.Currency" [points]="reward.Value"
-  [provider]="reward.Name">
-    loading card
-  </app-card>
+<div class="row m-0 text-center justify-content-left">
+  <div *ngFor="let reward of rewards">
+    <app-card [name]="reward.RewardName" [imgUrl]="reward.Image" [balance]="1/reward.Ratio"
+      [currency]="reward.Currency" [points]="reward.Value" [provider]="reward.Name"></app-card>
   </div>
- 
+</div>
