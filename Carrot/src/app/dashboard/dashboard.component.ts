@@ -14,7 +14,6 @@ export class DashboardComponent implements OnInit {
 
     if (ds.checkLoggedIn()) {
       this.rewards = ds.getRewardsArray();
-      // console.table(ds.getRewardsArray());
     }
 
   }
