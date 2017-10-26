@@ -173,4 +173,8 @@ export class DatabaseService {
     getUID() {
         return this.afAuth.auth.currentUser.uid;
     }
+
+    getAvatar() {
+        return '../../assets/img/default.png';
+    }
 }

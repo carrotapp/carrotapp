@@ -1,8 +1,6 @@
 import { Rewards } from './../../dashboard/Rewards';
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../../services/database/database.service';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   selector: 'app-info',

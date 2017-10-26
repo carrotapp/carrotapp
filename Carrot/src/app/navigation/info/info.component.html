@@ -1,16 +1,16 @@
-<div class="container text" *ngFor="let info of rewards ">
+<div class="container text" *ngFor="let info of rewards">
   <div class="row ">
       <div class="col-md-2">
-          <img class="rewards-icon " src={{info.image}} alt="icon of rewards program ">
+          <img class="rewards-icon " src={{info.Image}} alt="icon of rewards program ">
       </div>
       <div class="col-md-10 ">
-          <h3>{{info.name}}</h3>
+          <h3>{{info.Name}}</h3>
           <h5 class="balance">Available points:</h5>
 
      </div>
   </div>
 
  <div class="row">
-      <iframe class="frame">{{info.infoUrl}}</iframe>
+      <iframe class="frame" src="{{info.MoreInfo}}"></iframe>
   </div>
 </div>
