@@ -50,3 +50,6 @@
 .lrg{
     font-size: 1.5em;
 }
+a:hover{
+    text-decoration: none;
+}

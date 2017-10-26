@@ -26,6 +26,7 @@ import { ThemesService} from './services/themes.service';
 import { InfoComponent } from './navigation/info/info.component';
 import { ToolbarComponent } from './navigation/toolbar/toolbar.component';
 import { CardComponent } from './card/card.component';
+import { BackComponent } from './navigation/back/back.component';
 
 
 export const firebaseConfig = {
@@ -54,6 +55,7 @@ export const firebaseConfig = {
     DashboardComponent,
     ToolbarComponent,
     CardComponent,
+    BackComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,23 +1,4 @@
-
- <!-- <div class="row m-0 text-center justify-content-center">
-    <div *ngFor="let reward of rewards">
-      <div class="card col p-0 m-4" style="width: 15rem;">
-          <img class="card-img-top img-fluid img-rounded" style="margin-top: 15px;" src="{{reward.Image}}" alt="Card image cap">
-        <div class="card-body p-0">
-              <h4 class="card-title">{{reg }}</h4>
-        
-        <button class="btn add_button">
-           {{reward.Currency}}: {{reward.Value}}
-           <br>
-           
-           <!-- R: {{reward.Value / reward.Ratio}}
-           <br> -->
-
-          <!-- </button>
-      </div>
-    </div>
-  </div>
-  </div> -->
+loading Dashboard
   <div class="row m-0 text-center justify-content-left">
   <app-card *ngFor="let reward of rewards" [name]="reward.RewardName" [imgUrl]="reward.Image" [balance]="reward.Value / reward.Ratio" [currency]="reward.Currency" [points]="reward.Value"
   [provider]="reward.Name">
@@ -25,40 +6,3 @@
   </app-card>
   </div>
  
- <!-- <div class="row m-0 text-center justify-content-center">
-  <div *ngFor="let item of userRewards | async">
-    <div class="card col p-0 m-4" style="width: 15rem;">
-        <img class="card-img-top img-fluid img-rounded" style="margin-top: 15px;" src="{{Image[index]}}" alt="Card image cap">
-      <div class="card-body p-0">
-            <h4 class="card-title">{{RewardName}}</h4>
-      
-      <button class="btn add_button">
-         {{Currency}}: {{item.$value}}
-         
-        </button>
-    </div>
-  </div>
-</div>
-</div> -->
-
-<!-- <div class="row m-0 text-center justify-content-center">
-  <div *ngFor="let item of data | async">
-    <div class="card col p-0 m-4" style="width: 15rem;">
-      <img class="card-img-top img-fluid img-rounded" style="margin-top: 15px;" src="{{item.Image}}" alt="Card image cap">
-      <div class="card-body p-0">
-        <h4 class="card-title">{{item.Name}}</h4>
-        <button class="btn add_button" (click)="[addRewards(item.Name)]">
-          {{textInButton}}
-          <i class="fa fa-chevron-right"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<!-- <div *ngFor="let item of userRewards | async">
-    <div>
-      <h1>{{item.$key}}</h1>
-      <p>Points: {{item.$value}}</p>
-    </div>
-  </div> -->

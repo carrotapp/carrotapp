@@ -16,7 +16,12 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegistrationComponent },
     { path: 'rewards', component: RewardsComponent },
-    { path: 'main', component: PanelComponent},
+    { path: 'main', component: PanelComponent , children: [
+        { path: '', redirectTo: '/main/dashboard', pathMatch: 'full' },
+        { path: 'dashboard', component: DashboardComponent},
+        { path: 'rewards', component: RewardsComponent},
+        { path: 'info/:array/:index', component: InfoComponent},
+      ]},
     { path: 'card', component: CardComponent},
     { path: 'dashboard', component: DashboardComponent},
     { path: '404', component: NotFoundComponent },

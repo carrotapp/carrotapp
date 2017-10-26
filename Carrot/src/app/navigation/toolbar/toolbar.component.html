@@ -2,8 +2,8 @@
     <div id="{{theme+'-child'}}" class="box center ">
               <i id="{{theme+'-child-item'}}"class=" selectable fa fa-pencil lrg block "></i>
               <!-- Edits -->
-              <i id="{{theme+'-child-item'}}"class=" selectable fa fa-bookmark lrg block"></i>
-              <i id="{{theme+'-child-item'}}"class=" selectable fa fa-eraser lrg block"></i>
+              <a id="{{theme+'-child-item'}}"class=" selectable fa fa-bookmark lrg block" [routerLink]="['/main/rewards']"></a>
+              <i id="{{theme+'-child-item'}}"class=" selectable fa fa-eraser lrg block" ></i>
               <i id="{{theme+'-child-item'}}"class=" selectable fa fa-leaf lrg block" (click)="paints()"></i> <!-- fa fa-tint-->
               <!-- Paints -->
               <div id="{ {theme+'-child' }}"class="box center" *ngIf=" isColor ">
