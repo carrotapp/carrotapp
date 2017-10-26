@@ -16,8 +16,12 @@ export class DatabaseService {
     myItems: any[];
 
     constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router) {
-        this.userRewards = afDB.list('/User Rewards').valueChanges();
-        this.rewards = afDB.list('/Rewards').valueChanges();
+        this.userRewards = afDB.list('/User Rewards').snapshotChanges().map(changes => {
+            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        });
+        this.rewards = afDB.list('/Rewards').snapshotChanges().map(changes => {
+            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        });
     }
 
     signIn(email, password) {
@@ -62,7 +66,7 @@ export class DatabaseService {
     }
 
     pushToUserRewards(uid: any) {
-        this.afDB.list('/User Rewards').push({
+        this.afDB.list('/User Rewards/').push({
             user: uid
         });
         alert('Registered successfully!');
@@ -98,25 +102,30 @@ export class DatabaseService {
         }
     }
 
-    addRewards(key: String) {
+    addRewards(key: string) {
         let flag = true;
-        const users: Observable<any[]> = this.afDB.list('/User Rewards').valueChanges();
+        const users: Observable<any[]> = this.afDB.list('/User Rewards').snapshotChanges().map(changes => {
+            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        });
         users.forEach(element => {
             const uid: String = this.afAuth.auth.currentUser.uid;
             for (let i = 0; i < element.length; i++) {
                 if (element[i].user === uid) {
-                    const rewards: Observable<any[]> = this.afDB.list('/User Rewards/' + element[i].$key + '/Rewards').valueChanges();
+                    // tslint:disable-next-line:max-line-length
+                    const rewards: Observable<any[]> = this.afDB.list('/User Rewards/' + element[i].key + '/Rewards').snapshotChanges().map(changes => {
+                        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+                    });
                     rewards.forEach(rewardsElement => {
                         if (flag) {
                             for (let j = 0; j < rewardsElement.length; j++) {
-                                if (rewardsElement[j].$key === key) {
+                                if (rewardsElement[j].key === key) {
                                     flag = false;
                                     break;
                                 }
                             }
                         }
                         if (flag) {
-                            this.afDB.list('/User Rewards/' + element[i].$key + '/Rewards/' + key).push(0);
+                            this.afDB.list('/User Rewards/' + element[i].key + '/Rewards/').set(key, 0);
                             flag = undefined;
                             alert('Reward added!');
                         } else if (flag === false) {
