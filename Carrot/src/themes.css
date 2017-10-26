@@ -11,6 +11,9 @@ Version    : 0.0.1
 }
 #default-item-selector{
     color: #F0F0F0;
+}#default-parent{
+    background-color: #FFFFFF;
+    color: #535353;
 }
 /* Shadows */
 .default-shadow{
@@ -147,16 +150,16 @@ Version    : 0.0.1
 /* Sub Child */
 #fun-sub-child{
     background-color: #F9F9F9;
-    color: #C3C3C3;
+    color: #5C5C5C;
 }
 #fun-sub-child-item{
     background-color: #F9F9F9;
-    color: #C3C3C3;
+    color: #5C5C5C;
 }
 
 #fun-sub-child-item .selectable:hover{
     background-color: #F9F9F9;
-    color: #B2B2B4;
+    color: #5C5C5C;
 }
 /* Shadows*/
 .fun-shadow{
@@ -229,16 +232,16 @@ Version    : 0.0.1
 /* Sub Child */
 #blind-sub-child{
     background-color: #F9F9F9;
-    color: #FEFEFE;
+    color: #5C5C5C;
 }
 #blind-sub-child-item{
     background-color: #F9F9F9;
-    color: #FEFEFE;
+    color: #5C5C5C;
 }
 
 #blind-sub-child-item .selectable:hover{
     background-color: #F9F9F9;
-    color: #FEFEFE;
+    color: #5C5C5C;
 }
 /* Shadows*/
 .blind-shadow{

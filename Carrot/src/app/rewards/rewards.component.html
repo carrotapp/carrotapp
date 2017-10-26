@@ -1,14 +1,10 @@
-Loading Reward
-<div class="row m-0 text-center justify-content-center">
+<div class="heading center">Rewards</div>
+<div class="row m-0 text-center justify-content-left">
   <div *ngFor="let item of data | async">
-    <div class="card col p-0 m-4" style="width: 15rem;">
-      <img class="card-img-top img-fluid img-rounded" style="margin-top: 15px;" src="{{item.Image}}" alt="Card image cap">
-      <div class="card-body p-0">
-        <h4 class="card-title">{{item.Name}}</h4>
-        <button class="btn add_button" (click)="[addRewards(item.key)]">Add Reward
-          <i class="fa fa-chevron-right"></i>
-        </button>
+    <app-card [name]="item.Name" [imgUrl]="item.Image" [balance]="'1'" [currency]="item.Currency" [points]="item.Ratio"
+    [provider]="item.ProviderName"> </app-card><br>
+    <button class="btn add_button" (click)="[addRewards(item.key)]">Add {{item.Name}}
+        <i class="fa fa-chevron-right"></i>
+      </button>
       </div>
     </div>
-  </div>
-</div>

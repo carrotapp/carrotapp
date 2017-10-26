@@ -1,4 +1,4 @@
-<div class="card center {{ theme +'-shadow'}}"><!-- {{ themes+'-shadow' }} -->
+<div class="card center"id="{{theme +'-shadow'}}"><!-- {{ themes+'-shadow' }} -->
  <div class="maincard">
     <div class="sub-card">
         <img [(src)]="imgUrl" alt=" user image " class="img">
@@ -14,17 +14,17 @@
        </div>
  </div>
 
-  <div class="layer center {{theme+'-child'}}">
-      <div class="title {{theme+'-child-item'}}">
+  <div class="layer center" id="{{theme+'-parent'}}">
+      <div class="title" id=" {{theme+'-parent-item'}}">
           {{provider}}
       </div>
-      <div class="summary {{theme+'-child-item'}}">
-           Summray of Rewards Programme 
-          <div class="footer {{theme+'-child-item'}}">
-              <div class="item {{theme+'-child-item'}}">
+      <div class="summary" id=" {{theme+'-parent-item'}}">
+           {{summary}}
+          <div class="footer" id=" {{theme+'-parent-item'}}">
+              <div class="item" id=" {{theme+'-parent-item'}}">
                 {{ points +' '+ currency}}
               </div>
-              <div class="item {{theme+'-child-item'}}">
+              <div class="item"id=" {{theme+'-parent-item'}}">
                 {{ balance }} zar
               </div>
           </div>
