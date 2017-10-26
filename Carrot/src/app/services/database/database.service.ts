@@ -175,6 +175,11 @@ export class DatabaseService {
     }
 
     getAvatar() {
-        return '../../assets/img/default.png';
+        const photoUrl = this.afAuth.auth.currentUser.photoURL;
+        if (photoUrl != null) {
+            return photoUrl;
+        } else {
+            return '../../assets/img/default.png';
+        }
     }
 }
