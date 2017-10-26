@@ -153,7 +153,7 @@ export class DatabaseService {
             for (let i = 0; i < element.length; i++) {
                 if (element[i].user === uid) {
                     key = element[i].key;
-                    path = '/User Rewards/' + key + '/Rewards';
+                    path = '/User Rewards/' + key + '/Rewards/';
                     this.rewardsArray = this.getUsersRewards(path);
                 }
             }
@@ -165,27 +165,22 @@ export class DatabaseService {
         const usersRewards: Observable<any[]> = this.afDB.list(path).snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         });
-        usersRewards.forEach(element => {
-            for (let i = 0; i < element.length; i++) {
-                console.log(element[i]);
-            }
-        });
+        const value: Observable<any[]> = this.afDB.list(path).valueChanges();
         usersRewards.forEach(element => {
             for (let i = 0; i < element.length; i++) {
                 this.getRewards().forEach(dataElement => {
-                    for (let j = 0; j < dataElement.length; j++) {
-                        if (dataElement[j].key === element[i].key) {
-                            // console.log(element[i].Value);
-                            this.rewardsArray.push(
-                                // new Rewards(dataElement[j], element[i])
-                                new Rewards(dataElement[j])
-                            );
+                    value.forEach(valueElement => {
+                        for (let j = 0; j < dataElement.length; j++) {
+                            if (dataElement[j].key === element[i].key) {
+                                this.rewardsArray.push(
+                                    new Rewards(dataElement[j], valueElement[i])
+                                );
+                            }
                         }
-                    }
+                    });
                 });
             }
         });
-        // console.log(this.rewardsArray);
         return this.rewardsArray;
     }
 

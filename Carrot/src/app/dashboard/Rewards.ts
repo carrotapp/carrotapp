@@ -4,17 +4,16 @@ export class Rewards {
   ProviderName;
   Name;
   Ratio;
-  // Value;
+  Value;
   infoUrl;
 
-  // constructor(array, Value) {
-  constructor(array) {
+  constructor(array, Value) {
     this.Currency = array.Currency;
     this.Image = array.Image;
     this.ProviderName = array.ProviderName;
     this.Name = array.Name;
     this.Ratio = array.Ratio;
-    // this.Value = Value;
+    this.Value = Value;
     this.infoUrl = array.infoUrl;
   }
 
