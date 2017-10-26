@@ -15,7 +15,6 @@ export class Rewards {
     this.Ratio = array.Ratio;
     this.Value = Value;
     this.infoUrl = array.infoUrl;
->>>>>>> 0cf978f60688f70c236dd203748a976766091eb0
   }
 
 }
