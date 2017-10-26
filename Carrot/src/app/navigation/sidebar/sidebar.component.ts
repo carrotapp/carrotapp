@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { DatabaseService } from '../../services/database/database.service';
+import { Component, OnInit } from '@angular/core';
 import { NavigationTogglesService } from '../../services/navigation/navigation-toggles.service';
 import { ThemesService } from '../../services/themes.service';
 
@@ -7,10 +8,12 @@ import { ThemesService } from '../../services/themes.service';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
+
+  src: string;
 
   // The purpose of this import is to access the none static methods in this service
-  constructor(public navtoggle: NavigationTogglesService, public themes: ThemesService) {
+  constructor(public navtoggle: NavigationTogglesService, public themes: ThemesService, public ds: DatabaseService) {
   }
   // Reaction of the sidebar due to hovering
   sidebarhover(state): void {
@@ -29,6 +32,10 @@ export class SidebarComponent {
   // theme
   get theme(): string {
     return this.themes.getTheme();
+  }
+
+  ngOnInit() {
+    this.src = this.ds.getAvatar();
   }
 
 }

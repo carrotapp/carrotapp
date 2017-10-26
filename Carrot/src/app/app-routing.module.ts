@@ -21,7 +21,6 @@ const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent},
     { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '404' },
-
 ];
 
 @NgModule({
