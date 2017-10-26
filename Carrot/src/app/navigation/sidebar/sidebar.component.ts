@@ -1,3 +1,4 @@
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { DatabaseService } from '../../services/database/database.service';
 import { Component, OnInit } from '@angular/core';
 import { NavigationTogglesService } from '../../services/navigation/navigation-toggles.service';
@@ -10,10 +11,11 @@ import { ThemesService } from '../../services/themes.service';
 })
 export class SidebarComponent implements OnInit {
 
-  src: string;
+  src: SafeUrl;
 
   // The purpose of this import is to access the none static methods in this service
-  constructor(public navtoggle: NavigationTogglesService, public themes: ThemesService, public ds: DatabaseService) {
+  // tslint:disable-next-line:max-line-length
+  constructor(public navtoggle: NavigationTogglesService, public themes: ThemesService, public ds: DatabaseService, private sanitizer: DomSanitizer) {
   }
   // Reaction of the sidebar due to hovering
   sidebarhover(state): void {
@@ -35,7 +37,7 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.src = this.ds.getAvatar();
+    this.src = this.sanitizer.bypassSecurityTrustResourceUrl(this.ds.getAvatar());
   }
 
 }
