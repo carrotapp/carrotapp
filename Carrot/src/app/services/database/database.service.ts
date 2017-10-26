@@ -125,7 +125,6 @@ export class DatabaseService {
                             }
                         }
                         if (flag) {
-                            // generates its own key
                             this.afDB.list('/User Rewards/' + element[i].key + '/Rewards/').set(key, 0);
                             flag = undefined;
                             alert('Reward added!');
