@@ -14,6 +14,7 @@ export class DatabaseService {
     data: Observable<any[]>;
     rewardsArray: Rewards[] = [];
     myItems: any[];
+    photoUrl: any;
 
     constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router) {
         this.userRewards = afDB.list('/User Rewards').snapshotChanges().map(changes => {
@@ -30,6 +31,7 @@ export class DatabaseService {
         } else {
             this.afAuth.auth.signInWithEmailAndPassword(email, password).then(
                 (success) => {
+                    this.photoUrl = this.afAuth.auth.currentUser.photoURL;
                     this.router.navigate(['/main']);
                 }).catch(
                 (err) => {
@@ -56,6 +58,7 @@ export class DatabaseService {
                     if (flag === undefined) {
                         this.pushToUserRewards(this.afAuth.auth.currentUser.uid);
                     } else {
+                        this.photoUrl = this.afAuth.auth.currentUser.photoURL;
                         this.router.navigate(['/main']);
                     }
                 });
@@ -70,6 +73,7 @@ export class DatabaseService {
             user: uid
         });
         alert('Registered successfully!');
+        this.photoUrl = this.afAuth.auth.currentUser.photoURL;
         this.router.navigate(['/rewards']);
     }
 
@@ -184,9 +188,8 @@ export class DatabaseService {
     }
 
     getAvatar() {
-        const photoUrl = this.afAuth.auth.currentUser.photoURL;
-        if (photoUrl != null) {
-            return photoUrl;
+        if (this.photoUrl != null) {
+            return this.photoUrl;
         } else {
             return '../../assets/img/default.png';
         }

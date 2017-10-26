@@ -18,7 +18,7 @@ export class RewardsComponent {
     }
   }
 
-  addRewards(key: String) {
+  addRewards(key: string) {
     this.databaseService.addRewards(key);
   }
 }
