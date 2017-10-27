@@ -154,14 +154,15 @@ export class DatabaseService {
                 if (element[i].user === uid) {
                     key = element[i].key;
                     path = '/User Rewards/' + key + '/Rewards/';
-                    this.rewardsArray = this.getUsersRewards(path);
+                    this.getUsersRewards(path);
+                    break;
                 }
             }
         });
         return this.rewardsArray;
     }
 
-    getUsersRewards(path): Rewards[] {
+    getUsersRewards(path) {
         const usersRewards: Observable<any[]> = this.afDB.list(path).snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         });
@@ -181,7 +182,6 @@ export class DatabaseService {
                 });
             }
         });
-        return this.rewardsArray;
     }
 
     getRewards() {
