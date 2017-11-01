@@ -20,7 +20,7 @@ const routes: Routes = [
         { path: '', redirectTo: '/main/dashboard', pathMatch: 'full' },
         { path: 'dashboard', component: DashboardComponent},
         { path: 'rewards', component: RewardsComponent},
-        { path: 'info/:array/:index', component: InfoComponent},
+        { path: 'info/:provider/:index', component: InfoComponent},
       ]},
     { path: 'card', component: CardComponent},
     { path: 'dashboard', component: DashboardComponent},

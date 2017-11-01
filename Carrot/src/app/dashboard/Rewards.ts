@@ -6,7 +6,7 @@ export class Rewards {
   Ratio;
   Value;
   infoUrl;
-  Summary;
+  summary;
 
   constructor(array, Value) {
     this.Currency = array.Currency;
@@ -16,7 +16,7 @@ export class Rewards {
     this.Ratio = array.Ratio;
     this.Value = Value;
     this.infoUrl = array.infoUrl;
-    this.Summary = array.Summary;
+    this.summary = array.summary;
   }
 
 }

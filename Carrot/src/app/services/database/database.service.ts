@@ -143,6 +143,7 @@ export class DatabaseService {
     }
 
     getRewardsArray(): Rewards[] {
+        this.rewardsArray = [];
         let key: string;
         const uid: string = this.afAuth.auth.currentUser.uid;
         let path: string;
@@ -205,3 +206,32 @@ export class DatabaseService {
     }
 
 }
+
+
+/**
+ 
+export class taSmith{
+
+    isEdit :boolean[];
+      constructor(//ahdgsahdsd){
+      }
+
+      edit2(boolean: flag, message:string ) {
+          if (flag) { this.edit(message);
+        }
+      }
+
+}
+
+//HTML Filr
+<input //bsdcdndssds 
+// modifications
+ *ngEnabled="isEdit[i]" 
+ (event) ="  edit2( isEdit[i], message  ) "
+>
+
+
+ * 
+ * 
+ * 
+ */
