@@ -24,9 +24,9 @@ export class CardComponent {
 
   @Input('summary') summary: string;
 
-  @Input('rewardname') rewardname:string;
+  @Input('rewardname') rewardname: string;
 
-  @Input('index') index:number;
+  @Input('index') index: number;
 
   constructor(public themes: ThemesService) {
     console.log(this.summary);

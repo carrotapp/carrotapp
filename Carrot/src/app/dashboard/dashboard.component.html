@@ -3,6 +3,5 @@
   <div *ngFor="let reward of rewards;let i = index">
     <app-card [name]="reward.ProviderName" [imgUrl]="reward.Image" [balance]="reward.Value/reward.Ratio" [summary]="reward.summary"
       [currency]="reward.Currency" [points]="reward.Value" [provider]="reward.Name" [rewardname]="reward.Name" [index]="i"></app-card>
- 
   </div>
 </div>
