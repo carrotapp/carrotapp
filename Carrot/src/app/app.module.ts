@@ -28,7 +28,6 @@ import { ToolbarComponent } from './navigation/toolbar/toolbar.component';
 import { CardComponent } from './card/card.component';
 import { BackComponent } from './navigation/back/back.component';
 
-
 export const firebaseConfig = {
   apiKey: 'AIzaSyDUlfMoY9Aq0nOGnZt_ovhRDaUtOJUnZ04',
   authDomain: 'carrot-app.firebaseapp.com',

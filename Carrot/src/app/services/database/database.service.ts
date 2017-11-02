@@ -90,6 +90,11 @@ export class DatabaseService {
                 }
             });
     }
+    
+    logout() {
+        this.router.navigate(['/']); 
+        this.afAuth.auth.signOut();
+     }
 
     checkLoggedIn() {
         try {
@@ -206,32 +211,3 @@ export class DatabaseService {
     }
 
 }
-
-
-/**
- 
-export class taSmith{
-
-    isEdit :boolean[];
-      constructor(//ahdgsahdsd){
-      }
-
-      edit2(boolean: flag, message:string ) {
-          if (flag) { this.edit(message);
-        }
-      }
-
-}
-
-//HTML Filr
-<input //bsdcdndssds 
-// modifications
- *ngEnabled="isEdit[i]" 
- (event) ="  edit2( isEdit[i], message  ) "
->
-
-
- * 
- * 
- * 
- */

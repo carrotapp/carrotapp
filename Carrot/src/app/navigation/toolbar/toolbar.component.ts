@@ -1,3 +1,4 @@
+import { DatabaseService } from './../../services/database/database.service';
 import { Component, OnInit } from '@angular/core';
 import { NavigationTogglesService } from '../../services/navigation/navigation-toggles.service';
 import { ThemesService } from '../../services/themes.service';
@@ -9,7 +10,7 @@ import { ThemesService } from '../../services/themes.service';
 })
 export class ToolbarComponent implements OnInit {
   isColor: boolean;
-  constructor(public toolbarObj: NavigationTogglesService, public themes: ThemesService) { }
+  constructor(private ds: DatabaseService, public toolbarObj: NavigationTogglesService, public themes: ThemesService) { }
 
   ngOnInit() {
   }
@@ -35,5 +36,9 @@ export class ToolbarComponent implements OnInit {
   setTheme(theme: string): void {
     this.themes.setTheme(theme);
   }
+
+  // logout(){
+  //   this.ds.logout();
+  // }
 
 }
