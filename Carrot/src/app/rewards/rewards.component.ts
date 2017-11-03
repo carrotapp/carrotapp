@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { DatabaseService } from '../services/database/database.service';
 import { Component } from '@angular/core';
@@ -12,13 +13,14 @@ import { Component } from '@angular/core';
 export class RewardsComponent {
   data: Observable<any[]>;
 
-  constructor(private databaseService: DatabaseService) {
+  constructor(private databaseService: DatabaseService, private router: Router) {
     if (databaseService.checkLoggedIn()) {
       this.data = databaseService.getRewards();
     }
   }
 
   addRewards(key: string) {
-    this.databaseService.addRewards(key);
+    this.databaseService.setRewardKey(key);
+    this.router.navigate(['/credentials']);
   }
 }
