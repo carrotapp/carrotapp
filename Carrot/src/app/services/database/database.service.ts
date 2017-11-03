@@ -130,7 +130,14 @@ export class DatabaseService {
                             }
                         }
                         if (flag) {
-                            this.afDB.list('/User Rewards/' + element[i].key + '/Rewards/').set(key, 0);
+
+                            this.afDB.list('/User Rewards/'  + element[i].key + '/Rewards/' + key).push({
+                                CardNumber: 10100100011010,
+                                Password: "Lihle10111",
+                                Points: 200,
+                                Username: "IhleMdikili"
+                            });
+
                             flag = undefined;
                             alert('Reward added!');
                         } else if (flag === false) {
