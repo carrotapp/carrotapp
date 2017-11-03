@@ -131,7 +131,7 @@ export class DatabaseService {
                         }
                         if (flag) {
 
-                            this.afDB.list('/User Rewards/'  + element[i].key + '/Rewards/' + key).push({
+                            this.afDB.list('/User Rewards/'  + element[i].key + '/Rewards/').push(key).set({
                                 CardNumber: 10100100011010,
                                 Password: "Lihle10111",
                                 Points: 200,
