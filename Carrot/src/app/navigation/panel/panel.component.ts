@@ -8,9 +8,7 @@ import { ThemesService } from '../../services/themes.service';
 })
 export class PanelComponent {
 
-  constructor(public themes: ThemesService) {
-    // To new 
-   }
+  constructor(public themes: ThemesService) { }
 
   get theme(): string {
     return this.themes.getTheme();

@@ -8,7 +8,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { PanelComponent } from './navigation/panel/panel.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { InfoComponent } from './navigation/info/info.component';
-import { DatabaseService } from './services/database/database.service'
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     // This is the new router outlet outline... In  progress
@@ -18,7 +17,7 @@ const routes: Routes = [
                 // { path: '', redirectTo: '//hello', pathMatch: 'full' }, 
                 { path: 'rewards', component: RewardsComponent},
                     { path: 'dashboard', component: DashboardComponent},
-                    { path: 'info/:provider/:index', component: InfoComponent},
+                    { path: 'details/:provider/:index', component: InfoComponent},
                   ]},
 
     // { path: 'Info', component: InfoComponent },

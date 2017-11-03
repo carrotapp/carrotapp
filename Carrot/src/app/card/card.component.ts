@@ -27,6 +27,8 @@ export class CardComponent {
   @Input('rewardname') rewardname: string;
 
   @Input('index') index: number;
+  
+  @Input('redirector') redir:string;
 
   constructor(public themes: ThemesService) {
   }

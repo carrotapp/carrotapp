@@ -14,7 +14,6 @@ export class DatabaseService {
     rewardsOfUser: Observable<any[]>;
     rewardsArray: Rewards[] = [];
     photoUrl: any;
-   static un:string='default';
 
     constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router) {
         this.userRewardsRef = afDB.list('/User Rewards');
@@ -60,9 +59,7 @@ export class DatabaseService {
                         this.pushToUserRewards(this.afAuth.auth.currentUser.uid);
                     } else {
                         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
-                        DatabaseService.un = this.afAuth.auth.currentUser.displayName;
-                        console.log(DatabaseService.un);
-                        this.router.navigate(['/'+ this.pathName(DatabaseService.un)+'/dashboard']);
+                        this.router.navigate(['/'+ this.pathName(this.afAuth.auth.currentUser.displayName)+'/dashboard']);
                     }
                 });
             }).catch(
