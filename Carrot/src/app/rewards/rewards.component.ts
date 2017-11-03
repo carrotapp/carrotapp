@@ -20,7 +20,6 @@ export class RewardsComponent {
   }
 
   addRewards(key: string) {
-    this.databaseService.setRewardKey(key);
-    this.router.navigate(['/credentials']);
+    this.databaseService.checkReward(key);
   }
 }

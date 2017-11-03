@@ -9,14 +9,26 @@ import { DatabaseService } from './../services/database/database.service';
 })
 export class RewardsCredentialsComponent implements OnInit {
   data: Observable<any[]>;
+  cardNum = '';
+  email = '';
+  password = '';
+  key = '';
 
   constructor(private databaseService: DatabaseService) {
     if (databaseService.checkLoggedIn()) {
-      console.log(databaseService.rewardKey);
+      this.key = databaseService.rewardKey;
     }
   }
 
   ngOnInit() {
+  }
+
+  addReward() {
+    if (this.cardNum !== '' && this.email !== '' && this.password !== '') {
+      this.databaseService.addRewards(this.key, this.cardNum, this.email, this.password, 0);
+    } else {
+      alert('Please fill out all the fields');
+    }
   }
 
 }
