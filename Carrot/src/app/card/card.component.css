@@ -1,41 +1,82 @@
-.card{
-   width: 266px;
-  height: 266px;
-    border:none;
-  overflow: hidden;
-  float: left;
-  margin: 5px;
-}
-.maincard{
-    width: inherit;
-    height: inherit;
-    margin-top: 5px;
-}
-.sub-card{
-    height: 70%;
-    width: inherit;
-    font-family: 'Hindi'
-}
-img{
-    height: inherit;
-    opacity: .9;
-}
-h1, .title{
-    font-size: 1em;
-    font-weight: 900;
-}
-/* Overlay */
-.layer{
-    position: absolute;
-    height: inherit;
-    width: inherit;
-    display: none;
-    margin: 0;
-    opacity: .9;
-}
-.card:hover .layer{
-    display: block;
-}
-.summary{
-    height: 80%;
-}
+    .card{
+/* Positioning  */
+        width: 303px;
+        height: 230px;
+        padding: 30px;
+/* Look and Feel */
+        border-radius: 6px;
+        background-color: #ffffff;
+        box-shadow: 0 5px 12px 0 rgba(217, 226, 233, 0.5);
+        border: solid 1px rgba(219, 223, 227, 0.3);
+/* Spacing */ 
+        margin: 5px;
+    }
+    .img{
+            width: 70px;
+            height: 70px;
+            border: 0.5px solid #F3F3F3;
+            float: left;
+    }
+    .header{
+        margin-left: 10px;
+        width: 143px;
+        height: 20px;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.2px;
+        text-align: left;
+        color: #323C47;
+        line-height: 20px;
+    }
+    a{ 
+        width: 75px;
+        height: 14px;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: -0.1px;
+        text-align: left;
+        color: #489fff;
+        text-transform: uppercase;
+    }
+    .rectangle{
+        width: 243px;
+        height: 62px;
+        border-radius: 5px;
+        border: solid 1px #e9eff4;
+      }
+      .pill{
+          width:50%;
+          height: inherit;
+            float: left;
+            padding-left: 24.6px;
+            padding-top: 12.9px; 
+      }
+      h1{
+        width: 82px;
+        height: 14px;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.4px;
+        text-align: left;
+        color: #323c47;
+        text-transform: uppercase;
+      }
+      .value-points{
+        font-family:'Source Sans Pro', sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.3;
+        text-align: left;
+        color: #489fff;
+      }
+      .value-zar{
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.3;
+        text-align: left;
+        color: #73a649;
+      }

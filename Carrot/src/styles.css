@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Hind+Siliguri');
 
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
 @import url('./themes.css');
 
@@ -26,6 +27,7 @@
 
 .center{
     text-align: center;
+    align-items: center;
 }
 
 .right{
@@ -57,3 +59,10 @@ a:hover{
     font-weight: 500;
     font-size: 2em;
 } 
+.line-right{
+    height: inherit;
+    border-right: 1px solid #e9eff4;
+}
+.minus-top-10px{
+    margin-top: -10px
+}
