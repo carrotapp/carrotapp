@@ -14,6 +14,7 @@ export class DatabaseService {
     rewardsOfUser: Observable<any[]>;
     rewardsArray: Rewards[] = [];
     photoUrl: any;
+    rewardKey: string;
 
     constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router) {
         this.userRewardsRef = afDB.list('/User Rewards');
@@ -139,6 +140,7 @@ export class DatabaseService {
                             });
 
                             flag = undefined;
+                            this.rewardsArray = [];
                             alert('Reward added!');
                         } else if (flag === false) {
                             flag = undefined;
@@ -151,7 +153,6 @@ export class DatabaseService {
     }
 
     getRewardsArray(): Rewards[] {
-        this.rewardsArray = [];
         let key: string;
         const uid: string = this.afAuth.auth.currentUser.uid;
         let path: string;
@@ -163,6 +164,7 @@ export class DatabaseService {
                 if (element[i].user === uid) {
                     key = element[i].key;
                     path = '/User Rewards/' + key + '/Rewards/';
+                    this.rewardsArray = [];
                     this.getUsersRewards(path);
                     break;
                 }
@@ -211,6 +213,10 @@ export class DatabaseService {
         } else {
             return '../../assets/img/default.png';
         }
+    }
+
+    setRewardKey(key: string) {
+        this.rewardKey = key;
     }
 
 }
