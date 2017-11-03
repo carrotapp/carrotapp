@@ -15,7 +15,7 @@ export class RegistrationComponent {
   constructor(private databaseService: DatabaseService) { }
 
   register() {
-    if (this.email !== '' && this.password !== '' && this.confirmPassword !== '') {
+    if (this.email !== '' && this.email !== '' && this.password !== '' && this.confirmPassword !== '') {
       if (this.password.length >= 8) {
         if (this.password !== this.confirmPassword) {
           alert('Password do not match');
