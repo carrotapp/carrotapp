@@ -6,10 +6,8 @@ import { RewardsComponent } from './rewards/rewards.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PanelComponent } from './navigation/panel/panel.component';
+import { HeaderComponent } from './navigation/header/header.component';
 import { InfoComponent } from './navigation/info/info.component';
-
-import { CardComponent } from './card/card.component';
-
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'Info', component: InfoComponent },
@@ -22,7 +20,7 @@ const routes: Routes = [
         { path: 'rewards', component: RewardsComponent},
         { path: 'info/:provider/:index', component: InfoComponent},
       ]},
-    { path: 'card', component: CardComponent},
+    { path: 'header/:h1/:h2/:title', component: HeaderComponent},
     { path: 'dashboard', component: DashboardComponent},
     { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '404' },

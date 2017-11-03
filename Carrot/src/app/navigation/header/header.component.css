@@ -1,0 +1,58 @@
+.h1{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 38px;
+    font-weight: 600;
+    letter-spacing: -1.1px;
+    text-align: left;
+    color: #233539;
+    float: left;
+    margin-left: 15px;
+    margin-right: 50px;
+}
+.h2{
+    width: 114px;
+    height: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+    text-align: left;
+    color: #474f58;
+    margin-top: 15px;
+}
+.btn-add-carrot{
+    width: 206px;
+    height: 35px;
+    border-radius: 2px;
+    background-color: #ffffff;
+    border: solid 1px #f9b324;
+    padding-left: 15px;
+    padding-top: 8px;
+    padding-bottom: 9px;
+    margin-top: 3px;
+    margin-left: 15px;
+}
+.btn-text{
+    font-size: 20px;
+    text-align: left;
+    color: #f9b324;
+    float:left;
+    font-weight: 100;
+}
+.btn-text-right{
+    margin-left: 16px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 900;
+    text-align: left;
+    color: #f9b324;
+    float: left;
+    text-transform: uppercase;
+    margin-top: -2px
+}
+.shape{
+    width: 60px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: #f9b324;
+}

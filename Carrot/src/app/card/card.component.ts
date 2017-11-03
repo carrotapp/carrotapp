@@ -29,11 +29,6 @@ export class CardComponent {
   @Input('index') index: number;
 
   constructor(public themes: ThemesService) {
-    console.log(this.summary);
-  }
-
-  onclick(): void {
-    console.log('Clicked');
   }
 
   get theme() {
