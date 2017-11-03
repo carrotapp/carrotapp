@@ -1,36 +1,28 @@
-<div class="card center {{ theme+'-shadow'}}" id="{{theme +'-shadow'}}">
-    <!-- {{ themes+'-shadow' }} -->
-    <div class="maincard">
-        <div class="sub-card">
-            <img [(src)]="imgUrl" alt=" user image " class="img">
-        </div>
-        <h1 class="{{theme+'-child-item'}}"> {{name}} </h1>
-        <div class="footer">
-            <div class="item {{theme+'-child-item'}}">
-                {{ points +' '+ currency}}
-            </div>
-            <div class="item {{theme+'-child-item'}}">
-                {{ balance }} zar
-            </div>
-        </div>
-    </div>
+<div class="card center"> 
+    <div class="row">
+         <img [(src)] ="imgUrl"  [(alt)]="provider" class="img"><br>
+         <div class="header">{{ provider }} <br>
+                <a [routerLink]="['/main/info/'+rewardname+'/'+index]">FIND OUT MORE</a>
+         </div>
+         </div>
+         <br>
+<div class="row ">
+        <div class="rectangle">   
+                     <div class="pill line-right">
+                           <h1> Earned Points </h1>
+                           <div class="value-points minus-top-10px">
+                                {{ points }}
+                            </div>
+                     </div>
+                     <div class="pill">
+                            <h1> Value </h1>
+                            <div class="value-zar minus-top-10px">
+                                {{ balance }}
+                            </div>
+                     </div>
+                </div>
+</div>
+  
+   
 
-    <div class="layer center" id="{{theme+'-parent'}}">
-        <div class="title" id=" {{theme+'-parent-item'}}">
-            {{provider}}
-        </div>
-        <a [routerLink]="['/main/info/'+rewardname+'/'+index]">More info</a>
-        <div class="summary" id=" {{theme+'-parent-item'}}">
-            <p>{{ summary }}</p>
-            <!-- <div class="footer" id=" {{theme+'-parent-item'}}">
-                <div class="item" id=" {{theme+'-parent-item'}}">
-                    {{ points +' '+ currency}}
-                </div>
-                <div class="item" id=" {{theme+'-parent-item'}}">
-                    {{ balance }} zar
-                </div>
-                
-            </div> -->
-        </div>
-    </div>
 </div>
