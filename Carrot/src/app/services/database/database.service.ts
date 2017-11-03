@@ -56,7 +56,7 @@ export class DatabaseService {
                         }
                     }
                     if (flag === undefined) {
-                        this.pushToUserRewards(this.afAuth.auth.currentUser.uid, this.getName());
+                        this.pushToUserRewards(this.afAuth.auth.currentUser.uid, this.afAuth.auth.currentUser.displayName);
                     } else {
                         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
                         this.router.navigate(['/main']);
@@ -68,19 +68,20 @@ export class DatabaseService {
             });
     }
 
-    pushToUserRewards(uid: any, name) {
+    pushToUserRewards(uid: any, uName) {
         this.afDB.list('/User Rewards/').push({
-            user: uid, username: name
+            user: uid,
+            username: uName
         });
         alert('Registered successfully!');
         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
         this.router.navigate(['/rewards']);
     }
 
-    signUp(email, password) {
+    signUp(email, password, username) {
         this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
             (success) => {
-                this.pushToUserRewards(this.afAuth.auth.currentUser.uid, this.getName());
+                this.pushToUserRewards(this.afAuth.auth.currentUser.uid, username);
             }).catch(
             (err) => {
                 if (err.message === 'The email address is already in use by another account.') {
@@ -203,10 +204,6 @@ export class DatabaseService {
         } else {
             return '../../assets/img/default.png';
         }
-    }
-
-    getName(){
-        return this.afAuth.auth.currentUser.displayName;
     }
 
 }

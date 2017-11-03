@@ -11,16 +11,17 @@ export class RegistrationComponent {
   email = '';
   password = '';
   confirmPassword = '';
+  username = '';
 
   constructor(private databaseService: DatabaseService) { }
 
   register() {
-    if (this.email !== '' && this.email !== '' && this.password !== '' && this.confirmPassword !== '') {
+    if (this.email !== '' && this.email !== '' && this.password !== '' && this.confirmPassword !== '' && this.username !== '') {
       if (this.password.length >= 8) {
         if (this.password !== this.confirmPassword) {
           alert('Password do not match');
         } else {
-          this.databaseService.signUp(this.email, this.password);
+          this.databaseService.signUp(this.email, this.password, this.username);
         }
 
       } else {
