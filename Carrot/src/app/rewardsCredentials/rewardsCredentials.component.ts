@@ -12,11 +12,10 @@ export class RewardsCredentialsComponent implements OnInit {
   cardNum = '';
   email = '';
   password = '';
-  key = '';
 
   constructor(private databaseService: DatabaseService) {
     if (databaseService.checkLoggedIn()) {
-      this.key = databaseService.rewardKey;
+      console.log('Logged in');
     }
   }
 
@@ -25,7 +24,7 @@ export class RewardsCredentialsComponent implements OnInit {
 
   addReward() {
     if (this.cardNum !== '' && this.email !== '' && this.password !== '') {
-      this.databaseService.addRewards(this.key, this.cardNum, this.email, this.password, 0);
+      this.databaseService.addRewards(this.cardNum, this.email, this.password, 0);
     } else {
       alert('Please fill out all the fields');
     }

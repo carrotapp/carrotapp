@@ -109,8 +109,9 @@ export class DatabaseService {
         }
     }
 
-    addRewards(key: string, cardNum: string, email: string, password: string, points: Number) {
-        this.afDB.list(this.rewardPath).push(key).set({CardNumber: cardNum, Password: password, Points: points, Email: email});
+    addRewards(cardNum: string, email: string, password: string, points: Number) {
+        const path = this.rewardPath + this.rewardKey;
+        this.afDB.list(this.rewardPath).set(this.rewardKey, {CardNumber: cardNum, Password: password, Points: points, Email: email});
         alert('Reward added successfully');
         this.router.navigate(['/main']);
     }
@@ -132,7 +133,7 @@ export class DatabaseService {
                         if (flag) {
                             for (let j = 0; j < rewardsElement.length; j++) {
                                 if (rewardsElement[j].key === key) {
-                                    this.rewardPath = '/User Rewards/' + element[i].key + '/Rewards';
+                                    this.rewardPath = '/User Rewards/' + element[i].key + '/Rewards/';
                                     flag = false;
                                     break;
                                 }
