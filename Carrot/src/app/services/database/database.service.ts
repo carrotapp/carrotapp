@@ -205,7 +205,7 @@ export class DatabaseService {
         }
     }
     pathName(name:string):string{
-        return name.toLowerCase().replace(' ','.');
+        return name.toLowerCase().replace(/ /g,'.');
     }
 }
 

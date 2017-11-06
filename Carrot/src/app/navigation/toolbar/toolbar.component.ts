@@ -19,7 +19,7 @@ export class ToolbarComponent {
    }
 //to lower
 toLowerPath(name:string):string{
-  return name.toLowerCase().replace(' ','.');
+  return name.toLowerCase().replace(/ /g,'.');
 }
 //getter
 get pathName(){

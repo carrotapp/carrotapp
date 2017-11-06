@@ -24,8 +24,8 @@ export class DashboardComponent{
   }
 
  // Routing to lower
-toLowerPath(name:string):string{
-  return name.toLowerCase().replace(' ','.');
+toLowerPath(name:string):string{ 
+  return name.toLowerCase().replace(/ /g,'.');
 }
 //getter
 get pathName(){
