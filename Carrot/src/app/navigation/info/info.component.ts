@@ -41,7 +41,7 @@ export class InfoComponent{
   });
  }
   // retrieve reward
-  getReward(list:Rewards[], provider:string):void{
+  getReward(list:Rewards[]  , provider:string):void{
     console.log('running');
     this.reward = this.dbs.getReward(list,provider);
     console.log(this.dbs.getReward(list,provider));

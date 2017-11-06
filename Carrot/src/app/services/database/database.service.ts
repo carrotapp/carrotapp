@@ -15,6 +15,8 @@ export class DatabaseService {
     rewardsArray: Rewards[] = [];
     detailsArray: any[] = [];
     photoUrl: any;
+    rewardKey:string;
+    rewardPath:string;
 
     constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router) {
         this.userRewardsRef = afDB.list('/User Rewards');
@@ -107,9 +109,6 @@ export class DatabaseService {
         }
     }
 
-<<<<<<< HEAD
-    addRewards(key: string) {
-=======
     addRewards(cardNum: string, email: string, password: string, points: Number) {
         const path = this.rewardPath + this.rewardKey;
         this.afDB.list(this.rewardPath).set(this.rewardKey, { CardNumber: cardNum, Password: password, Points: points, Email: email });
@@ -118,7 +117,6 @@ export class DatabaseService {
     }
 
     checkReward(key: string) {
->>>>>>> master
         let flag = true;
         const users: Observable<any[]> = this.afDB.list('/User Rewards').snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
