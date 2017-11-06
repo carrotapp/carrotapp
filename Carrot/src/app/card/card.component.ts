@@ -26,7 +26,7 @@ export class CardComponent {
 
   @Input('rewardname') rewardname: string;
 
-  @Input('index') index: number;
+  @Input('type') type: string;
   
   @Input('redirector') redir:string;
 
@@ -35,5 +35,8 @@ export class CardComponent {
 
   get theme() {
     return this.themes.getTheme();
+  }
+  toLowerPath(name:string):string{ 
+    return name.toLowerCase().replace(/ /g,'.');
   }
 }

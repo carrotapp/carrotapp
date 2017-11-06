@@ -197,6 +197,20 @@ export class DatabaseService {
     getRewards() {
         return this.rewards;
     }
+    //specific reward
+    getReward(list:string, provider:string):Rewards{
+        console.log('about to: '+ this.rewards[0]);
+    //  for( var i = 0; i < list.length; i++ ) {
+    //     console.log(i);
+    //      if( this.pathName( list[i].ProviderName ) === provider ) {
+    //         console.log(list[i]+' returned Object!sss ');
+    //          return list[i];
+    //         } else {
+    //             console.log(i);
+    //         }
+    //  }
+     return this.rewards[0];
+    }
 
     getRewardsData(key) {
         return this.afDB.list('/Rewards/' + key);
