@@ -20,27 +20,28 @@ export class InfoComponent{
   constructor(public dbs: DatabaseService, private route: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer) {
     if (dbs.checkLoggedIn()) {
       this.rewards = dbs.getRewardsArray();
-      this.route.params.subscribe((params: Params) => {
-        this.username = params.username;
-        this.provider = params.provider;
-        this.type = params.type;
-
-        // assigning reward object
-      if( this.type == 'view' ) {  
-             this. getReward( 'view', this.provider); 
-             console.log(dbs.getRewardsArray())
-      } else {  
-              this. getReward('add', this.provider);
-              console.log(this.reward)
-      }
-      });
     }
 
 
   }
+ ngOnInit(){
+  this.route.params.subscribe((params: Params) => {
+    this.username = params.username;
+    this.provider = params.provider;
+    this.type = params.type;
 
+    // assigning reward object
+  if( this.type == 'view' ) {  
+         this. getReward(this.dbs.getRewardsArray(), this.provider); 
+         console.log(this.dbs.getRewardsArray())
+  } else {  
+          this. getReward(this.dbs.getRewardsArray(), this.provider);
+          console.log(this.reward)
+  }
+  });
+ }
   // retrieve reward
-  getReward(list:string, provider:string):void{
+  getReward(list:Rewards[], provider:string):void{
     console.log('running');
     this.reward = this.dbs.getReward(list,provider);
     console.log(this.dbs.getReward(list,provider));
