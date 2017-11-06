@@ -1,5 +1,6 @@
 import { DatabaseService } from './../services/database/database.service';
 import { Component } from '@angular/core';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-registration',
@@ -27,7 +28,6 @@ export class RegistrationComponent {
       } else {
         alert('Error: Minimum password length is 8');
         this.password = '';
-        this.confirmPassword = '';
       }
 
     } else {
