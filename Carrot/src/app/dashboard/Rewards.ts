@@ -8,7 +8,6 @@ export class Rewards {
   infoUrl;
   summary;
 
-  constructor(array, Value) {
   //On details Array
   CardNumber;
   Email;
