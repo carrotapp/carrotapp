@@ -14,6 +14,8 @@ export class DatabaseService {
     rewardsOfUser: Observable<any[]>;
     rewardsArray: Rewards[] = [];
     photoUrl: any;
+    rewardKey: string;
+    rewardPath: string;
 
     constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router) {
         this.userRewardsRef = afDB.list('/User Rewards');
@@ -107,7 +109,14 @@ export class DatabaseService {
         }
     }
 
-    addRewards(key: string) {
+    addRewards(cardNum: string, email: string, password: string, points: Number) {
+        const path = this.rewardPath + this.rewardKey;
+        this.afDB.list(this.rewardPath).set(this.rewardKey, {CardNumber: cardNum, Password: password, Points: points, Email: email});
+        alert('Reward added successfully');
+        this.router.navigate(['/main']);
+    }
+
+    checkReward(key: string) {
         let flag = true;
         const users: Observable<any[]> = this.afDB.list('/User Rewards').snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -124,18 +133,17 @@ export class DatabaseService {
                         if (flag) {
                             for (let j = 0; j < rewardsElement.length; j++) {
                                 if (rewardsElement[j].key === key) {
+                                    this.rewardPath = '/User Rewards/' + element[i].key + '/Rewards/';
                                     flag = false;
                                     break;
                                 }
                             }
                         }
                         if (flag) {
-                            this.afDB.list('/User Rewards/' + element[i].key + '/Rewards/').set(key, 0);
-                            flag = undefined;
-                            alert('Reward added!');
+                            this.rewardKey = key;
+                            this.router.navigate(['/credentials']);
                         } else if (flag === false) {
-                            flag = undefined;
-                            alert('You already have that reward');
+                            alert('That reward is already on your account');
                         }
                     });
                 }
@@ -144,13 +152,13 @@ export class DatabaseService {
     }
 
     getRewardsArray(): Rewards[] {
-        this.rewardsArray = [];
         let key: string;
         const uid: string = this.afAuth.auth.currentUser.uid;
         let path: string;
         this.userRewards = this.userRewardsRef.snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         });
+        this.rewardsArray = [];
         this.userRewards.forEach(element => {
             for (let i = 0; i < element.length; i++) {
                 if (element[i].user === uid) {
@@ -205,6 +213,11 @@ export class DatabaseService {
             return '../../assets/img/default.png';
         }
     }
+
+    setRewardKey(key: string) {
+        this.rewardKey = key;
+    }
+
     pathName(name:string):string{
         return name.toLowerCase().replace(/ /g,'.');
     }
