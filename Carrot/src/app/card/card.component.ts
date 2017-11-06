@@ -27,13 +27,10 @@ export class CardComponent {
   @Input('rewardname') rewardname: string;
 
   @Input('index') index: number;
+  
+  @Input('redirector') redir:string;
 
   constructor(public themes: ThemesService) {
-    console.log(this.summary);
-  }
-
-  onclick(): void {
-    console.log('Clicked');
   }
 
   get theme() {

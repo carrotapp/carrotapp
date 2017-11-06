@@ -59,7 +59,7 @@ export class DatabaseService {
                         this.pushToUserRewards(this.afAuth.auth.currentUser.uid, this.afAuth.auth.currentUser.displayName);
                     } else {
                         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
-                        this.router.navigate(['/main']);
+                        this.router.navigate(['/'+ this.pathName(this.afAuth.auth.currentUser.displayName)+'/dashboard']);
                     }
                 });
             }).catch(
@@ -205,5 +205,8 @@ export class DatabaseService {
             return '../../assets/img/default.png';
         }
     }
-
+    pathName(name:string):string{
+        return name.toLowerCase().replace(/ /g,'.');
+    }
 }
+
