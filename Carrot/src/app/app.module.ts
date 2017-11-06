@@ -59,6 +59,7 @@ export const firebaseConfig = {
     CardComponent,
     BackComponent,
     HeaderComponent,
+    RewardsCredentialsComponent,
   ],
   imports: [
     BrowserModule,
