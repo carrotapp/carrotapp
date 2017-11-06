@@ -13,6 +13,7 @@ export class DatabaseService {
     rewards: Observable<any[]>;
     rewardsOfUser: Observable<any[]>;
     rewardsArray: Rewards[] = [];
+    detailsArray: any[] = [];
     photoUrl: any;
 
     constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router) {
@@ -106,7 +107,18 @@ export class DatabaseService {
         }
     }
 
+<<<<<<< HEAD
     addRewards(key: string) {
+=======
+    addRewards(cardNum: string, email: string, password: string, points: Number) {
+        const path = this.rewardPath + this.rewardKey;
+        this.afDB.list(this.rewardPath).set(this.rewardKey, { CardNumber: cardNum, Password: password, Points: points, Email: email });
+        alert('Reward added successfully');
+        this.router.navigate(['/main']);
+    }
+
+    checkReward(key: string) {
+>>>>>>> master
         let flag = true;
         const users: Observable<any[]> = this.afDB.list('/User Rewards').snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -122,6 +134,8 @@ export class DatabaseService {
                     rewards.forEach(rewardsElement => {
                         if (flag) {
                             for (let j = 0; j < rewardsElement.length; j++) {
+                                console.log("Before the if statement");
+                                this.rewardPath = '/User Rewards/' + element[i].key + '/Rewards/';
                                 if (rewardsElement[j].key === key) {
                                     flag = false;
                                     break;
@@ -160,6 +174,7 @@ export class DatabaseService {
                 }
             }
         });
+
         return this.rewardsArray;
     }
 
@@ -175,7 +190,7 @@ export class DatabaseService {
                         for (let j = 0; j < dataElement.length; j++) {
                             if (dataElement[j].key === element[i].key) {
                                 this.rewardsArray.push(
-                                    new Rewards(dataElement[j], valueElement[i])
+                                    new Rewards(dataElement[j], valueElement[i], element[i])
                                 );
                             }
                         }
