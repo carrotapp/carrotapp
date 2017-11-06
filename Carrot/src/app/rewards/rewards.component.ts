@@ -16,11 +16,7 @@ export class RewardsComponent {
   username:string;
   path_username;
 
-<<<<<<< HEAD
-  constructor(private databaseService: DatabaseService, private router: Router) {
-=======
   constructor(private databaseService: DatabaseService, private afAuth: AngularFireAuth) {
->>>>>>> Sixolile-Mtengwana
     if (databaseService.checkLoggedIn()) {
       this.data = databaseService.getRewards();
       this.username = this.afAuth.auth.currentUser.displayName

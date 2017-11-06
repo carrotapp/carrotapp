@@ -1,15 +1,4 @@
 <div class="row m-0 text-center justify-content-center">
-<<<<<<< HEAD
-  <div *ngFor="let item of data | async;let i = index">
-    <app-card [name]="item.ProviderName" [imgUrl]="item.Image" [balance]="item.Value/item.Ratio" [currency]="item.Currency" [points]="item.Ratio"
-      [provider]="item.Name" [rewardname]="item.Name" [summary]="item.summary" [index]="i"></app-card>
-    <br>
-    <button class="btn add_button" (click)="addRewards(item.key)">Add {{item.Name}}
-      <i class="fa fa-chevron-right"></i>
-    </button>
-  </div>
-</div>
-=======
   <div *ngFor="let item of data | async">    
     <app-card [name]="item.ProviderName" [imgUrl]="item.Image" [balance]="item.Value/item.Ratio"
     [currency]="item.Currency" [points]="item.Ratio" [provider]="item.Name" [rewardname]="item.Name"  [redirector]="path_username"[summary]="item.summary" [type]="'add'"></app-card><br>
@@ -18,4 +7,3 @@
       </button>
       </div>
     </div>
->>>>>>> Sixolile-Mtengwana
