@@ -50,12 +50,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-<<<<<<< HEAD
-  navigate() {
-    this.router.navigate(['/info']);
-=======
   ngOnInit() {
->>>>>>> master
   }
 
 }

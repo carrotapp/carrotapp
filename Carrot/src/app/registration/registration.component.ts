@@ -1,5 +1,6 @@
 import { DatabaseService } from './../services/database/database.service';
 import { Component } from '@angular/core';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-registration',
@@ -10,23 +11,18 @@ import { Component } from '@angular/core';
 export class RegistrationComponent {
   email = '';
   password = '';
-  confirmPassword = '';
+  username = '';
 
   constructor(private databaseService: DatabaseService) { }
 
   register() {
-    if (this.email !== '' && this.password !== '' && this.confirmPassword !== '') {
-      if (this.password.length >= 8) {
-        if (this.password !== this.confirmPassword) {
-          alert('Password do not match');
-        } else {
+    if (this.email !== '' && this.password !== '' && this.username !== '') {
+      if (this.password.length === 8) {
           this.databaseService.signUp(this.email, this.password);
-        }
 
       } else {
         alert('Error: Minimum password length is 8');
         this.password = '';
-        this.confirmPassword = '';
       }
 
     } else {
