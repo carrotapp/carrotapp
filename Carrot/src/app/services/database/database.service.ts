@@ -222,16 +222,8 @@ export class DatabaseService {
         this.rewardKey = key;
     }
 
-<<<<<<< Updated upstream
     pathName(name:string):string{
         return name.toLowerCase().replace(/ /g,'.');
     }
 }
 
-=======
-    getArray(array) {
-        return array;
-    }
-
-}
->>>>>>> Stashed changes
