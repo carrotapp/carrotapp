@@ -9,6 +9,14 @@ export class Rewards {
   summary;
 
   constructor(array, Value) {
+  //On details Array
+  CardNumber;
+  Email;
+  Password;
+  Points;
+
+
+  constructor(array, Value, detailsArray) {
     this.Currency = array.Currency;
     this.Image = array.Image;
     this.ProviderName = array.ProviderName;
@@ -17,6 +25,12 @@ export class Rewards {
     this.Value = Value;
     this.infoUrl = array.infoUrl;
     this.summary = array.summary;
+
+    //Details
+    this.CardNumber = detailsArray.CardNumber;
+    this.Email = detailsArray.Email;
+    this.Password = detailsArray.Password;
+    this.Points = detailsArray.Points;
   }
 
 }

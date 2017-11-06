@@ -13,6 +13,7 @@ export class DatabaseService {
     rewards: Observable<any[]>;
     rewardsOfUser: Observable<any[]>;
     rewardsArray: Rewards[] = [];
+    detailsArray: any[] = [];
     photoUrl: any;
     rewardKey: string;
     rewardPath: string;
@@ -111,7 +112,7 @@ export class DatabaseService {
 
     addRewards(cardNum: string, email: string, password: string, points: Number) {
         const path = this.rewardPath + this.rewardKey;
-        this.afDB.list(this.rewardPath).set(this.rewardKey, {CardNumber: cardNum, Password: password, Points: points, Email: email});
+        this.afDB.list(this.rewardPath).set(this.rewardKey, { CardNumber: cardNum, Password: password, Points: points, Email: email });
         alert('Reward added successfully');
         this.router.navigate(['/main']);
     }
@@ -132,6 +133,8 @@ export class DatabaseService {
                     rewards.forEach(rewardsElement => {
                         if (flag) {
                             for (let j = 0; j < rewardsElement.length; j++) {
+                                console.log("Before the if statement");
+                                this.rewardPath = '/User Rewards/' + element[i].key + '/Rewards/';
                                 if (rewardsElement[j].key === key) {
                                     this.rewardPath = '/User Rewards/' + element[i].key + '/Rewards/';
                                     flag = false;
@@ -169,6 +172,7 @@ export class DatabaseService {
                 }
             }
         });
+
         return this.rewardsArray;
     }
 
@@ -184,7 +188,7 @@ export class DatabaseService {
                         for (let j = 0; j < dataElement.length; j++) {
                             if (dataElement[j].key === element[i].key) {
                                 this.rewardsArray.push(
-                                    new Rewards(dataElement[j], valueElement[i])
+                                    new Rewards(dataElement[j], valueElement[i], element[i])
                                 );
                             }
                         }
@@ -218,8 +222,16 @@ export class DatabaseService {
         this.rewardKey = key;
     }
 
+<<<<<<< Updated upstream
     pathName(name:string):string{
         return name.toLowerCase().replace(/ /g,'.');
     }
 }
 
+=======
+    getArray(array) {
+        return array;
+    }
+
+}
+>>>>>>> Stashed changes
