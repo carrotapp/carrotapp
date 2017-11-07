@@ -2,7 +2,7 @@
        <div class="h1"> {{ h1 }} </div>
              <div  *ngIf="showBtn ">
                 <button class="btn-add-carrot"> 
-                    <div class="btn-text fa fa-plus"></div><div class="btn-text-right">{{ btn_title }} </div>
+                    <div class="btn-text fa fa-plus"></div><div class="btn-text-right"  (click)=" init();" >{{ btn_title }} </div>
                 </button>
            </div>
     </div> 

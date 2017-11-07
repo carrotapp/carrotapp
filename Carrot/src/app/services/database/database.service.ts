@@ -15,8 +15,8 @@ export class DatabaseService {
     rewardsArray: Rewards[] = [];
     detailsArray: any[] = [];
     photoUrl: any;
-    rewardKey: string;
-    rewardPath: string;
+    rewardKey:string;
+    rewardPath:string;
 
     constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router) {
         this.userRewardsRef = afDB.list('/User Rewards');
@@ -40,6 +40,36 @@ export class DatabaseService {
         }
     }
 
+    // googlePopup() {
+    //     const provider = new firebase.auth.GoogleAuthProvider();
+    //     provider.addScope('profile');
+    //     provider.addScope('email');
+    //     this.userRewards = this.userRewardsRef.snapshotChanges().map(changes => {
+    //         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    //     });
+    //     this.afAuth.auth.signInWithPopup(provider).then(
+    //         (success) => {
+    //             this.userRewards.forEach(element => {
+    //                 const uid: String = this.afAuth.auth.currentUser.uid;
+    //                 let flag: Boolean;
+    //                 for (let i = 0; i < element.length; i++) {
+    //                     if (element[i].user === uid) {
+    //                         flag = false;
+    //                         break;
+    //                     }
+    //                 }
+    //                 if (flag === undefined) {
+    //                     this.pushToUserRewards(this.afAuth.auth.currentUser.uid);
+    //                 } else {
+    //                     this.photoUrl = this.afAuth.auth.currentUser.photoURL;
+    //                     this.router.navigate(['/'+ this.pathName(this.afAuth.auth.currentUser.displayName)+'/dashboard']);
+    //                 }
+    //             });
+    //         }).catch(
+    //         (err) => {
+    //             console.log(err.message);
+    //         });
+    // }
     googlePopup() {
         const provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('profile');
@@ -70,6 +100,14 @@ export class DatabaseService {
                 console.log(err.message);
             });
     }
+    // pushToUserRewards(uid: any) {
+    //     this.afDB.list('/User Rewards/').push({
+    //         user: uid
+    //     });
+    //     alert('Registered successfully!');
+    //     this.photoUrl = this.afAuth.auth.currentUser.photoURL;
+    //     this.router.navigate(['/rewards']);
+    // }
 
     pushToUserRewards(uid: any, uName) {
         this.afDB.list('/User Rewards/').push({
@@ -80,6 +118,20 @@ export class DatabaseService {
         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
         this.router.navigate(['/rewards']);
     }
+
+    // signUp(email, password) {
+    //     this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
+    //         (success) => {
+    //             this.pushToUserRewards(this.afAuth.auth.currentUser.uid);
+    //         }).catch(
+    //         (err) => {
+    //             if (err.message === 'The email address is already in use by another account.') {
+    //                 alert(err.message);
+    //             } else {
+    //                 console.log(err.message);
+    //             }
+    //         });
+    // }
 
     signUp(email, password, username) {
         this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
@@ -136,17 +188,18 @@ export class DatabaseService {
                                 console.log("Before the if statement");
                                 this.rewardPath = '/User Rewards/' + element[i].key + '/Rewards/';
                                 if (rewardsElement[j].key === key) {
-                                    this.rewardPath = '/User Rewards/' + element[i].key + '/Rewards/';
                                     flag = false;
                                     break;
                                 }
                             }
                         }
                         if (flag) {
-                            this.rewardKey = key;
-                            this.router.navigate(['/credentials']);
+                            this.afDB.list('/User Rewards/' + element[i].key + '/Rewards/').set(key, 0);
+                            flag = undefined;
+                            alert('Reward added!');
                         } else if (flag === false) {
-                            alert('That reward is already on your account');
+                            flag = undefined;
+                            alert('You already have that reward');
                         }
                     });
                 }
@@ -155,13 +208,13 @@ export class DatabaseService {
     }
 
     getRewardsArray(): Rewards[] {
+        this.rewardsArray = [];
         let key: string;
         const uid: string = this.afAuth.auth.currentUser.uid;
         let path: string;
         this.userRewards = this.userRewardsRef.snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         });
-        this.rewardsArray = [];
         this.userRewards.forEach(element => {
             for (let i = 0; i < element.length; i++) {
                 if (element[i].user === uid) {
@@ -202,18 +255,16 @@ export class DatabaseService {
         return this.rewards;
     }
     //specific reward
-    getReward(list:string, provider:string):Rewards{
-        console.log('about to: '+ this.rewards[0]);
-    //  for( var i = 0; i < list.length; i++ ) {
-    //     console.log(i);
-    //      if( this.pathName( list[i].ProviderName ) === provider ) {
-    //         console.log(list[i]+' returned Object!sss ');
-    //          return list[i];
-    //         } else {
-    //             console.log(i);
-    //         }
-    //  }
-     return this.rewards[0];
+    getReward(list:Rewards[], provider:string):Rewards{
+        console.log('about to');
+     for( let i = 0; i < list.length; i++ ) {
+         if( this.pathName( list[i].ProviderName ) === provider ) {
+            console.log(list[i]+' returned Object!sss ');
+             return list[i];
+            } else {
+                console.log(i);
+            }
+     }
     }
 
     getRewardsData(key) {
@@ -231,11 +282,6 @@ export class DatabaseService {
             return '../../assets/img/default.png';
         }
     }
-
-    setRewardKey(key: string) {
-        this.rewardKey = key;
-    }
-
     pathName(name:string):string{
         return name.toLowerCase().replace(/ /g,'.');
     }
