@@ -40,6 +40,36 @@ export class DatabaseService {
         }
     }
 
+    // googlePopup() {
+    //     const provider = new firebase.auth.GoogleAuthProvider();
+    //     provider.addScope('profile');
+    //     provider.addScope('email');
+    //     this.userRewards = this.userRewardsRef.snapshotChanges().map(changes => {
+    //         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    //     });
+    //     this.afAuth.auth.signInWithPopup(provider).then(
+    //         (success) => {
+    //             this.userRewards.forEach(element => {
+    //                 const uid: String = this.afAuth.auth.currentUser.uid;
+    //                 let flag: Boolean;
+    //                 for (let i = 0; i < element.length; i++) {
+    //                     if (element[i].user === uid) {
+    //                         flag = false;
+    //                         break;
+    //                     }
+    //                 }
+    //                 if (flag === undefined) {
+    //                     this.pushToUserRewards(this.afAuth.auth.currentUser.uid);
+    //                 } else {
+    //                     this.photoUrl = this.afAuth.auth.currentUser.photoURL;
+    //                     this.router.navigate(['/'+ this.pathName(this.afAuth.auth.currentUser.displayName)+'/dashboard']);
+    //                 }
+    //             });
+    //         }).catch(
+    //         (err) => {
+    //             console.log(err.message);
+    //         });
+    // }
     googlePopup() {
         const provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('profile');
@@ -59,7 +89,7 @@ export class DatabaseService {
                         }
                     }
                     if (flag === undefined) {
-                        this.pushToUserRewards(this.afAuth.auth.currentUser.uid);
+                        this.pushToUserRewards(this.afAuth.auth.currentUser.uid, this.afAuth.auth.currentUser.displayName);
                     } else {
                         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
                         this.router.navigate(['/'+ this.pathName(this.afAuth.auth.currentUser.displayName)+'/dashboard']);
@@ -70,20 +100,43 @@ export class DatabaseService {
                 console.log(err.message);
             });
     }
+    // pushToUserRewards(uid: any) {
+    //     this.afDB.list('/User Rewards/').push({
+    //         user: uid
+    //     });
+    //     alert('Registered successfully!');
+    //     this.photoUrl = this.afAuth.auth.currentUser.photoURL;
+    //     this.router.navigate(['/rewards']);
+    // }
 
-    pushToUserRewards(uid: any) {
+    pushToUserRewards(uid: any, uName) {
         this.afDB.list('/User Rewards/').push({
-            user: uid
+            user: uid,
+            username: uName
         });
         alert('Registered successfully!');
         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
         this.router.navigate(['/rewards']);
     }
 
-    signUp(email, password) {
+    // signUp(email, password) {
+    //     this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
+    //         (success) => {
+    //             this.pushToUserRewards(this.afAuth.auth.currentUser.uid);
+    //         }).catch(
+    //         (err) => {
+    //             if (err.message === 'The email address is already in use by another account.') {
+    //                 alert(err.message);
+    //             } else {
+    //                 console.log(err.message);
+    //             }
+    //         });
+    // }
+
+    signUp(email, password, username) {
         this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
             (success) => {
-                this.pushToUserRewards(this.afAuth.auth.currentUser.uid);
+                this.pushToUserRewards(this.afAuth.auth.currentUser.uid, username);
             }).catch(
             (err) => {
                 if (err.message === 'The email address is already in use by another account.') {

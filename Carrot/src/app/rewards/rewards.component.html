@@ -1,4 +1,5 @@
-<div class="row m-0 text-center justify-content-center">
+        <!-- <app-header [heading]=" 'Add Rewards' " [showBtn]=" false "> </app-header> -->
+        <div class="row m-0 text-center justify-content-center">
   <div *ngFor="let item of data | async">    
     <app-card [name]="item.ProviderName" [imgUrl]="item.Image" [balance]="item.Value/item.Ratio"
     [currency]="item.Currency" [points]="item.Ratio" [provider]="item.Name" [rewardname]="item.Name"  [redirector]="path_username"[summary]="item.summary" [type]="'add'"></app-card><br>
