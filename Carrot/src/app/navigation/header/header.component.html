@@ -3,7 +3,7 @@
              <div class="h1"> {{ geth1  }} </div>
         </div>
     <div class="col-md-6 right">
-            <div  *ngIf="showBtn ">
+            <div  [hidden]="!showBtn ">
                 <button class="btn-add-carrot"> 
                     <div class="btn-text fa fa-plus"></div><div class="btn-text-right"  (click)="redirect('/'+getUsername+'/rewards')" >{{ btn_title }} </div>
                 </button>
