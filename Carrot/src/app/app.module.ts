@@ -30,7 +30,6 @@ import { BackComponent } from './navigation/back/back.component';
 import { RewardsCredentialsComponent } from './rewardsCredentials/rewardsCredentials.component';
 import { HeaderComponent } from './navigation/header/header.component';
 
-
 export const firebaseConfig = {
   apiKey: 'AIzaSyDUlfMoY9Aq0nOGnZt_ovhRDaUtOJUnZ04',
   authDomain: 'carrot-app.firebaseapp.com',

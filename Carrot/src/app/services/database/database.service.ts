@@ -146,6 +146,11 @@ export class DatabaseService {
                 }
             });
     }
+    
+    logout() {
+        this.router.navigate(['/']); 
+        this.afAuth.auth.signOut();
+     }
 
     checkLoggedIn() {
         try {
