@@ -18,6 +18,7 @@
     text-align: left;
     color: #474f58;
     margin-top: 15px;
+    margin-left: 15px;
 }
 .btn-add-carrot{
     width: 170px;
@@ -54,4 +55,5 @@
     height: 4px;
     border-radius: 2px;
     background-color: #f9b324;
+    margin-left: 15px;
 }

@@ -24,11 +24,12 @@ export class HeaderComponent {
       username:string;
 /* Other Text */
       date:Date = new Date();
-
+/* type */
   constructor( private route: ActivatedRoute, private router: Router ) { 
    if(this.btn_title === " "|| this.btn_title === undefined ) this.btn_title = "add rewards";
    this.showBtn = true;
   this.init();
+  console.log(1)
   }
 // Encrypter ?
 pathName(name:string):string{
@@ -47,7 +48,7 @@ init(){
   this.route.params.subscribe((params: Params) => {
     this.username = params.username;
     this.showBtn= this.router.url.toString() === ('/'+ this.getUsername+'/dashboard');
-    if(params.type == undefined) this.h1 = 'My Rewards';
+    if(params.type == undefined || params.type == 'view') this.h1 = 'My Rewards';
   });
 }
 redirect(url:string):void{
