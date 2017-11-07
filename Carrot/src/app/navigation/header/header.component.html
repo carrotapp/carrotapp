@@ -1,10 +1,14 @@
     <div class="row">
-       <div class="h1"> {{ geth1  }} </div>
-             <div  *ngIf="showBtn ">
+        <div class="col-md-6">
+             <div class="h1"> {{ geth1  }} </div>
+        </div>
+    <div class="col-md-6 right">
+            <div  *ngIf="showBtn ">
                 <button class="btn-add-carrot"> 
                     <div class="btn-text fa fa-plus"></div><div class="btn-text-right"  (click)="redirect('/'+getUsername+'/rewards')" >{{ btn_title }} </div>
                 </button>
-           </div>
+           </div> 
+    </div>
     </div> 
       <div class="h2">{{ date |  date: 'dd MMMM yyyy' }}</div>
            <div class="shape"></div>

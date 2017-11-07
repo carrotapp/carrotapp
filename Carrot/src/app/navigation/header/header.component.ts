@@ -26,7 +26,7 @@ export class HeaderComponent {
       date:Date = new Date();
 
   constructor( private route: ActivatedRoute, private router: Router ) { 
-    if(this.btn_title === " "|| this.btn_title === undefined ) this.btn_title = "add more rewards";
+   if(this.btn_title === " "|| this.btn_title === undefined ) this.btn_title = "add rewards";
    this.showBtn = true;
   this.init();
   }
