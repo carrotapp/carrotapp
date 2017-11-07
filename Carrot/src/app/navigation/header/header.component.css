@@ -20,21 +20,21 @@
     margin-top: 15px;
 }
 .btn-add-carrot{
-    width: 206px;
+    width: 170px;
     height: 35px;
-    border-radius: 2px;
-    background-color: #ffffff;
+    border-radius: 2px;  
+    background-color: #f9b324;
     border: solid 1px #f9b324;
     padding-left: 15px;
     padding-top: 8px;
     padding-bottom: 9px;
     margin-top: 4px;
-    margin-left: 15px;
+    margin-right: 6.3%;
 }
 .btn-text{
     font-size: 20px;
     text-align: left;
-    color: #f9b324;
+    color: #ffffff;
     float:left;
     font-weight: 100;
 }
@@ -44,7 +44,7 @@
     font-size: 14px;
     font-weight: 900;
     text-align: left;
-    color: #f9b324;
+    color: #ffffff;
     float: left;
     text-transform: uppercase;
     margin-top: -2px
