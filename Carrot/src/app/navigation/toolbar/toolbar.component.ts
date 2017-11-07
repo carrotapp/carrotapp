@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { NavigationTogglesService } from '../../services/navigation/navigation-toggles.service';
 import { ThemesService } from '../../services/themes.service';
@@ -11,20 +12,17 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class ToolbarComponent {
   isColor: boolean;
-  username:string;
+  username: string;
   path_username;
-  constructor(public toolbarObj: NavigationTogglesService, public themes: ThemesService,private afAuth: AngularFireAuth) {
-    this.username = this.afAuth.auth.currentUser.displayName
-    this.path_username = this.toLowerPath(this.afAuth.auth.currentUser.displayName);
-   }
-//to lower
-toLowerPath(name:string):string{
-  return name.toLowerCase().replace(/ /g,'.');
-}
-//getter
-get pathName(){
-  return this.path_username;
-}
+  // tslint:disable-next-line:max-line-length
+  constructor(public toolbarObj: NavigationTogglesService, public themes: ThemesService, protected ds: DatabaseService, protected router: Router) {
+    this.username = ds.getName();
+    this.path_username = ds.pathName(this.username);
+  }
+  // getter
+  get pathName() {
+    return this.path_username;
+  }
   // toggling
   toolbar(): void {
     this.toolbarObj.toolbar_toggle();
@@ -46,5 +44,9 @@ get pathName(){
   }
   setTheme(theme: string): void {
     this.themes.setTheme(theme);
+  }
+
+  goToProfile() {
+    this.router.navigate(['/' + this.ds.pathName(this.ds.getName()) + '/profile']);
   }
 }

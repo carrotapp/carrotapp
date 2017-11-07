@@ -15,8 +15,8 @@ export class DatabaseService {
     rewardsArray: Rewards[] = [];
     detailsArray: any[] = [];
     photoUrl: any;
-    rewardKey:string;
-    rewardPath:string;
+    rewardKey: string;
+    rewardPath: string;
 
     constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router) {
         this.userRewardsRef = afDB.list('/User Rewards');
@@ -80,7 +80,7 @@ export class DatabaseService {
         this.afAuth.auth.signInWithPopup(provider).then(
             (success) => {
                 this.userRewards.forEach(element => {
-                    const uid: String = this.afAuth.auth.currentUser.uid;
+                    const uid: String = this.getUID();
                     let flag: Boolean;
                     for (let i = 0; i < element.length; i++) {
                         if (element[i].user === uid) {
@@ -89,10 +89,10 @@ export class DatabaseService {
                         }
                     }
                     if (flag === undefined) {
-                        this.pushToUserRewards(this.afAuth.auth.currentUser.uid, this.afAuth.auth.currentUser.displayName);
+                        this.pushToUserRewards(this.getUID(), this.getName());
                     } else {
                         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
-                        this.router.navigate(['/'+ this.pathName(this.afAuth.auth.currentUser.displayName)+'/dashboard']);
+                        this.router.navigate(['/' + this.pathName(this.getName()) + '/dashboard']);
                     }
                 });
             }).catch(
@@ -136,7 +136,7 @@ export class DatabaseService {
     signUp(email, password, username) {
         this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
             (success) => {
-                this.pushToUserRewards(this.afAuth.auth.currentUser.uid, username);
+                this.pushToUserRewards(this.getUID(), username);
             }).catch(
             (err) => {
                 if (err.message === 'The email address is already in use by another account.') {
@@ -146,15 +146,15 @@ export class DatabaseService {
                 }
             });
     }
-    
+
     logout() {
-        this.router.navigate(['/']); 
+        this.router.navigate(['/']);
         this.afAuth.auth.signOut();
-     }
+    }
 
     checkLoggedIn() {
         try {
-            if (this.afAuth.auth.currentUser.uid === null) {
+            if (this.getUID() === null) {
                 console.log('null');
             } else {
                 return true;
@@ -180,7 +180,7 @@ export class DatabaseService {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         });
         users.forEach(element => {
-            const uid: String = this.afAuth.auth.currentUser.uid;
+            const uid: String = this.getUID();
             for (let i = 0; i < element.length; i++) {
                 if (element[i].user === uid) {
                     // tslint:disable-next-line:max-line-length
@@ -190,7 +190,6 @@ export class DatabaseService {
                     rewards.forEach(rewardsElement => {
                         if (flag) {
                             for (let j = 0; j < rewardsElement.length; j++) {
-                                console.log("Before the if statement");
                                 this.rewardPath = '/User Rewards/' + element[i].key + '/Rewards/';
                                 if (rewardsElement[j].key === key) {
                                     flag = false;
@@ -215,7 +214,7 @@ export class DatabaseService {
     getRewardsArray(): Rewards[] {
         this.rewardsArray = [];
         let key: string;
-        const uid: string = this.afAuth.auth.currentUser.uid;
+        const uid: string = this.getUID();
         let path: string;
         this.userRewards = this.userRewardsRef.snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -259,17 +258,17 @@ export class DatabaseService {
     getRewards() {
         return this.rewards;
     }
-    //specific reward
-    getReward(list:Rewards[], provider:string):Rewards{
+    // specific reward
+    getReward(list: Rewards[], provider: string): Rewards {
         console.log('about to');
-     for( let i = 0; i < list.length; i++ ) {
-         if( this.pathName( list[i].ProviderName ) === provider ) {
-            console.log(list[i]+' returned Object!sss ');
-             return list[i];
+        for (let i = 0; i < list.length; i++) {
+            if (this.pathName(list[i].ProviderName) === provider) {
+                console.log(list[i] + ' returned Object!sss ');
+                return list[i];
             } else {
                 console.log(i);
             }
-     }
+        }
     }
 
     getRewardsData(key) {
@@ -279,6 +278,12 @@ export class DatabaseService {
     getUID() {
         return this.afAuth.auth.currentUser.uid;
     }
+    getName() {
+        return this.afAuth.auth.currentUser.displayName;
+    }
+    getEmail() {
+        return this.afAuth.auth.currentUser.email;
+    }
 
     getAvatar() {
         if (this.photoUrl != null) {
@@ -287,8 +292,8 @@ export class DatabaseService {
             return '../../assets/img/default.png';
         }
     }
-    pathName(name:string):string{
-        return name.toLowerCase().replace(/ /g,'.');
+    pathName(name: string): string {
+        return name.toLowerCase().replace(/ /g, '.');
     }
 }
 
