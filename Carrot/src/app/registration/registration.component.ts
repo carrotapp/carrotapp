@@ -11,19 +11,19 @@ import { element } from 'protractor';
 export class RegistrationComponent {
   email = '';
   password = '';
-  confirmPassword = '';
+  // confirmPassword = '';
   username = '';
 
   constructor(private databaseService: DatabaseService) { }
 
   register() {
-    if (this.email !== '' && this.email !== '' && this.password !== '' && this.confirmPassword !== '' && this.username !== '') {
+    if (this.email !== '' && this.email !== '' && this.password !== '' /*&& this.confirmPassword !== ''*/ && this.username !== '') {
       if (this.password.length >= 8) {
-        if (this.password !== this.confirmPassword) {
-          alert('Password do not match');
-        } else {
+        // if (this.password !== this.confirmPassword) {
+        //   alert('Password do not match');
+        // } else {
           this.databaseService.signUp(this.email, this.password, this.username);
-        }
+        // }
 
       } else {
         alert('Error: Minimum password length is 8');

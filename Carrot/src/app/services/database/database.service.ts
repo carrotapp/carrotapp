@@ -89,7 +89,7 @@ export class DatabaseService {
                         }
                     }
                     if (flag === undefined) {
-                        this.pushToUserRewards(this.getUID(), this.getName());
+                        this.pushToUserRewards(this.getUID());
                     } else {
                         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
                         this.router.navigate(['/' + this.pathName(this.getName()) + '/dashboard']);
@@ -109,10 +109,9 @@ export class DatabaseService {
     //     this.router.navigate(['/rewards']);
     // }
 
-    pushToUserRewards(uid: any, uName) {
+    pushToUserRewards(uid: any) {
         this.afDB.list('/User Rewards/').push({
-            user: uid,
-            username: uName
+            user: uid
         });
         alert('Registered successfully!');
         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
@@ -136,7 +135,9 @@ export class DatabaseService {
     signUp(email, password, username) {
         this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
             (success) => {
-                this.pushToUserRewards(this.getUID(), username);
+                const avatar = this.getAvatar();
+                this.afAuth.auth.currentUser.updateProfile({displayName: username, photoURL: avatar});
+                this.pushToUserRewards(this.getUID());
             }).catch(
             (err) => {
                 if (err.message === 'The email address is already in use by another account.') {
@@ -289,7 +290,8 @@ export class DatabaseService {
         if (this.photoUrl != null) {
             return this.photoUrl;
         } else {
-            return '../../assets/img/default.png';
+            // tslint:disable-next-line:max-line-length
+            return 'https://firebasestorage.googleapis.com/v0/b/carrot-app.appspot.com/o/default.png?alt=media&token=1283d035-ac19-4605-9aff-95927f4befe6';
         }
     }
     pathName(name: string): string {

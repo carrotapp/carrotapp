@@ -2,3 +2,19 @@
     border: 1px solid black;
     height: 300px;
 }
+
+.name{
+    font-family: SourceSansPro;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    color: #233539;
+}
+
+.email{
+    font-family: SourceSansPro;
+    font-size: 16px;
+    letter-spacing: -0.2px;
+    text-align: left;
+    color: #233539;
+}

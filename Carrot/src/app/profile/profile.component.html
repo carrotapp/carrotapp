@@ -1,11 +1,15 @@
 <div class="row m-0 justify-content-center">
-  <div class="col-3 row m-0 box align-self-end">
-    <div class="col-3">
-      <img [src]='ds.photoUrl'class="img-fluid rounded-circle">
-    </div>
-    <div class="col-9">
-      <h3>{{ds.getName()}}</h3>
-      <h5>{{ds.getEmail()}}</h5>
+  <div class="col-3 row m-0 box justify-content-center">
+    <div class="m-3">
+      <h1 class="col">My Profile</h1>
+      <a class="col">Close</a>
+      <div class="col">
+        <img [src]='ds.photoUrl' class="img-fluid rounded-circle">
+      </div>
+      <div class="col">
+        <div class="name">{{ds.getName()}}</div>
+        <div class="email">{{ds.getEmail()}}</div>
+      </div>
     </div>
   </div>
 </div>
