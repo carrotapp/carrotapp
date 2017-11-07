@@ -13,7 +13,10 @@ export class DatabaseService {
     rewards: Observable<any[]>;
     rewardsOfUser: Observable<any[]>;
     rewardsArray: Rewards[] = [];
+    detailsArray: any[] = [];
     photoUrl: any;
+    rewardKey:string;
+    rewardPath:string;
 
     constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router) {
         this.userRewardsRef = afDB.list('/User Rewards');
@@ -37,6 +40,36 @@ export class DatabaseService {
         }
     }
 
+    // googlePopup() {
+    //     const provider = new firebase.auth.GoogleAuthProvider();
+    //     provider.addScope('profile');
+    //     provider.addScope('email');
+    //     this.userRewards = this.userRewardsRef.snapshotChanges().map(changes => {
+    //         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    //     });
+    //     this.afAuth.auth.signInWithPopup(provider).then(
+    //         (success) => {
+    //             this.userRewards.forEach(element => {
+    //                 const uid: String = this.afAuth.auth.currentUser.uid;
+    //                 let flag: Boolean;
+    //                 for (let i = 0; i < element.length; i++) {
+    //                     if (element[i].user === uid) {
+    //                         flag = false;
+    //                         break;
+    //                     }
+    //                 }
+    //                 if (flag === undefined) {
+    //                     this.pushToUserRewards(this.afAuth.auth.currentUser.uid);
+    //                 } else {
+    //                     this.photoUrl = this.afAuth.auth.currentUser.photoURL;
+    //                     this.router.navigate(['/'+ this.pathName(this.afAuth.auth.currentUser.displayName)+'/dashboard']);
+    //                 }
+    //             });
+    //         }).catch(
+    //         (err) => {
+    //             console.log(err.message);
+    //         });
+    // }
     googlePopup() {
         const provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('profile');
@@ -56,10 +89,10 @@ export class DatabaseService {
                         }
                     }
                     if (flag === undefined) {
-                        this.pushToUserRewards(this.afAuth.auth.currentUser.uid);
+                        this.pushToUserRewards(this.afAuth.auth.currentUser.uid, this.afAuth.auth.currentUser.displayName);
                     } else {
                         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
-                        this.router.navigate(['/main']);
+                        this.router.navigate(['/'+ this.pathName(this.afAuth.auth.currentUser.displayName)+'/dashboard']);
                     }
                 });
             }).catch(
@@ -67,20 +100,43 @@ export class DatabaseService {
                 console.log(err.message);
             });
     }
+    // pushToUserRewards(uid: any) {
+    //     this.afDB.list('/User Rewards/').push({
+    //         user: uid
+    //     });
+    //     alert('Registered successfully!');
+    //     this.photoUrl = this.afAuth.auth.currentUser.photoURL;
+    //     this.router.navigate(['/rewards']);
+    // }
 
-    pushToUserRewards(uid: any) {
+    pushToUserRewards(uid: any, uName) {
         this.afDB.list('/User Rewards/').push({
-            user: uid
+            user: uid,
+            username: uName
         });
         alert('Registered successfully!');
         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
         this.router.navigate(['/rewards']);
     }
 
-    signUp(email, password) {
+    // signUp(email, password) {
+    //     this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
+    //         (success) => {
+    //             this.pushToUserRewards(this.afAuth.auth.currentUser.uid);
+    //         }).catch(
+    //         (err) => {
+    //             if (err.message === 'The email address is already in use by another account.') {
+    //                 alert(err.message);
+    //             } else {
+    //                 console.log(err.message);
+    //             }
+    //         });
+    // }
+
+    signUp(email, password, username) {
         this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
             (success) => {
-                this.pushToUserRewards(this.afAuth.auth.currentUser.uid);
+                this.pushToUserRewards(this.afAuth.auth.currentUser.uid, username);
             }).catch(
             (err) => {
                 if (err.message === 'The email address is already in use by another account.') {
@@ -111,7 +167,14 @@ export class DatabaseService {
         }
     }
 
-    addRewards(key: string) {
+    addRewards(cardNum: string, email: string, password: string, points: Number) {
+        const path = this.rewardPath + this.rewardKey;
+        this.afDB.list(this.rewardPath).set(this.rewardKey, { CardNumber: cardNum, Password: password, Points: points, Email: email });
+        alert('Reward added successfully');
+        this.router.navigate(['/main']);
+    }
+
+    checkReward(key: string) {
         let flag = true;
         const users: Observable<any[]> = this.afDB.list('/User Rewards').snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -127,6 +190,8 @@ export class DatabaseService {
                     rewards.forEach(rewardsElement => {
                         if (flag) {
                             for (let j = 0; j < rewardsElement.length; j++) {
+                                console.log("Before the if statement");
+                                this.rewardPath = '/User Rewards/' + element[i].key + '/Rewards/';
                                 if (rewardsElement[j].key === key) {
                                     flag = false;
                                     break;
@@ -165,6 +230,7 @@ export class DatabaseService {
                 }
             }
         });
+
         return this.rewardsArray;
     }
 
@@ -180,7 +246,7 @@ export class DatabaseService {
                         for (let j = 0; j < dataElement.length; j++) {
                             if (dataElement[j].key === element[i].key) {
                                 this.rewardsArray.push(
-                                    new Rewards(dataElement[j], valueElement[i])
+                                    new Rewards(dataElement[j], valueElement[i], element[i])
                                 );
                             }
                         }
@@ -192,6 +258,18 @@ export class DatabaseService {
 
     getRewards() {
         return this.rewards;
+    }
+    //specific reward
+    getReward(list:Rewards[], provider:string):Rewards{
+        console.log('about to');
+     for( let i = 0; i < list.length; i++ ) {
+         if( this.pathName( list[i].ProviderName ) === provider ) {
+            console.log(list[i]+' returned Object!sss ');
+             return list[i];
+            } else {
+                console.log(i);
+            }
+     }
     }
 
     getRewardsData(key) {
@@ -209,5 +287,8 @@ export class DatabaseService {
             return '../../assets/img/default.png';
         }
     }
-
+    pathName(name:string):string{
+        return name.toLowerCase().replace(/ /g,'.');
+    }
 }
+

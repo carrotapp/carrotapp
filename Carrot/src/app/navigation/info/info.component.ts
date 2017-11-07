@@ -9,24 +9,42 @@ import { DatabaseService } from '../../services/database/database.service';
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.css']
 })
-export class InfoComponent implements OnInit {
+export class InfoComponent{
   rewards: Rewards[] = [];
-  provider: string;
   src: SafeUrl;
-  index: number;
+  //Router Include
+  type: string;
+  username: string;
+  provider: string;
+  reward: Rewards;
   constructor(public dbs: DatabaseService, private route: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer) {
     if (dbs.checkLoggedIn()) {
       this.rewards = dbs.getRewardsArray();
-      this.route.params.subscribe((params: Params) => {
-        this.index = params.index;
-      });
-      console.table(this.rewards[this.index]);
-      // this.src = this.sanitizer.bypassSecurityTrustResourceUrl(this.rewards[this.index].infoUrl);
     }
-  }
 
-  ngOnInit() {
-    
+
+  }
+ ngOnInit(){
+  this.route.params.subscribe((params: Params) => {
+    this.username = params.username;
+    this.provider = params.provider;
+    this.type = params.type;
+
+    // assigning reward object
+  if( this.type == 'view' ) {  
+         this. getReward(this.dbs.getRewardsArray(), this.provider); 
+         console.log(this.dbs.getRewardsArray())
+  } else {  
+          this. getReward(this.dbs.getRewardsArray(), this.provider);
+          console.log(this.reward)
+  }
+  });
+ }
+  // retrieve reward
+  getReward(list:Rewards[]  , provider:string):void{
+    console.log('running');
+    this.reward = this.dbs.getReward(list,provider);
+    console.log(this.dbs.getReward(list,provider));
   }
 
 }

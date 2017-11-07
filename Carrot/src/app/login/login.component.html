@@ -1,26 +1,61 @@
-<div class="registration container-fluid align-middle">
+<div class="page-background  ">
     <div class="row justify-content-center">
-        <a [routerLink]="['/login']">
-            <img class="carrotPicture" src="../../assets/img/default.png" alt="Carrot Icon">
-        </a>
-    </div>
-    <br>
-    <div class="row justify-content-md-center">
-        <div class="col-md-4">
-            <input type="email" placeholder="Email" class="form-control textfield" [(ngModel)]="email" required>
-            <input type="password" placeholder="Password" class="form-control textfield" [(ngModel)]="password" required>
+        <!--the box where all fields are in-->
+        <div class="box container-fluid align-middle ">
+
+            <!--the icon-->
+            <div class="row justify-content-center">
+                <a [routerLink]="['/login']">
+                    <img class="carrotPicture" src="../../assets/img/food.png" alt="Carrot Icon">
+                </a>
+            </div>
+
+            <!--logo label-->
+            <div class="row justify-content-center">
+                <h1 class="logoName">carrot</h1><br>
+            </div>
+            <!--logo label end-->
+
+            <!--welcome label start-->
+            <div class="row m-0 justify-content-center">
+                <h1 class="welcomeBack">Welcome back!</h1>
+            </div>
+            <!--welcome label end-->
+            <br>
+
+            <!--textfields start-->
+            <div class="row m-0 justify-content-left">
+                <input type="email" placeholder="Email" class="form-control textfield" [(ngModel)]="email" required>
+                <input type="password" placeholder="Password" class="form-control textfield" [(ngModel)]="password" required>
+            </div>
+            <!--textfields end-->
+
+            <!--forgot password start-->
+            <h6 class="forgot-password ">forgot your password?</h6>
+            <!--forgot password ends-->
+
+            <!--login button start-->
+            <div class="row m-0 justify-content-center">
+                <custom-button text="Login" (click)="signIn()" class=" col align-self-start"></custom-button>
+            </div>
+            <!--login button ends-->
+
+            <!--register button/link start-->
+            <div class="row justify-content-center">
+                <a [text]="'Register'" [routerLink]="'/register'"></a>
+            </div>
+            <!--register button/link ends-->
+            <!--google button/link start-->
+            <div class="row justify-content-center">
+                <div class="google-box">
+                    <h6 class="google-label text-center">or sign in with</h6>
+                    <button type="button" (click)="googlePopup()" class="google-picture googleLogin  rounded mx-auto d-block"></button>
+
+                </div>
+            </div>
+            <!--google button/link end-->
         </div>
     </div>
-    <div class="row justify-content-md-center margin-40-left">
-        <div class="col-md-4 ">
-            <custom-button text="Login" (click)="signIn()" class=" col align-self-start"></custom-button>
-            <h6 class="or">or</h6>
-            <custom-button [text]="'Register'" [routerLink]="'/register'" class=" col align-self-start"></custom-button>
-        </div>
-    </div>
-    <div class="row justify-content-md-center">
-        <div class="col-md-2">
-            <button type="button" (click)="googlePopup()" class="googleButton col align-self-start"></button>
-        </div>
-    </div>
+
+
 </div>

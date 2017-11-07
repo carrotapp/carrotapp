@@ -16,7 +16,7 @@ export class LoginComponent {
   }
 
   signIn() {
-    this.databaseService.signIn(this.email, this.password);
+    this.databaseService.signIn(this.email, this.password );
   }
 
   googlePopup() {

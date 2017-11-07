@@ -26,17 +26,17 @@ export class CardComponent {
 
   @Input('rewardname') rewardname: string;
 
-  @Input('index') index: number;
+  @Input('type') type: string;
+  
+  @Input('redirector') redir:string;
 
   constructor(public themes: ThemesService) {
-    console.log(this.summary);
-  }
-
-  onclick(): void {
-    console.log('Clicked');
   }
 
   get theme() {
     return this.themes.getTheme();
+  }
+  toLowerPath(name:string):string{ 
+    return name.toLowerCase().replace(/ /g,'.');
   }
 }

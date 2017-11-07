@@ -1,7 +1,8 @@
-<div class="heading center">Dashboard</div>
+<!-- <div class="heading center">Dashboard</div> -->
+        <!-- <app-header [heading]=" 'My Rewards' " [showBtn]=" true "> </app-header> -->
 <div class="row m-0 text-center justify-content-left">
   <div *ngFor="let reward of rewards;let i = index">
     <app-card [name]="reward.ProviderName" [imgUrl]="reward.Image" [balance]="reward.Value/reward.Ratio" [summary]="reward.summary"
-      [currency]="reward.Currency" [points]="reward.Value" [provider]="reward.Name" [rewardname]="reward.Name" [index]="i"></app-card>
+      [currency]="reward.Currency" [points]="reward.Value" [provider]="reward.Name" [rewardname]="reward.Name" [redirector]="pathName" [type]="'view'"></app-card>
   </div>
 </div>

@@ -3,6 +3,7 @@
         width: 303px;
         height: 230px;
         padding: 30px;
+        padding-left: 45px;
 /* Look and Feel */
         border-radius: 6px;
         background-color: #ffffff;
@@ -45,6 +46,7 @@
         height: 62px;
         border-radius: 5px;
         border: solid 1px #e9eff4;
+        margin-top: 26.6px;
       }
       .pill{
           width:50%;
@@ -54,8 +56,6 @@
             padding-top: 12.9px; 
       }
       h1{
-        width: 82px;
-        height: 14px;
         font-family: 'Source Sans Pro', sans-serif;
         font-size: 11px;
         font-weight: 600;

@@ -27,6 +27,8 @@ import { InfoComponent } from './navigation/info/info.component';
 import { ToolbarComponent } from './navigation/toolbar/toolbar.component';
 import { CardComponent } from './card/card.component';
 import { BackComponent } from './navigation/back/back.component';
+import { RewardsCredentialsComponent } from './rewardsCredentials/rewardsCredentials.component';
+import { HeaderComponent } from './navigation/header/header.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDUlfMoY9Aq0nOGnZt_ovhRDaUtOJUnZ04',
@@ -55,6 +57,8 @@ export const firebaseConfig = {
     ToolbarComponent,
     CardComponent,
     BackComponent,
+    HeaderComponent,
+    RewardsCredentialsComponent,
   ],
   imports: [
     BrowserModule,
