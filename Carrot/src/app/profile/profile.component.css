@@ -1,7 +1,6 @@
 .box{
     border: 1px solid black;
-    height: 300px;
-    font-family: SourceSansPro;
+    font-family: 'Source Sans Pro', sans-serif;
     background-color: #ffffff;
 }
 
@@ -59,24 +58,61 @@
     font-weight: 600;
     letter-spacing: -0.1px;
     color: #323c47;
+    cursor: pointer;
 }
 
-.radio {
-    -webkit-appearance: none;
-    -moz-appearance: none;
+.buttons{
+    width: 100%;
+}
+
+.save-button{
+    width: 100%;
+    height: 45px;
+    border-radius: 3px;
+    background-color: #489fff;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.cancel-button{
+    width: 100%;
+    height: 45px;
+    border-radius: 3px;
+    background-color: #979797;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    text-align: center;
+    color: #ffffff;
+}
+
+
+/* Radio buttons */
+
+input[type="radio"] {
     appearance: none;
-
+    width: 12px;
+    height: 12px;
+    background: #ffffff;
+    box-shadow: inset 0 0 0 .3em white, 0 0 0 .2em;
     border-radius: 50%;
-    width: 16px;
-    height: 16px;
-    color: #323c47;
-
-    border: solid 2px #323c47;
-    /* transition: 0.2s all linear;
-    outline: none; */
-}
-
-.radio:checked {
-    color: #323c47;
-    border: solid 2px #323c47;
-}
+    transition: .2s;
+    cursor: pointer;
+    color: #233539;
+  }
+  input[type="radio"]:hover, input[type="radio"]:checked {
+    background: #233539;
+    box-shadow: inset 0 0 0 .15em white, 0 0 0 .2em;
+  }
+  input[type="radio"]:checked {
+    background: #233539;
+    box-shadow: inset 0 0 0 .15em white, 0 0 0 .2em #233539;
+  }
+  input[type="radio"]:focus {
+    outline: 0;
+  }
