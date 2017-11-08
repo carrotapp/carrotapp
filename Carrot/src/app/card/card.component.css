@@ -80,3 +80,32 @@
         text-align: left;
         color: #73a649;
       }
+      .btn-addReward{
+          cursor: pointer;
+        width: 244px;
+        height: 39px;
+        border-radius: 2px;
+        border: solid 1px #f9b324;
+        text-align: center;
+        padding: 10px;
+        margin-top: 26.6px;
+      }
+      .btn-text{
+        font-size: 20px;
+        text-align: left;
+        color:  #f9b324;
+        float:left;
+        margin-left: 35px;
+        font-weight: 100;
+    }
+    .btn-text-right{
+        margin-left: 20px;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 14px;
+        font-weight: 900;
+        text-align: left;
+        color:  #f9b324;
+        float: left;
+        text-transform: uppercase;
+        margin-top: -2px
+    }

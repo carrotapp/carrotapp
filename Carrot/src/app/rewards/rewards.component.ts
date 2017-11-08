@@ -16,9 +16,11 @@ export class RewardsComponent {
   username:string;
   path_username;
 
-  constructor(private databaseService: DatabaseService, private afAuth: AngularFireAuth) {
+  constructor(private databaseService: DatabaseService, private afAuth: AngularFireAuth, ) {
     if (databaseService.checkLoggedIn()) {
       this.data = databaseService.getRewards();
+      console.log(databaseService.getRewards())
+      console.log(this.data)
       this.username = this.afAuth.auth.currentUser.displayName
       this.path_username = this.toLowerPath(this.afAuth.auth.currentUser.displayName);
     }

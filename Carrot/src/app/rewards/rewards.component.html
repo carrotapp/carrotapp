@@ -1,10 +1,6 @@
         <!-- <app-header [heading]=" 'Add Rewards' " [showBtn]=" false "> </app-header> -->
         <div class="row m-0 text-center justify-content-center">
   <div *ngFor="let item of data | async">    
-    <app-card [name]="item.ProviderName" [imgUrl]="item.Image" [balance]="item.Value/item.Ratio"
-    [currency]="item.Currency" [points]="item.Ratio" [provider]="item.Name" [rewardname]="item.Name"  [redirector]="path_username"[summary]="item.summary" [type]="'add'"></app-card><br>
-    <button class="btn add_button" (click)="[addRewards(item.key)]">Add {{item.Name}}
-        <i class="fa fa-chevron-right"></i>
-      </button>
-      </div>
+      <app-card [reward]="item" [username]="pathName" [type]="'add'"  [isHidden]="false"></app-card>
+    </div>
     </div>

@@ -213,23 +213,22 @@ export class DatabaseService {
 
     getRewardsArray(): Rewards[] {
         this.rewardsArray = [];
-        let key: string;
-        const uid: string = this.getUID();
-        let path: string;
-        this.userRewards = this.userRewardsRef.snapshotChanges().map(changes => {
-            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-        });
-        this.userRewards.forEach(element => {
-            for (let i = 0; i < element.length; i++) {
-                if (element[i].user === uid) {
-                    key = element[i].key;
-                    path = '/User Rewards/' + key + '/Rewards/';
-                    this.getUsersRewards(path);
-                    break;
+            let key: string;
+            const uid: string = this.getUID();
+            let path: string;
+            this.userRewards = this.userRewardsRef.snapshotChanges().map(changes => {
+                return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+            });
+            this.userRewards.forEach(element => {
+                for (let i = 0; i < element.length; i++) {
+                    if (element[i].user === uid) {
+                        key = element[i].key;
+                        path = '/User Rewards/' + key + '/Rewards/';
+                        this.getUsersRewards(path);
+                        break;
+                    }
                 }
-            }
-        });
-
+            });
         return this.rewardsArray;
     }
 
