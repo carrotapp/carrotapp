@@ -12,7 +12,7 @@ import { DatabaseService } from '../services/database/database.service';
 export class CardComponent {
   // item skeleton
   @Input('reward')
-  reward;
+  reward: Rewards;
   // surname
   @Input("username") username:string;
 //Type
@@ -27,13 +27,10 @@ isHidden:boolean;
   get theme() {
     return this.themes.getTheme();
   }
-  toLowerPath(name:string):string{ 
-    return name.toLowerCase().replace(/ /g,'.');
-  }
   get getUsername(){
-    return this.toLowerPath(this.username);
+    return this.databaseService.pathName(this.username);
   }
   addReward(){
-    this.databaseService.checkReward(this.reward.key);
+    this.databaseService.checkReward(this.reward.Key);
   }
 }

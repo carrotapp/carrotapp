@@ -295,4 +295,3 @@ export class DatabaseService {
         return name.toLowerCase().replace(/ /g, '.');
     }
 }
-
