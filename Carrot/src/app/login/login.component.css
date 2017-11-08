@@ -89,7 +89,7 @@
     .welcomeBack {
         width: 154px;
         height: 31px;
-        font-family: SourceSansPro;
+        font-family: 'Source Sans Pro', sans-serif;
         font-size: 24px;
         letter-spacing: 0.1px;
         text-align: center;
@@ -104,7 +104,7 @@
         font-family: Roboto;
         border-radius: 0px;
         border-radius: 0px 0px 0px 5px;
-        margin-top: 40px;
+        margin-top: 20px;
         width: 100%;
         margin-left: 20px;
         margin-right: 20px;
@@ -119,17 +119,17 @@
     .forgot-password {
         margin-top: 5px;
         height: 15px;
-        font-family: SourceSansPro-It;
+        font-family: 'Source Sans Pro', sans-serif;
         font-size: 12px;
         font-weight: 600;
-        text-align: right;
         font-style: italic;
         color: #429dff;
+        position: right;
     }
     /* google button start*/
     
     .google-label {
-        font-family: SourceSansPro;
+        font-family: 'Source Sans Pro', sans-serif;
         font-size: 14px;
         color: #474f58;
         margin-top: 5px;

@@ -1,3 +1,5 @@
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ConfirmPasswordComponent } from './confirm-password/confirm-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
@@ -8,13 +10,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { PanelComponent } from './navigation/panel/panel.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { InfoComponent } from './navigation/info/info.component';
+
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     // This is the new router outlet outline... In  progress
          { path: 'login', component: LoginComponent }, // Parent of the Parent Hierachy
+         { path: 'forgotPassword', component: ForgotPasswordComponent },
+         { path: 'confirmPassword', component: ConfirmPasswordComponent },
             { path: 'register', component: RegistrationComponent }, // Parent of the Parent Hierachy
             { path: ':name', component: PanelComponent , children: [
-                // { path: '', redirectTo: '//hello', pathMatch: 'full' }, 
+                // { path: '', redirectTo: '//hello', pathMatch: 'full' },
                 { path: 'rewards', component: RewardsComponent},
                     { path: 'dashboard', component: DashboardComponent},
                     { path: 'details/:provider/:index', component: InfoComponent},

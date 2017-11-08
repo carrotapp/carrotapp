@@ -28,6 +28,8 @@ import { ToolbarComponent } from './navigation/toolbar/toolbar.component';
 import { CardComponent } from './card/card.component';
 import { BackComponent } from './navigation/back/back.component';
 import { HeaderComponent } from './navigation/header/header.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ConfirmPasswordComponent } from './confirm-password/confirm-password.component';
 
 
 export const firebaseConfig = {
@@ -58,6 +60,8 @@ export const firebaseConfig = {
     CardComponent,
     BackComponent,
     HeaderComponent,
+    ForgotPasswordComponent,
+    ConfirmPasswordComponent,
   ],
   imports: [
     BrowserModule,

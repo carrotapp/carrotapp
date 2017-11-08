@@ -3,9 +3,7 @@
 
 /* background of page start*/
 
-.page-background {
-    background-color: #f3f3f3;
-}
+.page-background {}
 
 
 /* background of page end*/
@@ -14,12 +12,12 @@
 /* box for all the fields start*/
 
 .box {
-    margin-top: 60px;
+    margin-top: 50px;
     margin-bottom: 20px;
     background-color: #ffffff;
     width: 500px;
     border: 1px solid #ffff;
-    height: 700px;
+    height: 650px;
 }
 
 
@@ -40,7 +38,7 @@
 .register {
     width: 154px;
     height: 31px;
-    font-family: SourceSansPro;
+    font-family: 'Source Sans Pro', sans-serif;
     font-size: 24px;
     letter-spacing: 0.1px;
     text-align: center;
@@ -70,7 +68,7 @@
 .forgot-password {
     margin-top: 5px;
     height: 15px;
-    font-family: SourceSansPro-It;
+    font-family: 'Source Sans Pro', sans-serif;
     font-size: 12px;
     font-weight: 600;
     text-align: right;
@@ -82,7 +80,7 @@
 /* google button start*/
 
 .google-label {
-    font-family: SourceSansPro;
+    font-family: 'Source Sans Pro', sans-serif;
     font-size: 14px;
     color: #474f58;
     margin-top: 5px;
