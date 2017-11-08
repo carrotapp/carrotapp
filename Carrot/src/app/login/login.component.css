@@ -65,12 +65,13 @@
     /* box for all the fields start*/
     
     .box {
-        margin-top: 50px;
+        margin-top: 20px;
         margin-bottom: 20px;
         background-color: #ffffff;
         width: 500px;
         border: 1px solid #ffff;
         height: 650px;
+        margin-bottom: 100px;
     }
     /* box for all the fields  end*/
     
@@ -80,59 +81,59 @@
     }
     
     .logoName {
-        font-family: SkrovaParts-OutlineDotted1;
-        font-size: 30px;
+        font-family: "SkrovaParts-OutlineDotted";
+        font-size: 50px;
         color: #4a4a4a;
         margin-top: 15px;
     }
     
     .welcomeBack {
-        width: 154px;
-        height: 31px;
+        /* width: 154px; */
+        /* height: 31px; */
         font-family: 'Source Sans Pro', sans-serif;
-        font-size: 24px;
+        font-size: 30px;
         letter-spacing: 0.1px;
         text-align: center;
         margin-top: 5px;
     }
     
     .textfield {
-        border: none;
-        border-bottom: 1px solid #979797;
-        height: 35px;
         color: black;
-        font-family: Roboto;
-        border-radius: 0px;
-        border-radius: 0px 0px 0px 5px;
-        margin-top: 20px;
+        border-radius: 0px 0px 0px 0px;
         width: 100%;
-        margin-left: 20px;
-        margin-right: 20px;
+        margin: 15px;
+    }
+
+    .register{
+        font-size: 12px;
+        font-weight: 600;
     }
     
     .textfield:invalid:not(content) {
         box-shadow: none !important;
         border: none;
-        border-bottom: 1px solid #979797;
+        border-bottom: 2px solid #979797;
     }
     
     .forgot-password {
         margin-top: 5px;
-        height: 15px;
         font-family: 'Source Sans Pro', sans-serif;
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 600;
+        text-align: right;
         font-style: italic;
         color: #429dff;
-        position: right;
+        margin-right: 20px;
     }
+    
     /* google button start*/
     
     .google-label {
         font-family: 'Source Sans Pro', sans-serif;
         font-size: 14px;
         color: #474f58;
-        margin-top: 5px;
+        margin: 25px;
+        font-weight: 600;
     }
     
     .googleLogin {
@@ -153,3 +154,29 @@
         position: center;
     }
     /* google button end*/
+
+
+
+    .panel{
+        height:inherit;
+        width: inherit;
+        padding: 10px;
+        display:inline; 
+        overflow-x: hidden;
+        overflow-y: auto;
+        /*  */
+    }
+    .main {
+        margin-top: -19px;
+        width: auto;
+        background-color:#F3F3F3;
+        color: black;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        word-break: keep-all;
+        text-align: left;
+        padding: 5px;
+        padding-bottom: 25px;
+        border: 5px thick black;
+    }
