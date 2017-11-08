@@ -1,5 +1,5 @@
 <div class="row m-0 justify-content-center">
-  <div class="col-3 row m-0 box justify-content-center">
+  <div class="col-3 row m-0 py-2 box justify-content-center">
     <div class="col-9 heading">My Profile</div>
     <a class="col-3 close">Close</a>
     <div class="col-3">
@@ -20,13 +20,17 @@
       <br>
       <input type="text" id='password' placeholder="Change Password" class="textfield mt-3">
     </div>
-    <div class="col-12">
+    <div class="col-12 mt-3">
       <div class="select-theme">Select your theme colour</div>
-      <input type="radio" class="radio" id="light" name="theme" value="Light">
-      <label for="light" class="theme">Light</label>
+      <input type="radio" class="medium" id="light" name="theme" value="Light" checked>
+      <label for="light" class="theme ml-3">Light</label>
       <br>
-      <input type="radio" class="radio" id="dark" name="theme" value="Dark">
-      <label for="dark" class="theme">Dark</label>
+      <input type="radio" class="medium" id="dark" name="theme" value="Dark">
+      <label for="dark" class="theme ml-3">Dark</label>
+    </div>
+    <div class="row justify-content-end buttons">
+      <button class="btn cancel-button col-4">Cancel</button>
+      <button class="btn save-button col-4 ml-1">Save</button>
     </div>
   </div>
 </div>
