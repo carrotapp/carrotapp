@@ -1,11 +1,32 @@
 <div class="row m-0 justify-content-center">
-  <div class="col-3 row m-0 box align-self-end">
+  <div class="col-3 row m-0 box justify-content-center">
+    <div class="col-9 heading">My Profile</div>
+    <a class="col-3 close">Close</a>
     <div class="col-3">
-      <img [src]='ds.photoUrl'class="img-fluid rounded-circle">
+      <img [src]='ds.photoUrl' class="img-fluid rounded-circle">
     </div>
     <div class="col-9">
-      <h3>{{ds.getName()}}</h3>
-      <h5>{{ds.getEmail()}}</h5>
+      <div class="name">{{ds.getName()}}</div>
+      <div class="email">{{ds.getEmail()}}</div>
+    </div>
+    <div class="col-12">
+      <label for="username" class="textfield-label mt-3">Username</label>
+      <br>
+      <input type="text" id='username' [value]='ds.getName()' class="textfield">
+      <br>
+      <label for="email" class="textfield-label mt-3">Email</label>
+      <br>
+      <input type="email" id='email' [value]='ds.getEmail()' class="textfield">
+      <br>
+      <input type="text" id='password' placeholder="Change Password" class="textfield mt-3">
+    </div>
+    <div class="col-12">
+      <div class="select-theme">Select your theme colour</div>
+      <input type="radio" class="radio" id="light" name="theme" value="Light">
+      <label for="light" class="theme">Light</label>
+      <br>
+      <input type="radio" class="radio" id="dark" name="theme" value="Dark">
+      <label for="dark" class="theme">Dark</label>
     </div>
   </div>
 </div>

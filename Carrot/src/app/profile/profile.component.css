@@ -1,4 +1,82 @@
 .box{
     border: 1px solid black;
     height: 300px;
+    font-family: SourceSansPro;
+    background-color: #ffffff;
+}
+
+.heading{
+    font-size: 38px;
+    font-weight: 600;
+    letter-spacing: -1.1px;
+    color: #233539;
+}
+
+.close{
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    color: #489fff;
+}
+
+.name{
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    color: #233539;
+}
+
+.email{
+    font-size: 16px;
+    letter-spacing: -0.2px;
+    color: #233539;
+}
+
+.textfield-label{
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: -0.1px;
+    color: #9b9b9b;
+}
+
+.textfield{
+    font-size: 14px;
+    letter-spacing: -0.4px;
+    color: #233539;
+    border: none;
+    border-bottom: 1px solid #979797;
+    width: 100%;
+}
+
+.select-theme{
+    font-size: 14px;
+    letter-spacing: -0.4px;
+    color: #233539;
+}
+
+.theme{
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.1px;
+    color: #323c47;
+}
+
+.radio {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    color: #323c47;
+
+    border: solid 2px #323c47;
+    /* transition: 0.2s all linear;
+    outline: none; */
+}
+
+.radio:checked {
+    color: #323c47;
+    border: solid 2px #323c47;
 }
