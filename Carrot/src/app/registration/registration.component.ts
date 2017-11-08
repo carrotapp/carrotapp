@@ -16,6 +16,10 @@ export class RegistrationComponent {
 
   constructor(private databaseService: DatabaseService) { }
 
+  googlePopup() {
+    this.databaseService.googlePopup();
+  }
+
   register() {
     if (this.email !== '' && this.email !== '' && this.password !== '' /*&& this.confirmPassword !== ''*/ && this.username !== '') {
       if (this.password.length >= 8) {

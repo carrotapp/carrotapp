@@ -1,19 +1,27 @@
 <div class="navbar {{ theme+'-shadow' }}" id="{{theme+'-parent'}}">
     <div class="container-fluid">
         <div class="row justify-content-end">
-            <div class="col-md-3">
-                <span id="{{theme+'-parent-item'}}" class="selectable fa fa-bars" (click)="sidebar_toggle()"></span>
+            <div class="col-md-4">
+                <!-- <span id="{{theme+'-parent-item'}}" class="selectable fa fa-bars" (click)="sidebar_toggle()"></span> -->
+                <span id="{{theme+'-parent-item'}}" class="selectable" (click)="sidebar_toggle()">
+                        <img src = "../../assets/img/food.png" class = "logo">
+                </span>
             </div>
         </div>
         <div class="row justify-content-start">
-            <div class="col-md-3">
-                <div id="{{theme+'-parent-item'}}" class="selectable" [routerLink]="['/main/dashboard']">CARROT</div>
+            <div class="col-md-4">
+                <!-- <div id="{{theme+'-parent-item'}}" class="selectable" [routerLink]="['/main/dashboard']">CARROT</div> -->
             </div>
         </div>
         <div class="row justify-content-start">
-            <div class="col-md-3">
-                <div id="{{theme+'-parent-item'}}" class="selectable fa fa-ellipsis-v" (click)="toolbar()"></div>
-            </div>
+           <!-- /<div class="col-md-6"> -->
+                <label [routerLink]="['/login']" [hidden] = "!login" class = "logBtn">Login</label>
+                <button [routerLink]="['/register']" [hidden] = "!login"  class = "regBtn">Register</button>
+                <!-- <div id="{{theme+'-parent-item'}}" class="selectable fa fa-ellipsis-v" (click)="toolbar()"></div> -->
+                <div  [hidden] = "login"  id="{{theme+'-parent-item'}}" class="selectable" (click)="toolbar()">
+                    <img [src] = "avatar" class = "profile">
+                </div>
+           <!-- // </div> -->
         </div>
     </div>
 </div>

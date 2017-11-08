@@ -7,6 +7,11 @@
 
 @import url('./themes.css');
 
+@font-face {
+    font-family: SkrovaParts-OutlineDotted;
+    src: url("./assets/fonts/SkrovaParts-OutlineDotted1.otf");
+}
+
 
 /* This is to ensure that all components experience a smooth change */
 *{
