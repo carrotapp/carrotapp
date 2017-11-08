@@ -21,6 +21,7 @@ const routes: Routes = [
             { path: 'dashboard', component: DashboardComponent },
             { path: ':provider/:type', component: InfoComponent },
             { path: 'profile', component: ProfileComponent },
+            { path: '**', redirectTo: '404' }
         ]
     }, // End of Multiple Router Implementation
     { path: 'header', component: HeaderComponent },

@@ -48,7 +48,13 @@ init(){
   this.route.params.subscribe((params: Params) => {
     this.username = params.username;
     this.showBtn= this.router.url.toString() === ('/'+ this.getUsername+'/dashboard');
-    if(params.type == undefined || params.type == 'view') this.h1 = 'My Rewards';
+    if(params.type == undefined){ 
+      this.h1 = 'My Rewards';
+    } else if(params.type == 'view'){
+      this.h1 = 'My ' + params.provider;
+    } else {
+      this.h1 = params.provider;
+    }
   });
 }
 redirect(url:string):void{

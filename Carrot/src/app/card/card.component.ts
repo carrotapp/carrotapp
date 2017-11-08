@@ -1,42 +1,36 @@
 import { Component, Input } from '@angular/core';
 import { ThemesService } from '../services/themes.service';
+import { HeaderComponent } from '../navigation/header/header.component';
+import { Rewards } from '../dashboard/Rewards';
+import { DatabaseService } from '../services/database/database.service';
+
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css']
 })
 export class CardComponent {
-  @Input('name') name: string;
-
-  @Input('provider') provider: string;
-
-  @Input('ratio') ratio: string;
-
-  @Input('imgUrl') imgUrl: string;
-
-  @Input('points') points: number;
-
-  @Input('currency') currency: number;
-
-  @Input('balance') balance: number;
-
-  @Input('infoUrl') infoUrl: string;
-
-  @Input('summary') summary: string;
-
-  @Input('rewardname') rewardname: string;
-
-  @Input('type') type: string;
+  // item skeleton
+  @Input('reward')
+  reward: Rewards;
+  // surname
+  @Input("username") username:string;
+//Type
+  @Input('type') type:string;
+//hide
+@Input('isHidden')
+isHidden:boolean;
+  constructor(public themes: ThemesService, private databaseService: DatabaseService,) {
   
-  @Input('redirector') redir:string;
-
-  constructor(public themes: ThemesService) {
   }
 
   get theme() {
     return this.themes.getTheme();
   }
-  toLowerPath(name:string):string{ 
-    return name.toLowerCase().replace(/ /g,'.');
+  get getUsername(){
+    return this.databaseService.pathName(this.username);
+  }
+  addReward(){
+    this.databaseService.checkReward(this.reward.Key);
   }
 }
