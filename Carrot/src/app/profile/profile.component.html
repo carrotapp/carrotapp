@@ -12,25 +12,25 @@
     <div class="col-12">
       <label for="username" class="textfield-label mt-3">Username</label>
       <br>
-      <input type="text" id='username' [value]='ds.getName()' class="textfield">
+      <input type="text" id='username' [(ngModel)]='name' class="textfield">
       <br>
       <label for="email" class="textfield-label mt-3">Email</label>
       <br>
-      <input type="email" id='email' [value]='ds.getEmail()' class="textfield">
+      <input type="email" id='email' [(ngModel)]='email' class="textfield">
       <br>
-      <input type="text" id='password' placeholder="Change Password" class="textfield mt-3">
+      <input type="text" id='password' [(ngModel)]='password' placeholder="Change Password" class="textfield mt-3">
     </div>
     <div class="col-12 mt-3">
       <div class="select-theme">Select your theme colour</div>
-      <input type="radio" class="medium" id="light" name="theme" value="Light" checked>
+      <input type="radio" class="medium" id="light" name="theme" value="Light" [checked]="theme === 'default'" (click)="theme = 'default'">
       <label for="light" class="theme ml-3">Light</label>
       <br>
-      <input type="radio" class="medium" id="dark" name="theme" value="Dark">
+      <input type="radio" class="medium" id="dark" name="theme" value="Dark" [checked]="theme === 'dark'" (click)="theme = 'dark'">
       <label for="dark" class="theme ml-3">Dark</label>
     </div>
     <div class="row justify-content-end buttons">
       <button class="btn cancel-button col-4">Cancel</button>
-      <button class="btn save-button col-4 ml-1">Save</button>
+      <button class="btn save-button col-4 ml-1" (click)='save()'>Save</button>
     </div>
   </div>
 </div>
