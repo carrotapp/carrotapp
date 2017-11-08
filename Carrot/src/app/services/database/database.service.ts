@@ -49,7 +49,7 @@ export class DatabaseService {
     //     });
     //     this.afAuth.auth.signInWithPopup(provider).then(
     //         (success) => {
-    //             this.userRewards.forEach(element => {
+    //             this.userRewards.forEach(element =ssssssssss> {
     //                 const uid: String = this.afAuth.auth.currentUser.uid;
     //                 let flag: Boolean;
     //                 for (let i = 0; i < element.length; i++) {
@@ -89,7 +89,7 @@ export class DatabaseService {
                         }
                     }
                     if (flag === undefined) {
-                        this.pushToUserRewards(this.getUID());
+                        this.pushToUserRewards(this.getUID(), this.getName());
                     } else {
                         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
                         this.router.navigate(['/' + this.pathName(this.getName()) + '/dashboard']);
@@ -109,9 +109,10 @@ export class DatabaseService {
     //     this.router.navigate(['/rewards']);
     // }
 
-    pushToUserRewards(uid: any) {
+    pushToUserRewards(uid: any, uName) {
         this.afDB.list('/User Rewards/').push({
-            user: uid
+            user: uid,
+            username: uName
         });
         alert('Registered successfully!');
         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
@@ -135,9 +136,7 @@ export class DatabaseService {
     signUp(email, password, username) {
         this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
             (success) => {
-                const avatar = this.getAvatar();
-                this.afAuth.auth.currentUser.updateProfile({displayName: username, photoURL: avatar});
-                this.pushToUserRewards(this.getUID());
+                this.pushToUserRewards(this.getUID(), username);
             }).catch(
             (err) => {
                 if (err.message === 'The email address is already in use by another account.') {
@@ -172,7 +171,7 @@ export class DatabaseService {
         const path = this.rewardPath + this.rewardKey;
         this.afDB.list(this.rewardPath).set(this.rewardKey, { CardNumber: cardNum, Password: password, Points: points, Email: email });
         alert('Reward added successfully');
-        this.router.navigate(['/main']);
+        this.router.navigate(['/main']); 
     }
 
     checkReward(key: string) {
@@ -289,8 +288,7 @@ export class DatabaseService {
         if (this.photoUrl != null) {
             return this.photoUrl;
         } else {
-            // tslint:disable-next-line:max-line-length
-            return 'https://firebasestorage.googleapis.com/v0/b/carrot-app.appspot.com/o/default.png?alt=media&token=1283d035-ac19-4605-9aff-95927f4befe6';
+            return '../../assets/img/default.png';
         }
     }
     pathName(name: string): string {
