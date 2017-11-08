@@ -1,64 +1,98 @@
-<div class="page-background  ">
-    <div class="row justify-content-center">
-        <!--the box where all fields are in-->
-        <div class="box container-fluid align-middle ">
+<app-navbar></app-navbar>
+<!-- 
+<body style = "background-color: #4a4a4a">
+    <div class = "container">
 
-            <!--the icon-->
-            <div class="row justify-content-center">
-                <a [routerLink]="['/login']">
-                    <img class="carrotPicture" src="../../assets/img/food.png" alt="Carrot Icon">
-                </a>
-            </div>
-
-            <!--logo label-->
-            <div class="row justify-content-center">
-                <h1 class="logoName">carrot</h1><br>
-            </div>
-            <!--logo label end-->
-
-            <!--welcome label start-->
-            <div class="row m-0 justify-content-center">
-                <h1 class="welcomeBack">Welcome back!</h1>
-            </div>
-            <!--welcome label end-->
-            <br>
-
-            <!--textfields start-->
-            <div class="row m-0 justify-content-left">
-                <input type="email" placeholder="Email" class="form-control textfield" [(ngModel)]="email" required>
-                <input type="password" placeholder="Password" class="form-control textfield" [(ngModel)]="password" required>
-            </div>
-            <!--textfields end-->
-
-            <!--forgot password start-->
-            <div class="row forgot-password">
-                <a [routerLink]="'/forgotPassword'">forgot your password?</a>
-            </div>
-
-            <!--forgot password ends-->
-
-            <!--login button start-->
-            <div class="row m-0 justify-content-center">
-                <custom-button text="Login" (click)="signIn()" class=" col align-self-start"></custom-button>
-            </div>
-            <!--login button ends-->
-
-            <!--register button/link start-->
-            <div class="row justify-content-center">
-                <a [text]="'Register'" [routerLink]="'/register'"></a>
-            </div>
-            <!--register button/link ends-->
-            <!--google button/link start-->
-            <div class="row justify-content-center">
-                <div class="google-box">
-                    <h6 class="google-label text-center">or sign in with</h6>
-                    <button type="button" (click)="googlePopup()" class="google-picture googleLogin  rounded mx-auto d-block"></button>
-
-                </div>
-            </div>
-            <!--google button/link end-->
+        <div class = "row">
+            <div class = "col-md-4"> </div>
+            <div class = "col-md-4"> dog </div>
+            <div class = "col-md-4"> </div>
         </div>
-    </div>
 
+    </div>
+</body> -->
+
+
+<div class="panel">
+    <div class="main">
+                    <div class = "container">
+                
+                        <div class = "row">
+                            <div class = "col-md-3"> </div>
+                            <div class = "col-md-6">
+                                
+
+                                    <div class="page-background">
+                                            <div class="row justify-content-center">
+                                        
+                                                      
+                                                <!--the box where all fields are in-->
+                                                <div class="box container-fluid align-middle ">
+                                        
+                                                    <!--the icon-->
+                                                    <div class="row justify-content-center">
+                                                        <a [routerLink]="['/login']">
+                                                            <img class="carrotPicture" src="../../assets/img/food.png" alt="Carrot Icon">
+                                                        </a>
+                                                    </div>
+                                        
+                                                    <!--logo label-->
+                                                    <div class="row justify-content-center">
+                                                        <h1 class="logoName">carrot</h1><br>
+                                                    </div>
+                                                    <!--logo label end-->
+                                        
+                                                    <!--welcome label start-->
+                                                    <div class="row m-0 justify-content-center">
+                                                        <h1 class="welcomeBack">Welcome back!</h1>
+                                                    </div>
+                                                    <!--welcome label end-->
+                                                    <br>
+                                        
+                                                    <!--textfields start-->
+                                                    <div class="row m-0 justify-content-left">
+                                                        <input type="email" placeholder="Email" class="form-control textfield" [(ngModel)]="email" required>
+                                                        <input type="password" placeholder="Password" class="form-control textfield" [(ngModel)]="password" required>
+                                                    </div>
+                                                    <!--textfields end-->
+                                        
+                                                    <!--forgot password start-->
+                                                    <h6 class="forgot-password ">Forgot your password?</h6>
+                                                    <!--forgot password ends-->
+                                        
+                                                    <!--login button start-->
+                                                    <div class="row m-0 justify-content-center">
+                                                        <custom-button text="Login" (click)="signIn()" class=" col align-self-start"></custom-button>
+                                                    </div>
+                                                    <!--login button ends-->
+                                        
+                                                    <!--register button/link start-->
+                                                    <div class="row justify-content-center">
+                                                        <a class = "register" [text]="'Register'" [routerLink]="'/register'"></a>
+                                                    </div>
+                                                    <!--register button/link ends-->
+                                                    <!--google button/link start-->
+                                                    <div class="row justify-content-center">
+                                                        <div class="google-box">
+                                                            <h6 class="google-label text-center">Or sign up with</h6>
+                                                            <button type="button" (click)="googlePopup()" class="google-picture googleLogin  rounded mx-auto d-block"></button>
+                                                            <br>
+                                                        </div>
+                                                    </div>
+                                                    <!--google button/link end-->
+                                                </div>
+                                            </div>
+                                        
+                                        
+                                        </div>
+
+
+
+                            </div>
+                            <div class = "col-md-3"> </div>
+                        </div>
+                
+                    </div>
+    </div>
 
 </div>

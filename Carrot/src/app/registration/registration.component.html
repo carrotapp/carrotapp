@@ -1,63 +1,86 @@
-<div class="page-background  ">
-    <div class="row justify-content-center">
-        <!--the box where all fields are in-->
-        <div class="box container-fluid align-middle ">
-
-            <!--the icon-->
-            <div class="row justify-content-center">
-                <a [routerLink]="['/login']">
-                    <img class="carrotPicture" src="../../assets/img/food.png" alt="Carrot Icon">
-                </a>
-            </div>
-
-            <!--logo label-->
-            <div class="row justify-content-center">
-                <h1 class="logoName">carrot</h1><br>
-            </div>
-            <!--logo label end-->
-
-            <!--welcome label start-->
-            <div class="row justify-content-center">
-                <h1 class="rgister">register</h1>
-            </div>
-            <!--welcome label end-->
-            <br>
-
-            <!--textfields start-->
-            <div class="row justify-content-left">
-                <input type="text" placeholder="Username" class="form-control textfield" [(ngModel)]="username" required>
-                <input type="email" placeholder="Email" class="form-control textfield" [(ngModel)]="email" required>
-                <input type="password" placeholder="Password" class="form-control textfield" [(ngModel)]="password" required>
-            </div>
-            <!--textfields end-->
+<app-navbar></app-navbar>
 
 
 
-            <!--login button start-->
-            <div class="row justify-content-center">
-                <custom-button [text]="'Register'" (click)="register()" class=" col align-self-start"></custom-button>
-            </div>
-            <!--login button ends-->
+<div class="panel">
+        <div class="main">
+                        <div class = "container">
+                    
+                            <div class = "row">
+                                <div class = "col-md-3"> </div>
+                                <div class = "col-md-6">
+                    
 
-            <!--register button/link start-->
-            <div class="row justify-content-center">
-                <a [text]="'Login'" [routerLink]="'/login'"></a>
-            </div>
-            <!--register button/link ends-->
-            <!--google button/link start-->
-            <div class="row justify-content-center">
-                <div class="google-box">
-                    <h6 class="google-label text-center">or sign in with</h6>
-                    <button type="button" (click)="googlePopup()" class="google-picture googleLogin  rounded mx-auto d-block"></button>
+                            <div class="page-background  ">
+                                    <div class="row justify-content-center">
+                                        <!--the box where all fields are in-->
+                                        <div class="box container-fluid align-middle ">
+                                
+                                            <!--the icon-->
+                                            <div class="row justify-content-center">
+                                                <a [routerLink]="['/login']">
+                                                    <img class="carrotPicture" src="../../assets/img/food.png" alt="Carrot Icon">
+                                                </a>
+                                            </div>
+                                
+                                            <!--logo label-->
+                                            <div class="row justify-content-center">
+                                                <h1 class="logoName">carrot</h1><br>
+                                            </div>
+                                            <!--logo label end-->
+                                
+                                            <!--welcome label start-->
+                                            <div class="row justify-content-center">
+                                                <h1 class="register">Register</h1>
+                                            </div>
+                                            <!--welcome label end-->
+                                            <br>
+                                
+                                            <!--textfields start-->
+                                            <div class="row m-0 justify-content-left">
+                                                <input type="text" placeholder="Username" class="form-control textfield" [(ngModel)]="username" required>
+                                                <input type="email" placeholder="Email" class="form-control textfield" [(ngModel)]="email" required>
+                                                <input type="password" placeholder="Password" class="form-control textfield" [(ngModel)]="password" required>
+                                            </div>
+                                            <!--textfields end-->
+                                
+                                
+                                
+                                            <!--login button start-->
+                                            <div class="row m-0 justify-content-center">
+                                                <custom-button [text]="'Register'" (click)="register()" class=" col align-self-start"></custom-button>
+                                            </div>
+                                            <!--login button ends-->
+                                
+                                            <!--register button/link start-->
+                                            <div class="row justify-content-center">
+                                                <a class = "login" [text]="'Login'" [routerLink]="'/login'"></a>
+                                            </div>
+                                            <!--register button/link ends-->
+                                            <!--google button/link start-->
+                                            <div class="row justify-content-center">
+                                                <div class="google-box">
+                                                    <h6 class="google-label text-center">Or sign up with</h6>
+                                                    <button type="button" (click)="googlePopup()" class="google-picture googleLogin  rounded mx-auto d-block"></button>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <!--google button/link end-->
+                                        </div>
+                                    </div>
+                            
+                            
+                            </div>
+
 
                 </div>
+                <div class = "col-md-3"> </div>
             </div>
-            <!--google button/link end-->
+    
         </div>
-    </div>
+    <div>
 
 
-</div>
 
 
 

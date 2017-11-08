@@ -25,3 +25,44 @@
   .col-md-3{
     width: 33.3%
   }
+
+  .profile {
+    width: 45px;
+    height: 45px;
+    border-radius: 25px;
+    float: right;
+    margin-right: 30px;
+  }
+
+  .logo {
+    width: 68px;
+    height: 40px;
+   float: left;
+  }
+
+  .regBtn {
+    width: 100px;
+    height: 35px;
+    border-radius: 2px;  
+    background-color: #489fff;
+    border: solid 1px #489fff;
+    font-family: 'Source Sans Pro', sans-serif;
+    margin-right: 30px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  .logBtn {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    float: left;
+    margin-top: 5px;
+    margin-right: 7px;
+    text-align: center;
+    color: #489fff;
+    
+  }
