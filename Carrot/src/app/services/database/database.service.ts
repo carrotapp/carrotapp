@@ -17,6 +17,7 @@ export class DatabaseService {
     photoUrl: any;
     rewardKey: string;
     rewardPath: string;
+    theme: string;
 
     constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router) {
         this.userRewardsRef = afDB.list('/User Rewards');
@@ -32,6 +33,21 @@ export class DatabaseService {
             this.afAuth.auth.signInWithEmailAndPassword(email, password).then(
                 (success) => {
                     this.photoUrl = this.afAuth.auth.currentUser.photoURL;
+                    const user = this.userRewardsRef.snapshotChanges().map(changes => {
+                        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+                    });
+                    let flag = true;
+                    user.forEach(element => {
+                        if (flag) {
+                            for (let i = 0; i < element.length; i++) {
+                                if (element[i].user === this.getUID()) {
+                                    this.theme = element[i].theme;
+                                    flag = false;
+                                    break;
+                                }
+                            }
+                        }
+                    });
                     this.router.navigate(['/main']);
                 }).catch(
                 (err) => {
@@ -50,10 +66,10 @@ export class DatabaseService {
         this.afAuth.auth.signInWithPopup(provider).then(
             (success) => {
                 this.userRewards.forEach(element => {
-                    const uid: String = this.getUID();
                     let flag: Boolean;
                     for (let i = 0; i < element.length; i++) {
-                        if (element[i].user === uid) {
+                        if (element[i].user === this.getUID()) {
+                            this.theme = element[i].theme;
                             flag = false;
                             break;
                         }
@@ -72,20 +88,34 @@ export class DatabaseService {
     }
 
     pushToUserRewards(uid: any) {
-        this.afDB.list('/User Rewards/').push({
+        this.userRewardsRef.push({
             user: uid,
             theme: 'default'
         });
         alert('Registered successfully!');
         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
+        const user = this.userRewardsRef.snapshotChanges().map(changes => {
+            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        });
+        let flag = true;
+        user.forEach(element => {
+            if (flag) {
+                for (let i = 0; i < element.length; i++) {
+                    if (element[i].user === this.getUID()) {
+                        this.theme = element[i].theme;
+                        flag = false;
+                        break;
+                    }
+                }
+            }
+        });
         this.router.navigate(['/rewards']);
     }
 
     signUp(email, password, username) {
         this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
             (success) => {
-                const avatar = this.getAvatar();
-                this.afAuth.auth.currentUser.updateProfile({displayName: username, photoURL: avatar});
+                this.afAuth.auth.currentUser.updateProfile({ displayName: username, photoURL: this.getAvatar() });
                 this.pushToUserRewards(this.getUID());
             }).catch(
             (err) => {
@@ -126,7 +156,7 @@ export class DatabaseService {
 
     checkReward(key: string) {
         let flag = true;
-        const users: Observable<any[]> = this.afDB.list('/User Rewards').snapshotChanges().map(changes => {
+        const users: Observable<any[]> = this.userRewardsRef.snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         });
         users.forEach(element => {
@@ -163,22 +193,22 @@ export class DatabaseService {
 
     getRewardsArray(): Rewards[] {
         this.rewardsArray = [];
-            let key: string;
-            const uid: string = this.getUID();
-            let path: string;
-            this.userRewards = this.userRewardsRef.snapshotChanges().map(changes => {
-                return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-            });
-            this.userRewards.forEach(element => {
-                for (let i = 0; i < element.length; i++) {
-                    if (element[i].user === uid) {
-                        key = element[i].key;
-                        path = '/User Rewards/' + key + '/Rewards/';
-                        this.getUsersRewards(path);
-                        break;
-                    }
+        let key: string;
+        const uid: string = this.getUID();
+        let path: string;
+        this.userRewards = this.userRewardsRef.snapshotChanges().map(changes => {
+            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        });
+        this.userRewards.forEach(element => {
+            for (let i = 0; i < element.length; i++) {
+                if (element[i].user === uid) {
+                    key = element[i].key;
+                    path = '/User Rewards/' + key + '/Rewards/';
+                    this.getUsersRewards(path);
+                    break;
                 }
-            });
+            }
+        });
         return this.rewardsArray;
     }
 
@@ -249,4 +279,53 @@ export class DatabaseService {
     resetPassword(newPassword: string) {
         this.afAuth.auth.currentUser.updatePassword(newPassword);
     }
+
+    setName(name: string) {
+        this.afAuth.auth.currentUser.updateProfile({ displayName: name, photoURL: this.getAvatar() });
+    }
+
+    setEmail(email: string) {
+        this.afAuth.auth.currentUser.updateEmail(email);
+    }
+
+    getTheme() {
+        return this.theme;
+        // const users: Observable<any[]> = this.userRewardsRef.snapshotChanges().map(changes => {
+        //     return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        // });
+        // let flag = true;
+        // users.forEach(element => {
+        //     if (flag) {
+        //         for (let i = 0; i < element.length; i++) {
+        //             if (element[i].user === this.getUID()) {
+        //                 this.theme = element[i].theme;
+        //                 console.log(this.theme);
+        //                 flag = false;
+        //                 break;
+        //             }
+        //         }
+        //     }
+        //     console.log(this.theme);
+        //     return this.theme;
+        // });
+    }
+
+    updateTheme(theme: string) {
+        const users: Observable<any[]> = this.userRewardsRef.snapshotChanges().map(changes => {
+            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        });
+        let flag = true;
+        users.forEach(element => {
+            if (flag) {
+                for (let i = 0; i < element.length; i++) {
+                    if (element[i].user === this.getUID()) {
+                        this.afDB.list('/User Rewards/' + element[i].key).set('theme', theme);
+                        flag = false;
+                        break;
+                    }
+                }
+            }
+        });
+    }
+
 }

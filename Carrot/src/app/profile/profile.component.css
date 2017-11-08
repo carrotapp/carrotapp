@@ -76,6 +76,7 @@
     letter-spacing: -0.5px;
     text-align: center;
     color: #ffffff;
+    cursor: pointer;
 }
 
 .cancel-button{
@@ -89,6 +90,7 @@
     letter-spacing: -0.5px;
     text-align: center;
     color: #ffffff;
+    cursor: pointer;
 }
 
 
