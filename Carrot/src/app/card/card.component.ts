@@ -12,7 +12,7 @@ import { DatabaseService } from '../services/database/database.service';
 export class CardComponent {
   // item skeleton
   @Input('reward')
-  reward: Rewards;
+  reward;
   // surname
   @Input("username") username:string;
 //Type
@@ -31,6 +31,6 @@ isHidden:boolean;
     return this.databaseService.pathName(this.username);
   }
   addReward(){
-    this.databaseService.checkReward(this.reward.Key);
+    this.databaseService.checkReward(this.reward.key);
   }
 }
