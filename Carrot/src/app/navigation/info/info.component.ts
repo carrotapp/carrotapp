@@ -24,27 +24,27 @@ export class InfoComponent{
 
 
   }
- ngOnInit(){
-  this.route.params.subscribe((params: Params) => {
-    this.username = params.username;
-    this.provider = params.provider;
-    this.type = params.type;
+//  ngOnInit(){
+//   this.route.params.subscribe((params: Params) => {
+//     this.username = params.username;
+//     this.provider = params.provider;
+//     this.type = params.type;
 
-    // assigning reward object
-  if( this.type == 'view' ) {  
-         this. getReward(this.dbs.getRewardsArray(), this.provider); 
-         console.log(this.dbs.getRewardsArray())
-  } else {  
-          this. getReward(this.dbs.getRewardsArray(), this.provider);
-          console.log(this.reward)
-  }
-  });
- }
-  // retrieve reward
-  getReward(list:Rewards[]  , provider:string):void{
-    console.log('running');
-    this.reward = this.dbs.getReward(list,provider);
-    console.log(this.dbs.getReward(list,provider));
-  }
+//     // assigning reward object
+//   if( this.type == 'view' ) {  
+//          this. getReward(this.dbs.getRewardsArray(), this.provider); 
+//          console.log(this.dbs.getRewardsArray())
+//   } else {  
+//           this. getReward(this.dbs.getRewardsArray(), this.provider);
+//           console.log(this.reward)
+//   }
+//   });
+//  }
+//   // retrieve reward
+//   getReward(list:Rewards[]  , provider:string):void{
+//     console.log('running');
+//     this.reward = this.dbs.getReward(list,provider);
+//     console.log(this.dbs.getReward(list,provider));
+//   }
 
 }
