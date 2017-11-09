@@ -75,7 +75,7 @@ export class DatabaseService {
                         }
                     }
                     if (flag === undefined) {
-                        this.pushToUserRewards(this.getUID(), this.getName());
+                        this.pushToUserRewards(this.getUID());
                     } else {
                         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
                         this.router.navigate(['/' + this.pathName(this.getName()) + '/dashboard']);
@@ -148,19 +148,18 @@ export class DatabaseService {
     }
 
     addRewards(cardNum: string, email: string, password: string, points: Number) {
-        const path = this.rewardPath + this.rewardKey;
-        this.afDB.list(this.rewardPath).set(this.rewardKey, { CardNumber: cardNum, Password: password, Points: points, Email: email });
+        this.afDB.list(this.rewardPath).push(this.rewardKey).set({ CardNumber: cardNum, Password: password, Points: points, Email: email });
         alert('Reward added successfully');
-        this.router.navigate(['/main']); 
+        this.router.navigate(['/' + this.pathName(this.getName()) + '/dashboard']);
     }
 
     checkReward(key: string) {
         let flag = true;
-        const users: Observable<any[]> = this.userRewardsRef.snapshotChanges().map(changes => {
+        const users: Observable<any[]> = this.afDB.list('/User Rewards').snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         });
         users.forEach(element => {
-            const uid: String = this.getUID();
+            const uid: String = this.afAuth.auth.currentUser.uid;
             for (let i = 0; i < element.length; i++) {
                 if (element[i].user === uid) {
                     // tslint:disable-next-line:max-line-length
@@ -170,26 +169,25 @@ export class DatabaseService {
                     rewards.forEach(rewardsElement => {
                         if (flag) {
                             for (let j = 0; j < rewardsElement.length; j++) {
-                                this.rewardPath = '/User Rewards/' + element[i].key + '/Rewards/';
                                 if (rewardsElement[j].key === key) {
+                                    this.rewardPath = '/User Rewards/' + element[i].key + '/Rewards';
                                     flag = false;
                                     break;
                                 }
                             }
                         }
                         if (flag) {
-                            this.afDB.list('/User Rewards/' + element[i].key + '/Rewards/').set(key, 0);
-                            flag = undefined;
-                            alert('Reward added!');
+                            this.rewardKey = key;
+                            this.router.navigate(['/' + this.pathName(this.getName()) + '/credentials']);
                         } else if (flag === false) {
-                            flag = undefined;
-                            alert('You already have that reward');
+                            alert('That reward is already on your account');
                         }
                     });
                 }
             }
         });
     }
+
 
     getRewardsArray(): Rewards[] {
         this.rewardsArray = [];
