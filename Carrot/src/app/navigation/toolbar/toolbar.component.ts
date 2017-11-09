@@ -16,8 +16,11 @@ export class ToolbarComponent {
   path_username;
   // tslint:disable-next-line:max-line-length
   constructor(public toolbarObj: NavigationTogglesService, public themes: ThemesService, protected ds: DatabaseService, protected router: Router) {
-    this.username = ds.getName();
-    this.path_username = ds.pathName(this.username);
+    if(ds.checkLoggedIn()){
+      this.username = ds.getName();
+      this.path_username = ds.pathName(this.username);
+    }
+    
   }
   // getter
   get pathName() {
