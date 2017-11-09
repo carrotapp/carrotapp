@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { DatabaseService } from './../../services/database/database.service';
 import { Component } from '@angular/core';
 import { NavigationTogglesService } from '../../services/navigation/navigation-toggles.service';
 import { ThemesService } from '../../services/themes.service';
@@ -9,7 +11,21 @@ import { ThemesService } from '../../services/themes.service';
 })
 export class NavbarComponent {
 
-  constructor(public navtoggle: NavigationTogglesService, public themes: ThemesService) {
+  login: boolean;
+  avatar: string;
+
+  constructor(private ds: DatabaseService, public navtoggle: NavigationTogglesService, public themes: ThemesService, public router: Router) {
+
+    this.avatar = ds.getAvatar();
+
+    console.log(this.router.url.toString());
+    
+    if(this.router.url.toString() === "/login" || this.router.url.toString() === "/register"){
+      this.login = true;
+    } else {
+      this.login = false;
+    }
+   
   }
 
 
