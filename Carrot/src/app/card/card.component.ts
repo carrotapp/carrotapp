@@ -11,26 +11,23 @@ import { DatabaseService } from '../services/database/database.service';
 })
 export class CardComponent {
   // item skeleton
-  @Input('reward')
-  reward;
+  @Input('reward') reward;
   // surname
-  @Input("username") username:string;
-//Type
-  @Input('type') type:string;
-//hide
-@Input('isHidden')
-isHidden:boolean;
-  constructor(public themes: ThemesService, private databaseService: DatabaseService,) {
-  
+  @Input('username') username: string;
+  // Type
+  @Input('type') type: string;
+  // hide
+  @Input('isHidden') isHidden: boolean;
+  constructor(public themes: ThemesService, protected databaseService: DatabaseService) {
   }
 
   get theme() {
     return this.themes.getTheme();
   }
-  get getUsername(){
+  get getUsername() {
     return this.databaseService.pathName(this.username);
   }
-  addReward(){
+  addReward() {
     this.databaseService.checkReward(this.reward.key);
   }
 }

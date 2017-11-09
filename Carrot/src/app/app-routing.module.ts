@@ -27,6 +27,7 @@ const routes: Routes = [
             { path: 'dashboard', component: DashboardComponent },
             { path: 'details/:provider/:index', component: InfoComponent },
             { path: 'credentials', component: RewardsCredentialsComponent },
+            { path: 'profile', component: ProfileComponent },
         ]
     },
 

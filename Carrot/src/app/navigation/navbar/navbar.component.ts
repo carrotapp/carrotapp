@@ -39,4 +39,8 @@ export class NavbarComponent {
   toolbar(): void {
     this.navtoggle.toolbar_toggle();
   }
+
+  goToProfile() {
+    this.router.navigate(['/' + this.ds.pathName(this.ds.getName()) + '/profile']);
+  }
 }
