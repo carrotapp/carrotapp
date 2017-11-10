@@ -1,15 +1,27 @@
-<!-- <div class="container text">
-    <div class="row ">
-        <div class="col-md-2">
-            <img class="rewards-icon " [src]="reward.Image" alt="icon of rewards program ">
-        </div>
-        <div class="col-md-10 ">
-            <h1>{{ rewards[index].Name}}</h1>
-            <h1 class="balance">Available points: {{rewards[index].Points }}</h1>
-  
-       </div>
-    </div>
-  <div class="row">
-    {{rewardss.summary}}
-    </div>
-  </div> -->
+<div class="moreInfoPanel center">
+      <div class="row">
+                <img [src]="reward.Image" alt="rewards programme" class="img">
+          <div class="rectangle">   
+            <div class="pill line-right">
+                  <h1>  Points Earned </h1>
+                  <div class="value-points">
+                    {{ reward.Points }}
+                   </div>
+            </div>
+            <div class="pill">
+                   <h1> Rand Value </h1>
+                   <div class="value-zar">
+                       {{reward.Points/reward.Ratio}} 
+                   </div>
+            </div>
+       </div>   
+        <div class="selectable rgt" (click)="back()">
+            <div class="fa fa-times close-icon"></div><div class="close" >Close</div>
+      </div> 
+        </div><br>
+        <iframe [src]="reward.infoUrl" [srcdoc]="reward.summary" alt='text'class="e2e-iframe-trusted-src" frameborder="0" class="iframe">
+                <div class="value-zar">
+                        {{ reward.summary }}
+                </div>
+        </iframe>
+  </div>

@@ -17,10 +17,15 @@ export class RewardsComponent {
   constructor(private databaseService: DatabaseService) {
     if (databaseService.checkLoggedIn()) {
       this.data = databaseService.getRewards();
+<<<<<<< HEAD
       console.log(databaseService.getRewards());
       console.log(this.data);
       this.username = databaseService.getName();
       this.path_username = databaseService.pathName(this.username);
+=======
+      this.username = this.afAuth.auth.currentUser.displayName
+      this.path_username = this.toLowerPath(this.afAuth.auth.currentUser.displayName);
+>>>>>>> Sixolile-Mtengwana
     }
   }
 
