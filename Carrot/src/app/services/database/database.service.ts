@@ -255,9 +255,11 @@ export class DatabaseService {
     getUID() {
         return this.afAuth.auth.currentUser.uid;
     }
+
     getName() {
         return this.afAuth.auth.currentUser.displayName;
     }
+
     getEmail() {
         return this.afAuth.auth.currentUser.email;
     }
@@ -269,6 +271,7 @@ export class DatabaseService {
             return '../../assets/img/default.png';
         }
     }
+    
     pathName(name: string): string {
         return name.toLowerCase().replace(/ /g, '.');
     }
