@@ -76,11 +76,7 @@ export class DatabaseService {
                         }
                     }
                     if (flag === undefined) {
-<<<<<<< HEAD
                         this.pushToUserRewards(this.getUID());
-=======
-                       // this.pushToUserRewards(this.getUID(), this.getName());
->>>>>>> Sixolile-Mtengwana
                     } else {
                         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
                         this.router.navigate(['/' + this.pathName(this.getName()) + '/dashboard']);
