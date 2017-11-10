@@ -8,7 +8,7 @@ export class Rewards {
   infoUrl;
   summary;
 
-  //On details Array
+  // On details Array
   CardNumber;
   Email;
   Password;

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 @Injectable()
 export class NavigationTogglesService {
   static ShowSideBar: string;
@@ -27,3 +28,5 @@ export class NavigationTogglesService {
     }
   }
 }
+
+

@@ -2,8 +2,6 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { DatabaseService } from '../services/database/database.service';
 import { Component } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
-
 
 @Component({
   selector: 'app-rewards',
@@ -13,28 +11,25 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 export class RewardsComponent {
   data: Observable<any[]>;
-  username:string;
+  username: string;
   path_username;
 
-  constructor(private databaseService: DatabaseService, private afAuth: AngularFireAuth, ) {
+  constructor(private databaseService: DatabaseService) {
     if (databaseService.checkLoggedIn()) {
       this.data = databaseService.getRewards();
-      console.log(databaseService.getRewards())
-      console.log(this.data)
-      this.username = this.afAuth.auth.currentUser.displayName
-      this.path_username = this.toLowerPath(this.afAuth.auth.currentUser.displayName);
+      console.log(databaseService.getRewards());
+      console.log(this.data);
+      this.username = databaseService.getName();
+      this.path_username = databaseService.pathName(this.username);
     }
   }
 
   addRewards(key: string) {
     this.databaseService.checkReward(key);
   }
-   // Routing to lower
-toLowerPath(name:string):string{ 
-  return name.toLowerCase().replace(/ /g,'.');
-}
-//getter
-get pathName(){
-  return this.path_username;
-}
+
+  // getter
+  get pathName() {
+    return this.path_username;
+  }
 }

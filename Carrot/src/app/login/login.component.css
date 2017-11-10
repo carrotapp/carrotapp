@@ -96,23 +96,24 @@
         text-align: center;
         margin-top: 5px;
     }
-    
-    .textfield {
-        color: black;
-        border-radius: 0px 0px 0px 0px;
-        width: 100%;
-        margin: 15px;
-    }
 
-    .register{
-        font-size: 12px;
-        font-weight: 600;
+    .textfield {
+        margin: 15px;
+        width: 100%;
+        border: none;
+        border-bottom: 2px solid #51b920;
+        color: black;
     }
     
     .textfield:invalid:not(content) {
         box-shadow: none !important;
         border: none;
         border-bottom: 2px solid #979797;
+    }
+
+    .register{
+        font-size: 12px;
+        font-weight: 600;
     }
     
     .forgot-password {
