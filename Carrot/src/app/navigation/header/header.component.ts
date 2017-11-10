@@ -21,14 +21,17 @@ export class HeaderComponent {
       @Input('showBtn') 
       showBtn:boolean;
       //
+      @Input('showRemove') showRemove:boolean;
       username:string;
+      @Input('add') add:boolean;
+      @Input('action') action:string;
 /* Other Text */
       date:Date = new Date();
       links:string[];
 /* type */
-  constructor( private route: ActivatedRoute, private router: Router ) { 
-   if(this.btn_title === " "|| this.btn_title === undefined ) this.btn_title = "add rewards";
+  constructor( private route: ActivatedRoute, private router: Router ) {
    this.showBtn = true;
+   this.showRemove = false;
    // Router Link Change Detector
    router.events.subscribe(()=>{
    this.subscribe();
@@ -55,16 +58,29 @@ subscribe(){
 
     if(this.showBtn ){ 
       this.h1 = 'My Rewards';
+      this.showRemove = false;
     } else if(!this.showBtn){
         if(this.links.length == 4){
           this.h1 = this.capitalize(this.links[2].split('.')) ;
-      
+          if( this.links[3].toLowerCase() !== 'add' ){
+          this.showRemove = true;
+                this.add = true;
+                this.action = 'Remove from my Rewards';
+          }else{ 
+            this.showRemove = true;
+            this.add = false;
+            this.action = 'add Reward';
+          }
         }else if(this.router.url.toString() == '/404'){
-          this.h1 = 'Oooppss!!!';
+          this.redirect('/'+ this.getUsername+'/dashboard');
+          this.showRemove = false;
+          this.h1 = "Oooopsss, Something went wrong!!!";
         }else{
           this.h1 = 'Add Rewards';
+          this.showRemove = false;
         }
-     } else { this.redirect('/login') }
+     } else { 
+      this.redirect('/'+ this.getUsername+'/dashboard') }
   });
 }
 
@@ -82,5 +98,14 @@ get getUsername(){
 }
 get geth1(){
   return this.h1;
+}
+addReward(){
+  if( !this.add ) {
+    alert('Add reward Function!');
+    this.redirect('/'+ this.getUsername+'/dashboard');
+  } else{
+    alert('remove reward Function!');
+    this.redirect('/'+ this.getUsername+'/dashboard');
+  }
 }
 }

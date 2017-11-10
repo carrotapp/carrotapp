@@ -71,3 +71,8 @@ a:hover{
 .minus-top-10px{
     margin-top: -10px
 }
+.per-50{
+    width: 50%;
+    height: inherit;
+    float: left;
+}
