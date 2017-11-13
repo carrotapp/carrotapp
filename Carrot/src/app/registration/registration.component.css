@@ -9,6 +9,10 @@
 
 /* box for all the fields start*/
 
+::-webkit-scrollbar { 
+    display: none; 
+}
+
 .box {
     margin-top: 20px;
     margin-bottom: 20px;

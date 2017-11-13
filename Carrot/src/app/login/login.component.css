@@ -59,6 +59,10 @@
     /* background of page start*/
     /* background of page end*/
     /* box for all the fields start*/
+
+    ::-webkit-scrollbar { 
+        display: none; 
+    }
     
     .box {
         margin-top: 20px;
