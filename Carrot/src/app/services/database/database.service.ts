@@ -264,9 +264,11 @@ getReward(provider:string, from:string) : Rewards{
     getUID() {
         return this.afAuth.auth.currentUser.uid;
     }
+
     getName() {
         return this.afAuth.auth.currentUser.displayName;
     }
+
     getEmail() {
         return this.afAuth.auth.currentUser.email;
     }
@@ -278,6 +280,7 @@ getReward(provider:string, from:string) : Rewards{
             return '../../assets/img/default.png';
         }
     }
+    
     pathName(name: string): string {
         return name.toLowerCase().replace(/ /g, '.');
     }
@@ -332,6 +335,14 @@ getReward(provider:string, from:string) : Rewards{
                 }
             }
         });
+    }
+
+    getCurrentUser() {
+        if (this.afAuth.auth.currentUser !== null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     capitalize( word:string[] ):string{

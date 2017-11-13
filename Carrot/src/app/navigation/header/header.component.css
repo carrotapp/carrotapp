@@ -1,4 +1,4 @@
-.h1{
+.h1 {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 38px;
     font-weight: 600;
@@ -6,10 +6,10 @@
     text-align: left;
     color: #233539;
     float: left;
-    margin-left: 15px;
+    margin-left: 40px;
     margin-right: 50px;
 }
-.h2{
+.h2 {
     height: 20px;
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 16px;
@@ -18,9 +18,9 @@
     text-align: left;
     color: #474f58;
     margin-top: 15px;
-    margin-left: 15px;
+    margin-left: 40px;
 }
-.btn-add-carrot{
+.btn-add-carrot {
     width: 170px;
     height: 35px;
     border-radius: 2px;  
@@ -52,7 +52,7 @@
     float:left;
     font-weight: 100;
 }
-.btn-text-right{
+.btn-text-right {
     margin-left: 16px;
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 14px;
@@ -63,10 +63,11 @@
     text-transform: uppercase;
     margin-top: -2px
 }
-.shape{
+.shape {
     width: 60px;
     height: 4px;
     border-radius: 2px;
     background-color: #f9b324;
-    margin-left: 15px;
+    margin-left: 40px;
+    margin-bottom: 15px;
 }
