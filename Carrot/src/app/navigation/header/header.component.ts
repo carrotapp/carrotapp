@@ -62,10 +62,18 @@ subscribe(){
     } else if(!this.showBtn){
         if(this.links.length == 4){
           this.h1 = this.capitalize(this.links[2].split('.')) ;
-          if( this.links[3].toLowerCase() !== 'add' ){
-          this.showRemove = true;
+          if( this.links[3].toLowerCase() !== 'add'){
+            if(  this.links[2].toLowerCase() === 'add'  ){
+              this.showRemove = false;
+              this.add = false;
+              this.h1 = this.capitalize(this.links[3].split('.'));
+            } else{
+                this.showRemove = true;
                 this.add = true;
                 this.action = 'Remove from my Rewards';
+                console.log('false');
+            }
+          
           }else{ 
             this.showRemove = true;
             this.add = false;
