@@ -31,6 +31,9 @@
     text-overflow: ellipsis;
 }
 
+.custom-row{
+    width: 100%;
+}
 .center {
     text-align: center;
     align-items: center;

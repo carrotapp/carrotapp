@@ -26,7 +26,8 @@ const routes: Routes = [
                 { path: 'add/:reward', component: RewardsCredentialsComponent },
                 { path: ':provider/:type', component: InfoComponent},
                 //{ path: 'add/:', component: ConfirmPasswordComponent },
-                { path: '**', redirectTo: '404' }
+                { path: '404', component: NotFoundComponent },
+                { path: '**', redirectTo: 'error/404' }
                   ]},
     
     { path: '404', component: NotFoundComponent },

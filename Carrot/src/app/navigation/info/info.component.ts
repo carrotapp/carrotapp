@@ -19,15 +19,12 @@ export class InfoComponent{
       //this.rewards = dbs.getRewardsArray();
      this.getReward();
     }
-
-
   }
 
   assign(){
   this.route.params.subscribe((parameters:Params)=>{
     this.type = parameters.type;
     this.provider = parameters.provider;
-    console.log(this.type+ ' : ' + this.provider);
   });
   }
   getReward(){
