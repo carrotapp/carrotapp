@@ -3,12 +3,12 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body row m-0 justify-content-center text-left">
-                <div class="heading col-8">My Profile</div>
-                <button type="button" class="close col-4" data-dismiss="modal" aria-label="Close">Close</button>
-                <div class="col-3">
+                <div class="heading col-9">My Profile</div>
+                <button type="button" class="close col-3" data-dismiss="modal" aria-label="Close">Close</button>
+                <div class="col-4">
                     <img [src]='ds.photoUrl' class="img-fluid rounded-circle">
                 </div>
-                <div class="col-9">
+                <div class="col-8">
                     <div class="name">{{ds.getName()}}</div>
                     <div class="email">{{ds.getEmail()}}</div>
                 </div>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="row justify-content-end buttons">
                     <button class="btn cancel-button col-4" data-dismiss="modal" aria-label="Close">Cancel</button>
-                    <button class="btn save-button col-4 ml-1" (click)='save()'>Save</button>
+                    <button class="btn save-button col-4 ml-1" (click)='save()' data-dismiss="modal">Save</button>
                 </div>
             </div>
         </div>
