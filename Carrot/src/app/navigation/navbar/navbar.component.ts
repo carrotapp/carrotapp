@@ -20,7 +20,7 @@ export class NavbarComponent {
 
     this.avatar = ds.getAvatar();
 
-    console.log(this.router.url.toString());
+    // console.log(this.router.url.toString());
 
     if (this.router.url.toString() === '/login' || this.router.url.toString() === '/register') {
       this.login = true;
@@ -40,9 +40,5 @@ export class NavbarComponent {
   }
   toolbar(): void {
     this.navtoggle.toolbar_toggle();
-  }
-
-  goToProfile() {
-    this.router.navigate(['/' + this.ds.pathName(this.ds.getName()) + '/profile']);
   }
 }

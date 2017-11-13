@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     // this.theme = this.ds.theme;
-    console.log(this.name + ', ' + this.email + ', ' + this.theme);
+    // console.log(this.name + ', ' + this.email + ', ' + this.theme);
   }
 
   save() {
