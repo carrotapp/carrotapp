@@ -1,8 +1,8 @@
 import { DatabaseService } from './../services/database/database.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-profile',
+  selector: 'profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
@@ -12,16 +12,17 @@ export class ProfileComponent implements OnInit {
   email: string;
   password = '';
   theme;
+  @Input() img;
 
   constructor(protected ds: DatabaseService) {
-    this.name = this.ds.getName();
-    this.email = this.ds.getEmail();
-    this.theme = this.ds.getTheme();
+    this.name = ds.getName();
+    this.email = ds.getEmail();
+    this.theme = ds.getTheme();
   }
 
   ngOnInit() {
     // this.theme = this.ds.theme;
-    console.log(this.name + ', ' + this.email + ', ' + this.theme);
+    // console.log(this.name + ', ' + this.email + ', ' + this.theme);
   }
 
   save() {

@@ -2,11 +2,8 @@
 @import url('./assets/font-awesome-4.7.0/css/font-awesome.min.css');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Hind+Siliguri');
-
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
-
 @import url('./themes.css');
-
 @font-face {
     font-family: SkrovaParts-OutlineDotted;
     src: url("./assets/fonts/SkrovaParts-OutlineDotted1.otf");
@@ -14,60 +11,152 @@
 
 
 /* This is to ensure that all components experience a smooth change */
-*{
-     transition: all 800ms ease;
-    -webkit-transition: all 800ms ease;;
+
+* {
+    transition: all 800ms ease;
+    -webkit-transition: all 800ms ease;
+    ;
     -o-transition: all 800ms ease;
     -ms-transition: all 800ms ease;
     -moz-transition: all 800ms ease;
 }
+
+
 /* Global Helpers */
 
-.col-blocks-3{
+.col-blocks-3 {
     width: 33.3%;
     padding: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.center{
+.center {
     text-align: center;
     align-items: center;
 }
 
-.right{
+.right {
     text-align: right;
 }
+
 .selectable {
-    color:#888989;
+    color: #888989;
     cursor: pointer;
 }
+
 .selectable :hover {
     color: #1D1F20;
 }
-.left{
+
+.left {
     text-align: left;
 }
-.block{
-    display: block; 
+
+.block {
+    display: block;
     padding: 5px;
 }
 
+
 /* Font Sizes */
-.lrg{
+
+.lrg {
     font-size: 1.5em;
 }
-a:hover{
+
+a:hover {
     text-decoration: none;
 }
-.heading{
+
+.heading {
     font-weight: 500;
     font-size: 2em;
-} 
-.line-right{
+}
+
+.line-right {
     height: inherit;
     border-right: 1px solid #e9eff4;
 }
-.minus-top-10px{
+
+.minus-top-10px {
     margin-top: -10px
+}
+
+.per-50 {
+    width: 50%;
+    height: inherit;
+    float: left;
+}
+
+
+/* Side Modal */
+
+.modal-dialog,
+.modal.right .modal-dialog {
+    cursor: default;
+    position: fixed;
+    margin: auto;
+    z-index: 1000;
+    width: 33.333333%;
+    height: 100%;
+    -webkit-transform: translate3d(0%, 0, 0);
+    -ms-transform: translate3d(0%, 0, 0);
+    -o-transform: translate3d(0%, 0, 0);
+    transform: translate3d(0%, 0, 0);
+}
+
+.modal-backdrop {
+    position: relative !important;
+}
+
+.modal-content,
+.modal.right .modal-content {
+    height: 100%;
+    overflow-y: auto;
+}
+
+
+/* .modal-body,
+.modal.right .modal-body {
+    padding: 15px 15px 80px;
+} */
+
+
+/*Right*/
+
+.modal.right.fade .modal-dialog {
+    right: -33.333333%;
+    -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+    -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+    -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+    transition: opacity 0.3s linear, right 0.3s ease-out;
+}
+
+.modal.right.fade.show .modal-dialog {
+    right: 0;
+}
+
+
+/* ----- MODAL STYLE ----- */
+
+.modal-content {
+    border-radius: 0;
+    border: none;
+}
+
+.modal-header {
+    padding: 5px;
+    border-bottom-color: #EEEEEE;
+    background-color: #FAFAFA;
+}
+
+@media screen and (max-width: 800px) {
+    .modal-dialog,
+    .modal.right .modal-dialog {
+        width: 100%;
+    }
+    .modal.right.fade .modal-dialog {
+        right: -100%;
+    }
 }

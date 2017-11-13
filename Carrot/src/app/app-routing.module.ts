@@ -16,33 +16,16 @@ import { InfoComponent } from './navigation/info/info.component';
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     // This is the new router outlet outline... In  progress
-    { path: 'login', component: LoginComponent }, // Parent of the Parent Hierachy
-    { path: 'forgotPassword', component: ForgotPasswordComponent },
-    { path: 'confirmPassword', component: ConfirmPasswordComponent },
-    { path: 'register', component: RegistrationComponent }, // Parent of the Parent Hierachy
-    {
-        path: ':name', component: PanelComponent, children: [
-            // { path: '', redirectTo: '//hello', pathMatch: 'full' },
-            { path: 'rewards', component: RewardsComponent },
-            { path: 'dashboard', component: DashboardComponent },
-            { path: 'details/:provider/:index', component: InfoComponent },
-            { path: 'credentials', component: RewardsCredentialsComponent },
-            { path: 'profile', component: ProfileComponent },
-        ]
-    },
-
-    // { path: 'Info', component: InfoComponent },
-    // { path: 'login', component: LoginComponent },
-    // { path: 'register', component: RegistrationComponent },
-    // { path: 'rewards', component: RewardsComponent },
-    // { path: 'main', component: PanelComponent , children: [
-    //     { path: '', redirectTo: '/main/dashboard', pathMatch: 'full' },
-    //     { path: 'dashboard', component: DashboardComponent},
-    //     { path: 'rewards', component: RewardsComponent},
-    //     { path: 'info/:provider/:index', component: InfoComponent},
-    //   ]},
-    // { path: 'header/:h1/:h2/:title', component: HeaderComponent},
-    // { path: 'dashboard', component: DashboardComponent},
+         { path: 'login', component: LoginComponent }, // Parent of the Parent Hierachy
+         { path: 'forgotPassword', component: ForgotPasswordComponent },
+         { path: 'confirmPassword', component: ConfirmPasswordComponent },
+            { path: 'register', component: RegistrationComponent }, // Parent of the Parent Hierachy
+            { path: ':username', component: PanelComponent , children: [
+                { path: 'rewards', component: RewardsComponent},
+                { path: 'dashboard', component: DashboardComponent},
+                { path: ':provider/:type', component: InfoComponent},
+                { path: '**', redirectTo: '404' }
+                  ]},
     { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '404' },
 ];

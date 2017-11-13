@@ -5,6 +5,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import { Location } from '@angular/common';
 
 @Injectable()
 export class DatabaseService {
@@ -19,7 +20,7 @@ export class DatabaseService {
     rewardPath: string;
     theme: string;
 
-    constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router) {
+    constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router,private _location: Location) {
         this.userRewardsRef = afDB.list('/User Rewards');
         this.rewards = afDB.list('/Rewards').snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -236,17 +237,25 @@ export class DatabaseService {
         return this.rewards;
     }
     // specific reward
-    getReward(list: Rewards[], provider: string): Rewards {
-        console.log('about to');
-        for (let i = 0; i < list.length; i++) {
-            if (this.pathName(list[i].ProviderName) === provider) {
-                console.log(list[i] + ' returned Object!sss ');
-                return list[i];
-            } else {
-                console.log(i);
+getReward(provider:string, from:string) : Rewards{    
+    var reward:Rewards 
+    var list;
+        provider = this.capitalize(provider.split('.'));    console.log(provider);
+            if(from.toLowerCase() === 'view'.toLowerCase() ){
+                list =  this.rewardsArray;
+            }else{ 
+            //    list =  this.getRewards(); <<<< After Updating getRewards Method
+            list =  this.rewardsArray;
             }
-        }
-    }
+                for(let i = 0;  i < list.length ; i++){
+                
+                     if(list[i].Name.toLowerCase() === provider.toLowerCase() )  {
+                                 reward = list[i];
+                                 break;
+                     }
+                }
+            return reward;
+     }
 
     getRewardsData(key) {
         return this.afDB.list('/Rewards/' + key);
@@ -328,4 +337,19 @@ export class DatabaseService {
         });
     }
 
+    getCurrentUser() {
+        if (this.afAuth.auth.currentUser !== null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    capitalize( word:string[] ):string{
+        for( let i =0; i<word.length;i++  ) word[i] = word[i].charAt(0).toUpperCase() + word[i].substring(1); 
+        return word.join(' ');
+       }
+       back(){
+        this._location.back();
+       }
 }

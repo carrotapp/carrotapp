@@ -1,44 +1,44 @@
-.box{
-    border: 1px solid black;
-    font-family: 'Source Sans Pro', sans-serif;
-    background-color: #ffffff;
+.avatar {
+    margin: 3px;
 }
 
-.heading{
+.heading {
     font-size: 38px;
     font-weight: 600;
     letter-spacing: -1.1px;
     color: #233539;
 }
 
-.close{
+.close {
+    cursor: pointer;
     font-size: 16px;
     font-weight: 600;
     letter-spacing: -0.2px;
     color: #489fff;
+    height: 40px;
 }
 
-.name{
+.name {
     font-size: 16px;
     font-weight: 600;
     letter-spacing: -0.2px;
     color: #233539;
 }
 
-.email{
+.email {
     font-size: 16px;
     letter-spacing: -0.2px;
     color: #233539;
 }
 
-.textfield-label{
+.textfield-label {
     font-size: 10px;
     font-weight: 600;
     letter-spacing: -0.1px;
     color: #9b9b9b;
 }
 
-.textfield{
+.textfield {
     font-size: 14px;
     letter-spacing: -0.4px;
     color: #233539;
@@ -47,13 +47,13 @@
     width: 100%;
 }
 
-.select-theme{
+.select-theme {
     font-size: 14px;
     letter-spacing: -0.4px;
     color: #233539;
 }
 
-.theme{
+.theme {
     font-size: 16px;
     font-weight: 600;
     letter-spacing: -0.1px;
@@ -61,11 +61,11 @@
     cursor: pointer;
 }
 
-.buttons{
+.buttons {
     width: 100%;
 }
 
-.save-button{
+.save-button {
     width: 100%;
     height: 45px;
     border-radius: 3px;
@@ -79,7 +79,7 @@
     cursor: pointer;
 }
 
-.cancel-button{
+.cancel-button {
     width: 100%;
     height: 45px;
     border-radius: 3px;
@@ -106,15 +106,27 @@ input[type="radio"] {
     transition: .2s;
     cursor: pointer;
     color: #233539;
-  }
-  input[type="radio"]:hover, input[type="radio"]:checked {
+}
+
+input[type="radio"]:hover,
+input[type="radio"]:checked {
     background: #233539;
     box-shadow: inset 0 0 0 .15em white, 0 0 0 .2em;
-  }
-  input[type="radio"]:checked {
+}
+
+input[type="radio"]:checked {
     background: #233539;
     box-shadow: inset 0 0 0 .15em white, 0 0 0 .2em #233539;
-  }
-  input[type="radio"]:focus {
+}
+
+input[type="radio"]:focus {
     outline: 0;
-  }
+}
+
+a>img {
+    z-index: 1000;
+}
+
+img {
+    height: 55px;
+}

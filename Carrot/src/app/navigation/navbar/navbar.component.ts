@@ -1,3 +1,4 @@
+import { ProfileComponent } from './../../profile/profile.component';
 import { Router } from '@angular/router';
 import { DatabaseService } from './../../services/database/database.service';
 import { Component } from '@angular/core';
@@ -14,18 +15,19 @@ export class NavbarComponent {
   login: boolean;
   avatar: string;
 
-  constructor(private ds: DatabaseService, public navtoggle: NavigationTogglesService, public themes: ThemesService, public router: Router) {
+  // tslint:disable-next-line:max-line-length
+  constructor(protected ds: DatabaseService, public navtoggle: NavigationTogglesService, public themes: ThemesService, public router: Router) {
 
     this.avatar = ds.getAvatar();
 
-    console.log(this.router.url.toString());
-    
-    if(this.router.url.toString() === "/login" || this.router.url.toString() === "/register"){
+    // console.log(this.router.url.toString());
+
+    if (this.router.url.toString() === '/login' || this.router.url.toString() === '/register') {
       this.login = true;
     } else {
       this.login = false;
     }
-   
+
   }
 
 
@@ -38,9 +40,5 @@ export class NavbarComponent {
   }
   toolbar(): void {
     this.navtoggle.toolbar_toggle();
-  }
-
-  goToProfile() {
-    this.router.navigate(['/' + this.ds.pathName(this.ds.getName()) + '/profile']);
   }
 }

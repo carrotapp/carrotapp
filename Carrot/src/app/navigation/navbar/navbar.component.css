@@ -1,4 +1,5 @@
 .navbar {
+    z-index: 100;
     top: 0;
     left: 0;
     width: 100%;
@@ -7,43 +8,44 @@
     float: left;
     padding: 0.05%;
     font-weight: 900;
-    position: static;
-  }
-  .center {
+    /* position: static; */
+}
+
+.center {
     text-align: center;
-  }
-  
-  .right {
+}
+
+.right {
     text-align: right;
-  }
-  
-  .selectable {
-    color: #888989 ;
-    cursor: pointer; 
-  }
+}
 
-  .col-md-3{
+.selectable {
+    color: #888989;
+    cursor: pointer;
+}
+
+.col-md-3 {
     width: 33.3%
-  }
+}
 
-  .profile {
+.profile {
     width: 45px;
     height: 45px;
     border-radius: 25px;
     float: right;
     margin-right: 30px;
-  }
+}
 
-  .logo {
+.logo {
     width: 68px;
     height: 40px;
-   float: left;
-  }
+    float: left;
+}
 
-  .regBtn {
+.regBtn {
     width: 100px;
     height: 35px;
-    border-radius: 2px;  
+    border-radius: 2px;
     background-color: #489fff;
     border: solid 1px #489fff;
     font-family: 'Source Sans Pro', sans-serif;
@@ -53,9 +55,9 @@
     font-weight: 600;
     text-align: center;
     color: #ffffff;
-  }
+}
 
-  .logBtn {
+.logBtn {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 14px;
     font-weight: 600;
@@ -64,5 +66,4 @@
     margin-right: 7px;
     text-align: center;
     color: #489fff;
-    
-  }
+}
