@@ -356,4 +356,12 @@ getReward(provider:string, from:string) : Rewards{
         this.router.navigate([url]);
        }
 
+
+       newReset(email: string){
+        let auth = firebase.auth();
+        return auth.sendPasswordResetEmail(email)
+          .then(() => this.router.navigate(['/confirmPassword']))
+          .catch((error) => console.log(error))
+       }
+
     }
