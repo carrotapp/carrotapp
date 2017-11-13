@@ -328,4 +328,12 @@ export class DatabaseService {
         });
     }
 
+    getCurrentUser() {
+        if (this.afAuth.auth.currentUser !== null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
