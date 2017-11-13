@@ -23,9 +23,12 @@ const routes: Routes = [
             { path: ':username', component: PanelComponent , children: [
                 { path: 'rewards', component: RewardsComponent},
                 { path: 'dashboard', component: DashboardComponent},
+                { path: 'add/:reward', component: RewardsCredentialsComponent },
                 { path: ':provider/:type', component: InfoComponent},
+                //{ path: 'add/:', component: ConfirmPasswordComponent },
                 { path: '**', redirectTo: '404' }
                   ]},
+    
     { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '404' },
 ];

@@ -352,4 +352,8 @@ getReward(provider:string, from:string) : Rewards{
        back(){
         this._location.back();
        }
-}
+       redirect( url:string ){
+        this.router.navigate([url]);
+       }
+
+    }

@@ -1,4 +1,4 @@
-<div class="moreInfoPanel center">
+<div class="moreInfoPanel center default-shadow">
       <div class="row">
                 <img [src]="reward.Image" alt="rewards programme" class="img">
           <div class="rectangle">   
@@ -19,9 +19,5 @@
             <div class="fa fa-times close-icon"></div><div class="close" >Close</div>
       </div> 
         </div><br>
-        <iframe [src]="reward.infoUrl" [srcdoc]="reward.summary" alt='text'class="e2e-iframe-trusted-src" frameborder="0" class="iframe">
-                <div class="value-zar">
-                        {{ reward.summary }}
-                </div>
-        </iframe>
+        <iframe [src]="reward.infoUrl" [srcdoc]="reward.summary" alt='text'class="default-shadow" frameborder="0" class="iframe"> </iframe>
   </div>
