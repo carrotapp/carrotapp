@@ -21,6 +21,7 @@ export class RewardsComponent {
       console.log(this.data);
       this.username = databaseService.getName();
       this.path_username = databaseService.pathName(this.username);
+      databaseService.getAllRewards();
     }
   }
 
