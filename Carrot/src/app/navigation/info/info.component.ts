@@ -32,8 +32,9 @@ export class InfoComponent implements OnInit {
   }
   getReward() {
     this.assign();
-    this.dbs.getReward(this.provider, this.type);
-    this.src = this.sanitizer.bypassSecurityTrustResourceUrl(this.dbs.reward.infoUrl);
+    this.reward = this.dbs.getReward(this.provider, this.type);
+    console.log(this.reward);
+    this.src = this.sanitizer.bypassSecurityTrustResourceUrl(this.reward.infoUrl);
   }
   back() {
     this.dbs.back();

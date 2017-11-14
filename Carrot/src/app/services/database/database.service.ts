@@ -243,7 +243,7 @@ export class DatabaseService {
                     new Rewards(element[i], 0, [])
                 );
             }
-            return this.rewardsArray;
+            // return this.rewardsArray;
         });
     }
 
@@ -251,31 +251,33 @@ export class DatabaseService {
         return this.rewards;
     }
     // specific reward
-    getReward(provider: string, from: string) {
-        let list;
+    getReward(provider: string, from: string): Rewards {
+        // let list;
         provider = this.capitalize(provider.split('.'));
         console.log(provider);
-        this.rewards.forEach(element => {
-            if (from.toLowerCase() === 'view'.toLowerCase()) {
-                list = this.rewardsArray;
-            } else {
-                //    list =  this.getRewards(); <<<< After Updating getRewards Method
-                this.rewardsArray = [];
-                for (let i = 0; i < element.length; i++) {
-                    this.rewardsArray.push(
-                        new Rewards(element[i], 0, [])
-                    );
-                }
-                list = this.rewardsArray;
+        console.log(this.rewardsArray);
+        // this.rewards.forEach(element => {
+            // if (from.toLowerCase() === 'view'.toLowerCase()) {
+            //     list = this.rewardsArray;
+            // } else {
+            //     //    list =  this.getRewards(); <<<< After Updating getRewards Method
+            //     this.rewardsArray = [];
+            //     for (let i = 0; i < element.length; i++) {
+            //         this.rewardsArray.push(
+            //             new Rewards(element[i], 0, [])
+            //         );
+            //     }
+            //     list = this.rewardsArray;
 
-            }
-            for (let i = 0; i < list.length; i++) {
-                if (list[i].Name.toLowerCase() === provider.toLowerCase()) {
-                    this.reward = list[i];
+            // }
+            for (let i = 0; i < this.rewardsArray.length; i++) {
+                if (this.rewardsArray[i].Name.toLowerCase() === provider.toLowerCase()) {
+                    this.reward = this.rewardsArray[i];
                     break;
                 }
             }
-        });
+            return this.reward;
+        // });
     }
 
     getRewardsData(key) {
