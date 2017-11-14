@@ -8,31 +8,34 @@ import { DatabaseService } from '../../services/database/database.service';
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.css']
 })
-export class InfoComponent{
+export class InfoComponent implements OnInit {
   src: SafeUrl;
-  //Router Include
+  // Router Include
   type: string;
   provider: string;
   reward;
   constructor(public dbs: DatabaseService, private route: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer) {
     if (dbs.checkLoggedIn()) {
-      //this.rewards = dbs.getRewardsArray();
-     this.getReward();
+      // this.rewards = dbs.getRewardsArray();
     }
   }
 
-  assign(){
-  this.route.params.subscribe((parameters:Params)=>{
-    this.type = parameters.type;
-    this.provider = parameters.provider;
-  });
+  ngOnInit() {
+    this.getReward();
   }
-  getReward(){
+
+  assign() {
+    this.route.params.subscribe((parameters: Params) => {
+      this.type = parameters.type;
+      this.provider = parameters.provider;
+    });
+  }
+  getReward() {
     this.assign();
-    this.reward = this.dbs.getReward(this.provider,this.type)
-    this.reward.infoUrl =  this.sanitizer.bypassSecurityTrustResourceUrl(this.reward.infoUrl);
-    }
-  back(){
+    this.dbs.getReward(this.provider, this.type);
+    this.src = this.sanitizer.bypassSecurityTrustResourceUrl(this.dbs.reward.infoUrl);
+  }
+  back() {
     this.dbs.back();
   }
 
