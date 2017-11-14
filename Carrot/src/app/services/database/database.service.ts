@@ -19,6 +19,7 @@ export class DatabaseService {
     rewardKey: string;
     rewardPath: string;
     theme: string;
+    reward: Rewards;
 
     constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router, private _location: Location) {
         this.userRewardsRef = afDB.list('/User Rewards');
@@ -234,28 +235,47 @@ export class DatabaseService {
         });
     }
 
+    getAllRewards() {
+        this.rewardsArray = [];
+        this.rewards.forEach(element => {
+            for (let i = 0; i < element.length; i++) {
+                this.rewardsArray.push(
+                    new Rewards(element[i], 0, [])
+                );
+            }
+            return this.rewardsArray;
+        });
+    }
+
     getRewards() {
         return this.rewards;
     }
     // specific reward
-    getReward(provider: string, from: string): Rewards {
-        let reward: Rewards;
+    getReward(provider: string, from: string) {
         let list;
-        provider = this.capitalize(provider.split('.')); console.log(provider);
-        if (from.toLowerCase() === 'view'.toLowerCase()) {
-            list = this.rewardsArray;
-        } else {
-            //    list =  this.getRewards(); <<<< After Updating getRewards Method
-            list = this.rewardsArray;
-        }
-        for (let i = 0; i < list.length; i++) {
+        provider = this.capitalize(provider.split('.'));
+        console.log(provider);
+        this.rewards.forEach(element => {
+            if (from.toLowerCase() === 'view'.toLowerCase()) {
+                list = this.rewardsArray;
+            } else {
+                //    list =  this.getRewards(); <<<< After Updating getRewards Method
+                this.rewardsArray = [];
+                for (let i = 0; i < element.length; i++) {
+                    this.rewardsArray.push(
+                        new Rewards(element[i], 0, [])
+                    );
+                }
+                list = this.rewardsArray;
 
-            if (list[i].Name.toLowerCase() === provider.toLowerCase()) {
-                reward = list[i];
-                break;
             }
-        }
-        return reward;
+            for (let i = 0; i < list.length; i++) {
+                if (list[i].Name.toLowerCase() === provider.toLowerCase()) {
+                    this.reward = list[i];
+                    break;
+                }
+            }
+        });
     }
 
     getRewardsData(key) {

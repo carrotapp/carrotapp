@@ -27,7 +27,7 @@ export class Rewards {
     this.summary = array.summary;
     this.Key = array.key;
 
-    //Details
+    // Details
     this.CardNumber = detailsArray.CardNumber;
     this.Email = detailsArray.Email;
     this.Password = detailsArray.Password;

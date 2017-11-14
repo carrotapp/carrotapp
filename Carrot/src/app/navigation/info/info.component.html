@@ -1,23 +1,24 @@
 <div class="moreInfoPanel center default-shadow">
-      <div class="row">
-                <img [src]="reward.Image" alt="rewards programme" class="img">
-          <div class="rectangle">   
+    <div class="row">
+        <img [src]="dbs.reward.Image" alt="rewards programme" class="img">
+        <div *ngIf='dbs.reward.Points !== undefined' class="rectangle">
             <div class="pill line-right">
-                  <h1>  Points Earned </h1>
-                  <div class="value-points">
-                    {{ reward.Points }}
-                   </div>
+                <h1> Points Earned </h1>
+                <div class="value-points">
+                    {{ dbs.reward.Points }}
+                </div>
             </div>
             <div class="pill">
-                   <h1> Rand Value </h1>
-                   <div class="value-zar">
-                       {{reward.Points/reward.Ratio}} 
-                   </div>
+                <h1> Rand Value </h1>
+                <div class="value-zar">
+                    {{dbs.reward.Points/dbs.reward.Ratio}}
+                </div>
             </div>
-       </div>   
+        </div>
         <div class="selectable rgt" (click)="back()">
-            <div class="fa fa-times close-icon"></div><div class="close" >Close</div>
-      </div> 
-        </div><br>
-        <iframe [src]="reward.infoUrl" [srcdoc]="reward.summary" alt='text'class="default-shadow" frameborder="0" class="iframe"> </iframe>
-  </div>
+            <div class="fa fa-times close-icon"></div>
+            <div class="close">Close</div>
+        </div>
+    </div><br>
+    <iframe [src]="src" [srcdoc]="dbs.reward.summary" alt='text' class="default-shadow" frameborder="0" class="iframe"> </iframe>
+</div>
