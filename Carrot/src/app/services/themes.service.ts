@@ -1,3 +1,4 @@
+import { DatabaseService } from './database/database.service';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -6,16 +7,16 @@ export class ThemesService {
   static theme: string; // this is the theme that will be broadcasted
   themes: string[]; // list of available themes
 
-  constructor() {
+  constructor(protected ds: DatabaseService) {
     this.themes = ['default', 'dark', 'blind', 'fun'];
-    ThemesService.theme = this.themes[0];
+    ThemesService.theme = ds.getTheme();
   }
 
   setTheme(theme): void {
     if (this.isThemeExists(theme)) {
       ThemesService.theme = theme;
     } else {
-      alert('NONONO');
+      ThemesService.theme = this.themes[0];
     }
   }
 

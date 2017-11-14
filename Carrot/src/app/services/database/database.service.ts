@@ -76,8 +76,8 @@ export class DatabaseService {
                         }
                     }
                     if (flag === undefined) {
-                        this.pushToUserRewards(this.getUID());
-                        this.router.navigate(['/' + this.pathName(this.getName()) + '/rewards']);
+                        this.pushToUserRewards(this.getUID(), this.getName());
+                        // this.router.navigate(['/' + this.pathName(this.getName()) + '/rewards']);
                     } else {
                         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
                         this.router.navigate(['/' + this.pathName(this.getName()) + '/dashboard']);
@@ -89,7 +89,7 @@ export class DatabaseService {
             });
     }
 
-    pushToUserRewards(uid: any) {
+    pushToUserRewards(uid: any, username: string) {
         this.userRewardsRef.push({
             user: uid,
             theme: 'default'
@@ -105,7 +105,7 @@ export class DatabaseService {
                     if (element[i].user === this.getUID()) {
                         this.theme = element[i].theme;
                         flag = false;
-                        this.router.navigate(['/' + this.pathName(this.getName()) + '/rewards']);
+                        this.router.navigate(['/' + this.pathName(username) + '/rewards']);
                         break;
                     }
                 }
@@ -117,7 +117,8 @@ export class DatabaseService {
         this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
             (success) => {
                 this.afAuth.auth.currentUser.updateProfile({ displayName: username, photoURL: this.getAvatar() });
-                this.pushToUserRewards(this.getUID());
+                console.log(username);
+                this.pushToUserRewards(this.getUID(), username);
             }).catch(
             (err) => {
                 if (err.message === 'The email address is already in use by another account.') {
@@ -282,7 +283,10 @@ export class DatabaseService {
     }
 
     pathName(name: string): string {
-        return name.toLowerCase().replace(/ /g, '.');
+        if (name.includes(' ')) {
+            return name.toLowerCase().replace(/ /g, '.');
+        }
+        return name.toLowerCase();
     }
 
     resetPassword(newPassword: string) {
@@ -351,17 +355,17 @@ export class DatabaseService {
     }
     back() {
         this._location.back();
-       }
-       redirect( url:string ){
-        this.router.navigate([url]);
-       }
-
-
-       newReset(email: string){
-        let auth = firebase.auth();
-        return auth.sendPasswordResetEmail(email)
-          .then(() => this.router.navigate(['/confirmPassword']))
-          .catch((error) => console.log(error))
-       }
-
     }
+    redirect(url: string) {
+        this.router.navigate([url]);
+    }
+
+
+    newReset(email: string) {
+        const auth = firebase.auth();
+        return auth.sendPasswordResetEmail(email)
+            .then(() => this.router.navigate(['/confirmPassword']))
+            .catch((error) => console.log(error))
+    }
+
+}
