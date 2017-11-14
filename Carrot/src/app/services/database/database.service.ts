@@ -352,16 +352,16 @@ export class DatabaseService {
     back() {
         this._location.back();
        }
-       redirect( url:string ){
+       redirect( url: string ) {
         this.router.navigate([url]);
        }
 
 
-       newReset(email: string){
-        let auth = firebase.auth();
+       newReset(email: string) {
+        const auth = firebase.auth();
         return auth.sendPasswordResetEmail(email)
           .then(() => this.router.navigate(['/confirmPassword']))
-          .catch((error) => console.log(error))
+          .catch((error) => console.log(error));
        }
 
     }
