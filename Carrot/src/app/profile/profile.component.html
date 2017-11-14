@@ -33,7 +33,7 @@
                     <label for="dark" class="theme ml-3">Dark</label>
                 </div>
                 <div class="row justify-content-end buttons">
-                    <button class="btn cancel-button col-4" data-dismiss="modal" aria-label="Close">Cancel</button>
+                    <button class="btn cancel-button col-4" (click)='ds.logout()'>Logout</button>
                     <button class="btn save-button col-4 ml-1" (click)='save()' data-dismiss="modal">Save</button>
                 </div>
             </div>
