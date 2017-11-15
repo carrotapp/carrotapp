@@ -1,5 +1,6 @@
 <div class="moreInfoPanel center default-shadow">
     <div class="row">
+            <div class="selectable rgt" (click)="back()"><div class="close" >Close</div><br></div>
         <img [src]="reward.Image" alt="rewards programme" class="img">
         <div *ngIf='reward.Points !== undefined' class="rectangle">
             <div class="pill line-right">
@@ -20,5 +21,20 @@
             <div class="close">Close</div>
         </div>
     </div><br>
-    <iframe [src]="reward.infoUrl" [srcdoc]="reward.summary" alt='text' class="default-shadow" frameborder="0" class="iframe"> </iframe>
+    <diV class="displayContent">
+        <h3>About:</h3>
+        <!-- <iframe [src]="reward.infoUrl" [srcdoc]="reward.summary" alt='text' class="default-shadow" frameborder="0" class="iframe"> </iframe>-->
+        {{ reward.summary }}
+    </diV>
+    <diV class="displayContent">
+        <h3>How to Earn points:</h3>
+        {{ reward.how }}
+
+    </diV>
+    <diV class="displayContent">
+        <h3>Where to Earn points:</h3>
+
+        {{ reward.where }}
+    </diV>
+
 </div>

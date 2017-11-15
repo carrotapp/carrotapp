@@ -43,12 +43,10 @@ export class InfoComponent implements OnInit {
   back() {
     this.dbs.back();
   }
+  safe( url :string){
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
 
-  // getRewardKey(){
-  //   this.getReward();
-  //   // console.log("10111");
-  //   // return 'dog'
-  //   return this.reward.Key;
-  // }
 
 }
+
