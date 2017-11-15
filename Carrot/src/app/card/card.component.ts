@@ -30,4 +30,8 @@ export class CardComponent {
   addReward() {
     this.databaseService.checkReward(this.reward.key);
   }
+
+  // setInfo() {
+  //   this.databaseService.checkReward(this.reward.key);
+  // }
 }

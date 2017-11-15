@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Rewards } from './../../dashboard/Rewards';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
@@ -157,6 +158,7 @@ export class DatabaseService {
     }
 
     checkReward(key: string) {
+        console.log('checkReward()');
         let flag = true;
         const users: Observable<any[]> = this.afDB.list('/User Rewards').snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -190,7 +192,7 @@ export class DatabaseService {
     }
 
 
-    getRewardsArray(): Rewards[] {
+    getRewardsArray() {
         this.rewardsArray = [];
         let key: string;
         const uid: string = this.getUID();
@@ -204,11 +206,10 @@ export class DatabaseService {
                     key = element[i].key;
                     path = '/User Rewards/' + key + '/Rewards/';
                     this.getUsersRewards(path);
-                    break;
+                    return this.rewardsArray;
                 }
             }
         });
-        return this.rewardsArray;
     }
 
     getUsersRewards(path) {
@@ -380,8 +381,40 @@ export class DatabaseService {
 
     resetPassword(email: string) {
         this.afAuth.auth.sendPasswordResetEmail(email)
-        .then(() => this.router.navigate(['/confirmPassword']))
-        .catch((error) => console.log(error));
+            .then(() => this.router.navigate(['/confirmPassword']))
+            .catch((error) => console.log(error));
+    }
+
+    removeReward() {
+        console.log('removeReward()');
+        console.log(this.rewardKey);
+        let path;
+        if (this.rewardKey !== undefined) {
+            this.userRewards.forEach(element => {
+                for (let i = 0; i < element.length; i++) {
+                    if (element[i].user === this.getUID()) {
+                        // element[i].key;
+                        path = '/User Rewards/' + element[i].key + '/Rewards/' + this.rewardKey;
+
+
+                        const ref = this.afDB.database.ref(path);
+                        // const ref = this.afDB.database.ref(this.rewardPath + this.rewardKey);
+                        ref.remove()
+                            .then(() => {
+                                alert("Reward Removed");
+                            })
+                            .catch(error => {
+                                alert("Remove failed: " + error);
+                            });
+                        break;
+
+
+                    }
+                }
+
+            });
+        }
+
     }
 
 }

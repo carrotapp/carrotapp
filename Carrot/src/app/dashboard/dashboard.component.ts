@@ -1,6 +1,6 @@
 import { Rewards } from './Rewards';
 import { DatabaseService } from '../services/database/database.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 
@@ -9,7 +9,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent{
+export class DashboardComponent implements OnInit{
   rewards: Rewards[] = [];
   username:string;
   path_username;
@@ -17,10 +17,17 @@ export class DashboardComponent{
 
   constructor(private ds: DatabaseService,private afAuth: AngularFireAuth) {
     if (ds.checkLoggedIn()) {
-      this.rewards = ds.getRewardsArray();
-      this.username = this.afAuth.auth.currentUser.displayName
-      this.path_username = this.toLowerPath(this.afAuth.auth.currentUser.displayName);
+      ds.rewardsArray = [];
+      this.rewards = [];
+      ds.getRewardsArray();
     }
+  }
+
+  ngOnInit() {
+    this.rewards = this.ds.rewardsArray;
+    console.log(this.rewards);
+    this.username = this.afAuth.auth.currentUser.displayName;
+    this.path_username = this.toLowerPath(this.afAuth.auth.currentUser.displayName);
   }
 
  // Routing to lower

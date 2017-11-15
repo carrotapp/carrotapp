@@ -18,6 +18,8 @@ export class InfoComponent implements OnInit {
     if (dbs.checkLoggedIn()) {
       // this.rewards = dbs.getRewardsArray();
     }
+
+    // this.getRewardKey();
   }
 
   ngOnInit() {
@@ -33,6 +35,7 @@ export class InfoComponent implements OnInit {
   getReward() {
     this.assign();
     this.reward = this.dbs.getReward(this.provider);
+    this.dbs.rewardKey = this.reward.Key;
     console.log(this.reward);
     this.reward.infoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.reward.infoUrl);
     // this.src = this.sanitizer.bypassSecurityTrustResourceUrl(this.reward.infoUrl);
@@ -40,5 +43,12 @@ export class InfoComponent implements OnInit {
   back() {
     this.dbs.back();
   }
+
+  // getRewardKey(){
+  //   this.getReward();
+  //   // console.log("10111");
+  //   // return 'dog'
+  //   return this.reward.Key;
+  // }
 
 }
