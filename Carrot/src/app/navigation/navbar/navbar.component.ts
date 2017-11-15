@@ -41,12 +41,9 @@ export class NavbarComponent {
   toolbar(): void {
     this.navtoggle.toolbar_toggle();
   }
-
-  toMain() {
-    if(this.ds.getCurrentUser()) {
-      this.router.navigate(['/' + this.ds.pathName(this.ds.getName()) + '/dashboard']);
-    } else {
-      this.router.navigate(['/']);
+  back(){
+    if(this.ds.checkLoggedIn()){
+      this.ds.back()
     }
   }
 }

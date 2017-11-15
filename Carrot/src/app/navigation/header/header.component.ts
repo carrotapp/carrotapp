@@ -1,7 +1,7 @@
 import { InfoComponent } from './../info/info.component';
 import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { DatabaseService } from '../../services/database/database.service';
+import { ThemesService } from '../../services/themes.service';
 
 @Component({
   selector: 'app-header',
@@ -31,7 +31,7 @@ export class HeaderComponent {
       date:Date = new Date();
       links:string[];
 /* type */
-  constructor(private ds: DatabaseService, private route: ActivatedRoute, private router: Router ) {
+  constructor( public themes: ThemesService,  private route: ActivatedRoute, private router: Router ) {
    this.showBtn = true;
    this.showRemove = false;
    // Router Link Change Detector
@@ -126,5 +126,7 @@ addReward(){
     this.redirect('/'+ this.getUsername+'/dashboard');
   }
 }
-
+get theme(): string {
+  return this.themes.getTheme();
+}
 }
