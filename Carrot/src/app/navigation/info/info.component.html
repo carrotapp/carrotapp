@@ -20,5 +20,20 @@
             <div class="close">Close</div>
         </div>
     </div><br>
-    <iframe [src]="reward.infoUrl" [srcdoc]="reward.summary" alt='text' class="default-shadow" frameborder="0" class="iframe"> </iframe>
+    <diV class="displayContent">
+        <h3>About:</h3>
+        <!-- <iframe [src]="reward.infoUrl" [srcdoc]="reward.summary" alt='text' class="default-shadow" frameborder="0" class="iframe"> </iframe>-->
+        {{ reward.summary }}
+    </diV>
+    <diV class="displayContent">
+        <h3>How to Earn points:</h3>
+        {{ reward.how }}
+
+    </diV>
+    <diV class="displayContent">
+        <h3>Where to Earn points:</h3>
+
+        {{ reward.where }}
+    </diV>
+
 </div>

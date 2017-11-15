@@ -41,4 +41,6 @@ export class InfoComponent implements OnInit {
     this.dbs.back();
   }
 
+
 }
+
