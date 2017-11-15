@@ -44,11 +44,6 @@ export class InfoComponent implements OnInit {
     this.dbs.back();
   }
 
-  // getRewardKey(){
-  //   this.getReward();
-  //   // console.log("10111");
-  //   // return 'dog'
-  //   return this.reward.Key;
-  // }
 
 }
+
