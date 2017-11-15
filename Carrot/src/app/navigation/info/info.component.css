@@ -77,12 +77,15 @@
 .close{
   width: 44px;
   height: 20px;
+  margin-left:100%;
+  padding-left: 10px;
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 12px;
+  opacity: 1;
+  font-weight: 500;
   letter-spacing: -0.2px;
   color: #489fff;
-  float: left;
+  text-transform: uppercase;
 }
 .close-icon{
   height: 20px;
@@ -90,8 +93,7 @@
   font-weight: 600;
   letter-spacing: -0.2px;
   color: #489fff;
-  float: left;
 }
 .rgt{
-  margin-left: 75%;
+  margin-left: 95.5%;
 }
