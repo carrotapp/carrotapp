@@ -1,5 +1,6 @@
 <div class="moreInfoPanel center default-shadow">
     <div class="row">
+            <div class="selectable rgt" (click)="back()"><div class="close" >Close</div><br></div>
         <img [src]="reward.Image" alt="rewards programme" class="img">
         <div *ngIf='reward.Points !== undefined' class="rectangle">
             <div class="pill line-right">

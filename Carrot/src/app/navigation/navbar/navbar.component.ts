@@ -22,7 +22,7 @@ export class NavbarComponent {
 
     // console.log(this.router.url.toString());
 
-    if (this.router.url.toString() === '/login' || this.router.url.toString() === '/register') {
+    if (this.router.url.toString() === '/login' || this.router.url.toString() === '/register' || this.router.url.toString() === '/forgotPassword' || this.router.url.toString() === '/confirmPassword') {
       this.login = true;
     } else {
       this.login = false;
@@ -40,5 +40,13 @@ export class NavbarComponent {
   }
   toolbar(): void {
     this.navtoggle.toolbar_toggle();
+  }
+
+  toMain() {
+    if(this.ds.getCurrentUser()) {
+      this.router.navigate(['/' + this.ds.pathName(this.ds.getName()) + '/dashboard']);
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 }

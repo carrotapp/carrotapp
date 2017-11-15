@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Rewards } from './../../dashboard/Rewards';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
@@ -20,6 +21,17 @@ export class DatabaseService {
     rewardPath: string;
     theme: string;
     reward: Rewards;
+    rewardFlag: boolean;
+
+    /// test approach
+
+    rewardsStatus: any[][];
+
+    assign(): void {
+        let Allarray = this.rewards;
+        console.log(Allarray)
+        //  console.log(this.getRewardsArray());
+    }
 
     constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router, private _location: Location) {
         this.userRewardsRef = afDB.list('/User Rewards');
@@ -150,13 +162,14 @@ export class DatabaseService {
         }
     }
 
-    addRewards(cardNum: string, email: string, password: string, points: Number) {
-        this.afDB.list(this.rewardPath).push(this.rewardKey).set({ CardNumber: cardNum, Password: password, Points: points, Email: email });
+    addRewards(cardNum: string, email: string, password: string, points: Number, reward:Rewards) {
+        this.afDB.list('/User Rewards/' +reward.Key + '/Rewards/').push(reward.Key).set({ CardNumber: cardNum, Password: password, Points: points, Email: email });
         alert('Reward added successfully');
         this.router.navigate(['/' + this.pathName(this.getName()) + '/dashboard']);
     }
 
     checkReward(key: string) {
+        console.log('checkReward()');
         let flag = true;
         const users: Observable<any[]> = this.afDB.list('/User Rewards').snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -173,7 +186,8 @@ export class DatabaseService {
                         if (flag) {
                             for (let j = 0; j < rewardsElement.length; j++) {
                                 if (rewardsElement[j].key === key) {
-                                    this.rewardPath = '/User Rewards/' + element[i].key + '/Rewards';
+                                    this.rewardPath = '/User Rewards/' + element[i].key + '/Rewards/';
+                                    console.log( this.rewardPath);
                                     flag = false;
                                     break;
                                 }
@@ -182,13 +196,22 @@ export class DatabaseService {
                         if (flag) {
                             this.rewardKey = key;
                         }
+                        // console.log(flag + ' ' + this.rewardKey);
                         return flag;
                     });
                 }
             }
         });
-    }
+        console.log(this.rewardKey === key);
 
+        if (this.rewardKey === key) {
+            flag = true;
+        } else {
+            flag = false;
+        }
+
+        return flag;
+    }
 
     getRewardsArray(): Rewards[] {
         this.rewardsArray = [];
@@ -204,11 +227,10 @@ export class DatabaseService {
                     key = element[i].key;
                     path = '/User Rewards/' + key + '/Rewards/';
                     this.getUsersRewards(path);
-                    break;
+                    return this.rewardsArray;
                 }
             }
         });
-        return this.rewardsArray;
     }
 
     getUsersRewards(path) {
@@ -218,7 +240,7 @@ export class DatabaseService {
         const value: Observable<any[]> = this.afDB.list(path).valueChanges();
         usersRewards.forEach(element => {
             for (let i = 0; i < element.length; i++) {
-                this.getRewards().forEach(dataElement => {
+                this.rewards.forEach(dataElement => {
                     value.forEach(valueElement => {
                         for (let j = 0; j < dataElement.length; j++) {
                             if (dataElement[j].key === element[i].key) {
@@ -235,6 +257,7 @@ export class DatabaseService {
 
     getAllRewards() {
         this.rewardsArray = [];
+        let flag = true;
         this.rewards.forEach(element => {
             for (let i = 0; i < element.length; i++) {
                 this.rewardsArray.push(
@@ -243,10 +266,11 @@ export class DatabaseService {
             }
             // return this.rewardsArray;
         });
+        console.log(this.rewardsArray);
     }
 
     getRewards() {
-        return this.rewards;
+        return this.rewardsArray;
     }
     // specific reward
     getReward(provider: string): Rewards {
@@ -380,8 +404,40 @@ export class DatabaseService {
 
     resetPassword(email: string) {
         this.afAuth.auth.sendPasswordResetEmail(email)
-        .then(() => this.router.navigate(['/confirmPassword']))
-        .catch((error) => console.log(error));
+            .then(() => this.router.navigate(['/confirmPassword']))
+            .catch((error) => console.log(error));
+    }
+
+    removeReward() {
+        console.log('removeReward()');
+        console.log(this.rewardKey);
+        let path;
+        if (this.rewardKey !== undefined) {
+            this.userRewards.forEach(element => {
+                for (let i = 0; i < element.length; i++) {
+                    if (element[i].user === this.getUID()) {
+                        // element[i].key;
+                        path = '/User Rewards/' + element[i].key + '/Rewards/' + this.rewardKey;
+
+
+                        const ref = this.afDB.database.ref(path);
+                        // const ref = this.afDB.database.ref(this.rewardPath + this.rewardKey);
+                        ref.remove()
+                            .then(() => {
+                                alert("Reward Removed");
+                            })
+                            .catch(error => {
+                                alert("Remove failed: " + error);
+                            });
+                        break;
+
+
+                    }
+                }
+
+            });
+        }
+
     }
 
 
