@@ -41,4 +41,9 @@ export class NavbarComponent {
   toolbar(): void {
     this.navtoggle.toolbar_toggle();
   }
+  back(){
+    if(this.ds.checkLoggedIn()){
+      this.ds.back()
+    }
+  }
 }

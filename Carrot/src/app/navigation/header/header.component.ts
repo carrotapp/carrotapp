@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ThemesService } from '../../services/themes.service';
 
 @Component({
   selector: 'app-header',
@@ -29,7 +30,7 @@ export class HeaderComponent {
       date:Date = new Date();
       links:string[];
 /* type */
-  constructor( private route: ActivatedRoute, private router: Router ) {
+  constructor( public themes: ThemesService,  private route: ActivatedRoute, private router: Router ) {
    this.showBtn = true;
    this.showRemove = false;
    // Router Link Change Detector
@@ -115,5 +116,8 @@ addReward(){
     alert('remove reward Function!');
     this.redirect('/'+ this.getUsername+'/dashboard');
   }
+}
+get theme(): string {
+  return this.themes.getTheme();
 }
 }
