@@ -256,27 +256,28 @@ export class DatabaseService {
         provider = this.capitalize(provider.split('.'));
         console.log(provider);
         console.log(this.rewardsArray);
+        let reward;
         // this.rewards.forEach(element => {
-            // if (from.toLowerCase() === 'view'.toLowerCase()) {
-            //     list = this.rewardsArray;
-            // } else {
-            //     //    list =  this.getRewards(); <<<< After Updating getRewards Method
-            //     this.rewardsArray = [];
-            //     for (let i = 0; i < element.length; i++) {
-            //         this.rewardsArray.push(
-            //             new Rewards(element[i], 0, [])
-            //         );
-            //     }
-            //     list = this.rewardsArray;
+        // if (from.toLowerCase() === 'view'.toLowerCase()) {
+        //     list = this.rewardsArray;
+        // } else {
+        //     //    list =  this.getRewards(); <<<< After Updating getRewards Method
+        //     this.rewardsArray = [];
+        //     for (let i = 0; i < element.length; i++) {
+        //         this.rewardsArray.push(
+        //             new Rewards(element[i], 0, [])
+        //         );
+        //     }
+        //     list = this.rewardsArray;
 
-            // }
-            for (let i = 0; i < this.rewardsArray.length; i++) {
-                if (this.rewardsArray[i].Name.toLowerCase() === provider.toLowerCase()) {
-                    this.reward = this.rewardsArray[i];
-                    break;
-                }
+        // }
+        for (let i = 0; i < this.rewardsArray.length; i++) {
+            if (this.rewardsArray[i].Name.toLowerCase() === provider.toLowerCase()) {
+                reward = this.rewardsArray[i];
+                break;
             }
-            return this.reward;
+        }
+        return reward;
         // });
     }
 
@@ -309,10 +310,6 @@ export class DatabaseService {
             return name.toLowerCase().replace(/ /g, '.');
         }
         return name.toLowerCase();
-    }
-
-    resetPassword(newPassword: string) {
-        this.afAuth.auth.currentUser.updatePassword(newPassword);
     }
 
     setName(name: string) {
@@ -383,11 +380,10 @@ export class DatabaseService {
     }
 
 
-    newReset(email: string) {
-        const auth = firebase.auth();
-        return auth.sendPasswordResetEmail(email)
-            .then(() => this.router.navigate(['/confirmPassword']))
-            .catch((error) => console.log(error))
+    resetPassword(email: string) {
+        this.afAuth.auth.sendPasswordResetEmail(email)
+        .then(() => this.router.navigate(['/confirmPassword']))
+        .catch((error) => console.log(error));
     }
 
 }
