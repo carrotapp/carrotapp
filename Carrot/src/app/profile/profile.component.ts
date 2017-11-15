@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
       console.log('Updated: email');
     }
     if (this.password !== '') {
-      this.ds.resetPassword(this.password);
+      this.ds.resetPassword(this.ds.getEmail());
       console.log('Updated: password');
     }
     if (this.ds.getTheme() !== this.theme) {
