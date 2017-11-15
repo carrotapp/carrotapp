@@ -43,6 +43,9 @@ export class InfoComponent implements OnInit {
   back() {
     this.dbs.back();
   }
+  safe( url :string){
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
 
 
 }

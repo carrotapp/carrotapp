@@ -22,7 +22,7 @@
                 </div>
 </div>
 <div [hidden]=" isHidden " class="row center">
-    <div class="btn-addReward center" (click)="databaseService.redirect('/'+databaseService.pathName(this.username)+'/add/'+databaseService.pathName(reward.Name))">
+    <div class="btn-addReward center" (click)="addReward()">
         <div class="btn-text fa fa-plus"></div> 
         <div class="btn-text-right">
             Add to my rewards

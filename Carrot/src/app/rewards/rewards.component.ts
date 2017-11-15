@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { DatabaseService } from '../services/database/database.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Rewards } from '../dashboard/Rewards';
 
 @Component({
   selector: 'app-rewards',
@@ -9,20 +10,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./rewards.component.css']
 })
 
-export class RewardsComponent {
-  data: Observable<any[]>;
+export class RewardsComponent implements OnInit{
+  data: Rewards[];
   username: string;
   path_username;
 
   constructor(private databaseService: DatabaseService) {
     if (databaseService.checkLoggedIn()) {
-      this.data = databaseService.getRewards();
-      console.log(databaseService.getRewards());
-      console.log(this.data);
+      databaseService.getAllRewards();
       this.username = databaseService.getName();
       this.path_username = databaseService.pathName(this.username);
-      databaseService.getAllRewards();
+      // databaseService.getAllRewards();
     }
+  }
+  
+  ngOnInit() {
+    this.data = this.databaseService.getRewards();
+    console.log(this.databaseService.getRewards());
+    console.log(this.data);
   }
 
   addRewards(key: string) {
