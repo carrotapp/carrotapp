@@ -10,7 +10,7 @@ export class RoutingListenerService {
     private provider:string;
     private action:string;
 
-    reward:Rewards={
+    reward:Rewards = {
       Currency: 'cpts',
       Image: 'http://www.fetchrewards.com/assets/GiftBox.png',
       ProviderName: 'Carrot Rewards',
@@ -20,6 +20,8 @@ export class RoutingListenerService {
       infoUrl: 'https://carrot-app.firebaseapp.com/login',
       summary: 'Carrot integrates everything for you so that you do not have too!!!',
       CardNumber: '1234567890',
+      how: 'Like this',
+      where: 'Over there',
       Email: 'carrot@mail.com',
       Password: 'c@rRoT123',
       Points: '21372',

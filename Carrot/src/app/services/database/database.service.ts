@@ -231,6 +231,7 @@ export class DatabaseService {
                 }
             }
         });
+        return this.rewardsArray;
     }
 
     getUsersRewards(path) {

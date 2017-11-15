@@ -48,6 +48,10 @@ export class RewardsCredentialsComponent implements OnInit {
     } else {
       alert('Please fill out all the fields');
     }
+
+    this.cardNum = '';
+    this.email = '';
+    this.password = '';
   }
 
   setReward(reward:Rewards) : void{
