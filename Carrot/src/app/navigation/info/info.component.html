@@ -5,7 +5,7 @@
             <div class="pill line-right">
                 <h1> Points Earned </h1>
                 <div class="value-points">
-                    {{ dbs.reward.Points }}
+                    {{ reward.Points }}
                 </div>
             </div>
             <div class="pill">
@@ -20,5 +20,5 @@
             <div class="close">Close</div>
         </div>
     </div><br>
-    <iframe [src]="src" [srcdoc]="reward.summary" alt='text' class="default-shadow" frameborder="0" class="iframe"> </iframe>
+    <iframe [src]="reward.infoUrl" [srcdoc]="reward.summary" alt='text' class="default-shadow" frameborder="0" class="iframe"> </iframe>
 </div>

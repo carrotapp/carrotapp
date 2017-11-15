@@ -181,10 +181,8 @@ export class DatabaseService {
                         }
                         if (flag) {
                             this.rewardKey = key;
-                            this.router.navigate(['/' + this.pathName(this.getName()) + '/credentials']);
-                        } else if (flag === false) {
-                            alert('That reward is already on your account');
                         }
+                        return flag;
                     });
                 }
             }
@@ -251,12 +249,12 @@ export class DatabaseService {
         return this.rewards;
     }
     // specific reward
-    getReward(provider: string, from: string): Rewards {
+    getReward(provider: string): Rewards {
         // let list;
         provider = this.capitalize(provider.split('.'));
         console.log(provider);
         console.log(this.rewardsArray);
-        let reward;
+        let reward: Rewards;
         // this.rewards.forEach(element => {
         // if (from.toLowerCase() === 'view'.toLowerCase()) {
         //     list = this.rewardsArray;

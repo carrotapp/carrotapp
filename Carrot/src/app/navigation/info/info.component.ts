@@ -9,7 +9,7 @@ import { DatabaseService } from '../../services/database/database.service';
   styleUrls: ['./info.component.css']
 })
 export class InfoComponent implements OnInit {
-  src: SafeUrl;
+  // src: SafeUrl;
   // Router Include
   type: string;
   provider: string;
@@ -32,9 +32,10 @@ export class InfoComponent implements OnInit {
   }
   getReward() {
     this.assign();
-    this.reward = this.dbs.getReward(this.provider, this.type);
+    this.reward = this.dbs.getReward(this.provider);
     console.log(this.reward);
-    this.src = this.sanitizer.bypassSecurityTrustResourceUrl(this.reward.infoUrl);
+    this.reward.infoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.reward.infoUrl);
+    // this.src = this.sanitizer.bypassSecurityTrustResourceUrl(this.reward.infoUrl);
   }
   back() {
     this.dbs.back();
