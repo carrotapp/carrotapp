@@ -1,3 +1,4 @@
+import { DatabaseService } from './../../services/database/database.service';
 import { InfoComponent } from './../info/info.component';
 import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
