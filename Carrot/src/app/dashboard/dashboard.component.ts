@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit{
       ds.rewardsArray = [];
       this.rewards = [];
       ds.getRewardsArray();
-    }
+      }
 
     // console.log((this.rewards.length == 0) + "test");
     // if(this.rewards.length == 0){
