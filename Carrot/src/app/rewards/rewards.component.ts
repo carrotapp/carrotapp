@@ -10,30 +10,21 @@ import { Rewards } from '../dashboard/Rewards';
   styleUrls: ['./rewards.component.css']
 })
 
-export class RewardsComponent implements OnInit{
-  data: Rewards[];
+export class RewardsComponent {
+  data: Observable<any[]>;
   username: string;
   path_username;
 
   constructor(private databaseService: DatabaseService) {
     if (databaseService.checkLoggedIn()) {
-      databaseService.getAllRewards();
-      this.username = databaseService.getName();
-      this.path_username = databaseService.pathName(this.username);
-      // databaseService.getAllRewards();
+      this.data = databaseService.getRewards();
+      this.path_username = databaseService.pathName(databaseService.getName());
     }
-  }
-  
-  ngOnInit() {
-    this.data = this.databaseService.getRewards();
-    console.log(this.databaseService.getRewards());
-    console.log(this.data);
   }
 
   addRewards(key: string) {
     this.databaseService.checkReward(key);
   }
-
   // getter
   get pathName() {
     return this.path_username;
