@@ -9,7 +9,10 @@ export class ThemesService {
 
   constructor(protected ds: DatabaseService) {
     this.themes = ['default', 'dark', 'blind', 'fun'];
-    ThemesService.theme = ds.getTheme();
+     console.log(ds.getTheme());
+ this.setTheme(ds.getTheme())
+  
+    console.log( ThemesService.theme   )
   }
 
   setTheme(theme): void {

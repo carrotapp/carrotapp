@@ -28,29 +28,29 @@ Version    : 0.0.1
 /* Dark Theme */
 /* Master*/
 #dark-master{
-    background-color : linear-gradient(90deg,#111111,#505050);
+    background-color : #FFFFFF;
 }
 
 #dark-item-selector{
-    color: #000000;
+    color: #F3FeEF;
 }
 /* Parent */
 #dark-parent{
-    background-color: #1E1E1E;
-    color: #C2C2C3;
+    background-color: #2A292B;
+    color: #F3FeEF;
 }
 
 #dark-parent-item{
-    color: #C2C2C3; 
+    color: #F3FeEF; 
 }
 #dark-parent-item .selectable:hover{
     background-color: #424242;
-    color: #C2C2C3;
+    color: #F3FeEF;
     font-weight: 900;
 }
 /* Sub Parent */
 #dark-sub-parent{
-    background-color: #252526;
+    background-color: #323035;
     color: #CCCCCC;
 }
 #dark-sub-parent-item{
@@ -58,8 +58,8 @@ Version    : 0.0.1
 }
 
 #dark-sub-parent-item .selectable:hover{
-    color: #3F3F46;
-    background-color: #3F3F46;
+    color: #CCCCCC;
+    background-color: #323035;
 }
 /* Child */
 #dark-child{
