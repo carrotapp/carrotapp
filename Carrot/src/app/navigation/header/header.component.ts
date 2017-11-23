@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ThemesService } from '../../services/themes.service';
+import { RoutingListenerService } from '../../services/routing-listener.service';
+import { DatabaseService } from '../../services/database/database.service';
 
 @Component({
   selector: 'app-header',
@@ -22,17 +24,21 @@ export class HeaderComponent {
       @Input('showBtn') 
       showBtn:boolean;
       //
+      welcomeText:string = '';
       @Input('showRemove') showRemove:boolean;
       username:string;
       @Input('add') add:boolean;
       @Input('action') action:string;
+
+      hasRewards : boolean;
 /* Other Text */
       date:Date = new Date();
       links:string[];
 /* type */
-  constructor( public themes: ThemesService,  private route: ActivatedRoute, private router: Router ) {
+  constructor( public themes: ThemesService,  private route: ActivatedRoute, private router: Router, private routerListener : RoutingListenerService, protected databaseService : DatabaseService ) {
    this.showBtn = true;
    this.showRemove = false;
+  //  this.hasRewards = (databaseService.getRewardsArray().length > 0);
    // Router Link Change Detector
    router.events.subscribe(()=>{
    this.subscribe();
@@ -49,6 +55,9 @@ capitalize( word:string[] ):string{
  for( let i =0; i<word.length;i++  ) word[i] = word[i].charAt(0).toUpperCase() + word[i].substring(1); 
  return word.join(' ');
 }
+get welcome(){
+  return this.welcomeText;
+}
 
 //Init
 subscribe(){
@@ -56,10 +65,21 @@ subscribe(){
     this.username = params.username;
     this.showBtn= this.router.url.toString() === ('/'+ this.getUsername+'/dashboard');
     this.links = this.router.url.toString().split('/');
-
+    this.welcomeText = '';
+let hasRewards:boolean;
     if(this.showBtn ){ 
-      this.h1 = 'My Rewards';
+      // setTimeout(()=>{
+      // hasRewards = (this.databaseService.getRewardsArray().length > 1);
+      //   console.log(hasRewards);       
+      // }, 10);
+      // if(hasRewards){
+        this.h1 = 'My Rewards';
+      // }else{
+      //   this.h1 = 'Welcome '+ this.capitalize(this.databaseService.getName().split(' '));
+      //   this.welcomeText = 'Lets get you started by adding your first reward programme';
+      // }
       this.showRemove = false;
+      // this.routerListener.
     } else if(!this.showBtn){
         if(this.links.length == 4){
           this.h1 = this.capitalize(this.links[2].split('.')) ;
@@ -105,7 +125,7 @@ redirect(url:string):void{
 get getUsername(){
   return this.username;
 }
-get geth1(){
+get heading(){
   return this.h1;
 }
 addReward(){

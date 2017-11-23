@@ -25,14 +25,7 @@ export class DatabaseService {
     /// test approach
 
     rewardsStatus: any[][];
-
-    assign(): void {
-        let Allarray = this.rewards;
-        console.log(Allarray)
-        //  console.log(this.getRewardsArray());
-    }
-
-    constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router, private _location: Location) {
+    constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router, protected _location: Location) {
         this.userRewardsRef = afDB.list('/User Rewards');
         this.rewards = afDB.list('/Rewards').snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -161,55 +154,54 @@ export class DatabaseService {
         }
     }
 
-    addRewards(cardNum: string, email: string, password: string, points: Number, reward:Rewards) {
-        this.afDB.list('/User Rewards/' +reward.Key + '/Rewards/').push(reward.Key).set({ CardNumber: cardNum, Password: password, Points: points, Email: email });
+    addRewards(cardNum: string, email: string, password: string, reward:Rewards) {
+        console.log(this.rewardPath);
+        // console.log(this.rewardKey);
+        this.afDB.list(this.rewardPath).set(reward.Key, { CardNumber: cardNum, Password: password, Points: 0, Email: email });
         alert('Reward added successfully');
         this.router.navigate(['/' + this.pathName(this.getName()) + '/dashboard']);
     }
 
     checkReward(key: string) {
+        // console.log(key);
         let flag = true;
         const users: Observable<any[]> = this.afDB.list('/User Rewards').snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         });
         users.forEach(element => {
             const uid: String = this.afAuth.auth.currentUser.uid;
-            for (let i = 0; i < element.length; i++) {
+            // let e:any;
+            for (let i=0; i<element.length; i++) {
+                // console.log('Element: ', element[i].key);
                 if (element[i].user === uid) {
-                    // tslint:disable-next-line:max-line-length
-                    const rewards: Observable<any[]> = this.afDB.list('/User Rewards/' + element[i].key + '/Rewards').snapshotChanges().map(changes => {
+                    this.rewardPath = '/User Rewards/' + element[i].key + '/Rewards';
+                    // console.log(this.rewardPath);
+                    const rewards: Observable<any[]> = this.afDB.list(this.rewardPath).snapshotChanges().map(changes => {
                         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
                     });
                     rewards.forEach(rewardsElement => {
                         if (flag) {
-                            for (let j = 0; j < rewardsElement.length; j++) {
+                            // let r:any;
+                            for (let j=0; j<rewardsElement.length; j++) {
+                                // console.log('Reward: ', rewardsElement[j].key);
                                 if (rewardsElement[j].key === key) {
-                                    this.rewardPath = '/User Rewards/' + element[i].key + '/Rewards/';
-                                    console.log( this.rewardPath);
                                     flag = false;
                                     break;
                                 }
                             }
                         }
-                        if (flag) {
-                            this.rewardKey = key;
-                        }
-                        // console.log(flag + ' ' + this.rewardKey);
+                        // if (flag) {
+                        //     this.rewardKey = key;
+                        // }
+                        console.log(flag);
+                        this.rewardFlag = flag;
+                        // console.log(this.rewardFlag);
+                        // return flag;
                     });
                 }
             }
         });
-        console.log(this.rewardKey === key);
-
-        if (this.rewardKey === key) {
-            flag = true;
-        } else {
-            flag = false;
-        }
-
-        return flag;
     }
-
     getRewardsArray(): Rewards[] {
         this.rewardsArray = [];
         let key: string;
@@ -346,24 +338,6 @@ export class DatabaseService {
 
     getTheme() {
         return this.theme;
-        // const users: Observable<any[]> = this.userRewardsRef.snapshotChanges().map(changes => {
-        //     return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-        // });
-        // let flag = true;
-        // users.forEach(element => {
-        //     if (flag) {
-        //         for (let i = 0; i < element.length; i++) {
-        //             if (element[i].user === this.getUID()) {
-        //                 this.theme = element[i].theme;
-        //                 console.log(this.theme);
-        //                 flag = false;
-        //                 break;
-        //             }
-        //         }
-        //     }
-        //     console.log(this.theme);
-        //     return this.theme;
-        // });
     }
 
     updateTheme(theme: string) {

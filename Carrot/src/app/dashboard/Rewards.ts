@@ -26,7 +26,6 @@ export class Rewards {
     this.infoUrl = array.infoUrl;
     this.summary = array.summary;
     this.Key = array.key;
-
     // Details
     this.CardNumber = detailsArray.CardNumber;
     this.Email = detailsArray.Email;

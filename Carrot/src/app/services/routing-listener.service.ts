@@ -24,37 +24,19 @@ export class RoutingListenerService {
       Password: 'c@rRoT123',
       Points: '21372',
       Key: 'CJHSakdh23qhHSdhb'
-    
     };
+
     static isActivated :boolean= true;
 
   constructor( private router:Router, private activatedRoute:ActivatedRoute, private databaseService : DatabaseService ){
-   // this.sync();
     RoutingListenerService.isActivated = true;
   }
-
-sync():void{
-    this.router.events.subscribe(()=>{
-      console.log('Carrot application status log. Change to Link ' + this.router.url);
-      // responsible for synchronity
-            if( this.databaseService.checkLoggedIn()){
-              try{
-                this.subscribeParameter();
-                  } catch(errors){
-                 console.log('Status: Not Logged In Yet');
-              }
-      // no exceptions
-            }
-    });
-}
     status():boolean{
-      console.log('status: '+ ( this.provider !== undefined && this.username !== undefined ));
       return this.provider !== undefined && this.username !== undefined;
     }
 
     activeReward(reward:Rewards):void{
     this.reward = reward;
-      console.log( reward);
     }
     activate():void{
   this.databaseService.checkReward(this.reward.Key);  
@@ -67,9 +49,9 @@ subscribeParameter(){
         this.rewardName = parameters.reward;
         this.provider = parameters.provider;
         this.action = parameters.type;
-        console.log( 'Current:   ' + this.provider + ' ' + this.rewardName + ' ' + this.provider + ' ' + this.action );
   });
 }
+
 get getAcivity(){
   return RoutingListenerService.isActivated;
 }

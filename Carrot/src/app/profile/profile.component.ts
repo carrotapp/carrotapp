@@ -1,5 +1,6 @@
 import { DatabaseService } from './../services/database/database.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { ThemesService } from '../services/themes.service';
 
 @Component({
   selector: 'profile',
@@ -14,7 +15,7 @@ export class ProfileComponent implements OnInit {
   theme;
   @Input() img;
 
-  constructor(protected ds: DatabaseService) {
+  constructor(protected ds: DatabaseService, protected themeServ : ThemesService) {
     this.name = ds.getName();
     this.email = ds.getEmail();
     this.theme = ds.getTheme();
@@ -39,6 +40,7 @@ export class ProfileComponent implements OnInit {
     if (this.ds.getTheme() !== this.theme) {
       this.ds.updateTheme(this.theme);
       console.log('Updated: theme');
+      this.themeServ.setTheme( this.ds.getTheme());
     }
   }
 

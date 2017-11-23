@@ -1,12 +1,11 @@
 .moreInfoPanel{
     width: 99.2%;
-    height:83.2%;
+    height:79.2%;
     position: fixed;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 20px;
+    padding: 5px;
     margin-top:5px;
-    border-radius: 6px;
     background-color: #FFFFFF;
 }
 .img{
@@ -16,8 +15,8 @@
     text-overflow: ellipsis;
     overflow: hidden;
     border-radius: 6px;
-    border: 0.2px solid black;
     float: left;
+    background: none;
 }
 .rectangle{
     width: 243px;
@@ -63,10 +62,8 @@
   }
   
 .iframe{
-    border: none;
     width: 99%;
     height:88.2%;
-    background-color: #FFFFFF;
     font-family:'Source Sans Pro', sans-serif;
     font-size: 20px;
     font-weight: 600;

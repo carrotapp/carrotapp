@@ -20,11 +20,7 @@ export class RewardsCredentialsComponent implements OnInit {
   type: string;
   provider: string;
   constructor(  private routerListener: RoutingListenerService, private sanitizer: DomSanitizer, private router:Router, private activatedRoute:ActivatedRoute,private databaseService: DatabaseService ) {
-    if (databaseService.checkLoggedIn()) {
-      console.log('Logged in');
       this.reward = routerListener.getReward;
-      console.log(this.reward);
-    }
   }
 
   ngOnInit() {
@@ -38,16 +34,16 @@ export class RewardsCredentialsComponent implements OnInit {
   getReward() {
     this.assign();
     this.reward = this.databaseService.getReward(this.provider);
+    this.databaseService.checkReward(this.Reward.Key);
     console.log('rere: '+this.reward);
   }
 
   addReward() {
-    if (this.cardNum !== '' && this.email !== '' && this.password !== '') {
-      this.databaseService.checkReward(this.Reward.Key);
-      this.databaseService.addRewards(this.cardNum, this.email, this.password, 0, this.Reward);
-    } else {
-      alert('Please fill out all the fields');
-    }
+    console.log(this.Reward.Key);
+    this.databaseService.checkReward(this.Reward.Key);
+console.log(this.databaseService.rewardPath);
+    this.databaseService.addRewards(this.cardNum, this.email, this.password, this.Reward);
+    this.routerListener.activate();
   }
 
   setReward(reward:Rewards) : void{
