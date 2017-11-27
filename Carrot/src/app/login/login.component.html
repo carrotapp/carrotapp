@@ -49,11 +49,16 @@
 
                         <!--forgot password ends-->
 
-                        <!--login button start-->
-                        <div class="row m-0 justify-content-center">
-                            <custom-button text="Login" (click)="signIn()" class=" col align-self-start"></custom-button>
-                        </div>
-                        <!--login button ends-->
+                                <!--textfields start-->
+                                <div class="row m-0 justify-content-left">
+                                    <input type="email" placeholder="Email" class="textfield" [(ngModel)]="email" required>
+                                   <!--<i class="fa fa-eye peakPassword" aria-hidden="true"></i>-->
+                                     <input type="password" placeholder="Password" class="textfield" [(ngModel)]="password" required>
+                                   <span toggle="password" class="fa fa-fw fa-eye field-icon toggle-password">
+                                   <!-- <input type="checkbox" clss="checkBox" (click)="hideShowPassword()">
+                                    <h6 class="peakPassword">Show password</h6>-->
+                                </div>
+                                <!--textfields end-->
 
                         <!--register button/link start-->
                         <div class="row justify-content-center">
