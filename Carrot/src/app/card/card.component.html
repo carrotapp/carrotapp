@@ -1,16 +1,24 @@
 <div class="card">
     <div class="row">
-        <img [(src)]="reward.Image" [(alt)]="reward.ProviderName" class="img"><br>
-        <div class="header">{{ reward.Name }} <br>
-            <a [routerLink]="['/'+databaseService.pathName(this.username)+'/' + databaseService.pathName(reward.Name)+'/'+type]">FIND OUT MORE</a>
-        </div>
-    </div>
-    <div class="row center" [hidden]="!isHidden">
-        <div class="rectangle">
-            <div class="pill line-right">
-                <h1> Points Earned </h1>
-                <div class="value-points minus-top-10px">
-                    {{ reward.Points }}
+         <img [(src)] ="reward.Image"  [(alt)]="reward.ProviderName" class="img"><br>
+         <div class="header">{{ reward.Name }} <br>
+             <a href="javascript:void(0)"(click)= "moreinfo()" >FIND OUT MORE</a>
+         </div>
+         </div>
+<div class="row center" [hidden]="!isHidden">
+        <div class="rectangle">   
+                     <div class="pill line-right">
+                           <h1>  Points Earned </h1>
+                           <div class="value-points minus-top-10px">
+                                {{ reward.Points }}
+                            </div>
+                     </div>
+                     <div class="pill">
+                            <h1> Rand Value </h1>
+                            <div class="value-zar minus-top-10px">
+                                {{ reward.Points/reward.Ratio }}
+                            </div>
+                     </div>
                 </div>
             </div>
             <div class="pill">
@@ -30,3 +38,4 @@
         </div>
     </div>
 </div>
+</div> 

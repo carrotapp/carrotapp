@@ -15,24 +15,35 @@ export class RewardsCredentialsComponent implements OnInit {
   cardNum = '';
   email = '';
   password = '';
-  key = '';
-
-  constructor(protected databaseService: DatabaseService) {
-    if (databaseService.checkLoggedIn()) {
-      this.key = databaseService.rewardKey;
-    }
+  reward: Rewards;
+  type: string;
+  provider: string;
+  constructor(  private routerListener: RoutingListenerService, private sanitizer: DomSanitizer, private router:Router, private activatedRoute:ActivatedRoute,private databaseService: DatabaseService ) {
+      this.reward = routerListener.getReward;
   }
 
   ngOnInit() {
   }
+  assign() {
+    this.activatedRoute.params.subscribe((parameters: Params) => {
+      this.type = parameters.type;
+      this.provider = parameters.provider;
+    });
+  }
+  getReward() {
+    this.assign();
+    this.reward = this.databaseService.getReward(this.provider);
+    this.databaseService.checkReward(this.Reward.Key);
+    console.log('rere: '+this.reward);
+  }
 
   addReward() {
-    // console.log(this.key);
-    if (this.cardNum !== '' && this.email !== '' && this.password !== '') {
-      this.databaseService.addRewards(this.key, this.cardNum, this.email, this.password);
-    } else {
-      alert('Please fill out all the fields');
-    }
+    console.log(this.Reward.Key);
+    this.databaseService.checkReward(this.Reward.Key);
+console.log(this.databaseService.rewardPath);
+    this.databaseService.addRewards(this.cardNum, this.email, this.password, this.Reward);
+    this.routerListener.activate();
+  }
 
     this.cardNum = '';
     this.email = '';

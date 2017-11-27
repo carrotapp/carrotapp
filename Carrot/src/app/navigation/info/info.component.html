@@ -1,18 +1,18 @@
-<div class="moreInfoPanel center default-shadow">
+<div class="moreInfoPanel center default-shadow"  id="{{theme + '-parent'}}" >
     <div class="row">
-            <div class="selectable rgt" (click)="back()"><div class="close" >Close</div><br></div>
-        <img [src]="reward.Image" alt="rewards programme" class="img">
-        <div *ngIf='reward.Points !== undefined' class="rectangle">
+            <div class="selectable rgt" (click)="back()"><div class="close" id="{{theme + '-parent-item'}}">Close</div><br></div>
+        <img [src]="Reward.Image" alt="rewards programme" class="img">
+        <div *ngIf='Reward.Points !== undefined' class="rectangle">
             <div class="pill line-right">
                 <h1> Points Earned </h1>
                 <div class="value-points">
-                    {{ reward.Points }}
+                    {{ Reward.Points }}
                 </div>
             </div>
             <div class="pill">
                 <h1> Rand Value </h1>
                 <div class="value-zar">
-                    {{reward.Points/reward.Ratio}}
+                    {{Reward.Points/Reward.Ratio}}
                 </div>
             </div>
         </div>
