@@ -1,6 +1,7 @@
-<div class="moreInfoPanel center default-shadow"  id="{{theme + '-parent'}}" >
+<div class="moreInfoPanel center default-shadow" id="{{theme + '-parent'}}">
     <div class="row">
-            <div class="selectable rgt" (click)="back()"><div class="close" id="{{theme + '-parent-item'}}">Close</div><br></div>
+        <div class="selectable rgt" (click)="back()">
+            <div class="close" id="{{theme + '-parent-item'}}">Close</div><br></div>
         <img [src]="Reward.Image" alt="rewards programme" class="img">
         <div *ngIf='Reward.Points !== undefined' class="rectangle">
             <div class="pill line-right">
@@ -24,17 +25,17 @@
     <diV class="displayContent">
         <h3>About:</h3>
         <!-- <iframe [src]="reward.infoUrl" [srcdoc]="reward.summary" alt='text' class="default-shadow" frameborder="0" class="iframe"> </iframe>-->
-        {{ reward.summary }}
+        {{ Reward.summary }}
     </diV>
     <diV class="displayContent">
         <h3>How to Earn points:</h3>
-        {{ reward.how }}
+        {{ Reward.how }}
 
     </diV>
     <diV class="displayContent">
         <h3>Where to Earn points:</h3>
 
-        {{ reward.where }}
+        {{ Reward.where }}
     </diV>
 
 </div>

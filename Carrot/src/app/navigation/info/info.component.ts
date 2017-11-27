@@ -15,6 +15,7 @@ export class InfoComponent implements OnInit {
   // Router Include
   type: string;
   provider: string;
+  // tslint:disable-next-line:max-line-length
   constructor(public dbs: DatabaseService, private route: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer, public themes:ThemesService, private routerListener : RoutingListenerService) {
     if (dbs.checkLoggedIn()) {
       // this.rewards = dbs.getRewardsArray();
@@ -39,7 +40,7 @@ export class InfoComponent implements OnInit {
   back() {
     this.dbs.back();
   }
-  safe( url :string){
+  safe( url: string) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
   get theme(): string {

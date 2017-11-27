@@ -11,81 +11,84 @@ import { DatabaseService } from '../../services/database/database.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
- /*
-   This is a Generic Component that will have titles inserted dynamically
- */
-     //  @Input('heading') 
-      h1:String;
-      // @Input('sub-heading')
-       h2:String;
-      // @Input('text')
-       h3 :string;
-      // @Input('btn-title')
-       btn_title :string;
-      @Input('showBtn') 
-      showBtn:boolean;
-      //
-      welcomeText:string = '';
-      @Input('showRemove') showRemove:boolean;
-      username:string;
-      @Input('add') add:boolean;
-      @Input('action') action:string;
+  /*
+    This is a Generic Component that will have titles inserted dynamically
+  */
+  //  @Input('heading')
+  h1: String;
+  // @Input('sub-heading')
+  h2: String;
+  // @Input('text')
+  h3: string;
+  // @Input('btn-title')
+  btn_title: string;
+  @Input('showBtn')
+  showBtn: boolean;
+  //
+  welcomeText = '';
+  @Input('showRemove') showRemove: boolean;
+  username: string;
+  @Input('add') add: boolean;
+  @Input('action') action: string;
 
-      hasRewards : boolean;
-/* Other Text */
-      date:Date = new Date();
-      links:string[];
-/* type */
-  constructor( public themes: ThemesService,  private route: ActivatedRoute, private router: Router, private routerListener : RoutingListenerService, protected databaseService : DatabaseService ) {
-   this.showBtn = true;
-   this.showRemove = false;
-  //  this.hasRewards = (databaseService.getRewardsArray().length > 0);
-   // Router Link Change Detector
-   router.events.subscribe(()=>{
-   this.subscribe();
-   });
+  hasRewards: boolean;
+  /* Other Text */
+  date: Date = new Date();
+  links: string[];
+  /* type */
+  // tslint:disable-next-line:max-line-length
+  constructor(public themes: ThemesService, private route: ActivatedRoute, private router: Router, private routerListener: RoutingListenerService, protected databaseService: DatabaseService) {
+    this.showBtn = true;
+    this.showRemove = false;
+    //  this.hasRewards = (databaseService.getRewardsArray().length > 0);
+    // Router Link Change Detector
+    router.events.subscribe(() => {
+      this.subscribe();
+    });
   }
-// Encrypter ?
-pathName(name:string):string{
-  return name.toLowerCase().replace(/ /g,'.');
-}
-pathDec(name:string):string{
-  return name.toLowerCase().replace(/./g,' ');
-}
-capitalize( word:string[] ):string{
- for( let i =0; i<word.length;i++  ) word[i] = word[i].charAt(0).toUpperCase() + word[i].substring(1); 
- return word.join(' ');
-}
-get welcome(){
-  return this.welcomeText;
-}
+  // Encrypter ?
+  pathName(name: string): string {
+    return name.toLowerCase().replace(/ /g, '.');
+  }
+  pathDec(name: string): string {
+    return name.toLowerCase().replace(/./g, ' ');
+  }
+  capitalize(word: string[]): string {
+    for (let i = 0; i < word.length; i++) {
+      word[i] = word[i].charAt(0).toUpperCase() + word[i].substring(1);
+    }
+    return word.join(' ');
+  }
+  get welcome() {
+    return this.welcomeText;
+  }
 
-//Init
-subscribe(){
-  this.route.params.subscribe((params: Params) => {
-    this.username = params.username;
-    this.showBtn= this.router.url.toString() === ('/'+ this.getUsername+'/dashboard');
-    this.links = this.router.url.toString().split('/');
-    this.welcomeText = '';
-let hasRewards:boolean;
-    if(this.showBtn ){ 
-      // setTimeout(()=>{
-      // hasRewards = (this.databaseService.getRewardsArray().length > 1);
-      //   console.log(hasRewards);       
-      // }, 10);
-      // if(hasRewards){
+  // Init
+  subscribe() {
+    this.route.params.subscribe((params: Params) => {
+      this.username = params.username;
+      this.showBtn = this.router.url.toString() === ('/' + this.getUsername + '/dashboard');
+      this.links = this.router.url.toString().split('/');
+      this.welcomeText = '';
+      // let hasRewards: boolean;
+      if (this.showBtn) {
+        // setTimeout(()=>{
+        // hasRewards = (this.databaseService.getRewardsArray().length > 1);
+        //   console.log(hasRewards);
+        // }, 10);
+        // if(hasRewards){
         this.h1 = 'My Rewards';
-      // }else{
-      //   this.h1 = 'Welcome '+ this.capitalize(this.databaseService.getName().split(' '));
-      //   this.welcomeText = 'Lets get you started by adding your first reward programme';
-      // }
-      this.showRemove = false;
-      // this.routerListener.
-    } else if(!this.showBtn){
-        if(this.links.length == 4){
-          this.h1 = this.capitalize(this.links[2].split('.')) ;
-          if( this.links[3].toLowerCase() !== 'add'){
-            if(  this.links[2].toLowerCase() === 'add'  ){
+        // }else{
+        //   this.h1 = 'Welcome '+ this.capitalize(this.databaseService.getName().split(' '));
+        //   this.welcomeText = 'Lets get you started by adding your first reward programme';
+        // }
+        this.showRemove = false;
+        // this.routerListener.
+      } else if (!this.showBtn) {
+        if (this.links.length === 4) {
+          this.h1 = this.capitalize(this.links[2].split('.'));
+          if (this.links[3].toLowerCase() !== 'add') {
+            if (this.links[2].toLowerCase() === 'add') {
               this.showRemove = false;
               this.add = false;
               this.h1 = this.capitalize(this.links[3].split('.'));
@@ -93,7 +96,7 @@ let hasRewards:boolean;
               this.showRemove = true;
               this.add = true;
               this.action = 'Remove from my Rewards';
-              console.log('false');
+              // console.log('false');
             }
 
           } else {
@@ -121,49 +124,26 @@ let hasRewards:boolean;
     } else {
       this.showBtn = true;
     }
-  this.router.navigate([url]);
-}
-//getter
-get getUsername(){
-  return this.username;
-}
-get heading(){
-  return this.h1;
-}
-addReward(){
-  if( !this.add ) {
-    alert('Add reward Function!');
-    this.redirect('/'+ this.getUsername+'/dashboard');
-  } else{
-    alert('remove reward Function!');
-    this.redirect('/'+ this.getUsername+'/dashboard');
+    this.router.navigate([url]);
   }
   // getter
   get getUsername() {
     return this.username;
   }
-  get geth1() {
+  get heading() {
     return this.h1;
   }
   addReward() {
     if (!this.add) {
-      // alert('Add reward Function!');
+      alert('Add reward Function!');
       this.redirect('/' + this.getUsername + '/dashboard');
     } else {
-      // alert('Remove reward function!');
-
-      // let d: InfoComponent;
-
-
-      this.ds.removeReward();
-
-      // console.log(d.getRewardKey() + "Remove");
+      this.databaseService.removeReward();
       this.redirect('/' + this.getUsername + '/dashboard');
     }
-  }
 
-}
-get theme(): string {
-  return this.themes.getTheme();
-}
+  }
+  get theme(): string {
+    return this.themes.getTheme();
+  }
 }
