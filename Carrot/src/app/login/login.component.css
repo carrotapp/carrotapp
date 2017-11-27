@@ -128,6 +128,15 @@
         color: #429dff;
         margin-left: 70%;
     }
+    .peakPassword{
+     margin-left: 70%;
+     
+    /*font-family: 'Source Sans Pro', sans-serif;*/
+      
+    }
+    .checkBox{
+         margin-left: 65%;
+    }
     /* google button start*/
     
     .google-label {

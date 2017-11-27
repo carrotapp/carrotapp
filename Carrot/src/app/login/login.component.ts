@@ -9,9 +9,11 @@ import { ThemesService } from '../services/themes.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent {
   email = '';
   password = '';
+  
 
   constructor(public databaseService: DatabaseService, private themes : ThemesService) {
   }
@@ -23,7 +25,8 @@ export class LoginComponent {
   googlePopup() {
     this.databaseService.googlePopup();
   }
-  get theme(): string {
-    return this.themes.getTheme();
-  }
+
+ showPassword(){
+   
+ }
 }
