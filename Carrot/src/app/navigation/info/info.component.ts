@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DatabaseService } from '../../services/database/database.service';
 import { ThemesService } from '../../services/themes.service';
+import { RoutingListenerService } from '../../services/routing-listener.service';
 @Component({
   selector: 'app-info',
   templateUrl: './info.component.html',
@@ -14,8 +15,8 @@ export class InfoComponent implements OnInit {
   // Router Include
   type: string;
   provider: string;
-  reward;
-  constructor(public dbs: DatabaseService, private route: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer, public themes:ThemesService) {
+  // tslint:disable-next-line:max-line-length
+  constructor(public dbs: DatabaseService, private route: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer, public themes:ThemesService, private routerListener : RoutingListenerService) {
     if (dbs.checkLoggedIn()) {
       // this.rewards = dbs.getRewardsArray();
     }
@@ -34,20 +35,19 @@ export class InfoComponent implements OnInit {
     });
   }
   getReward() {
-    this.assign();
-    this.reward = this.dbs.getReward(this.provider);
-    this.dbs.rewardKey = this.reward.Key;
-    // console.log(this.reward);
-    this.reward.infoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.reward.infoUrl);
-    // this.src = this.sanitizer.bypassSecurityTrustResourceUrl(this.reward.infoUrl);
+    this.Reward.infoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.Reward.infoUrl);
   }
   back() {
     this.dbs.back();
   }
-  safe( url :string){
+  safe( url: string) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
   get theme(): string {
     return this.themes.getTheme();
   }
+  get Reward(){
+    return this.routerListener.getReward;
+  }
+
 }

@@ -1,7 +1,8 @@
 import { DatabaseService } from './../services/database/database.service';
 import { Rewards } from './Rewards';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,41 +10,29 @@ import { AngularFireAuth } from 'angularfire2/auth';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   rewards: Rewards[] = [];
   username: string;
   path_username;
   showReward: boolean;
-  
 
 
-  constructor(private ds: DatabaseService) {
+  constructor(private ds: DatabaseService, private afAuth: AngularFireAuth, private router: Router) {
     if (ds.checkLoggedIn()) {
-      this.rewards = this.ds.getRewardsArray();
-      console.log(this.rewards);
-      console.log(this.ds.rewardsArray);
+      this.sync();
     }
-
-    // console.log((this.rewards.length == 0) + "test");
-    // if(this.rewards.length == 0){
-    //  DatabaseService.hasRewards = false;
-    // }else{
-    //   DatabaseService.hasRewards = true;
-    // }
-   // console.log((this.showReward) + "check");
   }
 
-  ngOnInit() {
-    this.path_username = this.ds.pathName(this.ds.getName());
-  }
+  sync() {
+    this.router.events.subscribe(() => {
+      setTimeout(() => {
+        this.rewards = this.ds.getRewardsArray();
+      }, 10);
+      // console.log(this.rewards);
 
-  // getter
-  get pathName() {
-    return this.path_username;
+      // console.log(this.rewards.length);
+      // this.path_username = this.ds.pathName(this.ds.getName());
+    });
   }
-
-// get hasRewards(){
-//   return DatabaseService.hasRewards;
-// }
 
 }

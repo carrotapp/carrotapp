@@ -39,6 +39,7 @@
         letter-spacing: -0.1px;
         text-align: left;
         color: #489fff;
+        cursor: pointer;
         text-transform: uppercase;
     }
     .rectangle{
