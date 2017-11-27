@@ -1,20 +1,23 @@
+<div id="{{theme+'-parent'}}">
     <div class="row">
         <div class="col-md-6">
-             <div class="h1"> {{ geth1  }} </div>
+            <div class="h1" id="{{theme+'-parent-item'}}"> {{ heading }} </div>
         </div>
-    <div class="col-md-6 right">
-          
-                <button class="btn-add-carrot selectable"  (click)="redirect('/'+getUsername+'/rewards')"  [hidden]="!showBtn" > 
+        <div class="col-md-6 right">
+
+            <button class="btn-add-carrot selectable" (click)="redirect('/'+getUsername+'/rewards')" [hidden]="!showBtn"> 
                     <div class="btn-text fa fa-plus"></div>
                     <div class="btn-text-right"  >add rewards</div>
                 </button>
-                        
-                <button class="selectable"  (click)="addReward()"  [hidden]="!showRemove" [class.btn-remove-carrot]=" add " [class.btn-add-carrot]="!add " > 
+
+            <button class="selectable" (click)="addReward()" [hidden]="!showRemove" [class.btn-remove-carrot]=" add " [class.btn-add-carrot]="!add "> 
                     <div class="btn-text fa " [class.fa-minus]=" add " [class.fa-plus]=" !add "></div>
                     <div class="btn-text-right"  >{{action}}</div>
                 </button>
 
+        </div>
     </div>
-    </div>   
-      <div class="h2">{{ date |  date: 'dd MMMM yyyy' }}</div>
-           <div class="shape"></div>
+    <div class="h2" id="{{theme+'-parent-item'}}">{{ welcome }}</div>
+    <div class="h2" id="{{theme+'-parent-item'}}">{{ date | date: 'dd MMMM yyyy' }}</div>
+    <div class="shape"></div>
+</div>
