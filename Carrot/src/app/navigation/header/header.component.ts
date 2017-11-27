@@ -22,8 +22,10 @@ export class HeaderComponent {
   h3: string;
   // @Input('btn-title')
   btn_title: string;
+  icon: string; 
   @Input('showBtn')
   showBtn: boolean;
+  showAdd: boolean;
   //
   welcomeText = '';
   @Input('showRemove') showRemove: boolean;
@@ -40,12 +42,49 @@ export class HeaderComponent {
   constructor(public themes: ThemesService, private route: ActivatedRoute, private router: Router, private routerListener: RoutingListenerService, protected databaseService: DatabaseService) {
     this.showBtn = true;
     this.showRemove = false;
+    this.showAdd = true;
     //  this.hasRewards = (databaseService.getRewardsArray().length > 0);
     // Router Link Change Detector
     router.events.subscribe(() => {
       this.subscribe();
     });
+
+    // if(this.router.url.toString().includes('/add')){ 
+    //   this.showBtn = true;
+    // } else { 
+    //   this.showBtn = false;
+    // } 
+
+    
+    console.log(this.router.url.toString()); 
+
+    console.log('/' + this.getUsername + '/dashboard'); 
+    if(this.router.url.toString().includes('/dashboard')){ 
+      this.btn_title = "add reward"; 
+      this.icon = "fa-plus"; 
+    } else if (this.router.url.toString().includes('/view')){
+      this.showAdd = false;
+    } else { 
+      // this.showBtn = false;
+      this.btn_title = "dashboard"; 
+      this.icon = "fa-chevron-left"; 
+    } 
   }
+
+  btnTitle(){ 
+    
+       if(this.router.url.toString().includes('/dashboard')){ 
+         this.redirect('/'+this.getUsername+'/rewards'); 
+         this.btn_title = "dashboard"; 
+         this.icon = "fa-chevron-left"; 
+       } else { 
+         this.redirect('/'+this.getUsername+'/dashboard'); 
+         this.btn_title = "add reward"; 
+         this.icon = "fa-plus"; 
+       } 
+        
+     } 
+
   // Encrypter ?
   pathName(name: string): string {
     return name.toLowerCase().replace(/ /g, '.');
@@ -96,6 +135,7 @@ export class HeaderComponent {
               this.showRemove = true;
               this.add = true;
               this.action = 'Remove from my Rewards';
+              this.showAdd = false;
               // console.log('false');
             }
 
@@ -137,9 +177,12 @@ export class HeaderComponent {
     if (!this.add) {
       alert('Add reward Function!');
       this.redirect('/' + this.getUsername + '/dashboard');
+      this.btn_title = "add reward"; 
+      this.icon = "fa-plus"; 
     } else {
       this.databaseService.removeReward();
       this.redirect('/' + this.getUsername + '/dashboard');
+      this.showAdd = true;
     }
 
   }

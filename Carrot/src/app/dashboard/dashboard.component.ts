@@ -19,23 +19,8 @@ export class DashboardComponent {
 
   constructor(private ds: DatabaseService, private afAuth: AngularFireAuth, private router: Router) {
     if (ds.checkLoggedIn()) {
-<<<<<<< HEAD
-      ds.rewardsArray = [];
-      this.rewards = [];
-      ds.getRewardsArray();
-      }
-
-    // console.log((this.rewards.length == 0) + "test");
-    // if(this.rewards.length == 0){
-    //  DatabaseService.hasRewards = false;
-    // }else{
-    //   DatabaseService.hasRewards = true;
-    // }
-   // console.log((this.showReward) + "check");
-=======
       this.sync();
     }
->>>>>>> Dev-Lihle&Ernst
   }
 
   sync() {
