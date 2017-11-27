@@ -3,6 +3,8 @@ import { InfoComponent } from './../info/info.component';
 import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ThemesService } from '../../services/themes.service';
+import { RoutingListenerService } from '../../services/routing-listener.service';
+import { DatabaseService } from '../../services/database/database.service';
 
 @Component({
   selector: 'app-header',
@@ -24,17 +26,22 @@ export class HeaderComponent {
   @Input('showBtn')
   showBtn: boolean;
   //
+  welcomeText = '';
   @Input('showRemove') showRemove: boolean;
   username: string;
   @Input('add') add: boolean;
   @Input('action') action: string;
+
+  hasRewards: boolean;
   /* Other Text */
   date: Date = new Date();
   links: string[];
   /* type */
-  constructor(private ds: DatabaseService, private route: ActivatedRoute, private router: Router) {
+  // tslint:disable-next-line:max-line-length
+  constructor(public themes: ThemesService, private route: ActivatedRoute, private router: Router, private routerListener: RoutingListenerService, protected databaseService: DatabaseService) {
     this.showBtn = true;
     this.showRemove = false;
+    //  this.hasRewards = (databaseService.getRewardsArray().length > 0);
     // Router Link Change Detector
     router.events.subscribe(() => {
       this.subscribe();
@@ -48,8 +55,13 @@ export class HeaderComponent {
     return name.toLowerCase().replace(/./g, ' ');
   }
   capitalize(word: string[]): string {
-    for (let i = 0; i < word.length; i++) { word[i] = word[i].charAt(0).toUpperCase() + word[i].substring(1); }
+    for (let i = 0; i < word.length; i++) {
+      word[i] = word[i].charAt(0).toUpperCase() + word[i].substring(1);
+    }
     return word.join(' ');
+  }
+  get welcome() {
+    return this.welcomeText;
   }
 
   // Init
@@ -58,10 +70,21 @@ export class HeaderComponent {
       this.username = params.username;
       this.showBtn = this.router.url.toString() === ('/' + this.getUsername + '/dashboard');
       this.links = this.router.url.toString().split('/');
-
+      this.welcomeText = '';
+      // let hasRewards: boolean;
       if (this.showBtn) {
+        // setTimeout(()=>{
+        // hasRewards = (this.databaseService.getRewardsArray().length > 1);
+        //   console.log(hasRewards);
+        // }, 10);
+        // if(hasRewards){
         this.h1 = 'My Rewards';
+        // }else{
+        //   this.h1 = 'Welcome '+ this.capitalize(this.databaseService.getName().split(' '));
+        //   this.welcomeText = 'Lets get you started by adding your first reward programme';
+        // }
         this.showRemove = false;
+        // this.routerListener.
       } else if (!this.showBtn) {
         if (this.links.length === 4) {
           this.h1 = this.capitalize(this.links[2].split('.'));
@@ -74,7 +97,7 @@ export class HeaderComponent {
               this.showRemove = true;
               this.add = true;
               this.action = 'Remove from my Rewards';
-              console.log('false');
+              // console.log('false');
             }
 
           } else {
@@ -108,24 +131,20 @@ export class HeaderComponent {
   get getUsername() {
     return this.username;
   }
-  get geth1() {
+  get heading() {
     return this.h1;
   }
   addReward() {
     if (!this.add) {
-      // alert('Add reward Function!');
+      alert('Add reward Function!');
       this.redirect('/' + this.getUsername + '/dashboard');
     } else {
-      // alert('Remove reward function!');
-
-      // let d: InfoComponent;
-
-
-      this.ds.removeReward();
-
-      // console.log(d.getRewardKey() + "Remove");
+      this.databaseService.removeReward();
       this.redirect('/' + this.getUsername + '/dashboard');
     }
-  }
 
+  }
+  get theme(): string {
+    return this.themes.getTheme();
+  }
 }

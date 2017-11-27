@@ -12,21 +12,11 @@ import { Rewards } from '../dashboard/Rewards';
 
 export class RewardsComponent {
   data: Observable<any[]>;
-  username: string;
-  path_username;
 
   constructor(private databaseService: DatabaseService) {
     if (databaseService.checkLoggedIn()) {
       this.data = databaseService.getRewards();
-      this.path_username = databaseService.pathName(databaseService.getName());
     }
   }
 
-  addRewards(key: string) {
-    this.databaseService.checkReward(key);
-  }
-  // getter
-  get pathName() {
-    return this.path_username;
-  }
 }
