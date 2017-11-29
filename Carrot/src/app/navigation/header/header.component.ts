@@ -75,11 +75,11 @@ export class HeaderComponent {
   btnTitle(){ 
     
        if(this.router.url.toString().includes('/dashboard')){ 
-         this.redirect('/'+this.getUsername+'/rewards'); 
+         this.redirect('/main/rewards'); 
          this.btn_title = "dashboard"; 
          this.icon = "fa-chevron-left"; 
        } else { 
-         this.redirect('/'+this.getUsername+'/dashboard'); 
+         this.redirect('/main/dashboard'); 
          this.btn_title = "add reward"; 
          this.icon = "fa-plus"; 
        } 
@@ -176,13 +176,14 @@ export class HeaderComponent {
   }
   addReward() {
     if (!this.add) {
-      alert('Add reward Function!');
-      this.redirect('/' + this.getUsername + '/dashboard');
+      // alert('Add reward Function!');
+      // this.redirect('/' + this.getUsername + '/dashboard');
+      this.routerListener.activate();
       this.btn_title = "add reward"; 
       this.icon = "fa-plus"; 
     } else {
       this.databaseService.removeReward();
-      this.redirect('/' + this.getUsername + '/dashboard');
+      // this.redirect('/' + this.getUsername + '/dashboard');
       this.showAdd = true;
     }
 
