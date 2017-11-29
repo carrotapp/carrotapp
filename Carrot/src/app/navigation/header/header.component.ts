@@ -42,6 +42,7 @@ export class HeaderComponent {
     this.showRemove = false;
     //  this.hasRewards = (databaseService.getRewardsArray().length > 0);
     // Router Link Change Detector
+    this.subscribe();
     router.events.subscribe(() => {
       this.subscribe();
     });
@@ -67,7 +68,7 @@ export class HeaderComponent {
   subscribe() {
     this.route.params.subscribe((params: Params) => {
       this.username = params.username;
-      this.showBtn = this.router.url.toString() === ('/' + this.getUsername + '/dashboard');
+      this.showBtn = this.router.url.includes('dashboard');
       this.links = this.router.url.toString().split('/');
       this.welcomeText = '';
       // let hasRewards: boolean;
@@ -105,7 +106,7 @@ export class HeaderComponent {
             this.action = 'add Reward';
           }
         } else if (this.router.url.toString() === '/404') {
-          this.redirect('/' + this.getUsername + '/dashboard');
+          this.redirect('/main/dashboard');
           this.showRemove = false;
           this.h1 = 'Oooopsss, Something went wrong!!!';
         } else {
@@ -113,7 +114,7 @@ export class HeaderComponent {
           this.showRemove = false;
         }
       } else {
-        this.redirect('/' + this.getUsername + '/dashboard');
+        this.redirect('/main/dashboard');
       }
     });
   }
@@ -135,11 +136,11 @@ export class HeaderComponent {
   }
   addReward() {
     if (!this.add) {
-      alert('Add reward Function!');
-      this.redirect('/' + this.getUsername + '/dashboard');
+      this.routerListener.activate();
+      // this.redirect('/main/dashboard');
     } else {
       this.databaseService.removeReward();
-      this.redirect('/' + this.getUsername + '/dashboard');
+      // this.redirect('/main/dashboard');
     }
 
   }

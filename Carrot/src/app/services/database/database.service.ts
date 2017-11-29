@@ -1,3 +1,5 @@
+import { ThemesService } from '../themes.service';
+import { Subscription } from 'rxjs/Rx';
 import { Rewards } from './../../dashboard/Rewards';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
@@ -21,11 +23,12 @@ export class DatabaseService {
     theme: string;
     reward: Rewards;
     rewardFlag: boolean;
+    initialized = false;
 
     /// test approach
 
     rewardsStatus: any[][];
-    constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router, protected _location: Location) {
+    constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router, protected _location: Location, protected ts: ThemesService) {
         this.userRewardsRef = afDB.list('/User Rewards');
         this.rewards = afDB.list('/Rewards').snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -38,23 +41,8 @@ export class DatabaseService {
         } else {
             this.afAuth.auth.signInWithEmailAndPassword(email, password).then(
                 (success) => {
-                    this.photoUrl = this.afAuth.auth.currentUser.photoURL;
-                    const user = this.userRewardsRef.snapshotChanges().map(changes => {
-                        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-                    });
-                    let flag = true;
-                    user.forEach(element => {
-                        if (flag) {
-                            for (let i = 0; i < element.length; i++) {
-                                if (element[i].user === this.getUID()) {
-                                    this.theme = element[i].theme;
-                                    flag = false;
-                                    break;
-                                }
-                            }
-                        }
-                    });
-                    this.router.navigate([this.pathName(this.getName()) + '/dashboard']);
+                    this.initializeData();
+                    this.router.navigate(['/main/dashboard']);
                 }).catch(
                 (err) => {
                     alert('Error: ' + err.message);
@@ -84,8 +72,8 @@ export class DatabaseService {
                         this.pushToUserRewards(this.getUID(), this.getName());
                         // this.router.navigate(['/' + this.pathName(this.getName()) + '/rewards']);
                     } else {
-                        this.photoUrl = this.afAuth.auth.currentUser.photoURL;
-                        this.router.navigate(['/' + this.pathName(this.getName()) + '/dashboard']);
+                        this.initializeData();
+                        this.router.navigate(['/main/dashboard']);
                     }
                 });
             }).catch(
@@ -99,7 +87,7 @@ export class DatabaseService {
             user: uid,
             theme: 'default'
         });
-        this.photoUrl = this.afAuth.auth.currentUser.photoURL;
+        this.initializeData();
         const user = this.userRewardsRef.snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         });
@@ -110,7 +98,7 @@ export class DatabaseService {
                     if (element[i].user === this.getUID()) {
                         this.theme = element[i].theme;
                         flag = false;
-                        this.router.navigate(['/' + this.pathName(username) + '/rewards']);
+                        this.router.navigate(['/main/rewards']);
                         break;
                     }
                 }
@@ -135,23 +123,9 @@ export class DatabaseService {
     }
 
     logout() {
-        this.router.navigate(['/']);
+        this.ts.setTheme('defualt');
         this.afAuth.auth.signOut();
-    }
-
-    checkLoggedIn() {
-        try {
-            if (this.getUID() === null) {
-                console.log('null');
-            } else {
-                return true;
-            }
-        } catch (error) {
-            if (error = 'TypeError: Cannot read property "uid" of null') {
-                alert('You are not logged in');
-                this.router.navigate(['/']);
-            }
-        }
+        this.router.navigate(['/login']);
     }
 
     addRewards(cardNum: string, email: string, password: string, reward) {
@@ -160,7 +134,7 @@ export class DatabaseService {
         console.log(cardNum, email, password, reward);
         this.afDB.list(this.rewardPath).set(reward.key, { CardNumber: cardNum, Password: password, Points: 0, Email: email });
         alert('Reward added successfully');
-        this.router.navigate(['/' + this.pathName(this.getName()) + '/dashboard']);
+        this.router.navigate(['/main/dashboard']);
     }
 
     checkReward(key: string) {
@@ -203,13 +177,14 @@ export class DatabaseService {
         });
     }
     getRewardsArray(): Rewards[] {
-        this.rewardsArray = [];
+        // this.rewardsArray = [];
         let key: string;
         const uid: string = this.getUID();
         let path: string;
         this.userRewards = this.userRewardsRef.snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         });
+        this.rewardsArray = [];
         this.userRewards.forEach(element => {
             for (let i = 0; i < element.length; i++) {
                 if (element[i].user === uid) {
@@ -413,6 +388,23 @@ export class DatabaseService {
             });
         }
 
+    }
+
+    initializeData() {
+        this.initialized = true;
+        this.photoUrl = this.afAuth.auth.currentUser.photoURL;
+        const user = this.userRewardsRef.snapshotChanges().map(changes => {
+            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        });
+
+        user.subscribe(res => {
+            res.map(response=>{
+                if(response.user === this.getUID()) {
+                    this.theme = response.theme;
+                    this.ts.setTheme(response.theme);
+                }
+            });
+        });
     }
 
 }

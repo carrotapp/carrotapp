@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 import { ThemesService } from '../services/themes.service';
 import { HeaderComponent } from '../navigation/header/header.component';
@@ -24,11 +25,7 @@ export class CardComponent implements OnInit {
   // data: Rewards[];
   // userRewards: Rewards[];
 
-  constructor(private routerListener: RoutingListenerService, public themes: ThemesService, protected databaseService: DatabaseService) {
-    if (databaseService.checkLoggedIn()) {
-      // databaseService.getAllRewards();
-    }
-  }
+  constructor(private routerListener: RoutingListenerService, public themes: ThemesService, protected databaseService: DatabaseService, protected router: Router) { }
 
   ngOnInit() {
     // this.userRewards = this.databaseService.getRewardsArray();
@@ -67,6 +64,7 @@ export class CardComponent implements OnInit {
     // console.log(this.reward.Name);
     this.routerListener.activeReward(this.reward);
     // tslint:disable-next-line:max-line-length
-    this.databaseService.redirect('/' + this.databaseService.pathName(this.databaseService.getName()) + '/' + this.databaseService.pathName(this.reward.Name) + '/' + this.type);
+    // this.databaseService.redirect('/' + this.databaseService.pathName(this.databaseService.getName()) + '/' + this.databaseService.pathName(this.reward.Name) + '/' + this.type);
+    this.router.navigate(['/main/info']);
   }
 }

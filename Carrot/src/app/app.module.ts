@@ -1,3 +1,4 @@
+import { AuthGuard } from './services/authGuard.service';
 import { RoutingListenerService } from './services/routing-listener.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DatabaseService } from './services/database/database.service';
@@ -75,7 +76,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [DatabaseService, NavigationTogglesService, ThemesService, RoutingListenerService], // Dependancy Injection
+  providers: [DatabaseService, NavigationTogglesService, ThemesService, RoutingListenerService, AuthGuard], // Dependancy Injection
   bootstrap: [AppComponent]
 })
 export class AppModule { }

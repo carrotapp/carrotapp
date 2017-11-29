@@ -7,12 +7,18 @@ export class ThemesService {
   static theme: string; // this is the theme that will be broadcasted
   themes: string[]; // list of available themes
 
-  constructor(protected ds: DatabaseService) {
+  constructor() {
     this.themes = ['default', 'dark', 'blind', 'fun'];
-     console.log(ds.getTheme());
- this.setTheme(ds.getTheme())
-  
-    console.log( ThemesService.theme   )
+    ThemesService.theme = 'default';
+    // if (this.isThemeExists(ds.theme)) {
+    //   ThemesService.theme = ds.theme;
+    // } else {
+    //   ThemesService.theme = this.themes[0];
+    // }
+    // setTimeout(() => {
+    //   console.log(ThemesService.theme);
+    //   console.log(ds.theme);
+    // }, 1000);
   }
 
   setTheme(theme): void {
