@@ -24,6 +24,7 @@ export class DatabaseService {
     reward: Rewards;
     rewardFlag: boolean;
     initialized = false;
+    loggedIn: boolean;
 
     /// test approach
 
@@ -124,8 +125,9 @@ export class DatabaseService {
 
     logout() {
         this.ts.setTheme('defualt');
-        this.afAuth.auth.signOut();
-        this.router.navigate(['/login']);
+        this.afAuth.auth.signOut().then(()=>{
+            this.router.navigate(['/login']);
+        });
     }
 
     addRewards(cardNum: string, email: string, password: string, reward) {
@@ -133,8 +135,11 @@ export class DatabaseService {
         // console.log(this.rewardKey);
         console.log(cardNum, email, password, reward);
         this.afDB.list(this.rewardPath).set(reward.key, { CardNumber: cardNum, Password: password, Points: 0, Email: email });
+        this.rewardsArray = [];
         alert('Reward added successfully');
-        this.router.navigate(['/main/dashboard']);
+        setTimeout(()=>{
+            this.router.navigate(['/main/dashboard']);
+        }, 200);
     }
 
     checkReward(key: string) {
@@ -217,6 +222,7 @@ export class DatabaseService {
                     });
                 });
             }
+            console.log(this.rewardsArray);
         });
     }
 

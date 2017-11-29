@@ -3,7 +3,7 @@ import { CanActivate, Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { DatabaseService } from './database/database.service';
+import { DatabaseService } from '../database/database.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {

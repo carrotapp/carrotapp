@@ -1,4 +1,4 @@
-import { AuthGuard } from './services/authGuard.service';
+import { AuthGuard } from './services/guards/authGuard.service';
 import { RoutingListenerService } from './services/routing-listener.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DatabaseService } from './services/database/database.service';

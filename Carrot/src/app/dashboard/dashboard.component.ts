@@ -19,12 +19,13 @@ export class DashboardComponent implements OnInit {
 
 
   constructor(protected ds: DatabaseService, private afAuth: AngularFireAuth, private router: Router) {
-    this.ds.rewardsArray = [];
-    this.rewards = [];
-    this.rewards = this.ds.getRewardsArray();
+    
   }
 
   ngOnInit() {
+    this.ds.rewardsArray = [];
+    this.rewards = [];
+    this.rewards = this.ds.getRewardsArray();
     // console.log(this.ds.theme);
     // this.sync();
   }

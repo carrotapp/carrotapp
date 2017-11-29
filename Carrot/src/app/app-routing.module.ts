@@ -12,7 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PanelComponent } from './navigation/panel/panel.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { InfoComponent } from './navigation/info/info.component';
-import { AuthGuard } from './services/authGuard.service';
+import { AuthGuard } from './services/guards/authGuard.service';
 
 const routes: Routes = [
     { path: '', redirectTo: '/main/dashboard', pathMatch: 'full' },
