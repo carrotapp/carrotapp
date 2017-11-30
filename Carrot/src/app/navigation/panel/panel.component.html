@@ -1,4 +1,7 @@
-<app-navbar></app-navbar>
-<div class="panel"  id="{{theme + '-parent'}}">
-    <app-main-panel></app-main-panel>
+<div *ngIf='ds.theme === undefined'>Loading</div>
+<div *ngIf='ds.theme !== undefined' id="{{theme + '-master'}}">
+    <app-navbar></app-navbar>
+    <div class="panel" id="{{theme + '-parent'}}">
+        <app-main-panel></app-main-panel>
+    </div>
 </div>

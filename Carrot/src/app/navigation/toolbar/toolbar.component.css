@@ -1,54 +1,56 @@
-.show{
+.show {
     display: block;
-    width: 50px; 
-    top:0;
+    width: 50px;
+    top: 0;
     margin-top: 50px;
     margin-left: 0.5px;
-    height:inherit;
+    height: inherit;
     background-color: #ffffff;
     height: 99%;
     float: left;
     color: #1D1F20;
     overflow-x: hidden;
-    overflow-y:  auto;
+    overflow-y: auto;
     position: fixed;
-    z-index: 0  ;
+    z-index: 0;
     right: 0;
     border: none;
     opacity: .8;
-    }
-    .default{
-        display: none;
-        width: 1px;
-        height:93%;
-        border-right: 2px solid #ffffff;
-        margin-top: 55px;
-        overflow: hidden;
-        float: left;
-        background-color: #ffffff;
-        box-shadow: none;
-        position: fixed;
-        z-index: 1;
-        right: 0;
-        opacity: 0;
-    }
-        
-    .showbox{
-        padding: 10px;
-        width: 100%;
-        color: #ffffff;
-        display: block;
-    }
-    .defaultbox{
-        display: none
-    }
-    .box{
-        padding: 5px;
-    }
-    .profile-image{
-        border-radius: 100%;
-        width:85%;    
-        background-color: #DADADA;
-    }
+}
 
-	
+.default {
+    display: none;
+    width: 1px;
+    height: 93%;
+    border-right: 2px solid #ffffff;
+    margin-top: 55px;
+    /* overflow: hidden; */
+    float: left;
+    background-color: #ffffff;
+    box-shadow: none;
+    position: fixed;
+    z-index: 1;
+    right: 0;
+    opacity: 0;
+}
+
+.showbox {
+    padding: 10px;
+    width: 100%;
+    color: #ffffff;
+    display: block;
+}
+
+.defaultbox {
+    display: none
+}
+
+.box {
+    padding: 5px;
+}
+
+.profile-image {
+    border-radius: 100%;
+    width: 85%;
+    background-color: #DADADA;
+}

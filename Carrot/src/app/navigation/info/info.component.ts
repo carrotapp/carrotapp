@@ -17,10 +17,6 @@ export class InfoComponent implements OnInit {
   provider: string;
   // tslint:disable-next-line:max-line-length
   constructor(public dbs: DatabaseService, private route: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer, public themes:ThemesService, private routerListener : RoutingListenerService) {
-    if (dbs.checkLoggedIn()) {
-      // this.rewards = dbs.getRewardsArray();
-    }
-
     // this.getRewardKey();
   }
 
@@ -28,12 +24,12 @@ export class InfoComponent implements OnInit {
     this.getReward();
   }
 
-  assign() {
-    this.route.params.subscribe((parameters: Params) => {
-      this.type = parameters.type;
-      this.provider = parameters.provider;
-    });
-  }
+  // assign() {
+  //   this.route.params.subscribe((parameters: Params) => {
+  //     this.type = parameters.type;
+  //     this.provider = parameters.provider;
+  //   });
+  // }
   getReward() {
     this.Reward.infoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.Reward.infoUrl);
   }

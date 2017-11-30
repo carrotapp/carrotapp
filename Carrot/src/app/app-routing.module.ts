@@ -12,29 +12,29 @@ import { RouterModule, Routes } from '@angular/router';
 import { PanelComponent } from './navigation/panel/panel.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { InfoComponent } from './navigation/info/info.component';
+import { AuthGuard } from './services/guards/authGuard.service';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: '', redirectTo: '/main/dashboard', pathMatch: 'full' },
     // This is the new router outlet outline... In  progress
     { path: 'login', component: LoginComponent }, // Parent of the Parent Hierachy
     { path: 'forgotPassword', component: ForgotPasswordComponent },
     { path: 'confirmPassword', component: ConfirmPasswordComponent },
     { path: 'register', component: RegistrationComponent }, // Parent of the Parent Hierachy
     {
-        path: ':username', component: PanelComponent, children: [
-            { path: 'rewards', component: RewardsComponent },
-            { path: 'dashboard', component: DashboardComponent },
-            { path: 'credentials', component: RewardsCredentialsComponent },
+        path: 'main', component: PanelComponent, canActivate: [AuthGuard], children: [
+            { path: 'rewards', component: RewardsComponent, canActivate: [AuthGuard] },
+            { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+            { path: 'credentials', component: RewardsCredentialsComponent, canActivate: [AuthGuard] },
             // { path: 'add/:reward', component: RewardsCredentialsComponent },
-            { path: ':provider/:type', component: InfoComponent },
+            { path: 'info', component: InfoComponent, canActivate: [AuthGuard] },
             // { path: 'add/:', component: ConfirmPasswordComponent },
             { path: '404', component: NotFoundComponent },
-            { path: '**', redirectTo: 'error/404' }
+            { path: '**', redirectTo: '/404' },
         ]
     },
-
     { path: '404', component: NotFoundComponent },
-    { path: '**', redirectTo: '404' },
+    { path: '**', redirectTo: '/404' },
 ];
 
 @NgModule({

@@ -14,9 +14,7 @@ export class RewardsComponent {
   data: Observable<any[]>;
 
   constructor(private databaseService: DatabaseService) {
-    if (databaseService.checkLoggedIn()) {
-      this.data = databaseService.getRewards();
-    }
+    this.data = databaseService.getRewards();
   }
 
 }

@@ -22,8 +22,10 @@ export class HeaderComponent {
   h3: string;
   // @Input('btn-title')
   btn_title: string;
+  icon: string; 
   @Input('showBtn')
   showBtn: boolean;
+  showAdd: boolean;
   //
   welcomeText = '';
   @Input('showRemove') showRemove: boolean;
@@ -40,12 +42,50 @@ export class HeaderComponent {
   constructor(public themes: ThemesService, private route: ActivatedRoute, private router: Router, private routerListener: RoutingListenerService, protected databaseService: DatabaseService) {
     this.showBtn = true;
     this.showRemove = false;
+    this.showAdd = true;
     //  this.hasRewards = (databaseService.getRewardsArray().length > 0);
     // Router Link Change Detector
+    this.subscribe();
     router.events.subscribe(() => {
       this.subscribe();
     });
+
+    // if(this.router.url.toString().includes('/add')){ 
+    //   this.showBtn = true;
+    // } else { 
+    //   this.showBtn = false;
+    // } 
+
+    
+    console.log(this.router.url.toString()); 
+
+    console.log('/' + this.getUsername + '/dashboard'); 
+    if(this.router.url.toString().includes('/dashboard')){ 
+      this.btn_title = "add reward"; 
+      this.icon = "fa-plus"; 
+    } else if (this.router.url.toString().includes('/view')){
+      this.showAdd = false;
+    } else { 
+      // this.showBtn = false;
+      this.btn_title = "dashboard"; 
+      this.icon = "fa-chevron-left"; 
+    } 
   }
+
+  btnTitle(){ 
+    
+       if(this.router.url.toString().includes('/dashboard')){ 
+         this.redirect('/main/rewards'); 
+         this.btn_title = "dashboard"; 
+         this.icon = "fa-chevron-left"; 
+       } else { 
+         this.redirect('/main/dashboard'); 
+         this.btn_title = "add reward"; 
+         this.icon = "fa-plus"; 
+       } 
+        
+     } 
+
   // Encrypter ?
   pathName(name: string): string {
     return name.toLowerCase().replace(/ /g, '.');
@@ -67,7 +107,7 @@ export class HeaderComponent {
   subscribe() {
     this.route.params.subscribe((params: Params) => {
       this.username = params.username;
-      this.showBtn = this.router.url.toString() === ('/' + this.getUsername + '/dashboard');
+      this.showBtn = this.router.url.includes('dashboard');
       this.links = this.router.url.toString().split('/');
       this.welcomeText = '';
       // let hasRewards: boolean;
@@ -96,6 +136,7 @@ export class HeaderComponent {
               this.showRemove = true;
               this.add = true;
               this.action = 'Remove from my Rewards';
+              this.showAdd = false;
               // console.log('false');
             }
 
@@ -105,7 +146,7 @@ export class HeaderComponent {
             this.action = 'add Reward';
           }
         } else if (this.router.url.toString() === '/404') {
-          this.redirect('/' + this.getUsername + '/dashboard');
+          this.redirect('/main/dashboard');
           this.showRemove = false;
           this.h1 = 'Oooopsss, Something went wrong!!!';
         } else {
@@ -113,7 +154,7 @@ export class HeaderComponent {
           this.showRemove = false;
         }
       } else {
-        this.redirect('/' + this.getUsername + '/dashboard');
+        this.redirect('/main/dashboard');
       }
     });
   }
@@ -135,11 +176,15 @@ export class HeaderComponent {
   }
   addReward() {
     if (!this.add) {
-      alert('Add reward Function!');
-      this.redirect('/' + this.getUsername + '/dashboard');
+      // alert('Add reward Function!');
+      // this.redirect('/' + this.getUsername + '/dashboard');
+      this.routerListener.activate();
+      this.btn_title = "add reward"; 
+      this.icon = "fa-plus"; 
     } else {
       this.databaseService.removeReward();
-      this.redirect('/' + this.getUsername + '/dashboard');
+      // this.redirect('/' + this.getUsername + '/dashboard');
+      this.showAdd = true;
     }
 
   }
