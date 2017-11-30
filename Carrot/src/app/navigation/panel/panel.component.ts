@@ -11,7 +11,7 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 })
 export class PanelComponent implements OnInit {
 
-  constructor(public themes: ThemesService, protected ds: DatabaseService) {
+  constructor(public themes: ThemesService, public ds: DatabaseService) {
 
   }
 

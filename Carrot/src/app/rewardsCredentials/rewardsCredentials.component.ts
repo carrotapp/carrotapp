@@ -20,7 +20,7 @@ export class RewardsCredentialsComponent implements OnInit {
   type: string;
   provider: string;
   // tslint:disable-next-line:max-line-length
-  constructor(protected routerListener: RoutingListenerService, private sanitizer: DomSanitizer, private router: Router, private activatedRoute: ActivatedRoute, private databaseService: DatabaseService) {
+  constructor(public routerListener: RoutingListenerService, private sanitizer: DomSanitizer, private router: Router, private activatedRoute: ActivatedRoute, private databaseService: DatabaseService) {
     this.reward = routerListener.getReward;
   }
 

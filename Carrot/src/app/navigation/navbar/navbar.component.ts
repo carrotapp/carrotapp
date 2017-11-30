@@ -16,7 +16,7 @@ export class NavbarComponent {
   avatar: string;
 
   // tslint:disable-next-line:max-line-length
-  constructor(protected ds: DatabaseService, public navtoggle: NavigationTogglesService, public themes: ThemesService, public router: Router) {
+  constructor(public ds: DatabaseService, public navtoggle: NavigationTogglesService, public themes: ThemesService, public router: Router) {
 
     this.avatar = ds.getAvatar();
 
