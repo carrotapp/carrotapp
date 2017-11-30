@@ -59,9 +59,9 @@
     /* background of page start*/
     /* background of page end*/
     /* box for all the fields start*/
-
-    ::-webkit-scrollbar { 
-        display: none; 
+    
+     ::-webkit-scrollbar {
+        display: none;
     }
     
     .box {
@@ -128,14 +128,13 @@
         color: #429dff;
         margin-left: 70%;
     }
-    .peakPassword{
-     margin-left: 70%;
-     
-    /*font-family: 'Source Sans Pro', sans-serif;*/
-      
+    
+    .peakPassword {
+        margin-left: 90%;
     }
-    .checkBox{
-         margin-left: 65%;
+    
+    .checkBox {
+        margin-left: 65%;
     }
     /* google button start*/
     
