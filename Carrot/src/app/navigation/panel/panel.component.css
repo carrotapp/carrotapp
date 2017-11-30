@@ -6,7 +6,7 @@
     background-color: #F3F3F3;
     float: left;
     opacity: .9;
-    overflow: hidden;
+    /* overflow: hidden; */
     padding-bottom: 5px;
     z-index: -1;
 }

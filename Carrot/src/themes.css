@@ -4,252 +4,353 @@ Since      : 21st October 2017
 Version    : 0.0.1
 */
 
+
 /* These are id's for themes that are going to be dynamically added to the application */
+
+
 /* Default*/
-#default-master{
-    background-color : linear-gradient(90deg,#FFFFFF,#FFFFFF) ;
+
+#default-master {
+    background-color: #FFFFFF;
 }
-#default-item-selector{
+
+#default-item-selector {
     color: #F0F0F0;
-}#default-parent{
+}
+
+#default-parent {
+    overflow: hidden;
     background-color: #FFFFFF;
     color: #535353;
 }
+
+
 /* Shadows */
-.default-shadow{
+
+.default-shadow {
     box-shadow: 0.5px 0.5px 0.5px 0.5px rgb(214, 208, 208);
 }
-.default-shadow-right{
-    box-shadow:  0.5px 0px 0.5px  0px  rgb(214, 208, 208);
+
+.default-shadow-right {
+    box-shadow: 0.5px 0px 0.5px 0px rgb(214, 208, 208);
 }
-.default-shadow-left{
-    box-shadow: 0px  0px  0px   0.5px rgb(214, 208, 208);
+
+.default-shadow-left {
+    box-shadow: 0px 0px 0px 0.5px rgb(214, 208, 208);
 }
+
+
 /* Dark Theme */
+
+
 /* Master*/
-#dark-master{
-    background-color : #FFFFFF;
+
+#dark-master {
+    /* min-height: 100vh; */
+    background-color: #3F3E40;
 }
 
-#dark-item-selector{
+#dark-item-selector {
     color: #F3FeEF;
 }
+
+
 /* Parent */
-#dark-parent{
-    background-color: #2A292B;
+
+#dark-parent {
+    overflow: hidden;
+    background-color: #3F3E40;
     color: #F3FeEF;
 }
 
-#dark-parent-item{
-    color: #F3FeEF; 
+#dark-navbar {
+    background-color: #2A292B;
 }
-#dark-parent-item .selectable:hover{
+
+#dark-parent-item {
+    color: #F3FeEF;
+}
+
+#dark-parent-item .selectable:hover {
     background-color: #424242;
     color: #F3FeEF;
     font-weight: 900;
 }
+
+
 /* Sub Parent */
-#dark-sub-parent{
-    background-color: #323035;
-    color: #CCCCCC;
-}
-#dark-sub-parent-item{
+
+#dark-sub-parent {
+    background-color: #323035 !important;
     color: #CCCCCC;
 }
 
-#dark-sub-parent-item .selectable:hover{
+#dark-sub-parent-item {
+    color: #CCCCCC;
+}
+
+#dark-sub-parent-item .selectable:hover {
     color: #CCCCCC;
     background-color: #323035;
 }
+
+
 /* Child */
-#dark-child{
+
+#dark-child {
     background-color: #333333;
     color: #ADADAD;
 }
-#dark-child-item{
+
+#dark-child-item {
     color: #ADADAD;
 }
-#dark-child-item .selectable:hover{
+
+#dark-child-item .selectable:hover {
     background-color: #333333;
     color: #FFFFFF;
 }
+
+
 /* Sub Child */
-#dark-sub-child{
-    background-color: #444444;
-    color: #C3C3C3;
-}
-#dark-sub-child-item{
+
+#dark-sub-child {
     background-color: #444444;
     color: #C3C3C3;
 }
 
-#dark-sub-child-item .selectable:hover{
+#dark-sub-child-item {
+    background-color: #444444;
+    color: #C3C3C3;
+}
+
+#dark-sub-child-item .selectable:hover {
     background-color: #444444;
     color: #B2B2B4;
 }
+
+
 /* Shadows */
-.dark-shadow{
+
+.dark-shadow {
     box-shadow: 0.5px 0.5px 0.5px 0.5px #111111;
 }
-.dark-shadow-right{
-    box-shadow: 0.5px 0.5px 0.5px  0px  #111111;
+
+.dark-shadow-right {
+    box-shadow: 0.5px 0.5px 0.5px 0px #111111;
 }
-.dark-shadow-left{
-    box-shadow: 0px  0px  0px  0.5px #111111;
+
+.dark-shadow-left {
+    box-shadow: 0px 0px 0px 0.5px #111111;
 }
+
+
 /* End of DarkTheme */
+
+
 /* Fun Theme */
+
+
 /* Master*/
 
-#fun-master{
-    background-color : linear-gradient(90deg,#AEEFDD,#5BDFBB);
+#fun-master {
+    background-color: linear-gradient(90deg, #AEEFDD, #5BDFBB);
 }
 
-#fun-item-selector{
+#fun-item-selector {
     color: #5BDFBB;
 }
+
+
 /* Parent */
-#fun-parent{
+
+#fun-parent {
+    overflow: hidden;
     background-color: #5BD2B5;
     color: #FFFFFF;
 }
 
-#fun-parent-item{
-    color: #FFFFFF; 
+#fun-parent-item {
+    color: #FFFFFF;
 }
-#fun-parent-item .selectable:hover{
+
+#fun-parent-item .selectable:hover {
     background-color: #5BD2B5;
     color: #FFFFFF;
     font-weight: 900;
 }
+
+
 /* Sub Parent */
-#fun-sub-parent{
+
+#fun-sub-parent {
     background-color: #F9F9F9;
-    color: #6D6D6D;
-}
-#fun-sub-parent-item{
     color: #6D6D6D;
 }
 
-#fun-sub-parent-item .selectable:hover{
+#fun-sub-parent-item {
+    color: #6D6D6D;
+}
+
+#fun-sub-parent-item .selectable:hover {
     color: #6D6D6D;
     background-color: #F9F9F9;
 }
+
+
 /* Child */
-#fun-child{
+
+#fun-child {
     background-color: 67AA9D;
     color: #6D6F75;
 }
-#fun-child-item{
+
+#fun-child-item {
     color: #6D6F75;
 }
-#fun-child-item .selectable:hover{
+
+#fun-child-item .selectable:hover {
     background-color: #67AA9D;
     color: #6D6F75;
 }
+
+
 /* Sub Child */
-#fun-sub-child{
-    background-color: #F9F9F9;
-    color: #5C5C5C;
-}
-#fun-sub-child-item{
+
+#fun-sub-child {
     background-color: #F9F9F9;
     color: #5C5C5C;
 }
 
-#fun-sub-child-item .selectable:hover{
+#fun-sub-child-item {
     background-color: #F9F9F9;
     color: #5C5C5C;
 }
+
+#fun-sub-child-item .selectable:hover {
+    background-color: #F9F9F9;
+    color: #5C5C5C;
+}
+
+
 /* Shadows*/
-.fun-shadow{
+
+.fun-shadow {
     box-shadow: 0.5px 0.5px 0.5px 0.5px rgb(214, 208, 208);
 }
-.fun-shadow-right{
-    box-shadow:  0.5px 0px 0.5px  0px  rgb(214, 208, 208);
+
+.fun-shadow-right {
+    box-shadow: 0.5px 0px 0.5px 0px rgb(214, 208, 208);
 }
-.fun-shadow-left{
-    box-shadow: 0px  0px  0px   0.5px rgb(214, 208, 208);
+
+.fun-shadow-left {
+    box-shadow: 0px 0px 0px 0.5px rgb(214, 208, 208);
 }
+
+
 /* Blind */
+
+
 /* Master*/
 
-#blind-master{
-    background-color : linear-gradient(90deg,#5072B8,#738FC6);
+#blind-master {
+    background-color: linear-gradient(90deg, #5072B8, #738FC6);
 }
 
-#blind-item-selector{
+#blind-item-selector {
     color: #5072B8;
     font-weight: 900;
 }
+
+
 /* Parent */
-#blind-parent{
+
+#blind-parent {
     background-color: #5072B8;
     color: #FEFEFE;
     font-weight: 900;
 }
 
-#blind-parent-item{
-    color: #FEFEFE; 
+#blind-parent-item {
+    color: #FEFEFE;
     font-weight: 900;
 }
-#blind-parent-item .selectable:hover{
+
+#blind-parent-item .selectable:hover {
     background-color: #5072B8;
     color: #FEFEFE;
     font-weight: 900;
 }
+
+
 /* Sub Parent */
-#blind-sub-parent{
+
+#blind-sub-parent {
     background-color: #EEF0F2;
-    color: #1D2129;
-    font-weight: 900;
-}
-#blind-sub-parent-item{
     color: #1D2129;
     font-weight: 900;
 }
 
-#blind-sub-parent-item .selectable:hover{
+#blind-sub-parent-item {
+    color: #1D2129;
+    font-weight: 900;
+}
+
+#blind-sub-parent-item .selectable:hover {
     color: #1D2129;
     background-color: #EEF0F2;
     font-weight: 900;
 }
+
+
 /* Child */
-#blind-child{
+
+#blind-child {
     background-color: #C3CFE6;
     color: #1D2129;
     font-weight: 900;
 }
-#blind-child-item{
+
+#blind-child-item {
     color: #1D2129;
     font-weight: 900;
 }
-#blind-child-item .selectable:hover{
+
+#blind-child-item .selectable:hover {
     background-color: #C3CFE6;
     color: #020202;
     font-weight: 900;
 }
+
+
 /* Sub Child */
-#blind-sub-child{
-    background-color: #F9F9F9;
-    color: #5C5C5C;
-}
-#blind-sub-child-item{
+
+#blind-sub-child {
     background-color: #F9F9F9;
     color: #5C5C5C;
 }
 
-#blind-sub-child-item .selectable:hover{
+#blind-sub-child-item {
     background-color: #F9F9F9;
     color: #5C5C5C;
 }
+
+#blind-sub-child-item .selectable:hover {
+    background-color: #F9F9F9;
+    color: #5C5C5C;
+}
+
+
 /* Shadows*/
-.blind-shadow{
+
+.blind-shadow {
     box-shadow: 0.5px 0.5px 0.5px 0.5px rgb(214, 208, 208);
 }
-.blind-shadow-right{
-    box-shadow:  0.5px 0px 0.5px  0px  rgb(214, 208, 208);
+
+.blind-shadow-right {
+    box-shadow: 0.5px 0px 0.5px 0px rgb(214, 208, 208);
 }
-.blind-shadow-left{
-    box-shadow: 0px  0px  0px   0.5px rgb(214, 208, 208);
+
+.blind-shadow-left {
+    box-shadow: 0px 0px 0px 0.5px rgb(214, 208, 208);
 }

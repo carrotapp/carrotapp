@@ -16,13 +16,14 @@ export class NavbarComponent {
   avatar: string;
 
   // tslint:disable-next-line:max-line-length
-  constructor(protected ds: DatabaseService, public navtoggle: NavigationTogglesService, public themes: ThemesService, public router: Router) {
+  constructor(public ds: DatabaseService, public navtoggle: NavigationTogglesService, public themes: ThemesService, public router: Router) {
 
     this.avatar = ds.getAvatar();
 
     // console.log(this.router.url.toString());
 
-    if (this.router.url.toString() === '/login' || this.router.url.toString() === '/register' || this.router.url.toString() === '/forgotPassword' || this.router.url.toString() === '/confirmPassword') {
+    // tslint:disable-next-line:max-line-length
+    if (this.router.url.includes('/login') || this.router.url.includes('/register') || this.router.url.includes('/forgotPassword') || this.router.url.includes('/confirmPassword')) {
       this.login = true;
     } else {
       this.login = false;
@@ -41,9 +42,7 @@ export class NavbarComponent {
   toolbar(): void {
     this.navtoggle.toolbar_toggle();
   }
-  back(){
-    if(this.ds.checkLoggedIn()){
-      this.ds.back()
-    }
+  back() {
+    this.router.navigate(['/main/dashboard']);
   }
 }

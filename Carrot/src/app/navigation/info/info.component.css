@@ -15,7 +15,7 @@
     width: 70px;
     height: 70px;
     text-overflow: ellipsis;
-    overflow: hidden;
+    /* overflow: hidden; */
     border-radius: 6px;
     float: left;
     background: none;
@@ -37,7 +37,7 @@
     padding-left: 20px;
     padding-top: 12.9px;
     text-overflow: clip;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 h1 {
