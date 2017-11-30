@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class ForgotPasswordComponent implements OnInit {
   email: string;
 
-  constructor(protected ds: DatabaseService) {
+  constructor(public ds: DatabaseService) {
 
    }
 
