@@ -102,7 +102,8 @@ h1 {
 }
 
 .rgt {
-    margin-left: 75%;
+    margin-left: 55%;
+    /* float: right; */
 }
 
 h3 {
