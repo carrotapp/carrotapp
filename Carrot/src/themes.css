@@ -154,11 +154,14 @@ Version    : 0.0.1
 /* Master*/
 
 #fun-master {
-    background-color: linear-gradient(90deg, #AEEFDD, #5BDFBB);
+    /* background-color: linear-gradient(90deg, #AEEFDD, #5BDFBB); */
+    background: linear-gradient(to right, #7C46AD, #6879E2);
 }
 
 #fun-item-selector {
-    color: #5BDFBB;
+    /* color: #5BDFBB; */
+    color: #FFFFFF;
+
 }
 
 
@@ -166,8 +169,13 @@ Version    : 0.0.1
 
 #fun-parent {
     overflow: hidden;
-    background-color: #5BD2B5;
+    /* background-color: #5BD2B5; */
+    background: linear-gradient(to right, #7C46AD, #6879E2);
     color: #FFFFFF;
+}
+
+#fun-navbar {
+    background:  linear-gradient(to right, #7C46AD, #6879E2);
 }
 
 #fun-parent-item {
@@ -184,7 +192,7 @@ Version    : 0.0.1
 /* Sub Parent */
 
 #fun-sub-parent {
-    background-color: #F9F9F9;
+    background: linear-gradient(to right, #7C46AD, #6879E2) !important;
     color: #6D6D6D;
 }
 
