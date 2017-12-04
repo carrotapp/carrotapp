@@ -190,16 +190,26 @@ export class DatabaseService {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         });
         this.rewardsArray = [];
-        this.userRewards.forEach(element => {
-            for (let i = 0; i < element.length; i++) {
-                if (element[i].user === uid) {
-                    key = element[i].key;
+        this.userRewards.subscribe(res => {
+            res.map(element => {
+                if (element.user === uid) {
+                    key = element.key;
                     path = '/User Rewards/' + key + '/Rewards/';
                     this.getUsersRewards(path);
-                    break;
                 }
-            }
+            });
         });
+        // this.userRewards.forEach(element => {
+        //     for (let i = 0; i < element.length; i++) {
+        //         if (element[i].user === uid) {
+        //             key = element[i].key;
+        //             path = '/User Rewards/' + key + '/Rewards/';
+        //             this.getUsersRewards(path);
+        //             break;
+        //         }
+        //     }
+        // });
+        console.log(this.rewardsArray);
         return this.rewardsArray;
     }
 

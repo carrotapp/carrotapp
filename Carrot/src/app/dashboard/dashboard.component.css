@@ -1,0 +1,9 @@
+.dashboard {
+    padding: 0px 4%;
+}
+
+@media screen and (max-width: 600px) {
+    .dashboard {
+        padding: 0px 10%;
+    }
+}

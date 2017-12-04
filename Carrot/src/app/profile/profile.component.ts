@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   theme;
   @Input() img;
 
-  constructor(protected ds: DatabaseService, protected themeServ : ThemesService) {
+  constructor(public ds: DatabaseService, protected themeServ : ThemesService) {
     this.name = ds.getName();
     this.email = ds.getEmail();
     this.theme = ds.getTheme();

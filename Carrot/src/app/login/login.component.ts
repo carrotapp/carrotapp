@@ -9,11 +9,17 @@ import { ThemesService } from '../services/themes.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent {
   email = '';
   password = '';
+  icon= 'fa fa-eye';
+  typeInput= 'password';
 
-  constructor(public databaseService: DatabaseService, private themes : ThemesService) {
+
+
+  constructor(public databaseService: DatabaseService, private themes: ThemesService) {
+
   }
 
   signIn() {
@@ -23,7 +29,16 @@ export class LoginComponent {
   googlePopup() {
     this.databaseService.googlePopup();
   }
-  get theme(): string {
-    return this.themes.getTheme();
-  }
+
+ showPassword() {
+   if (this.typeInput === 'password') {
+     this.typeInput = 'text';
+     this.icon = 'fa fa-eye-slash';
+   }else {
+     this.typeInput = 'password';
+     this.icon = 'fa fa-eye';
+   }
+
+
+ }
 }
