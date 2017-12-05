@@ -39,13 +39,13 @@ export class RewardsCredentialsComponent implements OnInit {
     console.log('rere: ' + this.reward);
   }
 
-  addReward() {
+ /* addReward() {
     console.log(this.Reward.Key);
     this.databaseService.checkReward(this.Reward.Key);
     console.log(this.databaseService.rewardPath);
     this.databaseService.addRewards(this.cardNum, this.email, this.password, this.Reward);
     this.routerListener.activate();
-  }
+  }*/
 
   setReward(reward: Rewards): void {
     this.reward = reward;
@@ -58,4 +58,29 @@ export class RewardsCredentialsComponent implements OnInit {
     return this.routerListener.getReward;
   }
 
+  checkCredentials() {
+
+    if (this.email !== '' || this.cardNum !== '' || this.password !== '') {
+      if (this.password.length === 8) {
+        if (this.cardNum.length === 8) {
+          console.log(this.Reward.Key);
+          this.databaseService.checkReward(this.Reward.Key);
+          console.log(this.databaseService.rewardPath);
+          this.databaseService.addRewards(this.cardNum, this.email, this.password, this.Reward);
+          this.routerListener.activate();
+
+        }else {
+          alert('Error: Minimum card number length is 13');
+          this.cardNum = '';
+      }
+      }else {
+        // errors
+          alert('Error: Minimum password length is 8');
+          this.password = '';
+  }
+}else {
+  alert ('Error: Fill all fields');
+
+}
+  }
 }

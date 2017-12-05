@@ -29,6 +29,7 @@ export class DatabaseService {
     /// test approach
 
     rewardsStatus: any[][];
+    // tslint:disable-next-line:max-line-length
     constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router, protected _location: Location, protected ts: ThemesService) {
         this.userRewardsRef = afDB.list('/User Rewards');
         this.rewards = afDB.list('/Rewards').snapshotChanges().map(changes => {
@@ -414,8 +415,8 @@ export class DatabaseService {
         });
 
         user.subscribe(res => {
-            res.map(response=>{
-                if(response.user === this.getUID()) {
+            res.map(response => {
+                if (response.user === this.getUID()) {
                     this.theme = response.theme;
                     this.ts.setTheme(response.theme);
                 }

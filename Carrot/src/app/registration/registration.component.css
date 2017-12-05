@@ -9,8 +9,8 @@
 
 /* box for all the fields start*/
 
-::-webkit-scrollbar { 
-    display: none; 
+::-webkit-scrollbar {
+    display: none;
 }
 
 .box {
@@ -65,10 +65,24 @@
     color: black;
 }
 
-.textfield:invalid:not(content) {
+.textField-Password {
+    margin: 15px;
+    width: 95%;
+    border: none;
+    border-bottom: 2px solid #51b920;
+    color: black;
+}
+
+.textfield,
+.textField-Password:invalid:not(content) {
     box-shadow: none !important;
     border: none;
     border-bottom: 2px solid #979797;
+}
+
+.peakPassword {
+    margin-left: 90%;
+    margin-top: -50px;
 }
 
 
