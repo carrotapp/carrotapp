@@ -17,31 +17,24 @@
                 </div>
             </div>
         </div>
-
-        <div class="selectable rgt" (click)="back()">
-            <div class="close" id="{{theme + '-parent-item'}}">Close</div>
-            <br>
-        </div>
-
-        <!-- <div class="selectable rgt" (click)="back()">
+        <!--  <div class="selectable rgt" (click)="back()">
             <div class="fa fa-times close-icon"></div>
             <div class="close">Close</div>
-        </div> -->
+        </div>-->
     </div><br>
 
     <diV class="displayContent">
-        <h3>About:</h3>
+        <h3 id="{{theme + '-parent-item'}}">About:</h3>
         <!-- <iframe [src]="reward.infoUrl" [srcdoc]="reward.summary" alt='text' class="default-shadow" frameborder="0" class="iframe"> </iframe>-->
         {{ Reward.summary }}
     </diV>
     <diV class="displayContent">
-        <h3>How to Earn points:</h3>
+        <h3 id="{{theme + '-parent-item'}}">How to Earn points:</h3>
         {{ Reward.how }}
 
     </diV>
     <diV class="displayContent">
-        <h3>Where to Earn points:</h3>
-
+        <h3 id="{{theme + '-parent-item'}}">Where to Earn points:</h3>
         {{ Reward.where }}
     </diV>
 

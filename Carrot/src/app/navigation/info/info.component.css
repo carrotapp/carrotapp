@@ -11,13 +11,13 @@
 }
 
 .img {
-    margin-left: 25px;
+    margin-right: 50%;
     width: 70px;
     height: 70px;
     text-overflow: ellipsis;
     /* overflow: hidden; */
     border-radius: 6px;
-    float: left;
+    /*float: left;*/
     background: none;
 }
 
@@ -26,8 +26,9 @@
     height: 72px;
     border-radius: 5px;
     border: solid 1px #e9eff4;
-    margin-left: 25px;
+    margin-right: 50%;
     background-color: #FFFFFF;
+    margin-top: 20px;
 }
 
 .pill {

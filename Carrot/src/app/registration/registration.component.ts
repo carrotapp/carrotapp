@@ -13,6 +13,8 @@ export class RegistrationComponent {
   password = '';
   // confirmPassword = '';
   username = '';
+  icon= 'fa fa-eye';
+  typeInput= 'password';
 
   constructor(private databaseService: DatabaseService) { }
 
@@ -36,6 +38,16 @@ export class RegistrationComponent {
 
     } else {
       alert('Fill out all the fields.');
+    }
+  }
+
+  showPassword() {
+    if (this.typeInput === 'password') {
+      this.typeInput = 'text';
+      this.icon = 'fa fa-eye-slash';
+    }else {
+      this.typeInput = 'password';
+      this.icon = 'fa fa-eye';
     }
   }
 }

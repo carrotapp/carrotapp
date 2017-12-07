@@ -30,6 +30,7 @@ export class DatabaseService {
     /// test approach
 
     rewardsStatus: any[][];
+    // tslint:disable-next-line:max-line-length
     constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router, protected _location: Location, protected ts: ThemesService) {
         this.userRewardsRef = afDB.list('/User Rewards');
         this.rewards = afDB.list('/Rewards').snapshotChanges().map(changes => {
