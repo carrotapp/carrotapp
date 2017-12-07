@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { DatabaseService } from './../services/database/database.service';
 import { Rewards } from './Rewards';
 import { Component } from '@angular/core';
@@ -12,37 +13,45 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  rewards: Rewards[] = [];
+  // rewards: Rewards[] = [];
+  rewards: Observable<any[]>;
   username: string;
   path_username;
   showReward: boolean;
 
 
   constructor(protected ds: DatabaseService, private afAuth: AngularFireAuth, private router: Router) {
-    
+    this.ds.getUsersRewards()
   }
 
   ngOnInit() {
-    this.ds.rewardsArray = [];
-    this.rewards = [];
-    this.rewards = this.ds.getRewardsArray();
+    // console.log(this.rewards);
+    // this.ds.rewardsArray = [];
     // console.log(this.ds.theme);
     // this.sync();
   }
 
-  sync() {
-    this.router.events.subscribe(() => {
-      setTimeout(() => {
-        this.ds.rewardsArray = [];
-        this.rewards = [];
-        this.rewards = this.ds.getRewardsArray();
-        // console.log(this.rewards);
-      }, 10);
-      // console.log(this.rewards);
+  check(key, reward) {
+    // console.log(key);
 
-      // console.log(this.rewards.length);
-      // this.path_username = this.ds.pathName(this.ds.getName());
+    this.rewards.forEach(res => {
+      res.map(result => {
+        console.log(result);
+        if (key === result.key) {
+          return true;
+        }
+      });
+      return false;
     });
+
+    // this.rewards.subscribe(res => {
+    //   res.map(result => {
+    //     if (key === this.rewards[1].key) {
+    //       return true;
+    //     }
+    //   });
+    //   return false;
+    // });
   }
 
 }

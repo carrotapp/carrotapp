@@ -1,7 +1,5 @@
 <div class="row m-0 text-center justify-content-center">
-    <div *ngFor="let item of data | async; let i = index">
-            <div *ngIf="check(item.key)">
-                    <app-card [reward]="item" [type]="'add'" [type]="'add'"></app-card>
-            </div>
+    <div *ngFor="let item of data | async">
+        <app-card *ngIf="check(item.key)" [reward]="item" [userData]='[]' [type]="'add'"></app-card>
     </div>
 </div>

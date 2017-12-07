@@ -57,9 +57,9 @@ export class HeaderComponent {
     // } 
 
     
-    console.log(this.router.url.toString()); 
+    // console.log(this.router.url.toString()); 
 
-    console.log('/' + this.getUsername + '/dashboard'); 
+    // console.log('/' + this.getUsername + '/dashboard'); 
     if(this.router.url.toString().includes('/dashboard')){ 
       this.btn_title = "add reward"; 
       this.icon = "fa-plus"; 

@@ -16,6 +16,8 @@ export class CardComponent implements OnInit {
   // item skeleton
   @Input('reward')
   reward;
+
+  @Input('userData') userData;
   // Type
   @Input('type') type: string;
   // hide
@@ -30,6 +32,8 @@ export class CardComponent implements OnInit {
   ngOnInit() {
     // this.userRewards = this.databaseService.getRewardsArray();
     // this.data = this.databaseService.getRewards();
+    // console.log(this.reward);
+    // console.log(this.userData);
   }
 
   get theme() {
@@ -42,20 +46,20 @@ export class CardComponent implements OnInit {
   addReward() {
     // const flag = this.databaseService.checkReward(this.reward.Key);
     // this.databaseService.rewardFlag = undefined;
-    this.databaseService.checkReward(this.reward.key);
+    // this.databaseService.checkReward(this.reward.key);
 
-    setTimeout(() => {
+    // setTimeout(() => {
       // console.log('timeout function');
-      console.log(this.databaseService.rewardFlag);
+      // console.log(this.databaseService.rewardFlag);
 
-      if (!this.databaseService.rewardFlag) {
-        alert(' You already have ' + this.reward.Name + ' in your account! ');
-      } else {
+      // if (!this.databaseService.rewardFlag) {
+      //   alert(' You already have ' + this.reward.Name + ' in your account! ');
+      // } else {
         this.routerListener.activeReward(this.reward);
         this.routerListener.activate();
-      }
+      // }
 
-    }, 10);
+    // }, 10);
 
 
 
