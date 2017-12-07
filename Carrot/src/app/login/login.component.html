@@ -39,8 +39,8 @@
                                 <!--textfields start-->
                                 <div class="row m-0 justify-content-left">
                                     <input type="email" placeholder="Email" class="textfield" [(ngModel)]="email" required>
-                                    <i class=" fa-2x peakPassword {{icon}}" (click)="showPassword()" aria-hidden="true"></i>
-                                    <input type="{{typeInput}}" placeholder="Password" class="textfield" [(ngModel)]="password" required>
+                                    <input style = "float: left" type="{{typeInput}}" placeholder="Password" class="textfield_pass" [(ngModel)]="password" required>
+                                    <i style = "float: left" class=" fa-2x peakPassword {{icon}}" (click)="showPassword()" aria-hidden="true"></i>
                                 </div>
 
 

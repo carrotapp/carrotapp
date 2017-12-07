@@ -1,5 +1,4 @@
 import { ThemesService } from '../themes.service';
-import { Subscription } from 'rxjs/Rx';
 import { Rewards } from './../../dashboard/Rewards';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
@@ -8,6 +7,8 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Location } from '@angular/common';
+import 'rxjs/add/observable/combineLatest';
+import { setTimeout } from 'timers';
 
 @Injectable()
 export class DatabaseService {
@@ -125,7 +126,7 @@ export class DatabaseService {
 
     logout() {
         this.ts.setTheme('defualt');
-        this.afAuth.auth.signOut().then(()=>{
+        this.afAuth.auth.signOut().then(() => {
             this.router.navigate(['/login']);
         });
     }
@@ -137,7 +138,7 @@ export class DatabaseService {
         this.afDB.list(this.rewardPath).set(reward.key, { CardNumber: cardNum, Password: password, Points: 0, Email: email });
         this.rewardsArray = [];
         alert('Reward added successfully');
-        setTimeout(()=>{
+        setTimeout(() => {
             this.router.navigate(['/main/dashboard']);
         }, 200);
     }
@@ -181,6 +182,7 @@ export class DatabaseService {
             }
         });
     }
+    usersRewards: Observable<any[]>;
     getRewardsArray(): Rewards[] {
         // this.rewardsArray = [];
         let key: string;
@@ -195,7 +197,7 @@ export class DatabaseService {
                 if (element.user === uid) {
                     key = element.key;
                     path = '/User Rewards/' + key + '/Rewards/';
-                    this.getUsersRewards(path);
+                    this.generateRewardsArray(path);
                 }
             });
         });
@@ -209,11 +211,11 @@ export class DatabaseService {
         //         }
         //     }
         // });
-        console.log(this.rewardsArray);
+        // console.log(this.rewardsArray);
         return this.rewardsArray;
     }
 
-    getUsersRewards(path) {
+    generateRewardsArray(path) {
         const usersRewards: Observable<any[]> = this.afDB.list(path).snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         });
@@ -232,8 +234,67 @@ export class DatabaseService {
                     });
                 });
             }
-            console.log(this.rewardsArray);
+            // console.log(this.rewardsArray);
         });
+    }
+
+
+    getUsersRewards() {
+        // let key: string;
+        // const uid: string = this.getUID();
+        // let path: string;
+        this.userRewards = this.userRewardsRef.snapshotChanges().map(changes => {
+            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        });
+        // this.rewardsArray = [];
+        this.userRewards.subscribe(res => {
+            res.map(element => {
+                if (element.user === this.getUID()) {
+                    // key = element.key;
+                    // path = '/User Rewards/' + key + '/Rewards/';
+                    // console.log(path);
+                    // this.getUsersRewards(path);
+                    this.usersRewards = this.afDB.list('/User Rewards/' + element.key + '/Rewards/').snapshotChanges().map(changes => {
+                        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+                    });
+                }
+            });
+        });
+        // Angular course 135
+        // this.usersRewards = this.afDB.list(path).snapshotChanges().map(changes => {
+        //     return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        // });
+        // const value: Observable<any[]> = this.afDB.list(path).valueChanges();
+        // Change to subscriptions
+        // this.combinedObs = Observable.combineLatest([usersRewards, this.rewards]);
+        // console.log(this.combinedObs);
+        // UR.subscribe(obs => {
+        //     obs[0].map(usersRewards => {
+        //         obs[1].map(rewards => {
+        //             if(usersRewards.key === rewards.key ) {
+        //                 this.rewardsArray.push(
+        //                     new Rewards(usersRewards, obs[2], rewards.points)
+        //                 );
+        //             }
+        //         })
+        //     });
+        // });
+        // usersRewards.forEach(element => {
+        //     for (let i = 0; i < element.length; i++) {
+        //         this.rewards.forEach(dataElement => {
+        //             value.forEach(valueElement => {
+        //                 for (let j = 0; j < dataElement.length; j++) {
+        //                     if (dataElement[j].key === element[i].key) {
+        //                         this.rewardsArray.push(
+        //                             new Rewards(dataElement[j], valueElement[i], element[i])
+        //                         );
+        //                     }
+        //                 }
+        //             });
+        //         });
+        //     }
+        //     console.log(this.rewardsArray);
+        // });
     }
 
     getAllRewards() {
@@ -256,8 +317,8 @@ export class DatabaseService {
     getReward(provider: string): Rewards {
         // let list;
         provider = this.capitalize(provider.split('.'));
-        console.log(provider);
-        console.log(this.rewardsArray);
+        // console.log(provider);
+        // console.log(this.rewardsArray);
         let reward: Rewards;
         // this.rewards.forEach(element => {
         // if (from.toLowerCase() === 'view'.toLowerCase()) {
@@ -414,13 +475,14 @@ export class DatabaseService {
         });
 
         user.subscribe(res => {
-            res.map(response=>{
-                if(response.user === this.getUID()) {
+            res.map(response => {
+                if (response.user === this.getUID()) {
                     this.theme = response.theme;
                     this.ts.setTheme(response.theme);
                 }
             });
         });
+        // this.getRewardsArray();
     }
 
 }

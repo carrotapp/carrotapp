@@ -1,9 +1,9 @@
 <div class="moreInfoPanel center default-shadow" id="{{theme + '-parent'}}">
+
     <div class="row">
-        <div class="selectable rgt" (click)="back()">
-            <div class="close" id="{{theme + '-parent-item'}}">Close</div><br></div>
-        <img [src]="Reward.Image" alt="rewards programme" class="img">
-        <div *ngIf='Reward.Points !== undefined' class="rectangle">
+
+        <img style = "float: left" [src]="Reward.Image" alt="rewards programme" class="img">
+        <div style = "float: left" *ngIf='Reward.Points !== undefined' class="rectangle">
             <div class="pill line-right">
                 <h1> Points Earned </h1>
                 <div class="value-points">
@@ -17,11 +17,18 @@
                 </div>
             </div>
         </div>
+
         <div class="selectable rgt" (click)="back()">
+            <div class="close" id="{{theme + '-parent-item'}}">Close</div>
+            <br>
+        </div>
+
+        <!-- <div class="selectable rgt" (click)="back()">
             <div class="fa fa-times close-icon"></div>
             <div class="close">Close</div>
-        </div>
+        </div> -->
     </div><br>
+
     <diV class="displayContent">
         <h3>About:</h3>
         <!-- <iframe [src]="reward.infoUrl" [srcdoc]="reward.summary" alt='text' class="default-shadow" frameborder="0" class="iframe"> </iframe>-->
