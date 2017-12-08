@@ -85,6 +85,10 @@
     margin-top: -50px;
 }
 
+.peakPassword:hover {
+    cursor: pointer;
+}
+
 
 /* google button start*/
 
