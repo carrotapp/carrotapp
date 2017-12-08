@@ -1,3 +1,4 @@
+import { MetaLoader, MetaStaticLoader, PageTitlePositioning, MetaModule } from '@ngx-meta/core';
 import { AuthGuard } from './services/guards/authGuard.service';
 import { RoutingListenerService } from './services/routing-listener.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -44,6 +45,18 @@ export const firebaseConfig = {
   messagingSenderId: '132005725857'
 };
 
+export function metaFactory(): MetaLoader {
+  return new MetaStaticLoader({
+    pageTitlePositioning: PageTitlePositioning.PrependPageTitle,
+    pageTitleSeparator: ' - ',
+    applicationName: 'Carrot',
+    defaults: {
+      author: 'Ernst Kaese, Zahirah Ismail, Lihle Mdikili, Sixolile Mtengwana',
+      title: 'Carrot'
+    }
+  });
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +87,11 @@ export const firebaseConfig = {
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    MetaModule.forRoot({
+      provide: MetaLoader,
+      useFactory: (metaFactory)
+    }),
   ],
   providers: [DatabaseService, NavigationTogglesService, ThemesService, RoutingListenerService, AuthGuard], // Dependancy Injection
   bootstrap: [AppComponent]
