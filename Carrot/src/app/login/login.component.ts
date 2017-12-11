@@ -38,7 +38,5 @@ export class LoginComponent {
      this.typeInput = 'password';
      this.icon = 'fa fa-eye';
    }
-
-
  }
 }

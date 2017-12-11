@@ -14,7 +14,7 @@
         </div> -->
         <div *ngFor='let usersReward of ds.usersRewards | async'>
             <div *ngIf='reward.key === usersReward.key'>
-                <app-card [reward]="reward" [userData]="usersReward" [type]="'view'" [isHidden]="true"></app-card>
+                <app-card [reward]="reward" [userData]="usersReward" [type]="'view'" [isHidden]="true" class="col-md-3"></app-card>
             </div>
         </div>
     </div>
