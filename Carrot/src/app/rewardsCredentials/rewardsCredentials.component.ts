@@ -19,6 +19,9 @@ export class RewardsCredentialsComponent implements OnInit {
   reward: Rewards;
   type: string;
   provider: string;
+
+  icon = 'fa fa-eye';
+  typeInput = 'password';
   // tslint:disable-next-line:max-line-length
   constructor(public routerListener: RoutingListenerService, private sanitizer: DomSanitizer, private router: Router, private activatedRoute: ActivatedRoute, private databaseService: DatabaseService) {
     this.reward = routerListener.getReward;
@@ -39,13 +42,13 @@ export class RewardsCredentialsComponent implements OnInit {
     console.log('rere: ' + this.reward);
   }
 
- /* addReward() {
-    console.log(this.Reward.Key);
-    this.databaseService.checkReward(this.Reward.Key);
-    console.log(this.databaseService.rewardPath);
-    this.databaseService.addRewards(this.cardNum, this.email, this.password, this.Reward);
-    this.routerListener.activate();
-  }*/
+  /* addReward() {
+     console.log(this.Reward.Key);
+     this.databaseService.checkReward(this.Reward.Key);
+     console.log(this.databaseService.rewardPath);
+     this.databaseService.addRewards(this.cardNum, this.email, this.password, this.Reward);
+     this.routerListener.activate();
+   }*/
 
   setReward(reward: Rewards): void {
     this.reward = reward;
@@ -60,33 +63,38 @@ export class RewardsCredentialsComponent implements OnInit {
 
   checkCredentials() {
 
-    if (this.email !== '' || this.cardNum !== '' || this.password !== '') {
-      if (this.password.length === 8) {
-        if (this.cardNum.length === 13) {
-          console.log(this.Reward.Key);
-          this.databaseService.checkReward(this.Reward.Key);
-          console.log(this.databaseService.rewardPath);
-          this.databaseService.addRewards(this.cardNum, this.email, this.password, this.Reward);
-          this.routerListener.activate();
+    if (this.email !== '' && this.cardNum !== '' && this.password !== '') {
+      if (this.cardNum.length === 13) {
+        console.log(this.Reward.Key);
+        this.databaseService.checkReward(this.Reward.Key);
+        console.log(this.databaseService.rewardPath);
+        this.databaseService.addRewards(this.cardNum, this.email, this.password, this.Reward);
+        this.routerListener.activate();
 
-        }else {
-          if (this.cardNum.length >= 13) {
-            alert('Error: Length of card number exceeds 13 digits, re-enter card number');
-            this.cardNum = '';
-          }
-          if (this.cardNum.length <= 13) {
-            alert('Error: Miminum card number length is 13 re-enter card number');
-            this.cardNum = '';
-          }
+      } else {
+        if (this.cardNum.length >= 13) {
+          alert('Error: Length of card number exceeds 13 digits, re-enter card number');
+          this.cardNum = '';
+        }
+        if (this.cardNum.length <= 13) {
+          alert('Error: Miminum card number length is 13 re-enter card number');
+          this.cardNum = '';
+        }
+
       }
-      }else {
-        // errors
-          alert('Error: Minimum password length is 8');
-          this.password = '';
-  }
-}else {
-  alert ('Error: Fill all fields');
+    } else {
+      alert('Error: Fill all fields');
 
-}
+    }
+  }
+
+  showPassword() {
+    if (this.typeInput === 'password') {
+      this.typeInput = 'text';
+      this.icon = 'fa fa-eye-slash';
+    } else {
+      this.typeInput = 'password';
+      this.icon = 'fa fa-eye';
+    }
   }
 }
