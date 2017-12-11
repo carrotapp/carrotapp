@@ -183,6 +183,7 @@ export class DatabaseService {
             }
         });
     }
+    // tslint:disable-next-line:member-ordering
     usersRewards: Observable<any[]>;
     getRewardsArray(): Rewards[] {
         // this.rewardsArray = [];
