@@ -62,7 +62,7 @@ export class RewardsCredentialsComponent implements OnInit {
 
     if (this.email !== '' || this.cardNum !== '' || this.password !== '') {
       if (this.password.length === 8) {
-        if (this.cardNum.length === 8) {
+        if (this.cardNum.length === 13) {
           console.log(this.Reward.Key);
           this.databaseService.checkReward(this.Reward.Key);
           console.log(this.databaseService.rewardPath);
@@ -70,8 +70,14 @@ export class RewardsCredentialsComponent implements OnInit {
           this.routerListener.activate();
 
         }else {
-          alert('Error: Minimum card number length is 13');
-          this.cardNum = '';
+          if (this.cardNum.length >= 13) {
+            alert('Error: Length of card number exceeds 13 digits, re-enter card number');
+            this.cardNum = '';
+          }
+          if (this.cardNum.length <= 13) {
+            alert('Error: Miminum card number length is 13 re-enter card number');
+            this.cardNum = '';
+          }
       }
       }else {
         // errors
