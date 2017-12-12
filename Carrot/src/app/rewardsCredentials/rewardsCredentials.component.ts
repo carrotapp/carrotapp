@@ -19,6 +19,9 @@ export class RewardsCredentialsComponent implements OnInit {
   reward: Rewards;
   type: string;
   provider: string;
+
+  icon = 'fa fa-eye';
+  typeInput = 'password';
   // tslint:disable-next-line:max-line-length
   constructor(public routerListener: RoutingListenerService, private sanitizer: DomSanitizer, private router: Router, private activatedRoute: ActivatedRoute, private databaseService: DatabaseService) {
     this.reward = routerListener.getReward;
@@ -39,13 +42,13 @@ export class RewardsCredentialsComponent implements OnInit {
     console.log('rere: ' + this.reward);
   }
 
- /* addReward() {
-    console.log(this.Reward.Key);
-    this.databaseService.checkReward(this.Reward.Key);
-    console.log(this.databaseService.rewardPath);
-    this.databaseService.addRewards(this.cardNum, this.email, this.password, this.Reward);
-    this.routerListener.activate();
-  }*/
+  /* addReward() {
+     console.log(this.Reward.Key);
+     this.databaseService.checkReward(this.Reward.Key);
+     console.log(this.databaseService.rewardPath);
+     this.databaseService.addRewards(this.cardNum, this.email, this.password, this.Reward);
+     this.routerListener.activate();
+   }*/
 
   setReward(reward: Rewards): void {
     this.reward = reward;
