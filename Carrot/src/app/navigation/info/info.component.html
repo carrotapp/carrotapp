@@ -1,19 +1,19 @@
 <div class="moreInfoPanel center default-shadow" id="{{theme + '-parent'}}">
 
     <div class="row">
-
+        <!-- Reward.Points !== undefined -->
         <img style = "float: left" [src]="Reward.Image" alt="rewards programme" class="img">
-        <div style = "float: left" *ngIf='Reward.Points !== undefined' class="rectangle">
+        <div style = "float: left" *ngIf='show' class="rectangle">
             <div class="pill line-right">
                 <h1> Points Earned </h1>
                 <div class="value-points">
-                    {{ Reward.Points }}
+                    {{ Points }}
                 </div>
             </div>
             <div class="pill">
                 <h1> Rand Value </h1>
                 <div class="value-zar">
-                    {{Reward.Points/Reward.Ratio}}
+                    {{ Ratio }}
                 </div>
             </div>
         </div>

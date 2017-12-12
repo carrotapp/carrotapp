@@ -64,8 +64,12 @@ export class CardComponent implements OnInit {
 
 
   }
-  moreInfo() {
-    // console.log(this.reward.Name);
+  
+  moreInfo(key) {
+    // console.log("My key" + key);
+    this.databaseService.setKey(key);
+    console.log(this.databaseService.getKey() + "The gotten");
+
     this.routerListener.activeReward(this.reward);
     // tslint:disable-next-line:max-line-length
     // this.databaseService.redirect('/' + this.databaseService.pathName(this.databaseService.getName()) + '/' + this.databaseService.pathName(this.reward.Name) + '/' + this.type);

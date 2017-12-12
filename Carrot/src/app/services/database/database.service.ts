@@ -27,6 +27,8 @@ export class DatabaseService {
     initialized = false;
     loggedIn: boolean;
 
+    Key: string;
+
     /// test approach
 
     rewardsStatus: any[][];
@@ -166,6 +168,7 @@ export class DatabaseService {
                             // let r:any;
                             for (let j = 0; j < rewardsElement.length; j++) {
                                 // console.log('Reward: ', rewardsElement[j].key);
+                                console.log("key" + key)
                                 if (rewardsElement[j].key === key) {
                                     flag = false;
                                     // console.log('Found');
@@ -177,7 +180,7 @@ export class DatabaseService {
                         console.log(flag, this.rewardKey);
                         this.rewardFlag = flag;
                         // console.log(this.rewardFlag);
-                        // return flag;
+                        return flag;
                     });
                 }
             }
@@ -437,18 +440,18 @@ export class DatabaseService {
             .catch((error) => console.log(error));
     }
 
-    removeReward() {
+    removeReward(key) {
         console.log('removeReward()');
-        console.log(this.rewardKey);
+        console.log(key);
         let path;
-        if (this.rewardKey !== undefined) {
+        if (key !== undefined) {
             let flag = true;
             this.userRewards.forEach(element => {
                 if (flag) {
                     for (let i = 0; i < element.length; i++) {
                         if (element[i].user === this.getUID()) {
                             // element[i].key;
-                            path = '/User Rewards/' + element[i].key + '/Rewards/' + this.rewardKey;
+                            path = '/User Rewards/' + element[i].key + '/Rewards/' + key;
                             const ref = this.afDB.database.ref(path);
                             // const ref = this.afDB.database.ref(this.rewardPath + this.rewardKey);
                             ref.remove()
@@ -484,6 +487,15 @@ export class DatabaseService {
             });
         });
         // this.getRewardsArray();
+    }
+
+
+    setKey(key){
+        this.Key = key;
+    }
+
+    getKey(){
+        return this.Key;
     }
 
 }
