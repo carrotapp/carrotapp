@@ -27,6 +27,8 @@ export class HeaderComponent implements OnInit {
   @Input('showBtn')
   showBtn: boolean;
   showAdd: boolean;
+
+  remove: boolean[];
   //
   welcomeText = '';
   @Input('showRemove') showRemove: boolean;
@@ -107,16 +109,18 @@ export class HeaderComponent implements OnInit {
     } else { 
       this.redirect('/main/dashboard'); 
       this.btn_title = "add reward"; 
-      this.icon = "fa-plus"; this.showRemove = false;
+      this.icon = "fa-plus"; 
     } 
         
   } 
 
   // Encrypter ?
   pathName(name: string): string {
+    this.showRemove = false;
     return name.toLowerCase().replace(/ /g, '.');
   }
   pathDec(name: string): string {
+    this.showRemove = false;
     return name.toLowerCase().replace(/./g, ' ');
   }
   capitalize(word: string[]): string {
@@ -131,6 +135,7 @@ export class HeaderComponent implements OnInit {
 
   // Init
   subscribe() {
+    this.showRemove = false;
     this.route.params.subscribe((params: Params) => {
       this.username = params.username;
       this.showBtn = this.router.url.includes('dashboard');
@@ -178,7 +183,16 @@ export class HeaderComponent implements OnInit {
                         // this.action = 'Remove from my Rewards';
                         // this.showAdd = false;
 
-                        this.showRemove = true;
+                        if(element.Points !== undefined) {
+                          this.showRemove = true;
+                        } else {
+                          this.showRemove = false;
+                        }
+
+                        
+
+                        // this.remove.push(true);
+
                         this.add = true;
                         this.action = 'Remove from my Rewards';
                         
@@ -210,6 +224,7 @@ export class HeaderComponent implements OnInit {
 
       } else {
         this.redirect('/main/dashboard');
+        this.showRemove = false;
       }
     });
 
@@ -229,8 +244,10 @@ export class HeaderComponent implements OnInit {
   redirect(url: string): void {
     if (this.showBtn) {
       this.showBtn = false;
+      this.showRemove = false;
     } else {
       this.showBtn = true;
+      this.showRemove = false;
     }
     this.router.navigate([url]);
   }
@@ -254,7 +271,7 @@ export class HeaderComponent implements OnInit {
       this.showAdd = true;
       this.showRemove = false;
       // this.redirect('/main/dashboard');
-    }
+    }7
 
   }
   get theme(): string {

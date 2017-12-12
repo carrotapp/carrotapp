@@ -1,4 +1,4 @@
-<div class="moreInfoPanel center " id="{{theme + '-parent'}}">
+<div class="moreInfoPanel center default-shadow" id="{{theme + '-parent'}}">
 
     <div class="row">
         <!-- Reward.Points !== undefined -->
@@ -9,19 +9,17 @@
                 <div class="value-points">
                     {{ Points }}
                 </div>
-                <div class="pill">
-                    <h1> Rand Value </h1>
-                    <div class="value-zar">
-                        {{Reward.Points/Reward.Ratio}}
-                    </div>
+            </div>
+            <div class="pill">
+                <h1> Rand Value </h1>
+                <div class="value-zar">
+                    {{ Ratio }}
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="selectable rgt" (click)="back()">
-                <div class="fa fa-times close-icon"></div>
-                <div class="close">Close</div>
-            </div>
+         <div class="selectable rgt" (click)="back()">
+            <div class="fa fa-times close-icon"></div>
+            <div class="close">Close</div>
         </div>
     </div><br>
 
