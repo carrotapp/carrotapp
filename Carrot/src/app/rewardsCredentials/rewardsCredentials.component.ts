@@ -64,7 +64,9 @@ export class RewardsCredentialsComponent implements OnInit {
   checkCredentials() {
 
     if (this.email !== '' && this.cardNum !== '' && this.password !== '') {
-      if (this.cardNum.length === 13) {
+    
+      if (this.cardNum.length === 8) {
+
         console.log(this.Reward.Key);
         this.databaseService.checkReward(this.Reward.Key);
         console.log(this.databaseService.rewardPath);
@@ -72,29 +74,17 @@ export class RewardsCredentialsComponent implements OnInit {
         this.routerListener.activate();
 
       } else {
-        if (this.cardNum.length >= 13) {
-          alert('Error: Length of card number exceeds 13 digits, re-enter card number');
-          this.cardNum = '';
-        }
-        if (this.cardNum.length <= 13) {
-          alert('Error: Miminum card number length is 13 re-enter card number');
-          this.cardNum = '';
-        }
 
-      }
-    } else {
-      alert('Error: Fill all fields');
+        alert('Error: Minimum card number length is 8');
+        this.cardNum = '';
 
-    }
+      } 
+      
+  } else {
+
+      alert ('Error: Fill in all the fields');
+      
   }
 
-  showPassword() {
-    if (this.typeInput === 'password') {
-      this.typeInput = 'text';
-      this.icon = 'fa fa-eye-slash';
-    } else {
-      this.typeInput = 'password';
-      this.icon = 'fa fa-eye';
-    }
   }
-}
+  }

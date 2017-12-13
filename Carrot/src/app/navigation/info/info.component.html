@@ -1,28 +1,25 @@
-<div class="moreInfoPanel center " id="{{theme + '-parent'}}">
+<div class="moreInfoPanel center default-shadow" id="{{theme + '-parent'}}">
 
     <div class="row">
-        <div class="col-md-6">
-            <img style="float: left" [src]="Reward.Image" alt="rewards programme" class="img">
-            <div style="float: left" *ngIf='Reward.Points !== undefined' class="rectangle">
-                <div class="pill line-right">
-                    <h1> Points Earned </h1>
-                    <div class="value-points">
-                        {{ Reward.Points }}
-                    </div>
+        <!-- Reward.Points !== undefined -->
+        <img style = "float: left" [src]="Reward.Image" alt="rewards programme" class="img">
+        <div style = "float: left" *ngIf='show' class="rectangle">
+            <div class="pill line-right">
+                <h1> Points Earned </h1>
+                <div class="value-points">
+                    {{ Points }}
                 </div>
-                <div class="pill">
-                    <h1> Rand Value </h1>
-                    <div class="value-zar">
-                        {{Reward.Points/Reward.Ratio}}
-                    </div>
+            </div>
+            <div class="pill">
+                <h1> Rand Value </h1>
+                <div class="value-zar">
+                    {{ Ratio }}
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="selectable rgt" (click)="back()">
-                <div class="fa fa-times close-icon"></div>
-                <div class="close">Close</div>
-            </div>
+         <div class="selectable rgt" (click)="back()">
+            <div class="fa fa-times close-icon"></div>
+            <div class="close">Close</div>
         </div>
     </div><br>
 
