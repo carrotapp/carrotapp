@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   showReward: boolean;
 
 
-  constructor(protected ds: DatabaseService, private afAuth: AngularFireAuth, private router: Router) {
+  constructor(public ds: DatabaseService, private afAuth: AngularFireAuth, private router: Router) {
     this.ds.getUsersRewards()
   }
 
@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
 
     this.rewards.forEach(res => {
       res.map(result => {
-        console.log(result);
+        // console.log(result);
         if (key === result.key) {
           return true;
         }

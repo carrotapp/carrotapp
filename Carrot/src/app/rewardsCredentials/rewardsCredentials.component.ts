@@ -16,7 +16,7 @@ export class RewardsCredentialsComponent implements OnInit {
   cardNum = '';
   email = '';
   password = '';
-  reward: Rewards;
+  reward;
   type: string;
   provider: string;
 
@@ -35,12 +35,12 @@ export class RewardsCredentialsComponent implements OnInit {
       this.provider = parameters.provider;
     });
   }
-  getReward() {
-    this.assign();
-    this.reward = this.databaseService.getReward(this.provider);
-    this.databaseService.checkReward(this.Reward.Key);
-    console.log('rere: ' + this.reward);
-  }
+  // getReward() {
+  //   this.assign();
+  //   this.reward = this.databaseService.getReward(this.provider);
+  //   this.databaseService.checkReward(this.Reward.Key);
+  //   console.log('rere: ' + this.reward);
+  // }
 
   /* addReward() {
      console.log(this.Reward.Key);
@@ -63,22 +63,23 @@ export class RewardsCredentialsComponent implements OnInit {
 
   checkCredentials() {
 
-    if (this.email !== '' && this.cardNum !== '' && this.password !== '') {
-    
-      if (this.cardNum.length === 8) {
-
-        console.log(this.Reward.Key);
-        this.databaseService.checkReward(this.Reward.Key);
-        console.log(this.databaseService.rewardPath);
-        this.databaseService.addRewards(this.cardNum, this.email, this.password, this.Reward);
-        this.routerListener.activate();
-
-      } else {
-
-        alert('Error: Minimum card number length is 8');
-        this.cardNum = '';
-
-      } 
+    if (this.email !== '' && this.cardNum !== '' && this.password !== '') { 
+      if (this.cardNum.length === 13) { 
+        // console.log(this.Reward.key); 
+        // this.databaseService.checkReward(this.Reward.key);
+        // console.log(this.databaseService.rewardPath); 
+        this.databaseService.addRewards(this.cardNum, this.email, this.password, this.Reward); 
+        this.routerListener.activate(); 
+ 
+      } else { 
+        if (this.cardNum.length > 13) { 
+          alert('Error: Length of card number exceeds 13 digits, re-enter card number'); 
+        } 
+        if (this.cardNum.length < 13) { 
+          alert('Error: Miminum card number length is 13 re-enter card number'); 
+        }
+        this.cardNum = ''; 
+      }  
       
   } else {
 
@@ -87,4 +88,13 @@ export class RewardsCredentialsComponent implements OnInit {
   }
 
   }
+  showPassword() { 
+    if (this.typeInput === 'password') { 
+      this.typeInput = 'text'; 
+      this.icon = 'fa fa-eye-slash'; 
+    } else { 
+      this.typeInput = 'password'; 
+      this.icon = 'fa fa-eye'; 
+    } 
   }
+}
