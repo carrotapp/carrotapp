@@ -12,10 +12,21 @@
                 <app-card [reward]="reward[i]" [type]="'view'" [isHidden]="true" [type]="'view'"></app-card>
             </div>
         </div> -->
+        <!-- <div *ngIf="check()">
+                dog
+        </div> -->
+        <!-- {{ds.usersRewards.key}} ggg -->
         <div *ngFor='let usersReward of ds.usersRewards | async'>
+                <!-- {{hasReward = true}} -->
             <div *ngIf='reward.key === usersReward.key'>
-                <app-card [reward]="reward" [userData]="usersReward" [type]="'view'" [isHidden]="true" class="col-md-3"></app-card>
+                <app-card [reward]="reward" [userData]="usersReward" [type]="'view'" [isHidden]="send()" class="col-md-3"></app-card>
             </div>
         </div>
     </div>
+
+    <div [hidden] = "check()">
+        <br>
+        <app-first-time-card></app-first-time-card>
+    </div>
+    
 </div>

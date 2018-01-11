@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   username: string;
   path_username;
   showReward: boolean;
+  hasRewards: boolean = false;
 
 
   constructor(protected ds: DatabaseService, private afAuth: AngularFireAuth, private router: Router) {
@@ -31,21 +32,26 @@ export class DashboardComponent implements OnInit {
     // this.sync();
   }
 
-  check(key, reward) {
-    // console.log(key);
+  send(){
 
-    this.rewards.forEach(res => {
-      res.map(result => {
-        console.log(result);
-        if (key === result.key) {
-          return true;
-        }
-      });
-      return false;
-    });
+    this.hasRewards = true;
+    return true;
+  }
+
+  check() {
+    // console.log(this.ds.userRewards + "e");
+
+    // this.ds.userRewards.forEach(res => {
+    //   res.map(result => {
+    //     console.log(result);
+        
+    //   });
+      return this.hasRewards;
+    
+    // });
 
     // this.rewards.subscribe(res => {
-    //   res.map(result => {
+    //   res.map(result => 
     //     if (key === this.rewards[1].key) {
     //       return true;
     //     }

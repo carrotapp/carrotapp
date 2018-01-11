@@ -35,6 +35,7 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ConfirmPasswordComponent } from './confirm-password/confirm-password.component';
+import { FirstTimeCardComponent } from './first-time-card/first-time-card.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDUlfMoY9Aq0nOGnZt_ovhRDaUtOJUnZ04',
@@ -80,6 +81,7 @@ export function metaFactory(): MetaLoader {
     ProfileComponent,
     ForgotPasswordComponent,
     ConfirmPasswordComponent,
+    FirstTimeCardComponent,
   ],
   imports: [
     BrowserModule,
