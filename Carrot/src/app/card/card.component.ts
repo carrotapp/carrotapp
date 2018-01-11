@@ -26,6 +26,8 @@ export class CardComponent implements OnInit {
 
   isOnAccount = false;
 
+  isFlip:boolean; // Controls Styling
+
   // data: Rewards[];
   // userRewards: Rewards[];
 
@@ -40,6 +42,7 @@ export class CardComponent implements OnInit {
     // console.log(this.userData);
     if(this.userData.Points !== undefined) {
       this.isOnAccount = true;
+      this.isFlip = true;
     }
   }
 
@@ -49,6 +52,10 @@ export class CardComponent implements OnInit {
   get getUsername() {
     return this.databaseService.pathName(this.databaseService.getName());
   }
+    flip():void{
+      if(this.isHidden)
+      this.isFlip = !this.isFlip;
+   }
 
   addReward() {
     // const flag = this.databaseService.checkReward(this.reward.Key);
