@@ -1,3 +1,6 @@
+import { MetaLoader, MetaStaticLoader, PageTitlePositioning, MetaModule } from '@ngx-meta/core';
+import { AuthGuard } from './services/guards/authGuard.service';
+import { RoutingListenerService } from './services/routing-listener.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DatabaseService } from './services/database/database.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,7 +25,6 @@ import { MainPanelComponent } from './navigation/main-panel/main-panel.component
 import { FooterComponent } from './navigation/footer/footer.component';
 // service imports
 import { NavigationTogglesService } from './services/navigation/navigation-toggles.service';
-import { RoutingListenerService } from './services/routing-listener.service';
 import { ThemesService} from './services/themes.service';
 import { InfoComponent } from './navigation/info/info.component';
 import { ToolbarComponent } from './navigation/toolbar/toolbar.component';
@@ -33,6 +35,7 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ConfirmPasswordComponent } from './confirm-password/confirm-password.component';
+import { FirstTimeCardComponent } from './first-time-card/first-time-card.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDUlfMoY9Aq0nOGnZt_ovhRDaUtOJUnZ04',
@@ -42,6 +45,18 @@ export const firebaseConfig = {
   storageBucket: 'carrot-app.appspot.com',
   messagingSenderId: '132005725857'
 };
+
+export function metaFactory(): MetaLoader {
+  return new MetaStaticLoader({
+    pageTitlePositioning: PageTitlePositioning.PrependPageTitle,
+    pageTitleSeparator: ' - ',
+    applicationName: 'Carrot',
+    defaults: {
+      author: 'Ernst Kaese, Zahirah Ismail, Lihle Mdikili, Sixolile Mtengwana',
+      title: 'Carrot'
+    }
+  });
+}
 
 @NgModule({
   declarations: [
@@ -66,6 +81,7 @@ export const firebaseConfig = {
     ProfileComponent,
     ForgotPasswordComponent,
     ConfirmPasswordComponent,
+    FirstTimeCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,9 +89,13 @@ export const firebaseConfig = {
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    MetaModule.forRoot({
+      provide: MetaLoader,
+      useFactory: (metaFactory)
+    }),
   ],
-  providers: [DatabaseService, NavigationTogglesService, ThemesService,RoutingListenerService], // Dependancy Injection
+  providers: [DatabaseService, NavigationTogglesService, ThemesService, RoutingListenerService, AuthGuard], // Dependancy Injection
   bootstrap: [AppComponent]
 })
 export class AppModule { }

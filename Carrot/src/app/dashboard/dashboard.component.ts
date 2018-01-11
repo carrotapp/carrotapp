@@ -1,7 +1,10 @@
+import { Observable } from 'rxjs/Observable';
+import { DatabaseService } from './../services/database/database.service';
 import { Rewards } from './Rewards';
-import { DatabaseService } from '../services/database/database.service';
 import { Component } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Router } from '@angular/router';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 
 @Component({
@@ -9,28 +12,52 @@ import { AngularFireAuth } from 'angularfire2/auth';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent{
-  rewards: Rewards[] = [];
-  username:string;
+export class DashboardComponent implements OnInit {
+  // rewards: Rewards[] = [];
+  rewards: Observable<any[]>;
+  username: string;
   path_username;
-  
+  showReward: boolean;
+  hasRewards: boolean = false;
 
-  constructor(private ds: DatabaseService,private afAuth: AngularFireAuth) {
-    if (ds.checkLoggedIn()) {
-      this.rewards = ds.getRewardsArray();
-      this.username = this.afAuth.auth.currentUser.displayName
-      this.path_username = this.toLowerPath(this.afAuth.auth.currentUser.displayName);
-    }
+
+  constructor(public ds: DatabaseService, private afAuth: AngularFireAuth, private router: Router) {
+    this.ds.getUsersRewards()
   }
 
- // Routing to lower
-toLowerPath(name:string):string{ 
-  return name.toLowerCase().replace(/ /g,'.');
-}
-//getter
-get pathName(){
-  return this.path_username;
-}
+  ngOnInit() {
+    // console.log(this.rewards);
+    // this.ds.rewardsArray = [];
+    // console.log(this.ds.theme);
+    // this.sync();
+  }
 
+  send(){
+
+    this.hasRewards = true;
+    return true;
+  }
+
+  check() {
+    // console.log(this.ds.userRewards + "e");
+
+    // this.ds.userRewards.forEach(res => {
+    //   res.map(result => {
+    //     console.log(result);
+        
+    //   });
+      return this.hasRewards;
+    
+    // });
+
+    // this.rewards.subscribe(res => {
+    //   res.map(result => 
+    //     if (key === this.rewards[1].key) {
+    //       return true;
+    //     }
+    //   });
+    //   return false;
+    // });
+  }
 
 }

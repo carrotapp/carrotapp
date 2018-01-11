@@ -7,16 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent implements OnInit {
+  email: string;
 
-  constructor(private ds: DatabaseService) {
+  constructor(public ds: DatabaseService) {
 
    }
 
   ngOnInit() {
   }
-
-  resetPassword(email){
-    this.ds.newReset(email);
-  }
-
 }

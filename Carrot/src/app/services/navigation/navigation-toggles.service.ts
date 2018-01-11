@@ -4,10 +4,12 @@ import { Injectable } from '@angular/core';
 export class NavigationTogglesService {
   static ShowSideBar: string;
   static toolbartoggle: String;
+  static modal:boolean;
   // Start of Constructor
   constructor() {
     NavigationTogglesService.ShowSideBar = 'default';
     NavigationTogglesService.toolbartoggle = 'default';
+    NavigationTogglesService.modal = false;
   }
 
   // Toggles
@@ -17,7 +19,12 @@ export class NavigationTogglesService {
       NavigationTogglesService.ShowSideBar = 'show';
     } else {
       NavigationTogglesService.ShowSideBar = 'default';
+
     }
+  }
+
+  modal(){
+    NavigationTogglesService.modal = !NavigationTogglesService.modal;
   }
   // toolbar
   toolbar_toggle(): void {

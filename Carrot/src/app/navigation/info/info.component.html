@@ -1,24 +1,46 @@
-<div class="moreInfoPanel center default-shadow">
+<div class="moreInfoPanel center " id="{{theme + '-parent'}}">
+
     <div class="row">
-        <img [src]="dbs.reward.Image" alt="rewards programme" class="img">
-        <div *ngIf='dbs.reward.Points !== undefined' class="rectangle">
-            <div class="pill line-right">
-                <h1> Points Earned </h1>
-                <div class="value-points">
-                    {{ dbs.reward.Points }}
+        <div class="col-md-6">
+            <img style="float: left" [src]="Reward.Image" alt="rewards programme" class="img" />
+            <!-- <div class="col-md-4"> -->
+            <div style="float: left" *ngIf='Points !== undefined' class="rectangle">
+                <div class="pill line-right">
+                    <h1> Points Earned </h1>
+                    <div class="value-points">
+                        {{ Points }}
+                    </div>
                 </div>
-            </div>
-            <div class="pill">
-                <h1> Rand Value </h1>
-                <div class="value-zar">
-                    {{dbs.reward.Points/dbs.reward.Ratio}}
+                <div class="pill">
+                    <h1> Rand Value </h1>
+                    <div class="value-zar">
+                        {{Ratio}}
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="selectable rgt" (click)="back()">
-            <div class="fa fa-times close-icon"></div>
-            <div class="close">Close</div>
+        <div class="col-md-6">
+            <div class="selectable rgt" (click)="back()">
+                <div class="fa fa-times close-icon"></div>
+                <div class="close">Close</div>
+            </div>
         </div>
     </div><br>
-    <iframe [src]="src" [srcdoc]="dbs.reward.summary" alt='text' class="default-shadow" frameborder="0" class="iframe"> </iframe>
+
+    <div class="displayContent">
+        <h3 id="{{theme + '-parent-item'}}">About:</h3>
+        <!-- <iframe [src]="reward.infoUrl" [srcdoc]="reward.summary" alt='text' class="default-shadow" frameborder="0" class="iframe"> </iframe>-->
+        {{ Reward.summary }}
+        <!-- </diV>-->
+        <!-- <diV class="displayContent">-->
+        <h3 id="{{theme + '-parent-item'}}">How to Earn points:</h3>
+        {{ Reward.how }}
+
+        <!--</diV>-->
+        <!-- <diV class="displayContent">-->
+        <h3 id="{{theme + '-parent-item'}}">Where to Earn points:</h3>
+        {{ Reward.where }}
+    </div>
+
 </div>
+<!-- </div> -->

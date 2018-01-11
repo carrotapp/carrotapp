@@ -1,0 +1,42 @@
+.card{
+    height: 214px;
+    width: 303px;
+    padding: 30px;
+    /* padding-left: 45px; */
+    /* Look and Feel */
+    border-radius: 6px;
+    /* border-color: #fbb400; */
+    box-shadow: 0 5px 12px 0 rgba(217, 226, 233, 0.5);
+    border: solid 1px #fbb400;
+    /* Spacing */
+    margin: 20px;
+    border-style: dashed;
+}
+
+card:hover{
+    box-shadow: 0 12px 20px 6px rgb(207, 211, 214);
+}
+
+label{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    text-align: left;
+    float: left;
+    margin-left: 20px;
+}
+
+.firstRewardLabel{
+    font-size: 18px;
+    color: #474f58;
+}
+
+.secondRewardLabel{
+    font-size: 14px;
+    color: #fbb400;
+}
+
+.icon{
+    font-size: 30px;
+    margin-top: 15%;
+    color: #fbb400;
+}

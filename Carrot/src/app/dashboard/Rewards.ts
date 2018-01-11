@@ -1,3 +1,4 @@
+import { ancestorWhere } from 'tslint/lib';
 export class Rewards {
   Currency;
   Image;
@@ -7,6 +8,8 @@ export class Rewards {
   Value;
   infoUrl;
   summary;
+  how;
+  where;
 
   // On details Array
   CardNumber;
@@ -26,6 +29,8 @@ export class Rewards {
     this.infoUrl = array.infoUrl;
     this.summary = array.summary;
     this.Key = array.key;
+    this.how = array.how;
+    this.where = array.where;
 
     // Details
     this.CardNumber = detailsArray.CardNumber;

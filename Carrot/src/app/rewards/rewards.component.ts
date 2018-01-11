@@ -1,7 +1,9 @@
+import { element } from 'protractor';
+import { Rewards } from './../dashboard/Rewards';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { DatabaseService } from '../services/database/database.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-rewards',
@@ -9,27 +11,31 @@ import { Component } from '@angular/core';
   styleUrls: ['./rewards.component.css']
 })
 
-export class RewardsComponent {
+export class RewardsComponent implements OnInit {
   data: Observable<any[]>;
-  username: string;
-  path_username;
+  rewards: Rewards[] = [];
 
   constructor(private databaseService: DatabaseService) {
-    if (databaseService.checkLoggedIn()) {
-      this.data = databaseService.getRewards();
-      console.log(databaseService.getRewards());
-      console.log(this.data);
-      this.username = databaseService.getName();
-      this.path_username = databaseService.pathName(this.username);
+    databaseService.getRewardsArray();
+    this.data = this.databaseService.getRewards();
+  }
+  
+  ngOnInit(){
+    this.rewards = this.databaseService.rewardsArray;
+    // console.log(this.rewards);
+  }
+
+  check(key){
+    for(let i = 0; i < this.rewards.length; i++){
+
+      if(key === this.rewards[i].Key){
+        // console.log(false);
+        return false;
+      }
+      
     }
+    // console.log(true);
+    return true;
   }
 
-  addRewards(key: string) {
-    this.databaseService.checkReward(key);
-  }
-
-  // getter
-  get pathName() {
-    return this.path_username;
-  }
 }

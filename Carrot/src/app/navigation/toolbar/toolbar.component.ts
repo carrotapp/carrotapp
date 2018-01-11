@@ -16,11 +16,8 @@ export class ToolbarComponent {
   path_username;
   // tslint:disable-next-line:max-line-length
   constructor(public toolbarObj: NavigationTogglesService, public themes: ThemesService, protected ds: DatabaseService, protected router: Router) {
-    if(ds.checkLoggedIn()){
-      this.username = ds.getName();
-      this.path_username = ds.pathName(this.username);
-    }
-    
+    this.username = ds.getName();
+    this.path_username = ds.pathName(this.username);
   }
   // getter
   get pathName() {
@@ -34,7 +31,7 @@ export class ToolbarComponent {
     this.isColor = !this.isColor;
   }
   log(): void {
-    console.log('clicked');
+    // console.log('clicked');
   }
 
   // Retrieving State
@@ -49,7 +46,7 @@ export class ToolbarComponent {
     this.themes.setTheme(theme);
   }
 
-  goToProfile() {
-    this.router.navigate(['/' + this.ds.pathName(this.ds.getName()) + '/profile']);
-  }
+  // goToProfile() {
+  //   this.router.navigate(['/' + this.ds.pathName(this.ds.getName()) + '/profile']);
+  // }
 }

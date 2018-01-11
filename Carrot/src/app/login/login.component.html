@@ -1,17 +1,5 @@
-<app-navbar></app-navbar>
-<!--
-<body style = "background-color: #4a4a4a">
-    <div class = "container">
-
-        <div class = "row">
-            <div class = "col-md-4"> </div>
-            <div class = "col-md-4"> dog </div>
-            <div class = "col-md-4"> </div>
-        </div>
-
-    </div>
-</body> -->
-
+<app-navbar>
+</app-navbar>
 
 <div class="panel">
     <div class="main">
@@ -24,8 +12,6 @@
 
                     <div class="page-background">
                         <div class="row justify-content-center">
-
-
                             <!--the box where all fields are in-->
                             <div class="box container-fluid align-middle ">
 
@@ -53,8 +39,11 @@
                                 <!--textfields start-->
                                 <div class="row m-0 justify-content-left">
                                     <input type="email" placeholder="Email" class="textfield" [(ngModel)]="email" required>
-                                    <input type="password" placeholder="Password" class="textfield" [(ngModel)]="password" required>
+                                    <input type="{{typeInput}}" placeholder="Password" class="textField-Password" [(ngModel)]="password" required>
+                                    <i class=" fa-2x peakPassword {{icon}}" (click)="showPassword()" aria-hidden="true"></i>
                                 </div>
+
+
                                 <!--textfields end-->
 
                                 <!--forgot password start-->
@@ -64,39 +53,33 @@
 
                                 <!--forgot password ends-->
 
-                                <!--login button start-->
-                                <div class="row m-0 justify-content-center">
-                                    <custom-button text="Login" (click)="signIn()" class=" col align-self-start"></custom-button>
+                                <!--register button/link start-->
+                                <div class="row justify-content-center">
+                                    <custom-button [text]="'Login'" (click)="signIn()" class=" col align-self-start"></custom-button>
                                 </div>
-                                <!--login button ends-->
+                                <!--register button/link ends-->
 
                                 <!--register button/link start-->
                                 <div class="row justify-content-center">
                                     <a class="register" [text]="'Register'" [routerLink]="'/register'"></a>
                                 </div>
                                 <!--register button/link ends-->
+
                                 <!--google button/link start-->
                                 <div class="row justify-content-center">
                                     <div class="google-box">
-                                        <h6 class="google-label text-center">Or sign up with</h6>
+                                        <h6 class="google-label text-center">Or sign in with</h6>
                                         <button type="button" (click)="googlePopup()" class=" googleLogin google-btn  rounded mx-auto d-block">SIGN IN WITH GOOGLE</button>
                                         <br>
                                     </div>
                                 </div>
-                                <!--google button/link end-->
                             </div>
+                            <!--google button/link end-->
                         </div>
-
-
                     </div>
-
-
-
                 </div>
-                <div class="col-md-3"> </div>
             </div>
-
+            <div class="col-md-3"> </div>
         </div>
-    </div>
 
-</div>
+    </div>

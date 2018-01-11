@@ -15,10 +15,13 @@
 * {
     transition: all 800ms ease;
     -webkit-transition: all 800ms ease;
-    ;
     -o-transition: all 800ms ease;
     -ms-transition: all 800ms ease;
     -moz-transition: all 800ms ease;
+}
+
+html {
+    min-height: 100vh;
 }
 
 
@@ -31,9 +34,10 @@
     text-overflow: ellipsis;
 }
 
-.custom-row{
+.custom-row {
     width: 100%;
 }
+
 .center {
     text-align: center;
     align-items: center;
@@ -152,6 +156,10 @@ a:hover {
     padding: 5px;
     border-bottom-color: #EEEEEE;
     background-color: #FAFAFA;
+}
+
+.modal-open {
+    overflow: auto;
 }
 
 @media screen and (max-width: 800px) {
