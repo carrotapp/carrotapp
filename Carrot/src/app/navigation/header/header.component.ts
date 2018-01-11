@@ -102,7 +102,7 @@ export class HeaderComponent implements OnInit {
 
   btnTitle() { 
     
-    if (this.router.url.toString().includes('/dashboard')){ 
+    if (this.router.url.includes('dashboard')){ 
       this.redirect('/main/rewards'); 
       this.btn_title = "dashboard"; 
       this.icon = "fa-chevron-left"; this.showRemove = false;
@@ -136,77 +136,97 @@ export class HeaderComponent implements OnInit {
   // Init
   subscribe() {
     this.showRemove = false;
-    this.route.params.subscribe((params: Params) => {
-      this.username = params.username;
+    // this.route.params.subscribe((params: Params) => {
+      // this.username = params.username;
       this.showBtn = this.router.url.includes('dashboard');
       this.links = this.router.url.toString().split('/');
       this.welcomeText = '';
       // let hasRewards: boolean;
 
-      console.log(this.links.length + " : links");
+      // console.log(this.links.length + " : links");
       
       if (this.showBtn) {
         
         this.h1 = 'My Rewards';
+        this.showAdd = true;
        
         // this.showRemove = true;
         
         
-      } else if (!this.showBtn) {
-
-        this.showRemove = false;
-        this.add = false;
-        if (this.links.length === 3) {
-
-         
-          
-
-            // if (this.router.url.includes('rewards')) {
-            //   this.showRemove = false;
-            //   this.add = false;
-
-            // } 
-            
-            if (this.links[2].toLowerCase() === 'info') {
-
-              this.rKey = this.databaseService.getKey();
-              
-                  this.databaseService.usersRewards.subscribe(res => {
-                    res.map(element => {
-                      console.log("1" + this.rKey);
-                      console.log("2" + element.key);
-                      if(this.rKey === element.key){
-              
-                        // this.showDel = true;
-                        // // this.showRemove = true;
-                        // this.add = true;
-                        // this.action = 'Remove from my Rewards';
-                        // this.showAdd = false;
-
-                        if(element.Points !== undefined) {
-                          this.showRemove = true;
-                        } else {
-                          this.showRemove = false;
-                        }
-
-                        
-
-                        // this.remove.push(true);
-
-                        this.add = true;
-                        this.action = 'Remove from my Rewards';
-                        
-                        console.log("Rewards" + element.Points);
-              
-                      } 
-                    })
-                  }) 
+      // } else if (this.router.url.includes('dashboard')) {
+      //     this.showRemove = false;
+      //         this.showAdd = true;
+      //         this.add = true; 
                  
 
-            } else if (this.links[2].toLowerCase() === 'dashboard') {
-              this.showRemove = false;
-              this.add = false;
-            }
+            } else if (!this.showBtn) {
+              // this.showRemove = false;
+              // this.showAdd = true;
+              // // this.showRemove = false;
+              // this.add = false;
+              // if (this.links.length === 3) {
+      
+               
+                
+      
+                  // if (this.router.url.includes('rewards')) {
+                  //   this.showRemove = false;
+                  //   this.add = false;
+      
+                  // } 
+                  
+                  if (this.router.url.includes('info')) {
+                    console.log(this.routerListener.isOnAccount);
+                    // this.showRemove = false;
+                    // this.showAdd = true;
+      
+                    // this.rKey = this.databaseService.getKey();
+                    
+                    //     this.databaseService.usersRewards.subscribe(res => {
+                    //       res.map(element => {
+                    //         console.log("1" + this.rKey);
+                    //         console.log("2" + element.key);
+                    //         if(this.rKey === element.key){
+                    
+                    //           // this.showDel = true;
+                    //           // // this.showRemove = true;
+                    //           // this.add = true;
+                    //           // this.action = 'Remove from my Rewards';
+                    //           // this.showAdd = false;
+      
+                    //           // if(element.Points !== undefined) {
+                    //             this.showRemove = true;
+                    //             this.showAdd = false;
+                    //           // } else {
+                    //           //   this.showRemove = false;
+                    //           //   this.showAdd = true;
+                    //           // }
+      
+                              
+      
+                    //           // this.remove.push(true);
+      
+                    //           this.add = true;
+                    //           this.action = 'Remove from my Rewards';
+                              
+                    //           console.log("Rewards" + element.Points);
+                    
+                    //         }
+                    if(this.routerListener.isOnAccount) {
+                      this.showRemove = true;
+                      this.showAdd = false;
+                      this.add = true;
+                      this.action = 'Remove from my Rewards';
+                    } else {
+                      this.showRemove = true;
+                      this.showAdd = false;
+                      this.add = false;
+                      this.action = 'Add Reward';
+                    }
+                          
+                  }
+            
+          
 
           // } else {
           //   this.showRemove = true;
@@ -214,11 +234,11 @@ export class HeaderComponent implements OnInit {
           //   this.action = 'add Reward';
           // }
 
-        } else if (this.router.url.toString() === '/404') {
+        } else if (this.router.url.includes('/404')) {
           this.redirect('/main/dashboard');
           this.showRemove = false;
           this.h1 = 'Oooopsss, Something went wrong!!!';
-        }
+        
         
         
 
@@ -226,7 +246,7 @@ export class HeaderComponent implements OnInit {
         this.redirect('/main/dashboard');
         this.showRemove = false;
       }
-    });
+    // });
 
 
     if (this.router.url.includes('rewards')) {
@@ -271,7 +291,7 @@ export class HeaderComponent implements OnInit {
       this.showAdd = true;
       this.showRemove = false;
       // this.redirect('/main/dashboard');
-    }7
+    }
 
   }
   get theme(): string {

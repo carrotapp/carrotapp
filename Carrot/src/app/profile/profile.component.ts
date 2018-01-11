@@ -27,19 +27,19 @@ export class ProfileComponent implements OnInit {
   save() {
     if (this.name !== this.ds.getName()) {
       this.ds.setName(this.name);
-      console.log('Updated: name');
+      // console.log('Updated: name');
     }
     if (this.email !== this.ds.getEmail()) {
       this.ds.setEmail(this.email);
-      console.log('Updated: email');
+      // console.log('Updated: email');
     }
     if (this.password !== '') {
       this.ds.resetPassword(this.ds.getEmail());
-      console.log('Updated: password');
+      // console.log('Updated: password');
     }
     if (this.ds.getTheme() !== this.theme) {
       this.ds.updateTheme(this.theme);
-      console.log('Updated: theme');
+      // console.log('Updated: theme');
       this.themeServ.setTheme( this.ds.getTheme());
     }
   }

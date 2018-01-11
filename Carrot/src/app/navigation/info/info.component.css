@@ -1,15 +1,14 @@
 .moreInfoPanel {
     width: 99.2%;
     height: 100%;
-    position: fixed;
+    /* position: fixed;*/
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 20px;
     margin-top: 5px;
     border-radius: 6px;
     background-color: #FFFFFF;
 }
-
 .img {
     margin-right: 50%;
     width: 70px;
@@ -20,7 +19,6 @@
     /*float: left;*/
     background: none;
 }
-
 .rectangle {
     width: 243px;
     height: 72px;
@@ -30,7 +28,6 @@
     background-color: #FFFFFF;
     margin-top: 20px;
 }
-
 .pill {
     width: 50%;
     height: 100.5%;
@@ -40,7 +37,6 @@
     text-overflow: clip;
     /* overflow: hidden; */
 }
-
 h1 {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 11px;
@@ -50,7 +46,6 @@ h1 {
     color: #323c47;
     text-transform: uppercase;
 }
-
 .value-points {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 20px;
@@ -59,7 +54,6 @@ h1 {
     text-align: left;
     color: #489fff;
 }
-
 .value-zar {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 20px;
@@ -68,8 +62,6 @@ h1 {
     text-align: left;
     color: #73a649;
 }
-
-
 /*.iframe {
     border: none;
     width: 99%;
@@ -82,7 +74,6 @@ h1 {
     text-align: left;
     color: #489fff;
 }*/
-
 .close {
     width: 44px;
     height: 20px;
@@ -93,7 +84,6 @@ h1 {
     color: #489fff;
     float: left;
 }
-
 .close-icon {
     height: 20px;
     font-size: 16px;
@@ -102,12 +92,10 @@ h1 {
     color: #489fff;
     float: left;
 }
-
 .rgt {
     margin-left: 55%;
     /* float: right; */
 }
-
 h3 {
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 300;
@@ -116,11 +104,11 @@ h3 {
     color: #323c47;
     font-size: 25px;
 }
-
 .displayContent {
     text-align: left;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 100;
     margin-top: 5px;
     font-size: 15px;
+    overflow-y: inherit;
 }

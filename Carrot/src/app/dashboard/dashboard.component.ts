@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   hasRewards: boolean = false;
 
 
-  constructor(protected ds: DatabaseService, private afAuth: AngularFireAuth, private router: Router) {
+  constructor(public ds: DatabaseService, private afAuth: AngularFireAuth, private router: Router) {
     this.ds.getUsersRewards()
   }
 

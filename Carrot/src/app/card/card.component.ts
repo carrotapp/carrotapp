@@ -24,16 +24,23 @@ export class CardComponent implements OnInit {
   @Input('isHidden')
   isHidden: boolean;
 
+  isOnAccount = false;
+
   // data: Rewards[];
   // userRewards: Rewards[];
 
-  constructor(private routerListener: RoutingListenerService, public themes: ThemesService, protected databaseService: DatabaseService, protected router: Router) { }
+  constructor(private routerListener: RoutingListenerService, public themes: ThemesService, protected databaseService: DatabaseService, protected router: Router) {
+    
+  }
 
   ngOnInit() {
     // this.userRewards = this.databaseService.getRewardsArray();
     // this.data = this.databaseService.getRewards();
     // console.log(this.reward);
     // console.log(this.userData);
+    if(this.userData.Points !== undefined) {
+      this.isOnAccount = true;
+    }
   }
 
   get theme() {
@@ -55,7 +62,8 @@ export class CardComponent implements OnInit {
       // if (!this.databaseService.rewardFlag) {
       //   alert(' You already have ' + this.reward.Name + ' in your account! ');
       // } else {
-        this.routerListener.activeReward(this.reward);
+        // console.log(this.isOnAccount);
+        this.routerListener.activeReward(this.reward, this.isOnAccount);
         this.routerListener.activate();
       // }
 
@@ -68,9 +76,9 @@ export class CardComponent implements OnInit {
   moreInfo(key) {
     // console.log("My key" + key);
     this.databaseService.setKey(key);
-    console.log(this.databaseService.getKey() + "The gotten");
-
-    this.routerListener.activeReward(this.reward);
+    // console.log(this.databaseService.getKey() + "The gotten");
+    // console.log(this.isOnAccount);
+    this.routerListener.activeReward(this.reward, this.isOnAccount);
     // tslint:disable-next-line:max-line-length
     // this.databaseService.redirect('/' + this.databaseService.pathName(this.databaseService.getName()) + '/' + this.databaseService.pathName(this.reward.Name) + '/' + this.type);
     this.router.navigate(['/main/info']);

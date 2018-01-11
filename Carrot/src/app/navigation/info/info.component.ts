@@ -25,31 +25,44 @@ export class InfoComponent implements OnInit {
     // this.getRewardKey();
 
     this.show = false;
-    console.log(this.dbs.reward + "Points");
+    // console.log(this.dbs.reward + "Points");
 
   }
 
   ngOnInit() {
     this.getReward();
 
-    console.log()
+    // console.log()
 
     this.rKey = this.dbs.getKey();
+    this.dbs.rewards.subscribe(result => {
+      this.dbs.usersRewards.subscribe(res => {
+        result.map(reward => {
+          res.map(userReward => {
+            if (userReward.key === this.rKey) {
+              this.show = true;
+              this.Points = userReward.Points;
+              this.Ratio = userReward.Points / reward.Ratio;
+              // console.log("Rewards" + userReward.Points);
+            }
+          });
+        });
+      });
+    });
+    // this.dbs.usersRewards.subscribe(res => {
+    //   res.map(element => {
+    //     console.log("1" + this.rKey);
+    //     console.log("2" + element.key);
+    //     if(this.rKey === element.key){
 
-    this.dbs.usersRewards.subscribe(res => {
-      res.map(element => {
-        console.log("1" + this.rKey);
-        console.log("2" + element.key);
-        if(this.rKey === element.key){
+    //       this.show = true;
+    //       this.Points = element.Points;
+    //       this.Ratio = element.Points / element.Ratio;
+    //       console.log("Rewards" + element.Points);
 
-          this.show = true;
-          this.Points = element.Points;
-          this.Ratio = element.Points / element.Ratio;
-          console.log("Rewards" + element.Points);
-
-        }
-      })
-    })
+    //     }
+    //   })
+    // })
 
 
    
@@ -66,6 +79,7 @@ export class InfoComponent implements OnInit {
     this.Reward.infoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.Reward.infoUrl);
   }
   back() {
+    // this.routerListener.reward = undefined;
     this.dbs.back();
   }
   safe( url: string) {

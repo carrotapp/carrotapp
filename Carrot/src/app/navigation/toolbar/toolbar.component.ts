@@ -31,7 +31,7 @@ export class ToolbarComponent {
     this.isColor = !this.isColor;
   }
   log(): void {
-    console.log('clicked');
+    // console.log('clicked');
   }
 
   // Retrieving State

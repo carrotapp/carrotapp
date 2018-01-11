@@ -141,9 +141,7 @@ export class DatabaseService {
         this.afDB.list(this.rewardPath).set(reward.key, { CardNumber: cardNum, Password: password, Points: 0, Email: email });
         this.rewardsArray = [];
         alert('Reward added successfully');
-        setTimeout(() => {
-            this.router.navigate(['/main/dashboard']);
-        }, 200);
+        this.router.navigate(['/main/dashboard']);
     }
 
     checkReward(key: string) {
