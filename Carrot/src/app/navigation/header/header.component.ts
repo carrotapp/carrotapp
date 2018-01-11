@@ -51,10 +51,6 @@ export class HeaderComponent implements OnInit {
     this.showRemove = false;
     this.showAdd = true;
 
-   
-
-
-    
 
     if(this.router.url.toString().includes('/dashboard')){ 
       this.btn_title = "add reward"; 

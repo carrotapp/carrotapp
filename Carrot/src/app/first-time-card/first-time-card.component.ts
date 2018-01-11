@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { ThemesService } from '../services/themes.service';
 
 @Component({
   selector: 'app-first-time-card',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FirstTimeCardComponent implements OnInit {
 
-  constructor(protected router: Router) { }
+  constructor(public themes: ThemesService, protected router: Router) { }
 
   ngOnInit() {
   }
@@ -17,4 +18,7 @@ export class FirstTimeCardComponent implements OnInit {
     this.router.navigate(['main/rewards']);
   }
 
+  get theme(): string {
+    return this.themes.getTheme();
+  }
 }

@@ -1,4 +1,5 @@
-<div class="card" *ngIf='reward !== undefined && userData !== undefined'>
+<div [class.flip]="!isFlip">
+    <div  [hidden]="isFlip" class="card" *ngIf='reward !== undefined && userData !== undefined'(click)="flip()">
     <div class="row">
         <img [(src)]="reward.Image" [(alt)]="reward.ProviderName" class="img"><br>
         <div class="header">{{ reward.Name }} <br>
@@ -29,4 +30,10 @@
             </div>
         </div>
     </div>
+</div>
+<!-- What to show after Flipping-->
+<div class="card-image"  [ngStyle]="{'background-image' : reward.Image }" (click)="flip()" [hidden]="!isFlip">
+    <div class="background" [ngStyle]="{'background-image' : 'url('+ reward.Image+')' }">
+    </div>
+</div>
 </div>
