@@ -1,13 +1,30 @@
 <div id="{{theme+'-parent'}}">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col">
             <div class="h1" id="{{theme+'-parent-item'}}"> {{ heading }} </div>
         </div>
+        <div *ngIf="databaseService.userRewards !== undefined && router.url.includes('dashboard')" class="col-md-3">
+            <div class="rectangle mx-auto">
+                <div class="pill line-right">
+                    <p>TOTAL POINTS</p>
+                    <div class="value-points minus-top-10px">
+                        {{ databaseService.totalPoints }}
+                    </div>
+                </div>
+                <div class="pill">
+                    <p>TOTAL VALUE (R)</p>
+                    <div class="value-zar minus-top-10px">
+                        {{ databaseService.totalRandValue }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="col-md-6 right">
 
-            <button class="btn-add-carrot selectable"  (click)="btnTitle()" [hidden] = "!showAdd">  
+            <button class="btn-add-carrot selectable" (click)="btnTitle()" [hidden]="!showAdd">  
                 <div class="btn-text fa {{icon}}"></div> 
-                <div class="btn-text-right"  >{{btn_title}}</div> 
+                <div class="btn-text-right">{{btn_title}}</div>
             </button>
 
             <button class="selectable" (click)="addReward()" [hidden]="!showRemove" [class.btn-remove-carrot]="add" [class.btn-add-carrot]="!add"> 
