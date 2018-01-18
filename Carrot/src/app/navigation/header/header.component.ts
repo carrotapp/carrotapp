@@ -249,17 +249,11 @@ export class HeaderComponent implements OnInit {
     if (this.router.url.includes('rewards')) {
       this.h1 = 'Add Rewards';
       this.showRemove = false;
-      this.btn_title = "dashboard"; 
-      this.icon = "fa-chevron-left"; 
-      // this.btnTitle();
     }
 
     if (this.router.url.includes('dashboard')) {
       this.h1 = 'My Rewards';
       this.showRemove = false;
-      this.btn_title = "add reward"; 
-      this.icon = "fa-plus";
-      // btnTitle();
     }
 
   }
