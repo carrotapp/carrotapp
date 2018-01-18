@@ -36,6 +36,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ConfirmPasswordComponent } from './confirm-password/confirm-password.component';
 import { FirstTimeCardComponent } from './first-time-card/first-time-card.component';
+import { CouponsComponent } from './coupons/coupons.component';
+import { DatePipe } from '@angular/common';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDUlfMoY9Aq0nOGnZt_ovhRDaUtOJUnZ04',
@@ -82,7 +84,8 @@ export function metaFactory(): MetaLoader {
     ForgotPasswordComponent,
     ConfirmPasswordComponent,
     FirstTimeCardComponent,
-  ],
+    CouponsComponent
+],
   imports: [
     BrowserModule,
     FormsModule,
@@ -95,7 +98,7 @@ export function metaFactory(): MetaLoader {
       useFactory: (metaFactory)
     }),
   ],
-  providers: [DatabaseService, NavigationTogglesService, ThemesService, RoutingListenerService, AuthGuard], // Dependancy Injection
+  providers: [DatabaseService, NavigationTogglesService, ThemesService, RoutingListenerService, AuthGuard, DatePipe], // Dependancy Injection
   bootstrap: [AppComponent]
 })
 export class AppModule { }

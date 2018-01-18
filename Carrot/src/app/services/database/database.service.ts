@@ -9,6 +9,7 @@ import * as firebase from 'firebase/app';
 import { Location } from '@angular/common';
 import 'rxjs/add/observable/combineLatest';
 import { setTimeout } from 'timers';
+import { DatePipe } from '@angular/common';
 
 @Injectable()
 export class DatabaseService {
@@ -26,9 +27,10 @@ export class DatabaseService {
     rewardFlag: boolean;
     initialized = false;
     loggedIn: boolean;
+    coupons: Observable<any[]>;
 
-    totalPoints=0;
-    totalRandValue=0;
+    totalPoints = 0;
+    totalRandValue = 0;
 
     Key: string;
 
@@ -36,11 +38,16 @@ export class DatabaseService {
 
     rewardsStatus: any[][];
     // tslint:disable-next-line:max-line-length
-    constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router, protected _location: Location, protected ts: ThemesService) {
+    constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router, protected _location: Location, protected ts: ThemesService, private datePipe: DatePipe) {
         this.userRewardsRef = afDB.list('/User Rewards');
         this.rewards = afDB.list('/Rewards').snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         });
+        this.coupons = afDB.list('/Coupons').snapshotChanges().map(changes => {
+            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        });
+
+        this.checkCoupons();
     }
 
     signIn(email, password) {
@@ -169,7 +176,7 @@ export class DatabaseService {
                             // let r:any;
                             for (let j = 0; j < rewardsElement.length; j++) {
                                 // console.log('Reward: ', rewardsElement[j].key);
-                                console.log("key" + key)
+                                console.log('key' + key);
                                 if (rewardsElement[j].key === key) {
                                     flag = false;
                                     // console.log('Found');
@@ -246,7 +253,7 @@ export class DatabaseService {
 
 
     getUsersRewards() {
-        
+
         // let key: string;
         // const uid: string = this.getUID();
         // let path: string;
@@ -265,15 +272,16 @@ export class DatabaseService {
                         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
                     });
 
-                    this.totalPoints=0;
-                    this.totalRandValue=0;
+                    this.totalPoints = 0;
+                    this.totalRandValue = 0;
                     this.usersRewards.subscribe(res => {
                         this.rewards.subscribe(response => {
                             res.map(element => {
                                 this.totalPoints += element.Points;
                                 response.map(e => {
-                                    if(e.key === element.key)
-                                    this.totalRandValue += element.Points/e.Ratio;
+                                    if (e.key === element.key) {
+                                        this.totalRandValue += element.Points / e.Ratio;
+                                    }
                                 });
                             });
                         });
@@ -507,12 +515,27 @@ export class DatabaseService {
     }
 
 
-    setKey(key){
+    setKey(key) {
         this.Key = key;
     }
 
-    getKey(){
+    getKey() {
         return this.Key;
+    }
+
+    // Deletes all expired coupons
+    checkCoupons() {
+        const current_date = new Date();
+        this.coupons.subscribe(results => {
+            results.map(element => {
+                let expDate: string = element.ExpirationDate;
+                expDate = expDate.replace(/-/g, '');
+                if (parseInt(expDate, 10) < parseInt(this.datePipe.transform(current_date, 'yyyyMMdd'), 10)) {
+                    const key = element.key;
+                    this.afDB.list('/Coupons').remove(key);
+                }
+            });
+        });
     }
 
 }
