@@ -85,9 +85,9 @@ export function metaFactory(): MetaLoader {
     ForgotPasswordComponent,
     ConfirmPasswordComponent,
     FirstTimeCardComponent,
+    MapsComponent,
     CouponsComponent
 ],
-    MapsComponent,
   imports: [
     BrowserModule,
     FormsModule,
