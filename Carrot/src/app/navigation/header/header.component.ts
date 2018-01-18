@@ -1,5 +1,5 @@
 import { InfoComponent } from './../info/info.component';
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostListener } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ThemesService } from '../../services/themes.service';
 import { RoutingListenerService } from '../../services/routing-listener.service';
@@ -44,9 +44,13 @@ export class HeaderComponent implements OnInit {
   /* Other Text */
   date: Date = new Date();
   links: string[];
+
+  innerWidth;
   /* type */
   // tslint:disable-next-line:max-line-length
   constructor(public themes: ThemesService, private route: ActivatedRoute, private router: Router, private routerListener: RoutingListenerService, protected databaseService: DatabaseService) {
+    this.innerWidth = window.innerWidth;
+    
     this.showBtn = true;
     this.showRemove = false;
     this.showAdd = true;
@@ -61,6 +65,12 @@ export class HeaderComponent implements OnInit {
       this.icon = "fa-chevron-left"; 
     }
     
+  }
+
+  @HostListener('window: resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    console.log(this.innerWidth);
   }
 
 
@@ -106,7 +116,7 @@ export class HeaderComponent implements OnInit {
     } else { 
       this.redirect('/main/dashboard'); 
       this.btn_title = "add reward"; 
-      this.icon = "fa-plus"; 
+      this.icon = "fa-plus"; this.showRemove = false;
     } 
         
   } 
@@ -221,6 +231,8 @@ export class HeaderComponent implements OnInit {
                       this.action = 'Add Reward';
                     }
                           
+                  } else {
+                     this.showAdd = true;
                   }
             
           
