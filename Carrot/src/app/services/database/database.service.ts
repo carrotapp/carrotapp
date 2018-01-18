@@ -27,9 +27,6 @@ export class DatabaseService {
     initialized = false;
     loggedIn: boolean;
 
-    totalPoints=0;
-    totalRandValue=0;
-
     Key: string;
 
     /// test approach
@@ -246,7 +243,6 @@ export class DatabaseService {
 
 
     getUsersRewards() {
-        
         // let key: string;
         // const uid: string = this.getUID();
         // let path: string;
@@ -263,20 +259,6 @@ export class DatabaseService {
                     // this.getUsersRewards(path);
                     this.usersRewards = this.afDB.list('/User Rewards/' + element.key + '/Rewards/').snapshotChanges().map(changes => {
                         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-                    });
-
-                    this.totalPoints=0;
-                    this.totalRandValue=0;
-                    this.usersRewards.subscribe(res => {
-                        this.rewards.subscribe(response => {
-                            res.map(element => {
-                                this.totalPoints += element.Points;
-                                response.map(e => {
-                                    if(e.key === element.key)
-                                    this.totalRandValue += element.Points/e.Ratio;
-                                });
-                            });
-                        });
                     });
                 }
             });

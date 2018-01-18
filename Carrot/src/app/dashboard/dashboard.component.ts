@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
-import { HostListener } from '@angular/core';
 
 
 @Component({
@@ -20,13 +19,10 @@ export class DashboardComponent implements OnInit {
   path_username;
   showReward: boolean;
   hasRewards: boolean = false;
-  innerWidth;
 
 
   constructor(public ds: DatabaseService, private afAuth: AngularFireAuth, private router: Router) {
-    this.ds.getUsersRewards();
-    // console.log(window.innerWidth + "Resize here");
-    this.innerWidth = window.innerWidth;
+    this.ds.getUsersRewards()
   }
 
   ngOnInit() {
@@ -34,7 +30,6 @@ export class DashboardComponent implements OnInit {
     // this.ds.rewardsArray = [];
     // console.log(this.ds.theme);
     // this.sync();
-
   }
 
   send(){
@@ -64,12 +59,5 @@ export class DashboardComponent implements OnInit {
     //   return false;
     // });
   }
-
-  // @HostListener('window: resize', ['$event'])
-  // onResize(event) {
-  //   this.innerWidth = window.innerWidth;
-  //   console.log(this.innerWidth);
-  // }
-  
 
 }
