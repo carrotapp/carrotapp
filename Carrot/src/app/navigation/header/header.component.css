@@ -9,7 +9,6 @@
     margin-left: 40px;
     margin-right: 50px;
 }
-
 .h2 {
     height: 20px;
     font-family: 'Source Sans Pro', sans-serif;
@@ -21,11 +20,10 @@
     margin-top: 15px;
     margin-left: 40px;
 }
-
 .btn-add-carrot {
     width: 170px;
     height: 35px;
-    border-radius: 2px;
+    border-radius: 2px;  
     background-color: #F9B324;
     border: solid 1px #F9B324;
     padding-left: 15px;
@@ -34,11 +32,10 @@
     margin-top: 4px;
     margin-right: 6.3%;
 }
-
-.btn-remove-carrot {
-    width: 244px;
+.btn-remove-carrot{
+    width:  244px;
     height: 35px;
-    border-radius: 2px;
+    border-radius: 2px;  
     background-color: #F54B5E;
     border: solid 1px #FFFFFF;
     padding-left: 15px;
@@ -46,16 +43,15 @@
     padding-bottom: 9px;
     margin-top: 4px;
     margin-right: 6.3%;
-}
+} 
 
-.btn-text {
+.btn-text{
     font-size: 20px;
     text-align: left;
     color: #ffffff;
-    float: left;
+    float:left;
     font-weight: 100;
 }
-
 .btn-text-right {
     margin-left: 16px;
     font-family: 'Source Sans Pro', sans-serif;
@@ -67,7 +63,6 @@
     text-transform: uppercase;
     margin-top: -2px
 }
-
 .shape {
     width: 60px;
     height: 4px;
@@ -75,34 +70,4 @@
     background-color: #f9b324;
     margin-left: 40px;
     margin-bottom: 15px;
-}
-
-.rectangle {
-    text-align: center;
-    width: 243px;
-    height: 62px;
-    border-radius: 5px;
-    color: black;
-    background: #FFF;
-    border: solid 1px #e9eff4;
-    /* margin-top: 26.6px; */
-    font-size: 12px !important;
-    font-weight: bold;
-}
-
-.pill {
-    width: 50%;
-    height: 100.5%;
-    float: left;
-    /* padding-left: 24.6px; */
-    padding-top: 5px;
-    cursor: text;
-}
-
-.value-points {
-    color: #489fff;
-}
-
-.value-zar {
-    color: #73a649;
 }
