@@ -260,6 +260,8 @@ export class DatabaseService {
         this.userRewards = this.userRewardsRef.snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         });
+        // this.totalPoints = 0;
+        // this.totalRandValue = 0;
         // this.rewardsArray = [];
         this.userRewards.subscribe(res => {
             res.map(element => {
@@ -272,10 +274,10 @@ export class DatabaseService {
                         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
                     });
 
-                    this.totalPoints = 0;
-                    this.totalRandValue = 0;
                     this.usersRewards.subscribe(res => {
                         this.rewards.subscribe(response => {
+                            this.totalPoints = 0;
+                            this.totalRandValue = 0;
                             res.map(element => {
                                 this.totalPoints += element.Points;
                                 response.map(e => {

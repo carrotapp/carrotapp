@@ -52,6 +52,7 @@ export class HeaderComponent implements OnInit {
     this.showAdd = true;
 
 
+
     if(this.router.url.toString().includes('/dashboard')){ 
       this.btn_title = "add reward"; 
       this.icon = "fa-plus"; 
@@ -68,7 +69,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(){
 
-    
     this.subscribe();
     this.router.events.subscribe(() => {
       this.subscribe();
