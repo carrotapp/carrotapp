@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
   h3: string;
   // @Input('btn-title')
   btn_title: string;
-  icon: string; 
+  icon: string;
   @Input('showBtn')
   showBtn: boolean;
   showAdd: boolean;
@@ -46,7 +46,7 @@ export class HeaderComponent implements OnInit {
   links: string[];
   /* type */
   // tslint:disable-next-line:max-line-length
-  constructor(public themes: ThemesService, private route: ActivatedRoute, private router: Router, private routerListener: RoutingListenerService, protected databaseService: DatabaseService) {
+  constructor(public themes: ThemesService, private route: ActivatedRoute, protected router: Router, private routerListener: RoutingListenerService, protected databaseService: DatabaseService) {
     this.showBtn = true;
     this.showRemove = false;
     this.showAdd = true;
