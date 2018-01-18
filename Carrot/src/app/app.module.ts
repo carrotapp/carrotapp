@@ -100,6 +100,7 @@ export function metaFactory(): MetaLoader {
       useFactory: (metaFactory)
     }),
   ],
+  // tslint:disable-next-line:max-line-length
   providers: [DatabaseService, NavigationTogglesService, ThemesService, RoutingListenerService, AuthGuard, DatePipe], // Dependancy Injection
   bootstrap: [AppComponent]
 })
