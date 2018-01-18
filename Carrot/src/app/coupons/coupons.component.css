@@ -1,0 +1,43 @@
+.coupons {
+    font-size: 30px;
+}
+
+.close {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    color: #489fff;
+    height: 40px;
+}
+
+.heading {
+    font-size: 38px;
+    font-weight: 600;
+    letter-spacing: -1.1px;
+    color: #233539;
+}
+
+.logo {
+    width: 68px;
+    height: 40px;
+    float: left;
+}
+
+.couponCard {
+    width: 90%;
+    min-height: 90px;
+    border: 2px solid gray;
+    position: relative;
+}
+
+.description {
+    font-size: 20px;
+    color: #233539;
+}
+
+.expirationDate {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}

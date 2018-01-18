@@ -99,14 +99,14 @@ a:hover {
 
 /* Side Modal */
 
-.modal-dialog,
+.modal.left .modal-dialog,
 .modal.right .modal-dialog {
     cursor: default;
     position: fixed;
     margin: auto;
     z-index: 1000;
     width: 33.333333%;
-    height: 100%;
+    height: 100vh;
     -webkit-transform: translate3d(0%, 0, 0);
     -ms-transform: translate3d(0%, 0, 0);
     -o-transform: translate3d(0%, 0, 0);
@@ -117,10 +117,14 @@ a:hover {
     position: relative !important;
 }
 
-.modal-content,
+.modal.left .modal-content,
 .modal.right .modal-content {
-    height: 100%;
+    height: 100vh;
     overflow-y: auto;
+}
+
+.modal-body {
+    flex: none;
 }
 
 
@@ -145,6 +149,21 @@ a:hover {
 }
 
 
+/* Left */
+
+.modal.left.fade .modal-dialog {
+    left: -33.333333%;
+    -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+    -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+    -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+    transition: opacity 0.3s linear, left 0.3s ease-out;
+}
+
+.modal.left.fade.show .modal-dialog {
+    left: 0;
+}
+
+
 /* ----- MODAL STYLE ----- */
 
 .modal-content {
@@ -163,11 +182,14 @@ a:hover {
 }
 
 @media screen and (max-width: 800px) {
-    .modal-dialog,
+    .modal.left .modal-dialog,
     .modal.right .modal-dialog {
         width: 100%;
     }
     .modal.right.fade .modal-dialog {
         right: -100%;
+    }
+    .modal.left.fade .modal-dialog {
+        left: -100%;
     }
 }
