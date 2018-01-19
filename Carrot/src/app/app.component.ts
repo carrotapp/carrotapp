@@ -4,6 +4,7 @@ import { ThemesService } from './services/themes.service';
 import { OnInit } from '@angular/core';
 import { setTimeout } from 'timers';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { MapService } from './services/google/maps.service';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +15,8 @@ export class AppComponent implements OnInit {
   title = 'app';
   userTheme;
 
-  constructor(public themes: ThemesService) {
-
+  constructor(public themes: ThemesService, map:MapService) {
+map.userLocation();
   }
 
   get theme(): string {

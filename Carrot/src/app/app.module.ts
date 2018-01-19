@@ -36,6 +36,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ConfirmPasswordComponent } from './confirm-password/confirm-password.component';
 import { FirstTimeCardComponent } from './first-time-card/first-time-card.component';
+import { MapService } from './services/google/maps.service';
+import { HttpModule } from '@angular/http';
+import { LocationService } from './services/google/models/location.service';
+import { GPSLocation } from './services/google/models/gpslocation.service';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDUlfMoY9Aq0nOGnZt_ovhRDaUtOJUnZ04',
@@ -85,6 +89,7 @@ export function metaFactory(): MetaLoader {
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
@@ -95,7 +100,7 @@ export function metaFactory(): MetaLoader {
       useFactory: (metaFactory)
     }),
   ],
-  providers: [DatabaseService, NavigationTogglesService, ThemesService, RoutingListenerService, AuthGuard], // Dependancy Injection
+  providers: [DatabaseService, NavigationTogglesService, ThemesService, MapService, LocationService, GPSLocation, RoutingListenerService, AuthGuard], // Dependancy Injection
   bootstrap: [AppComponent]
 })
 export class AppModule { }
