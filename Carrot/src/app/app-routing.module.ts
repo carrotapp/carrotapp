@@ -1,3 +1,4 @@
+import { MapsComponent } from './maps/maps.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ConfirmPasswordComponent } from './confirm-password/confirm-password.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -35,6 +36,7 @@ const routes: Routes = [
                     { path: 'info', component: InfoComponent, canActivate: [AuthGuard], data: { meta: { title: 'More Info' } } },
                     // { path: 'add/:', component: ConfirmPasswordComponent },
                     { path: '404', component: NotFoundComponent, data: { meta: { title: 'Page Not Found' } } },
+                    { path: 'location', component: MapsComponent, data: { meta: { title: 'Location' } } },
                     { path: '**', redirectTo: '/404' },
                 ]
             },
