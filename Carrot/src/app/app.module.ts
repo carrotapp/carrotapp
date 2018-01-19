@@ -36,16 +36,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ConfirmPasswordComponent } from './confirm-password/confirm-password.component';
 import { FirstTimeCardComponent } from './first-time-card/first-time-card.component';
-<<<<<<< HEAD
-import { CouponsComponent } from './coupons/coupons.component';
-import { DatePipe } from '@angular/common';
-import { MapsComponent } from './maps/maps.component';
-=======
 import { MapService } from './services/google/maps.service';
 import { HttpModule } from '@angular/http';
 import { LocationService } from './services/google/models/location.service';
 import { GPSLocation } from './services/google/models/gpslocation.service';
->>>>>>> Sixolile-Mtengwana
+import { CouponsComponent } from './coupons/coupons.component';
+import { DatePipe } from '@angular/common';
+import { MapsComponent } from './maps/maps.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDUlfMoY9Aq0nOGnZt_ovhRDaUtOJUnZ04',
@@ -108,12 +105,7 @@ export function metaFactory(): MetaLoader {
       useFactory: (metaFactory)
     }),
   ],
-<<<<<<< HEAD
-  // tslint:disable-next-line:max-line-length
-  providers: [DatabaseService, NavigationTogglesService, ThemesService, RoutingListenerService, AuthGuard, DatePipe], // Dependancy Injection
-=======
-  providers: [DatabaseService, NavigationTogglesService, ThemesService, MapService, LocationService, GPSLocation, RoutingListenerService, AuthGuard], // Dependancy Injection
->>>>>>> Sixolile-Mtengwana
+  providers: [DatabaseService, NavigationTogglesService, ThemesService, MapService, LocationService, GPSLocation, RoutingListenerService, AuthGuard, DatePipe], // Dependancy Injection
   bootstrap: [AppComponent]
 })
 export class AppModule { }
