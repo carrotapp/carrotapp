@@ -90,4 +90,8 @@ export class CardComponent implements OnInit {
     // this.databaseService.redirect('/' + this.databaseService.pathName(this.databaseService.getName()) + '/' + this.databaseService.pathName(this.reward.Name) + '/' + this.type);
     this.router.navigate(['/main/info']);
   }
+
+  getName(name){
+    console.log(name);
+  }
 }
