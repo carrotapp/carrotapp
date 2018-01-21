@@ -14,6 +14,7 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { InfoComponent } from './navigation/info/info.component';
 import { AuthGuard } from './services/guards/authGuard.service';
 import { MetaGuard } from '@ngx-meta/core';
+import { MapsComponent } from './maps/maps.component';
 
 const routes: Routes = [
     {
@@ -34,6 +35,7 @@ const routes: Routes = [
                     // { path: 'add/:reward', component: RewardsCredentialsComponent },
                     { path: 'info', component: InfoComponent, canActivate: [AuthGuard], data: { meta: { title: 'More Info' } } },
                     // { path: 'add/:', component: ConfirmPasswordComponent },
+                    {path : 'map' , component: MapsComponent , canActivate: [AuthGuard], data : {meta : {title: 'Maps'}}},
                     { path: '404', component: NotFoundComponent, data: { meta: { title: 'Page Not Found' } } },
                     { path: '**', redirectTo: '/404' },
                 ]

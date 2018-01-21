@@ -1,4 +1,8 @@
+import { Router } from '@angular/router';
+import { DatabaseService } from './../services/database/database.service';
 import { Component, OnInit } from '@angular/core';
+import { ThemesService } from '../services/themes.service';
+
 
 @Component({
   selector: 'app-maps',
@@ -7,9 +11,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapsComponent implements OnInit {
 
-  constructor() { }
+  constructor( ) {
+
+
+  }
 
   ngOnInit() {
   }
+
 
 }
