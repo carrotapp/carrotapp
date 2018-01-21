@@ -32,7 +32,7 @@ export class CardComponent implements OnInit {
   // userRewards: Rewards[];
 
   constructor(private routerListener: RoutingListenerService, public themes: ThemesService, protected databaseService: DatabaseService, protected router: Router) {
-    
+
   }
 
   ngOnInit() {
@@ -79,7 +79,7 @@ export class CardComponent implements OnInit {
 
 
   }
-  
+
   moreInfo(key) {
     // console.log("My key" + key);
     this.databaseService.setKey(key);
@@ -90,4 +90,10 @@ export class CardComponent implements OnInit {
     // this.databaseService.redirect('/' + this.databaseService.pathName(this.databaseService.getName()) + '/' + this.databaseService.pathName(this.reward.Name) + '/' + this.type);
     this.router.navigate(['/main/info']);
   }
+
+  goToAdd() {
+    this.router.navigate(['/main/map']);
+  }
+
+
 }
