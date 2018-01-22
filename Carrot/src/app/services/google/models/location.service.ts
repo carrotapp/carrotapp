@@ -4,6 +4,11 @@ import { Injectable } from '@angular/core';
 export class LocationService {
   latitude:number;
   longitude:number;
+
+/*
+ * Currently Returns Co-Ordinates based on the Network Providers 
+ */
+  
   constructor( latitude:number , longitude:number ) { 
     this.latitude = latitude;
     this.longitude = longitude;

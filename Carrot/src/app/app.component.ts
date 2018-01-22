@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   userTheme;
 
   constructor(public themes: ThemesService, map:MapService) {
-map.userLocation();
+map.locate();
   }
 
   get theme(): string {
