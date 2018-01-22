@@ -9,7 +9,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { HttpModule } from '@angular/http';
-
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
@@ -38,9 +37,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ConfirmPasswordComponent } from './confirm-password/confirm-password.component';
 import { FirstTimeCardComponent } from './first-time-card/first-time-card.component';
-import { CouponsComponent } from './coupons/coupons.component';
-import { DatePipe } from '@angular/common';
-import { MapsComponent } from './maps/maps.component';
 import { NavigationTogglesService } from './services/navigation/navigation-toggles.service';
 import { MapService } from './services/google/maps.service';
 import { LocationService } from './services/google/models/location.service';

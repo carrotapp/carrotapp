@@ -8,6 +8,7 @@ import { GPSLocation } from '../services/google/models/gpslocation.service';
   templateUrl: './maps.component.html',
   styleUrls: ['./maps.component.css']
 })
+
 export class MapsComponent implements OnInit {
   location: GPSLocation[];
   lat = -33.9211185;
@@ -15,14 +16,10 @@ export class MapsComponent implements OnInit {
 
   constructor(public map: MapService) {
     map.locate();
-    console.log(map.getCurrentLocation.location.latitude);
-  }
-
-
+    console.log(map.currentLocation.location.latitude);
   }
 
   ngOnInit() {
   }
-
 
 }

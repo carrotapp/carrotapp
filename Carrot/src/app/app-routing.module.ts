@@ -15,7 +15,6 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { InfoComponent } from './navigation/info/info.component';
 import { AuthGuard } from './services/guards/authGuard.service';
 import { MetaGuard } from '@ngx-meta/core';
-import { MapsComponent } from './maps/maps.component';
 
 const routes: Routes = [
     {

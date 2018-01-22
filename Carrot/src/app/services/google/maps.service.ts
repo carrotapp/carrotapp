@@ -8,16 +8,16 @@ import { Address } from './models/address.service';
 
 @Injectable()
 export class MapService {
-   key:string ="AIzaSyCJurPZvQtKnlhLIfzImNtbYzUX_ZuH7rE";
-   currentLocation:GPSLocation;
-   apiList:string[]=[ // Future: Change to object
-     '','','','','','','','','' ];
-  constructor( protected httpRequest : Http ) {
-  this.locate();
-  setTimeout(()=>{
-  console.log(this.currentLocation);
-    //new Address(this.currentLocation );
-  },1000);
+  key = 'AIzaSyCJurPZvQtKnlhLIfzImNtbYzUX_ZuH7rE';
+  currentLocation: GPSLocation;
+  apiList: string[] = [ // Future: Change to object
+    '', '', '', '', '', '', '', '', ''];
+  constructor(protected httpRequest: Http) {
+    this.locate();
+    setTimeout(() => {
+      console.log(this.currentLocation);
+      // new Address(this.currentLocation );
+    }, 1000);
 
   }
 
@@ -28,11 +28,11 @@ export class MapService {
   getApi(api: number): string {
     return this.apiList[api];
   }
-  locate(){
-    this.userLocation().subscribe( result => {
-     let co_ordinates: LocationService = new LocationService(result.location.lat, result.location.lng);
-     let accuracy:number = result.accuracy;
-   this.currentLocation  = new GPSLocation(accuracy, co_ordinates, this.httpRequest);
+  locate() {
+    this.userLocation().subscribe(result => {
+      const co_ordinates: LocationService = new LocationService(result.location.lat, result.location.lng);
+      const accuracy: number = result.accuracy;
+      this.currentLocation = new GPSLocation(accuracy, co_ordinates, this.httpRequest);
     });
   }
   userLocation(): Observable<any> {
@@ -42,10 +42,10 @@ export class MapService {
       });
   }
 
-get Currw(){
-  return this.currentLocation;
-}
-  public toString():string{
+  get Currw() {
+    return this.currentLocation;
+  }
+  public toString(): string {
     return '';
   }
 
