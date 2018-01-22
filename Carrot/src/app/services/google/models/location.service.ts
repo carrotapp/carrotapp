@@ -13,8 +13,8 @@ export class LocationService {
     this.latitude = latitude;
     this.longitude = longitude;
   }
-  public toString():string{
+  public toString(): string {
     return '';
- }
+  }
 
 }

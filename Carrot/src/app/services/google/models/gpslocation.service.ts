@@ -37,8 +37,8 @@ export class GPSLocation {
     });
   }
 
-  public toString():string{
-     return '';
+  public toString(): string {
+    return '';
   }
 
 }

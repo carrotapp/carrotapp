@@ -1,7 +1,6 @@
-import { Router } from '@angular/router';
-import { DatabaseService } from './../services/database/database.service';
+import { MapService } from './../services/google/maps.service';
 import { Component, OnInit } from '@angular/core';
-import { ThemesService } from '../services/themes.service';
+import { GPSLocation } from '../services/google/models/gpslocation.service';
 
 
 @Component({
@@ -10,8 +9,14 @@ import { ThemesService } from '../services/themes.service';
   styleUrls: ['./maps.component.css']
 })
 export class MapsComponent implements OnInit {
+  location: GPSLocation[];
+  lat = -33.9211185;
+  lon = 18.421670199999998;
 
-  constructor( ) {
+  constructor(public map: MapService) {
+    map.locate();
+    console.log(map.getCurrentLocation.location.latitude);
+  }
 
 
   }

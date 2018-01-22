@@ -11,23 +11,6 @@ export class RoutingListenerService {
   private provider: string;
   private action: string;
 
-  // reward: Rewards = {
-  //   Currency: 'cpts',
-  //   Image: 'http://www.fetchrewards.com/assets/GiftBox.png',
-  //   ProviderName: 'Carrot Rewards',
-  //   Name: 'Carrot',
-  //   Ratio: '2',
-  //   Value: '1500',
-  //   infoUrl: 'https://carrot-app.firebaseapp.com/login',
-  //   summary: 'Carrot integrates everything for you so that you do not have too!!!',
-  //   CardNumber: '1234567890',
-  //   Email: 'carrot@mail.com',
-  //   Password: 'c@rRoT123',
-  //   Points: '21372',
-  //   Key: 'CJHSakdh23qhHSdhb',
-  //   how: '',
-  //   where: ''
-  // };
   reward;
   isOnAccount: boolean;
 
@@ -40,7 +23,6 @@ export class RoutingListenerService {
   }
 
   activeReward(reward, isOnAccount): void {
-    // this.databaseService.checkReward(reward.Key);
     this.reward = reward;
     this.isOnAccount = isOnAccount;
   }

@@ -38,8 +38,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ConfirmPasswordComponent } from './confirm-password/confirm-password.component';
 import { FirstTimeCardComponent } from './first-time-card/first-time-card.component';
-
-// service imports
+import { CouponsComponent } from './coupons/coupons.component';
+import { DatePipe } from '@angular/common';
+import { MapsComponent } from './maps/maps.component';
 import { NavigationTogglesService } from './services/navigation/navigation-toggles.service';
 import { MapService } from './services/google/maps.service';
 import { LocationService } from './services/google/models/location.service';
@@ -47,6 +48,8 @@ import { GPSLocation } from './services/google/models/gpslocation.service';
 import { Address } from './services/google/models/address.service';
 import { Search } from './services/google/models/search.service';
 import { Distance } from './services/google/models/distance.service';
+
+import { AgmCoreModule } from '@agm/core';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDUlfMoY9Aq0nOGnZt_ovhRDaUtOJUnZ04',
@@ -95,7 +98,7 @@ export function metaFactory(): MetaLoader {
     FirstTimeCardComponent,
     MapsComponent,
     CouponsComponent
-],
+  ],
   imports: [
     BrowserModule,
     HttpModule,
@@ -108,7 +111,12 @@ export function metaFactory(): MetaLoader {
       provide: MetaLoader,
       useFactory: (metaFactory)
     }),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAz-CK7i3m_BEBkE6KRysWbwiqbjHUyFPQ'
+    })
   ],
+
+  // tslint:disable-next-line:max-line-length
   providers: [DatabaseService, NavigationTogglesService, ThemesService, MapService, LocationService, GPSLocation, RoutingListenerService, AuthGuard, DatePipe], // Dependancy Injection
   bootstrap: [AppComponent]
 })

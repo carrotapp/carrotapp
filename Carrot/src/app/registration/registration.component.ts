@@ -11,10 +11,9 @@ import { element } from 'protractor';
 export class RegistrationComponent {
   email = '';
   password = '';
-  // confirmPassword = '';
   username = '';
-  icon= 'fa fa-eye';
-  typeInput= 'password';
+  icon = 'fa fa-eye';
+  typeInput = 'password';
 
   constructor(private databaseService: DatabaseService) { }
 
@@ -23,19 +22,13 @@ export class RegistrationComponent {
   }
 
   register() {
-    if (this.email !== '' && this.email !== '' && this.password !== '' /*&& this.confirmPassword !== ''*/ && this.username !== '') {
+    if (this.email !== '' && this.email !== '' && this.password !== '' && this.username !== '') {
       if (this.password.length >= 8) {
-        // if (this.password !== this.confirmPassword) {
-        //   alert('Password do not match');
-        // } else {
-          this.databaseService.signUp(this.email, this.password, this.username);
-        // }
-
+        this.databaseService.signUp(this.email, this.password, this.username);
       } else {
         alert('Error: Minimum password length is 8');
         this.password = '';
       }
-
     } else {
       alert('Fill out all the fields.');
     }
@@ -45,7 +38,7 @@ export class RegistrationComponent {
     if (this.typeInput === 'password') {
       this.typeInput = 'text';
       this.icon = 'fa fa-eye-slash';
-    }else {
+    } else {
       this.typeInput = 'password';
       this.icon = 'fa fa-eye';
     }

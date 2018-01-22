@@ -2,25 +2,16 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-
-                <!-- <span id="{{theme+'-parent-item'}}" class="selectable" (click)="back()">
-                    <img src="../../assets/img/food.png" class="logo" >
-                </span> -->
                 <div [hidden]="login" id="{{theme+'-parent-item'}}" class="selectable">
                     <coupons *ngIf="this.ds.getCurrentUser()"></coupons>
                 </div>
             </div>
         </div>
-        <!-- <div class="row justify-content-start">
-            <div class="col-md-">
-            </div>
-        </div> -->
         <div class="row justify-content-end col">
             <label [routerLink]="['/login']" [hidden]="!login" class="logBtn">Login</label>
             <button [routerLink]="['/register']" [hidden]="!login" class="regBtn">Register</button>
             <div [hidden]="login" id="{{theme+'-parent-item'}}" class="selectable">
-                <!-- <coupons *ngIf="this.ds.getCurrentUser()"></coupons> -->
-                <profile *ngIf="this.ds.getCurrentUser()" [img]='avatar'></profile>
+                <profile *ngIf="this.ds.getCurrentUser()"></profile>
             </div>
         </div>
     </div>

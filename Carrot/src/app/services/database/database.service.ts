@@ -28,32 +28,34 @@ export class DatabaseService {
     initialized = false;
     loggedIn: boolean;
     coupons: Observable<any[]>;
-
+    usersRewards: Observable<any[]>;
     totalPoints = 0;
     totalRandValue = 0;
-
     Key: string;
-
-    /// test approach
-
     rewardsStatus: any[][];
+
     // tslint:disable-next-line:max-line-length
     constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router, protected _location: Location, protected ts: ThemesService, private datePipe: DatePipe) {
+        // Set the ref for User Rewards in userRewardsRef
         this.userRewardsRef = afDB.list('/User Rewards');
+
+        // Initialise the data from Rewards and Coupons in rewards and coupons
         this.rewards = afDB.list('/Rewards').snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         });
         this.coupons = afDB.list('/Coupons').snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         });
-
         this.checkCoupons();
     }
 
+    // Sign in with email and password
     signIn(email, password) {
+        // Check if the user enter a Gmail email and open the google popup if needed
         if (email.includes('@gmail.com')) {
             this.googlePopup();
         } else {
+            // Once signed in successfully initialise the user data and go to the dashboard
             this.afAuth.auth.signInWithEmailAndPassword(email, password).then(
                 (success) => {
                     this.initializeData();
@@ -65,6 +67,7 @@ export class DatabaseService {
         }
     }
 
+    // Opens the google popup with profile and email as options
     googlePopup() {
         const provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('profile');
@@ -75,6 +78,7 @@ export class DatabaseService {
         this.afAuth.auth.signInWithPopup(provider).then(
             (success) => {
                 this.userRewards.forEach(element => {
+                    // Determine if a new user is registering and create a new entry in the database or go to the dashboard
                     let flag: Boolean;
                     for (let i = 0; i < element.length; i++) {
                         if (element[i].user === this.getUID()) {
@@ -85,7 +89,6 @@ export class DatabaseService {
                     }
                     if (flag === undefined) {
                         this.pushToUserRewards(this.getUID(), this.getName());
-                        // this.router.navigate(['/' + this.pathName(this.getName()) + '/rewards']);
                     } else {
                         this.initializeData();
                         this.router.navigate(['/main/dashboard']);
@@ -97,35 +100,11 @@ export class DatabaseService {
             });
     }
 
-    pushToUserRewards(uid: any, username: string) {
-        this.userRewardsRef.push({
-            user: uid,
-            theme: 'default'
-        });
-        this.initializeData();
-        const user = this.userRewardsRef.snapshotChanges().map(changes => {
-            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-        });
-        let flag = true;
-        user.forEach(element => {
-            if (flag) {
-                for (let i = 0; i < element.length; i++) {
-                    if (element[i].user === this.getUID()) {
-                        this.theme = element[i].theme;
-                        flag = false;
-                        this.router.navigate(['/main/rewards']);
-                        break;
-                    }
-                }
-            }
-        });
-    }
-
+    // Create a new user with email and password
     signUp(email, password, username) {
         this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
             (success) => {
                 this.afAuth.auth.currentUser.updateProfile({ displayName: username, photoURL: this.getAvatar() });
-                console.log(username);
                 this.pushToUserRewards(this.getUID(), username);
             }).catch(
             (err) => {
@@ -137,6 +116,32 @@ export class DatabaseService {
             });
     }
 
+    // Create a new user entry in the database after registering and send them to the add rewards screen
+    pushToUserRewards(uid: any, username: string) {
+        this.userRewardsRef.push({
+            user: uid,
+            theme: 'default'
+        });
+        // Initialise the new user's data
+        this.initializeData();
+        const user = this.userRewardsRef.snapshotChanges().map(changes => {
+            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        });
+        let flag = true;
+        user.forEach(element => {
+            if (flag) {
+                for (let i = 0; i < element.length; i++) {
+                    if (element[i].user === this.getUID()) {
+                        flag = false;
+                        this.router.navigate(['/main/rewards']);
+                        break;
+                    }
+                }
+            }
+        });
+    }
+
+    // Logout the current user
     logout() {
         this.ts.setTheme('defualt');
         this.afAuth.auth.signOut().then(() => {
@@ -144,60 +149,48 @@ export class DatabaseService {
         });
     }
 
+    // Add a new reward provider to the curren user's account
     addRewards(cardNum: string, email: string, password: string, reward) {
-        console.log(this.rewardPath);
-        // console.log(this.rewardKey);
-        console.log(cardNum, email, password, reward);
         this.afDB.list(this.rewardPath).set(reward.key, { CardNumber: cardNum, Password: password, Points: 0, Email: email });
         this.rewardsArray = [];
         alert('Reward added successfully');
         this.router.navigate(['/main/dashboard']);
     }
 
+    // Check whether a specific reward is on the current user's account or not
     checkReward(key: string) {
-        // console.log(key);
         let flag = true;
         const users: Observable<any[]> = this.afDB.list('/User Rewards').snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         });
         users.forEach(element => {
             const uid: String = this.afAuth.auth.currentUser.uid;
-            // let e:any;
             for (let i = 0; i < element.length; i++) {
-                // console.log('Element: ', element[i].key);
                 if (element[i].user === uid) {
                     this.rewardPath = '/User Rewards/' + element[i].key + '/Rewards';
-                    // console.log(this.rewardPath);
                     const rewards: Observable<any[]> = this.afDB.list(this.rewardPath).snapshotChanges().map(changes => {
                         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
                     });
                     rewards.forEach(rewardsElement => {
                         if (flag) {
-                            // let r:any;
                             for (let j = 0; j < rewardsElement.length; j++) {
-                                // console.log('Reward: ', rewardsElement[j].key);
-                                console.log('key' + key);
                                 if (rewardsElement[j].key === key) {
                                     flag = false;
-                                    // console.log('Found');
                                     break;
                                 }
                             }
                         }
                         this.rewardKey = key;
-                        console.log(flag, this.rewardKey);
                         this.rewardFlag = flag;
-                        // console.log(this.rewardFlag);
                         return flag;
                     });
                 }
             }
         });
     }
-    // tslint:disable-next-line:member-ordering
-    usersRewards: Observable<any[]>;
+
+    // Returns an array of all the rewards providers
     getRewardsArray(): Rewards[] {
-        // this.rewardsArray = [];
         let key: string;
         const uid: string = this.getUID();
         let path: string;
@@ -214,20 +207,10 @@ export class DatabaseService {
                 }
             });
         });
-        // this.userRewards.forEach(element => {
-        //     for (let i = 0; i < element.length; i++) {
-        //         if (element[i].user === uid) {
-        //             key = element[i].key;
-        //             path = '/User Rewards/' + key + '/Rewards/';
-        //             this.getUsersRewards(path);
-        //             break;
-        //         }
-        //     }
-        // });
-        // console.log(this.rewardsArray);
         return this.rewardsArray;
     }
 
+    // Creates an array of all the providers and if the user has the provider on their account then the account information is also added
     generateRewardsArray(path) {
         const usersRewards: Observable<any[]> = this.afDB.list(path).snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -247,42 +230,30 @@ export class DatabaseService {
                     });
                 });
             }
-            // console.log(this.rewardsArray);
         });
     }
 
-
+    // Gets all the account data of the providers added to the current user's account
     getUsersRewards() {
-
-        // let key: string;
-        // const uid: string = this.getUID();
-        // let path: string;
         this.userRewards = this.userRewardsRef.snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         });
-        // this.totalPoints = 0;
-        // this.totalRandValue = 0;
-        // this.rewardsArray = [];
         this.userRewards.subscribe(res => {
             res.map(element => {
                 if (element.user === this.getUID()) {
-                    // key = element.key;
-                    // path = '/User Rewards/' + key + '/Rewards/';
-                    // console.log(path);
-                    // this.getUsersRewards(path);
                     this.usersRewards = this.afDB.list('/User Rewards/' + element.key + '/Rewards/').snapshotChanges().map(changes => {
                         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
                     });
 
-                    this.usersRewards.subscribe(res => {
+                    this.usersRewards.subscribe(results => {
                         this.rewards.subscribe(response => {
                             this.totalPoints = 0;
                             this.totalRandValue = 0;
-                            res.map(element => {
-                                this.totalPoints += element.Points;
+                            results.map(elements => {
+                                this.totalPoints += elements.Points;
                                 response.map(e => {
-                                    if (e.key === element.key) {
-                                        this.totalRandValue += element.Points / e.Ratio;
+                                    if (e.key === elements.key) {
+                                        this.totalRandValue += elements.Points / e.Ratio;
                                     }
                                 });
                             });
@@ -291,80 +262,12 @@ export class DatabaseService {
                 }
             });
         });
-        // Angular course 135
-        // this.usersRewards = this.afDB.list(path).snapshotChanges().map(changes => {
-        //     return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-        // });
-        // const value: Observable<any[]> = this.afDB.list(path).valueChanges();
-        // Change to subscriptions
-        // this.combinedObs = Observable.combineLatest([usersRewards, this.rewards]);
-        // console.log(this.combinedObs);
-        // UR.subscribe(obs => {
-        //     obs[0].map(usersRewards => {
-        //         obs[1].map(rewards => {
-        //             if(usersRewards.key === rewards.key ) {
-        //                 this.rewardsArray.push(
-        //                     new Rewards(usersRewards, obs[2], rewards.points)
-        //                 );
-        //             }
-        //         })
-        //     });
-        // });
-        // usersRewards.forEach(element => {
-        //     for (let i = 0; i < element.length; i++) {
-        //         this.rewards.forEach(dataElement => {
-        //             value.forEach(valueElement => {
-        //                 for (let j = 0; j < dataElement.length; j++) {
-        //                     if (dataElement[j].key === element[i].key) {
-        //                         this.rewardsArray.push(
-        //                             new Rewards(dataElement[j], valueElement[i], element[i])
-        //                         );
-        //                     }
-        //                 }
-        //             });
-        //         });
-        //     }
-        //     console.log(this.rewardsArray);
-        // });
     }
 
-    getAllRewards() {
-        this.rewardsArray = [];
-        this.rewards.forEach(element => {
-            for (let i = 0; i < element.length; i++) {
-                this.rewardsArray.push(
-                    new Rewards(element[i], 0, [])
-                );
-            }
-            // return this.rewardsArray;
-        });
-        console.log(this.rewardsArray);
-    }
-
-    getRewards() {
-        return this.rewards;
-    }
-    // specific reward
+    // Gets a reward based on a specified provider
     getReward(provider: string): Rewards {
-        // let list;
         provider = this.capitalize(provider.split('.'));
-        // console.log(provider);
-        // console.log(this.rewardsArray);
         let reward: Rewards;
-        // this.rewards.forEach(element => {
-        // if (from.toLowerCase() === 'view'.toLowerCase()) {
-        //     list = this.rewardsArray;
-        // } else {
-        //     //    list =  this.getRewards(); <<<< After Updating getRewards Method
-        //     this.rewardsArray = [];
-        //     for (let i = 0; i < element.length; i++) {
-        //         this.rewardsArray.push(
-        //             new Rewards(element[i], 0, [])
-        //         );
-        //     }
-        //     list = this.rewardsArray;
-
-        // }
         for (let i = 0; i < this.rewardsArray.length; i++) {
             if (this.rewardsArray[i].Name.toLowerCase() === provider.toLowerCase()) {
                 reward = this.rewardsArray[i];
@@ -372,11 +275,6 @@ export class DatabaseService {
             }
         }
         return reward;
-        // });
-    }
-
-    getRewardsData(key) {
-        return this.afDB.list('/Rewards/' + key);
     }
 
     getUID() {
@@ -391,19 +289,13 @@ export class DatabaseService {
         return this.afAuth.auth.currentUser.email;
     }
 
-    getAvatar() {
+    getAvatar(): string {
         if (this.photoUrl != null) {
             return this.photoUrl;
         } else {
-            return '../../assets/img/default.png';
+            // tslint:disable-next-line:max-line-length
+            return 'https://firebasestorage.googleapis.com/v0/b/carrot-app.appspot.com/o/default.png?alt=media&token=1283d035-ac19-4605-9aff-95927f4befe6';
         }
-    }
-
-    pathName(name: string): string {
-        if (name.includes(' ')) {
-            return name.toLowerCase().replace(/ /g, '.');
-        }
-        return name.toLowerCase();
     }
 
     resetPassword(newPassword: string) {
@@ -422,6 +314,7 @@ export class DatabaseService {
         return this.theme;
     }
 
+    // Updates the theme for the current user
     updateTheme(theme: string) {
         const users: Observable<any[]> = this.userRewardsRef.snapshotChanges().map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -440,6 +333,7 @@ export class DatabaseService {
         });
     }
 
+    // Checks whether a user is logged in or not, used by the navbar
     getCurrentUser() {
         if (this.afAuth.auth.currentUser !== null) {
             return true;
@@ -452,14 +346,16 @@ export class DatabaseService {
         for (let i = 0; i < word.length; i++) { word[i] = word[i].charAt(0).toUpperCase() + word[i].substring(1); }
         return word.join(' ');
     }
+
     back() {
         this._location.back();
     }
+
     redirect(url: string) {
         this.router.navigate([url]);
     }
 
-
+    // Resets a users password
     newReset(email: string) {
         const auth = firebase.auth();
         return auth.sendPasswordResetEmail(email)
@@ -467,9 +363,8 @@ export class DatabaseService {
             .catch((error) => console.log(error));
     }
 
+    // Removes a specific reward
     removeReward(key) {
-        console.log('removeReward()');
-        console.log(key);
         let path;
         if (key !== undefined) {
             let flag = true;
@@ -477,13 +372,12 @@ export class DatabaseService {
                 if (flag) {
                     for (let i = 0; i < element.length; i++) {
                         if (element[i].user === this.getUID()) {
-                            // element[i].key;
                             path = '/User Rewards/' + element[i].key + '/Rewards/' + key;
                             const ref = this.afDB.database.ref(path);
-                            // const ref = this.afDB.database.ref(this.rewardPath + this.rewardKey);
                             ref.remove()
                                 .then(() => {
                                     alert('Reward Removed');
+                                    this.router.navigate(['/main/dashboard']);
                                 })
                                 .catch(error => {
                                     alert('Remove failed: ' + error);
@@ -498,6 +392,7 @@ export class DatabaseService {
 
     }
 
+    // Initiliases the photoUrl and theme of the current user
     initializeData() {
         this.initialized = true;
         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
@@ -513,9 +408,7 @@ export class DatabaseService {
                 }
             });
         });
-        // this.getRewardsArray();
     }
-
 
     setKey(key) {
         this.Key = key;
@@ -525,7 +418,7 @@ export class DatabaseService {
         return this.Key;
     }
 
-    // Deletes all expired coupons
+    // Finds the coupons relevant to the current user's account and also removes expired coupons from the database
     checkCoupons() {
         const current_date = new Date();
         this.coupons.subscribe(results => {
