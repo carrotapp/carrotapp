@@ -10,8 +10,6 @@ export class Rewards {
   summary;
   how;
   where;
-
-  // On details Array
   CardNumber;
   Email;
   Password;
@@ -31,8 +29,6 @@ export class Rewards {
     this.Key = array.key;
     this.how = array.how;
     this.where = array.where;
-
-    // Details
     this.CardNumber = detailsArray.CardNumber;
     this.Email = detailsArray.Email;
     this.Password = detailsArray.Password;

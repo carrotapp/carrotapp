@@ -3,16 +3,16 @@ import { LocationService } from './location.service';
 
 @Injectable()
 export class GPSLocation {
-  accuracy:number;  
-  location:LocationService;
+  accuracy: number;
+  location: LocationService;
 
-  constructor( accuracy:number, location:LocationService) { 
+  constructor(accuracy: number, location: LocationService) {
     this.accuracy = accuracy;
     this.location = location;
   }
 
-  public toString():string{
-     return '';
+  public toString(): string {
+    return '';
   }
 
 }

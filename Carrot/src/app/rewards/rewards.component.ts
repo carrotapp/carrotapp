@@ -17,24 +17,19 @@ export class RewardsComponent implements OnInit {
 
   constructor(private databaseService: DatabaseService) {
     databaseService.getRewardsArray();
-    this.data = this.databaseService.getRewards();
+    this.data = this.databaseService.rewards;
   }
-  
-  ngOnInit(){
+
+  ngOnInit() {
     this.rewards = this.databaseService.rewardsArray;
-    // console.log(this.rewards);
   }
 
-  check(key){
-    for(let i = 0; i < this.rewards.length; i++){
-
-      if(key === this.rewards[i].Key){
-        // console.log(false);
+  check(key) {
+    for (let i = 0; i < this.rewards.length; i++) {
+      if (key === this.rewards[i].Key) {
         return false;
       }
-      
     }
-    // console.log(true);
     return true;
   }
 

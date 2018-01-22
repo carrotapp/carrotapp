@@ -23,9 +23,8 @@ import { PanelComponent } from './navigation/panel/panel.component';
 import { SidebarComponent } from './navigation/sidebar/sidebar.component';
 import { MainPanelComponent } from './navigation/main-panel/main-panel.component';
 import { FooterComponent } from './navigation/footer/footer.component';
-// service imports
 import { NavigationTogglesService } from './services/navigation/navigation-toggles.service';
-import { ThemesService} from './services/themes.service';
+import { ThemesService } from './services/themes.service';
 import { InfoComponent } from './navigation/info/info.component';
 import { ToolbarComponent } from './navigation/toolbar/toolbar.component';
 import { CardComponent } from './card/card.component';
@@ -93,7 +92,7 @@ export function metaFactory(): MetaLoader {
     FirstTimeCardComponent,
     MapsComponent,
     CouponsComponent
-],
+  ],
   imports: [
     BrowserModule,
     HttpModule,
@@ -111,6 +110,7 @@ export function metaFactory(): MetaLoader {
     })
   ],
 
+  // tslint:disable-next-line:max-line-length
   providers: [DatabaseService, NavigationTogglesService, ThemesService, MapService, LocationService, GPSLocation, RoutingListenerService, AuthGuard, DatePipe], // Dependancy Injection
   bootstrap: [AppComponent]
 })

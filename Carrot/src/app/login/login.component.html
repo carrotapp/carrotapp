@@ -1,20 +1,14 @@
-<app-navbar>
-</app-navbar>
-
+<app-navbar></app-navbar>
 <div class="panel">
     <div class="main">
         <div class="container">
-
             <div class="row">
-                <div class="col-md-3"> </div>
+                <div class="col-md-3"></div>
                 <div class="col-md-6">
-
-
                     <div class="page-background">
                         <div class="row justify-content-center">
                             <!--the box where all fields are in-->
                             <div class="box container-fluid align-middle ">
-
                                 <!--the icon-->
                                 <div class="row justify-content-center">
                                     <a [routerLink]="['/login']">
@@ -35,22 +29,18 @@
                                 </div>
                                 <!--welcome label end-->
                                 <br>
-
                                 <!--textfields start-->
                                 <div class="row m-0 justify-content-left">
                                     <input type="email" placeholder="Email" class="textfield" [(ngModel)]="email" required>
                                     <input type="{{typeInput}}" placeholder="Password" class="textField-Password" [(ngModel)]="password" required>
                                     <i class=" fa-2x peakPassword {{icon}}" (click)="showPassword()" aria-hidden="true"></i>
                                 </div>
-
-
                                 <!--textfields end-->
 
                                 <!--forgot password start-->
                                 <div class="row m-0 justify-content-right">
                                     <a class="forgot-password" [routerLink]="'/forgotPassword'">Forgot your password?</a>
                                 </div>
-
                                 <!--forgot password ends-->
 
                                 <!--register button/link start-->
@@ -73,13 +63,13 @@
                                         <br>
                                     </div>
                                 </div>
+                                <!--google button/link end-->
                             </div>
-                            <!--google button/link end-->
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3"> </div>
+            <div class="col-md-3"></div>
         </div>
-
     </div>
+</div>

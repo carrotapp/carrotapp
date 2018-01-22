@@ -13,9 +13,8 @@ export class ProfileComponent implements OnInit {
   email: string;
   password = '';
   theme;
-  @Input() img;
 
-  constructor(public ds: DatabaseService, protected themeServ : ThemesService) {
+  constructor(public ds: DatabaseService, protected themeServ: ThemesService) {
     this.name = ds.getName();
     this.email = ds.getEmail();
     this.theme = ds.getTheme();
@@ -27,20 +26,16 @@ export class ProfileComponent implements OnInit {
   save() {
     if (this.name !== this.ds.getName()) {
       this.ds.setName(this.name);
-      // console.log('Updated: name');
     }
     if (this.email !== this.ds.getEmail()) {
       this.ds.setEmail(this.email);
-      // console.log('Updated: email');
     }
     if (this.password !== '') {
       this.ds.resetPassword(this.ds.getEmail());
-      // console.log('Updated: password');
     }
     if (this.ds.getTheme() !== this.theme) {
       this.ds.updateTheme(this.theme);
-      // console.log('Updated: theme');
-      this.themeServ.setTheme( this.ds.getTheme());
+      this.themeServ.setTheme(this.ds.getTheme());
     }
   }
 

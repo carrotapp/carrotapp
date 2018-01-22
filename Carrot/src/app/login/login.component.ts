@@ -16,8 +16,6 @@ export class LoginComponent {
   icon= 'fa fa-eye';
   typeInput= 'password';
 
-
-
   constructor(public databaseService: DatabaseService, private themes: ThemesService) {
 
   }
