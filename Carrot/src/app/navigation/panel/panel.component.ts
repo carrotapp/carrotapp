@@ -11,13 +11,10 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 })
 export class PanelComponent implements OnInit {
 
-  constructor(public themes: ThemesService, public ds: DatabaseService) {
+  constructor(public themes: ThemesService, public ds: DatabaseService) { }
 
-  }
+  ngOnInit() { }
 
-  ngOnInit() {
-    // this.themes.setTheme(this.ds.theme);
-  }
   get theme(): string {
     return this.themes.getTheme();
   }

@@ -7,6 +7,7 @@ import { ThemesService } from '../services/themes.service';
   templateUrl: './first-time-card.component.html',
   styleUrls: ['./first-time-card.component.css']
 })
+
 export class FirstTimeCardComponent implements OnInit {
 
   constructor(public themes: ThemesService, protected router: Router) { }
@@ -14,7 +15,7 @@ export class FirstTimeCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  goToAdd(){
+  goToAdd() {
     this.router.navigate(['main/rewards']);
   }
 

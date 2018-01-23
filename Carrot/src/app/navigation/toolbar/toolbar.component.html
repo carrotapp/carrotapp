@@ -1,20 +1,15 @@
 <div id="{{theme+'-child'}}" class="box right {{ theme+'-shadow' }} show" [ngClass]="state">
     <div id="{{theme+'-child'}}" class="box center ">
         <a id="{{theme+'-child-item'}}" class=" selectable fa fa-clipboard lrg block " [routerLink]="['/main/dashboard']"></a>
-        <!-- Edits -->
         <a id="{{theme+'-child-item'}}" class=" selectable fa fa-bookmark lrg block" [routerLink]="['/main/rewards']"></a>
         <i id="{{theme+'-child-item'}}" class=" selectable fa fa-eraser lrg block" [routerLink]="['/main/details/a/1']"></i>
         <i id="{{theme+'-child-item'}}" class=" selectable fa fa-leaf lrg block" (click)="paints()"></i>
-        <!-- fa fa-tint-->
-        <!-- Paints -->
         <div id="{ {theme+'-child' }}" class="box center" *ngIf=" isColor ">
             <i id="default-item-selector" class=" fa fa-circle lrg block selectable" (click)="setTheme('default');paints() "></i>
             <i id="dark-item-selector" class=" fa fa-circle lrg block selectable" (click)=" setTheme('dark');paints() "></i>
             <i id="fun-item-selector" class=" fa fa-circle lrg block selectable" (click)=" setTheme('fun');paints() "></i>
             <i id="blind-item-selector" class=" fa fa-eye lrg block selectable" (click)=" setTheme('blind');paints() "></i>
         </div>
-        <!-- <i class=" fa fa-circle lrg block"></i> -->
-        <!-- Configuration -->
         <i id="{{theme+'-child-item'}}" class=" selectable fa fa-gears lrg block"></i>
     </div>
 </div>

@@ -1,32 +1,13 @@
-<!-- <div *ngIf='rewards === undefined'>Loading...</div> -->
-<!-- <div *ngIf='rewards!== undefined' class="row text-center justify-content-left dashboard"> -->
 <div class="row text-center justify-content-left dashboard">
     <div *ngFor="let reward of ds.rewards | async">
-        <!-- <div *ngFor='let item of reward; let i=index'>
-            {{reward[i].key}}
-            <div *ngIf="check(item.key, reward[i])">
-                <app-card [reward]="reward[i]" [type]="'view'" [isHidden]="true" [type]="'view'"></app-card>
-            </div>
-            {{reward[i].key}}
-            <div *ngIf='reward[i].key === item.key'>
-                <app-card [reward]="reward[i]" [type]="'view'" [isHidden]="true" [type]="'view'"></app-card>
-            </div>
-        </div> -->
-        <!-- <div *ngIf="check()">
-                dog
-        </div> -->
-        <!-- {{ds.usersRewards.key}} ggg -->
         <div *ngFor='let usersReward of ds.usersRewards | async'>
-                <!-- {{hasReward = true}} -->
             <div *ngIf='reward.key === usersReward.key'>
                 <app-card [reward]="reward" [userData]="usersReward" [type]="'view'" [isHidden]="send()" class="col-md-3"></app-card>
             </div>
         </div>
     </div>
-
-    <div [hidden] = "check()">
+    <div [hidden]="check()">
         <br>
         <app-first-time-card></app-first-time-card>
     </div>
-    
 </div>

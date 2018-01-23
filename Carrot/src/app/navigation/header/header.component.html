@@ -20,17 +20,14 @@
             </div>
         </div>
         <div class="col-md-6 right">
-
             <button class="btn-add-carrot selectable" (click)="btnTitle()" [hidden]="!showAdd">  
                 <div class="btn-text fa {{icon}}"></div> 
                 <div class="btn-text-right"  >{{btn_title}}</div> 
             </button>
-
             <button class="selectable" (click)="addReward()" [hidden]="!showRemove" [class.btn-remove-carrot]="add" [class.btn-add-carrot]="!add"> 
                     <div class="btn-text fa " [class.fa-minus]="add" [class.fa-plus]="!add"></div>
                     <div class="btn-text-right">{{action}}</div>
             </button>
-
         </div>
     </div>
     <div class="h2" id="{{theme+'-parent-item'}}">{{ welcome }}</div>

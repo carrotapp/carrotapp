@@ -7,7 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { DatePipe } from '@angular/common';
+import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
@@ -23,8 +24,8 @@ import { PanelComponent } from './navigation/panel/panel.component';
 import { SidebarComponent } from './navigation/sidebar/sidebar.component';
 import { MainPanelComponent } from './navigation/main-panel/main-panel.component';
 import { FooterComponent } from './navigation/footer/footer.component';
-// service imports
-import { NavigationTogglesService } from './services/navigation/navigation-toggles.service';
+import { CouponsComponent } from './coupons/coupons.component';
+import { MapsComponent } from './maps/maps.component';
 import { ThemesService} from './services/themes.service';
 import { InfoComponent } from './navigation/info/info.component';
 import { ToolbarComponent } from './navigation/toolbar/toolbar.component';
@@ -36,13 +37,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ConfirmPasswordComponent } from './confirm-password/confirm-password.component';
 import { FirstTimeCardComponent } from './first-time-card/first-time-card.component';
-import { CouponsComponent } from './coupons/coupons.component';
-import { DatePipe } from '@angular/common';
-import { MapsComponent } from './maps/maps.component';
+import { NavigationTogglesService } from './services/navigation/navigation-toggles.service';
 import { MapService } from './services/google/maps.service';
-import { HttpModule } from '@angular/http';
 import { LocationService } from './services/google/models/location.service';
 import { GPSLocation } from './services/google/models/gpslocation.service';
+import { Address } from './services/google/models/address.service';
+import { Search } from './services/google/models/search.service';
+import { Distance } from './services/google/models/distance.service';
 
 import { AgmCoreModule } from '@agm/core';
 
@@ -93,7 +94,7 @@ export function metaFactory(): MetaLoader {
     FirstTimeCardComponent,
     MapsComponent,
     CouponsComponent
-],
+  ],
   imports: [
     BrowserModule,
     HttpModule,
@@ -111,6 +112,7 @@ export function metaFactory(): MetaLoader {
     })
   ],
 
+  // tslint:disable-next-line:max-line-length
   providers: [DatabaseService, NavigationTogglesService, ThemesService, MapService, LocationService, GPSLocation, RoutingListenerService, AuthGuard, DatePipe], // Dependancy Injection
   bootstrap: [AppComponent]
 })

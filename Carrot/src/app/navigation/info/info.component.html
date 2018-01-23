@@ -1,9 +1,7 @@
 <div class="moreInfoPanel center " id="{{theme + '-parent'}}">
-
     <div class="row">
         <div class="col-md-6">
             <img style="float: left" [src]="Reward.Image" alt="rewards programme" class="img" />
-            <!-- <div class="col-md-4"> -->
             <div style="float: left" *ngIf='Points !== undefined' class="rectangle">
                 <div class="pill line-right">
                     <h1> Points Earned </h1>
@@ -29,18 +27,10 @@
 
     <div class="displayContent">
         <h3 id="{{theme + '-parent-item'}}">About:</h3>
-        <!-- <iframe [src]="reward.infoUrl" [srcdoc]="reward.summary" alt='text' class="default-shadow" frameborder="0" class="iframe"> </iframe>-->
         {{ Reward.summary }}
-        <!-- </diV>-->
-        <!-- <diV class="displayContent">-->
         <h3 id="{{theme + '-parent-item'}}">How to earn points:</h3>
         {{ Reward.how }}
-
-        <!--</diV>-->
-        <!-- <diV class="displayContent">-->
         <h3 id="{{theme + '-parent-item'}}">Where to spend points:</h3>
         {{ Reward.where }}
     </div>
-
 </div>
-<!-- </div> -->

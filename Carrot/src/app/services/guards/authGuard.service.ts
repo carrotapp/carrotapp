@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
                     this.router.navigate(['/login']);
                 } else {
                     if (!this.ds.initialized) {
-                        this.ds.initializeData(); 
+                        this.ds.initializeData();
                     }
                 }
             });

@@ -11,17 +11,10 @@ import { ThemesService } from '../../services/themes.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-
   login: boolean;
-  avatar: string;
 
   // tslint:disable-next-line:max-line-length
   constructor(public ds: DatabaseService, public navtoggle: NavigationTogglesService, public themes: ThemesService, public router: Router) {
-
-    this.avatar = ds.getAvatar();
-
-    // console.log(this.router.url.toString());
-
     // tslint:disable-next-line:max-line-length
     if (this.router.url.includes('/login') || this.router.url.includes('/register') || this.router.url.includes('/forgotPassword') || this.router.url.includes('/confirmPassword')) {
       this.login = true;
@@ -31,7 +24,6 @@ export class NavbarComponent {
 
   }
 
-
   get theme(): string {
     return this.themes.getTheme();
   }
@@ -39,9 +31,11 @@ export class NavbarComponent {
   sidebar_toggle(): void {
     this.navtoggle.sidebar_toggle();
   }
+
   toolbar(): void {
     this.navtoggle.toolbar_toggle();
   }
+
   back() {
     this.router.navigate(['/main/dashboard']);
   }

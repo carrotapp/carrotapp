@@ -17,12 +17,8 @@ export class ToolbarComponent {
   // tslint:disable-next-line:max-line-length
   constructor(public toolbarObj: NavigationTogglesService, public themes: ThemesService, protected ds: DatabaseService, protected router: Router) {
     this.username = ds.getName();
-    this.path_username = ds.pathName(this.username);
   }
   // getter
-  get pathName() {
-    return this.path_username;
-  }
   // toggling
   toolbar(): void {
     this.toolbarObj.toolbar_toggle();
@@ -45,8 +41,4 @@ export class ToolbarComponent {
   setTheme(theme: string): void {
     this.themes.setTheme(theme);
   }
-
-  // goToProfile() {
-  //   this.router.navigate(['/' + this.ds.pathName(this.ds.getName()) + '/profile']);
-  // }
 }

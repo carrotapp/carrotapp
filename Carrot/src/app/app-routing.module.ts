@@ -22,7 +22,6 @@ const routes: Routes = [
         canActivateChild: [MetaGuard],
         children: [
             { path: '', redirectTo: '/main/dashboard', pathMatch: 'full' },
-            // This is the new router outlet outline... In  progress
             { path: 'login', component: LoginComponent, data: { meta: { title: 'Login' } } }, // Parent of the Parent Hierachy
             { path: 'forgotPassword', component: ForgotPasswordComponent, data: { meta: { title: 'Forgot Password' } } },
             { path: 'confirmPassword', component: ConfirmPasswordComponent, data: { meta: { title: 'Confirm Password' } } },
@@ -31,10 +30,8 @@ const routes: Routes = [
                 path: 'main', component: PanelComponent, canActivate: [AuthGuard], children: [
                     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { meta: { title: 'Dashboard' } } },
                     { path: 'rewards', component: RewardsComponent, canActivate: [AuthGuard], data: { meta: { title: 'Add Rewards' } } },
-                    // { path: 'credentials', component: RewardsCredentialsComponent, canActivate: [AuthGuard] },
-                    // { path: 'add/:reward', component: RewardsCredentialsComponent },
                     { path: 'info', component: InfoComponent, canActivate: [AuthGuard], data: { meta: { title: 'More Info' } } },
-                    // { path: 'add/:', component: ConfirmPasswordComponent },
+                    {path : 'map' , component: MapsComponent , canActivate: [AuthGuard], data : {meta : {title: 'Maps'}}},
                     { path: '404', component: NotFoundComponent, data: { meta: { title: 'Page Not Found' } } },
                     { path: 'location', component: MapsComponent, data: { meta: { title: 'Location' } } },
                     { path: '**', redirectTo: '/404' },

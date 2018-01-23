@@ -1,4 +1,4 @@
-<a class='avatar' data-toggle="modal" data-target="#profileModal"><img [src]="img" class="img-fluid rounded-circle"></a>
+<a class='avatar' data-toggle="modal" data-target="#profileModal"><img [src]="ds.getAvatar()" class="img-fluid rounded-circle"></a>
 <div class="modal right fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -6,7 +6,7 @@
                 <div class="heading col-9">My Profile</div>
                 <button type="button" class="close col-3" data-dismiss="modal" aria-label="Close">Close</button>
                 <div class="col-4">
-                    <img [src]='ds.photoUrl' class="img-fluid rounded-circle">
+                    <img [src]='ds.getAvatar()' class="img-fluid rounded-circle">
                 </div>
                 <div class="col-8">
                     <div class="name">{{ds.getName()}}</div>

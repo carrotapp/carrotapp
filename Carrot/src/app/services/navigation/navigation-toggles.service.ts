@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class NavigationTogglesService {
   static ShowSideBar: string;
   static toolbartoggle: String;
-  static modal:boolean;
+  static modal: boolean;
   // Start of Constructor
   constructor() {
     NavigationTogglesService.ShowSideBar = 'default';
@@ -23,7 +23,7 @@ export class NavigationTogglesService {
     }
   }
 
-  modal(){
+  modal() {
     NavigationTogglesService.modal = !NavigationTogglesService.modal;
   }
   // toolbar
