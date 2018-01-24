@@ -5,25 +5,33 @@ import { Observable } from 'rxjs/Observable'; //  <= Does not want to become a r
 import { LocationService } from './models/location.service';
 import { GPSLocation } from './models/gpslocation.service';
 import { Address } from './models/address.service';
+import { Search } from './models/search.service';
 
 @Injectable()
 export class MapService {
-  key = 'AIzaSyCJurPZvQtKnlhLIfzImNtbYzUX_ZuH7rE';
+  key:string = 'AIzaSyCJurPZvQtKnlhLIfzImNtbYzUX_ZuH7rE';
   currentLocation: GPSLocation;
   apiList: string[] = [ // Future: Change to object
     '', '', '', '', '', '', '', '', ''];
   constructor(protected httpRequest: Http) {
     this.locate();
-    setTimeout(() => {
-      console.log(this.currentLocation);
-      // new Address(this.currentLocation );
-    }, 1000);
+  ////  let search:Search = new Search(httpRequest);
+    // search.connect().subscribe(res => {
+    //   setTimeout(()=>{
+    //     console.log('subscribing...');
+    //     console.log(res);
+    //           },1000);
+    // });
+// search.connect().subscribe( results =>{
+// console.log(results);
+// }
+
+// );;
 
   }
 
   apiRequest(api: string, command: string) {
-    // tslint:disable-next-line:max-line-length
-    return this.httpRequest.get('https://maps.googleapis.com/maps/api/' + api + '/json?' + command + '&' + this.key).map(results => { results.json(); });
+      return this.httpRequest.get('https://maps.googleapis.com/maps/api/' + api + '/json?' + command + '&' + this.key).map(results => { results.json(); });
   }
   getApi(api: number): string {
     return this.apiList[api];

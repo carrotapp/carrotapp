@@ -15,7 +15,9 @@ export class MapsComponent implements OnInit {
   lon = 18.421670199999998;
 
   constructor(public map: MapService) {
+    setTimeout(()=>{
     map.locate();
+    },1000);
     console.log(map.currentLocation.location.latitude);
   }
 

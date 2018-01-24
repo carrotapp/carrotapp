@@ -113,7 +113,7 @@ export function metaFactory(): MetaLoader {
   ],
 
   // tslint:disable-next-line:max-line-length
-  providers: [DatabaseService, NavigationTogglesService, ThemesService, MapService, LocationService, GPSLocation, RoutingListenerService, AuthGuard, DatePipe], // Dependancy Injection
+  providers: [DatabaseService, NavigationTogglesService, ThemesService, MapService, Search , LocationService, GPSLocation, RoutingListenerService, AuthGuard, DatePipe], // Dependancy Injection
   bootstrap: [AppComponent]
 })
 export class AppModule { }

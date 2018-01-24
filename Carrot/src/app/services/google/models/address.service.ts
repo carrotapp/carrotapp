@@ -8,6 +8,7 @@ import { LocationService } from './location.service';
 @Injectable()
 export class Address {
   key:string ="AIzaSyCJurPZvQtKnlhLIfzImNtbYzUX_ZuH7rE ";
+  place_id:string;
   location:LocationService;
   formatted_address:string;
   location_type:string;
@@ -25,17 +26,23 @@ constructor( lat:number, lng:number, protected httpReq:Http ) {
     // this.initialize( this.location.longitude , this.location.latitude );
 }
 
-createObject( formatted_address:string , location_type , types:string[]):void{
+createObject( place_id :string , formatted_address:string , location_type:string , types:string[]):Address{
+  this.place_id = place_id;
   this.formatted_address = formatted_address;
   this.location_type = location_type;
   this.types = types;
+  return this;
 }
  
-
-
 createAddress(lng:number,lat:number):Observable<any>{
   return this.httpReq.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key='+this.key).map(result =>{
    return result.json();
   });;
 }
+//Using Origin and Address for results or something
+// create_Address( origin:string,destination:string,keo:boolean):Observable<any>{
+//   return this.httpReq.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key='+this.key).map(result =>{
+//    return result.json();
+//   });;
+// }
 }
