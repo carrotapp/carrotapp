@@ -1,4 +1,4 @@
-import { Coordinate } from './Coordinate';
+
 import { MapService } from './../services/google/maps.service'; 
 import { Component, OnInit } from '@angular/core'; 
 import { GPSLocation } from '../services/google/models/gpslocation.service'; 
