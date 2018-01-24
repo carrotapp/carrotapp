@@ -11,7 +11,7 @@ export class GPSLocation {
   address:Address;
   arrAddress:Address[]=[];
  
-  constructor( accuracy:number, location:LocationService, httpRequest:Http) { 
+  constructor( accuracy:number, location:LocationService, protected httpRequest:Http) { 
     this.accuracy = accuracy;
     this.location = location;
     this.address= new Address( this.location.latitude , this.location.longitude, httpRequest );
@@ -23,22 +23,52 @@ export class GPSLocation {
       /*
       Currently Returns A list of locations who's access points point :nod:
       */
-      if( Array.isArray( locationTree ) ){ 
-        for ( let i = 0 ; i < locationTree.length ; i++ ){
+      if( Array.isArray( locationTree.results)  && locationTree.results.length > 0   ){ 
+        setTimeout(()=>{
+           for ( let i = 0 ; i < locationTree.results.length ; i++ ){
           /*
-           * Exhaustion, Now am stuck coz theres a lot of Dependancies and my mind just got lost in the MA T R I X.
-           * If only I could write 'locating method' rather than callback functions
-           * Google's Documentation Sucks, Sixolile Mtengwana Rules...
-           */
-        }
-      } else {}
-      
-      console.log(locationTree);
+           * Needed Attributes to create a legitimate object of Address
+           */          
+                      let place_id:string = locationTree.results[i].place_id;
+                      let formatted_address:string = locationTree.results[i].formatted_address;
+                      let types:string[] = locationTree.results[i].types;
+                      let location_type:string = locationTree.results[i].geometry.location_type;
+                      let location = locationTree.results[i].geometry.location;
+                      let addressObj:Address = new Address( location.lat , location.lng , this.httpRequest  );
+                      addressObj.createObject( place_id , formatted_address , location_type , types );
+                      this.arrAddress.push(addressObj);
+         /*      
+          * Filling up the object with its missing data
+          * Assign it to the Array of all possible locations
+          */
+          // console.log('GPSLocated')
+        
+        }  console.log(this.arrAddress);
+      } , 1000 );  
+      } else if( Array.isArray( locationTree.results ) && locationTree.results.length === 0) {
+        /*
+         * The Results are always in an array format, if its length is 1, then only one object needs
+         * to be created and this will be due to an approximate location feedback.
+         */
+        let place_id:string = locationTree.results[0].place_id;
+        let formatted_address:string = locationTree.results[0].formatted_address;
+        let types:string[] = locationTree.results[0].types;
+        let location_type:string = locationTree.results[0].geometry.location_type;
+        let location = locationTree.results[0].geometry.location;
+        let addressObj:Address = new Address( location.lat , location.lng , this.httpRequest  );
+        addressObj.createObject( place_id , formatted_address , location_type , types );
+        console.log('GPSLocated')
+      }
+                     
     });
   }
 
-  public toString(): string {
-    return '';
+  getAddresses():Address[]{
+    return this.arrAddress;
   }
 
-}
+  public toString():string{
+     return '';
+  }
+
+} 
