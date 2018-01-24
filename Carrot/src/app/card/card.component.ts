@@ -57,8 +57,8 @@ export class CardComponent implements OnInit {
   }
 
   goToAdd() {
-    // this.router.navigate(['/main/map']);
-    alert("Still under construction!")
+    this.router.navigate(['/main/map']);
+    // alert("Still under construction!")
   }
 
 
