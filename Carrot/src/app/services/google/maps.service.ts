@@ -50,7 +50,7 @@ export class MapService {
       });
   }
 
-  get Currw() {
+  get getCurrentLocation() {
     return this.currentLocation;
   }
   public toString(): string {

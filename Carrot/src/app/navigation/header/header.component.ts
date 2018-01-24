@@ -93,6 +93,8 @@ export class HeaderComponent implements OnInit {
     if (this.showBtn) {
       this.h1 = 'My Rewards';
       this.showAdd = true;
+      this.btn_title = 'add reward';
+      this.icon = 'fa-plus';
     } else if (!this.showBtn) {
       if (this.router.url.includes('info')) {
         if (this.routerListener.isOnAccount) {
@@ -117,11 +119,15 @@ export class HeaderComponent implements OnInit {
     }
     if (this.router.url.includes('rewards')) {
       this.h1 = 'Add Rewards';
-      this.showRemove = false;
+      this.btn_title = 'dashboard'; this.icon = 'fa-chevron-left'
+      this.showRemove = false; 
+      this.showAdd = true;
     }
     if (this.router.url.includes('dashboard')) {
       this.h1 = 'My Rewards';
       this.showRemove = false;
+      this.btn_title = 'add reward';
+      this.icon = 'fa-plus';
     }
   }
 

@@ -1,3 +1,10 @@
-<agm-map [latitude]="lat" [longitude]="lon">
-    <agm-marker [latitude]="lat" [longitude]="lon"></agm-marker>
+<agm-map id = "map" [latitude]="lat" [longitude]="lon">
+    <!-- <agm-marker *ngFor = "let coord of coordinates" [latitude]="coord.lat" [longitude]="coord.lon"></agm-marker> -->
+    <agm-marker  [latitude]="lat" [longitude]="lon">
+        <agm-info-window>
+            <strong>You are here</strong>
+          </agm-info-window>
+    </agm-marker>
+    
+
 </agm-map>
