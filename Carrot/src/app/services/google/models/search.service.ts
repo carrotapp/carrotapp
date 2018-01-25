@@ -4,13 +4,13 @@ import { Address } from './address.service';
 
 @Injectable()
 export class Search {
-  place_id:string;
-  description:string;
-  distance:Distance;
-  address:Address;
+  place_id: string;
+  description: string;
+  distance: Distance;
+  address: Address;
 
-  constructor(keyword:string) { 
-    
+  constructor(keyword: string) {
+
   }
 
 }
