@@ -6,6 +6,9 @@ import { Observable } from 'rxjs/Observable';
 import { Rewards } from '../dashboard/Rewards';
 import { DatabaseService } from '../services/database/database.service';
 import { RoutingListenerService } from '../services/routing-listener.service';
+import { MapService } from '../services/google/maps.service';
+import { Search } from '../services/google/models/search.service';
+import { GPSLocation } from '../services/google/models/gpslocation.service';
 
 @Component({
   selector: 'app-card',
@@ -22,10 +25,11 @@ export class CardComponent implements OnInit {
   isHidden: boolean;
   isOnAccount = false;
   isFlip: boolean; // Controls Styling
+  currentLocation:GPSLocation;
 
   // tslint:disable-next-line:max-line-length
-  constructor(private routerListener: RoutingListenerService, public themes: ThemesService, protected databaseService: DatabaseService, protected router: Router) {
-
+  constructor(private routerListener: RoutingListenerService, public themes: ThemesService, protected mapService:MapService , protected databaseService: DatabaseService, protected search:Search, protected router: Router) {
+    
   }
 
   ngOnInit() {
@@ -61,5 +65,11 @@ export class CardComponent implements OnInit {
     // alert("Still under construction!")
   }
 
+  onClick(){
+    console.log( this.mapService.userLocation.location);
+  
+   setTimeout(()=>{ this.search.search( this.reward.ProviderName , this.mapService.userLocation.location , 5000 , this.mapService.key  );},1000); 
+   console.log(this.search.Locations);
+  }
 
 }
