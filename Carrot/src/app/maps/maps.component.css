@@ -1,3 +1,37 @@
-agm-map {
-    height: 600px;
-}
+    agm-map {
+        height: 600px;
+        width: 100%;
+    }
+    
+    .mapStyle {
+        margin-top: 5%;
+        width: 100%;
+    }
+    
+    .rewardsName {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.4px;
+        text-align: left;
+        color: #323c47;
+        text-transform: uppercase;
+    }
+    
+    .locationsBtn {
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+    
+    .styledButtons {
+        height: 45px;
+        width: 100%;
+        margin: 20px 0px;
+        color: black;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+        font-size: 12px;
+        font-weight: 600;
+    }
+    
+    .styledButtons:hover {
+        cursor: pointer;
+    }

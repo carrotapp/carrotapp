@@ -20,20 +20,17 @@ export class MapsComponent implements OnInit {
   //   {lat: -33.9246244, lon: 18.4171764},
   //   {lat: -33.9211185, lon: 18.421670199999998},
 
-  // ];
+  // constructor( private dbs: DatabaseService ,  private route: ActivatedRoute, private router: Router) {
 
-  // -33.927884,18.425275
-  // -33.927884,18.425275
 
-  // -33.9271043,18.4457914
-  // -33.9246244,18.4171764,14
+  // }
 
 
 
   constructor(public map: MapService) {
-    // this.location = map.getCurrentLocation(); 
-    // map.locate(); 
-    // console.log(map.getCurrentLocation.location.latitude);   
+    // this.location = map.getCurrentLocation();
+    // map.locate();
+    // console.log(map.getCurrentLocation.location.latitude);
 
     // let myLocation = {
     //   lat: 23.8701334,
@@ -53,32 +50,25 @@ export class MapsComponent implements OnInit {
     //   types: ['hospital']
     // }, this.processResults);
 
-    // console.log(); 
+    // console.log();
   }
 
   ngOnInit() {
-    this.getUserLocation()
+
+
+   if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+       this.lat = position.coords.latitude;
+       this.lon = position.coords.longitude;
+     });
+   }
   }
 
-  private getUserLocation() {
 
-  //  if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(position => {
-  //      this.lat = position.coords.latitude;
-  //      this.lon = position.coords.longitude;
-  //    });
-  //  }
-  }
-
-  //  processResults(results, status, pagination) {
-  //   if (status !== google.maps.places.PlacesServiceStatus.OK) {
-  //     return;
-  //   } else {
-  //     console.log(results );
 
   //   }
-  // } 
+  // }
 
 
 
-} 
+}
