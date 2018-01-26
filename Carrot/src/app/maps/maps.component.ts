@@ -80,12 +80,21 @@ export class MapsComponent implements OnInit {
 
   private getUserLocation() {
 
+<<<<<<< HEAD
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         this.lat = position.coords.latitude;
         this.lon = position.coords.longitude;
       });
     }
+=======
+  //  if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(position => {
+  //      this.lat = position.coords.latitude;
+  //      this.lon = position.coords.longitude;
+  //    });
+  //  }
+>>>>>>> Sixolile-Mtengwana
   }
 
   //  processResults(results, status, pagination) {

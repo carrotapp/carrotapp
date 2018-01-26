@@ -22,7 +22,7 @@ export class Address {
 
 
 constructor( lat:number, lng:number, protected httpReq:Http ) {
-    this.location = new LocationService( lat , lng )
+    this.location = new LocationService( lat , lng );
     // this.initialize( this.location.longitude , this.location.latitude );
 }
 
@@ -38,6 +38,13 @@ createAddress(lng:number,lat:number):Observable<any>{
   return this.httpReq.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key='+this.key).map(result =>{
    return result.json();
   });;
+}
+
+getAddress():Address{
+  return this;
+}
+toString():string{
+    return "Place ID \t : " +this.place_id +"\nAddress \t : "+this.formatted_address+"\n";
 }
 //Using Origin and Address for results or something
 // create_Address( origin:string,destination:string,keo:boolean):Observable<any>{
