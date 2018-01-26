@@ -20,17 +20,17 @@ export class MapsComponent implements OnInit {
   //   {lat: -33.9246244, lon: 18.4171764},
   //   {lat: -33.9211185, lon: 18.421670199999998},
 
-  constructor( private dbs: DatabaseService ,  private route: ActivatedRoute, private router: Router) {
+  // constructor( private dbs: DatabaseService ,  private route: ActivatedRoute, private router: Router) {
 
 
-  }
+  // }
 
 
 
   constructor(public map: MapService) {
-    // this.location = map.getCurrentLocation(); 
-    // map.locate(); 
-    // console.log(map.getCurrentLocation.location.latitude);   
+    // this.location = map.getCurrentLocation();
+    // map.locate();
+    // console.log(map.getCurrentLocation.location.latitude);
 
     // let myLocation = {
     //   lat: 23.8701334,
@@ -50,25 +50,25 @@ export class MapsComponent implements OnInit {
     //   types: ['hospital']
     // }, this.processResults);
 
-    // console.log(); 
+    // console.log();
   }
 
   ngOnInit() {
 
 
-  //  if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(position => {
-  //      this.lat = position.coords.latitude;
-  //      this.lon = position.coords.longitude;
-  //    });
-  //  }
+   if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+       this.lat = position.coords.latitude;
+       this.lon = position.coords.longitude;
+     });
+   }
   }
- 
+
 
 
   //   }
-  // } 
+  // }
 
 
 
-} 
+}
