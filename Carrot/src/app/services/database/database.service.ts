@@ -153,7 +153,6 @@ export class DatabaseService {
     addRewards(cardNum: string, email: string, password: string, reward) {
         this.afDB.list(this.rewardPath).set(reward.key, { CardNumber: cardNum, Password: password, Points: 0, Email: email });
         this.rewardsArray = [];
-        alert('Reward added successfully');
         this.router.navigate(['/main/dashboard']);
     }
 
@@ -376,7 +375,6 @@ export class DatabaseService {
                             const ref = this.afDB.database.ref(path);
                             ref.remove()
                                 .then(() => {
-                                    alert('Reward Removed');
                                     this.router.navigate(['/main/dashboard']);
                                 })
                                 .catch(error => {

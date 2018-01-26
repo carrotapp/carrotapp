@@ -35,6 +35,11 @@
     margin-right: 6.3%;
 }
 
+.btn-add-carrot:hover {
+    cursor: pointer;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
 .btn-remove-carrot {
     width: 244px;
     height: 35px;
@@ -46,6 +51,11 @@
     padding-bottom: 9px;
     margin-top: 4px;
     margin-right: 6.3%;
+}
+
+.btn-remove-carrot:hover {
+    cursor: pointer;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.1);
 }
 
 .btn-text {
@@ -84,7 +94,8 @@
     border-radius: 5px;
     color: black;
     background: #FFF;
-    border: solid 1px #e9eff4;
+    border: solid 2px #e9eff4;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.1);
     /* margin-top: 26.6px; */
     font-size: 12px !important;
     font-weight: bold;
