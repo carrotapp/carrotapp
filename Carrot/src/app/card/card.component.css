@@ -13,8 +13,8 @@
         margin: 20px;
         cursor: pointer;
         -webkit-transform: rotateY(180deg);
-		-moz-transform: rotateY(180deg);
-    -o-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
         transform: rotateY(180deg);
     }
     
@@ -141,14 +141,14 @@
             margin: 5% auto;
         }
     }
-
     /* Flip Animation Accommodating Style */
-
-    .card-image{
-         /* Positioning  */
+    
+    .card-image {
+        /* Positioning  */
         height: 230px;
-        padding:0;
-        width: 290px;       
+        padding: 0;
+        width: 290px;
+        border-radius: 6px;
         /* Look and Feel */
         background-color: #ffffff;
         box-shadow: 0 5px 12px 0 rgba(217, 226, 233, 0.5);
@@ -157,42 +157,42 @@
         margin: 20px;
         cursor: pointer;
     }
-
-    .card-image:hover{
+    
+    .card-image:hover {
         box-shadow: 0 12px 20px 6px rgb(207, 211, 214);
-        border: solid 1px rgba(219, 223, 227, 0.3); 
+        border: solid 1px rgba(219, 223, 227, 0.3);
         transition: 0s;
-        padding:0;
+        padding: 0;
     }
-
-    .background{
+    
+    .background {
         width: 100%;
         height: 100%;
         opacity: 0.8;
-        background-size:cover;
-        background-position: center ;
-        background-repeat: no-repeat;   
-        padding:0;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 0;
+        border-radius: 6px;
     }
-
-    .card-image:hover .background{
+    
+    .card-image:hover .background {
         filter: blur(1px);
-        }
-
-    .background-footer{
+    }
+    
+    .background-footer {
         width: inherit;
         position: relative;
         bottom: 0;
         /* display: none; */
     }
-
     /* .background-footer .card-image:hover{
         display: block;
     } */
-    .flip{
+    
+    .flip {
         -webkit-transform: rotateY(180deg);
-		-moz-transform: rotateY(180deg);
-    -o-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
         transform: rotateY(180deg);
-
     }

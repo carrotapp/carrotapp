@@ -8,6 +8,7 @@ import { Address } from './address.service';
 
 @Injectable()
 export class Search {
+<<<<<<< HEAD
   key = 'AIzaSyCJurPZvQtKnlhLIfzImNtbYzUX_ZuH7rE';
   place_id:string;
   description:string;
@@ -24,6 +25,15 @@ export class Search {
       this.connect().subscribe( results => {
         console.log(results)
       });
+=======
+  place_id: string;
+  description: string;
+  distance: Distance;
+  address: Address;
+
+  constructor(keyword: string) {
+
+>>>>>>> Dev-Lihle&Ernst
   }
   //-33.926892,18.4436838,17z
 

@@ -88,7 +88,7 @@ export class DatabaseService {
                         }
                     }
                     if (flag === undefined) {
-                        this.pushToUserRewards(this.getUID(), this.getName());
+                        this.pushToUserRewards(this.getUID());
                     } else {
                         this.initializeData();
                         this.router.navigate(['/main/dashboard']);
@@ -105,7 +105,7 @@ export class DatabaseService {
         this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
             (success) => {
                 this.afAuth.auth.currentUser.updateProfile({ displayName: username, photoURL: this.getAvatar() });
-                this.pushToUserRewards(this.getUID(), username);
+                this.pushToUserRewards(this.getUID());
             }).catch(
             (err) => {
                 if (err.message === 'The email address is already in use by another account.') {
@@ -117,7 +117,7 @@ export class DatabaseService {
     }
 
     // Create a new user entry in the database after registering and send them to the add rewards screen
-    pushToUserRewards(uid: any, username: string) {
+    pushToUserRewards(uid: any) {
         this.userRewardsRef.push({
             user: uid,
             theme: 'default'
@@ -153,7 +153,6 @@ export class DatabaseService {
     addRewards(cardNum: string, email: string, password: string, reward) {
         this.afDB.list(this.rewardPath).set(reward.key, { CardNumber: cardNum, Password: password, Points: 0, Email: email });
         this.rewardsArray = [];
-        alert('Reward added successfully');
         this.router.navigate(['/main/dashboard']);
     }
 
@@ -376,7 +375,6 @@ export class DatabaseService {
                             const ref = this.afDB.database.ref(path);
                             ref.remove()
                                 .then(() => {
-                                    alert('Reward Removed');
                                     this.router.navigate(['/main/dashboard']);
                                 })
                                 .catch(error => {

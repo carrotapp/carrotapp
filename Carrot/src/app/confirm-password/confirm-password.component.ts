@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatabaseService } from '../services/database/database.service';
 
 @Component({
   selector: 'app-confirm-password',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfirmPasswordComponent implements OnInit {
 
-  constructor() { }
+  constructor(protected ds: DatabaseService) { }
 
   ngOnInit() {
   }
