@@ -11,7 +11,7 @@
             <label [routerLink]="['/login']" [hidden]="!login" class="logBtn">Login</label>
             <button [routerLink]="['/register']" [hidden]="!login" class="regBtn">Register</button>
             <div [hidden]="login" id="{{theme+'-parent-item'}}" class="selectable">
-                <profile *ngIf="this.ds.getCurrentUser()"></profile>
+                <profile class="avatar" *ngIf="this.ds.getCurrentUser()"></profile>
             </div>
         </div>
     </div>

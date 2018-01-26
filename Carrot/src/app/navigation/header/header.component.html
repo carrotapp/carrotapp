@@ -3,7 +3,7 @@
         <div class="col">
             <div class="h1" id="{{theme+'-parent-item'}}"> {{ heading }} </div>
         </div>
-        <div *ngIf="databaseService.userRewards !== undefined && router.url.includes('dashboard')" class="col-md-3">
+        <div *ngIf="databaseService.userRewards !== undefined && router.url.includes('dashboard')" class="col-md-4">
             <div class="rectangle mx-auto">
                 <div class="pill line-right">
                     <p>TOTAL POINTS</p>
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 right">
+        <div class="col-md-4 right">
             <button class="btn-add-carrot selectable" (click)="btnTitle()" [hidden]="!showAdd">  
                 <div class="btn-text fa {{icon}}"></div> 
                 <div class="btn-text-right"  >{{btn_title}}</div> 

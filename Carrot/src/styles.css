@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css?family=Hind+Siliguri');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 @import url('./themes.css');
+@import url('./assets/animation/animate.css');
 @font-face {
     font-family: SkrovaParts-OutlineDotted;
     src: url("./assets/fonts/SkrovaParts-OutlineDotted1.otf");
@@ -111,6 +112,7 @@ a:hover {
     -ms-transform: translate3d(0%, 0, 0);
     -o-transform: translate3d(0%, 0, 0);
     transform: translate3d(0%, 0, 0);
+    box-shadow: 0 0px 25px 0 rgba(0, 0, 0, 0.8);
 }
 
 .modal-backdrop {

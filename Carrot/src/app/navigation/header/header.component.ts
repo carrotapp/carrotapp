@@ -120,7 +120,7 @@ export class HeaderComponent implements OnInit {
     if (this.router.url.includes('rewards')) {
       this.h1 = 'Add Rewards';
       this.btn_title = 'dashboard'; this.icon = 'fa-chevron-left'
-      this.showRemove = false; 
+      this.showRemove = false;
       this.showAdd = true;
     }
     if (this.router.url.includes('dashboard')) {
@@ -152,9 +152,11 @@ export class HeaderComponent implements OnInit {
       this.btn_title = 'add reward';
       this.icon = 'fa-plus';
     } else {
-      this.databaseService.removeReward(this.databaseService.getKey());
-      this.showAdd = true;
-      this.showRemove = false;
+      if (confirm('Are you sure you want to remove this reward from your account?')) {
+        this.databaseService.removeReward(this.databaseService.getKey());
+        this.showAdd = true;
+        this.showRemove = false;
+      }
     }
   }
 

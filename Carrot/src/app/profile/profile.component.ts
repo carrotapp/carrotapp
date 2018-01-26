@@ -30,13 +30,15 @@ export class ProfileComponent implements OnInit {
     if (this.email !== this.ds.getEmail()) {
       this.ds.setEmail(this.email);
     }
-    if (this.password !== '') {
-      this.ds.resetPassword(this.ds.getEmail());
-    }
     if (this.ds.getTheme() !== this.theme) {
       this.ds.updateTheme(this.theme);
       this.themeServ.setTheme(this.ds.getTheme());
     }
+  }
+
+  changePassword() {
+    this.ds.newReset(this.ds.getEmail());
+    this.themeServ.setTheme('default');
   }
 
 }

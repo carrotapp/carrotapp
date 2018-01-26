@@ -22,7 +22,8 @@
                     <input type="email" id='email' [(ngModel)]='email' class="textfield">
                     <br>
                     <br>
-                    <input type="text" id='password' [(ngModel)]='password' placeholder="Change Password" class="textfield mt-3">
+                    <!-- <input type="text" id='password' [(ngModel)]='password' placeholder="Change Password" class="textfield mt-3"> -->
+                    <button (click)="changePassword()" class="btn change-password">Change Password</button>
                 </div>
                 <div class="col-12 mt-3">
                     <div class="select-theme">Select your theme colour</div>
