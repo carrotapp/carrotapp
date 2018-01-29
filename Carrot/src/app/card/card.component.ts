@@ -62,14 +62,12 @@ export class CardComponent implements OnInit {
 
   goToAdd() {
     this.router.navigate(['/main/map']);
-    // alert("Still under construction!")
-  }
-
-  onClick(){
-
-   setTimeout(()=>{ this.search.search( this.reward.ProviderName , this.mapService.userLocation.location , 5000 , this.mapService.key  );
-  },1000); 
 
   }
+
+  getLocation(){
+       this.search.search( this.reward.ProviderName , this.mapService.userLocation.location , 5000 , this.mapService.key  );
+  }
+
 
 }

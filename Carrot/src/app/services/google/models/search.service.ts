@@ -22,22 +22,23 @@ export class Search {
     this.connect( query , currentLocation , radius , key ).subscribe(results => {
       if(results.results[0] !== undefined){
         for( let i = 0 ; i < results.results.length ; i++ ){
-          let location:LocationService = new LocationService( results[i].geometry.location.latitude , results[i].geometry.location.longitude ); 
-          console.log(location);
-         //createObject( place_id :string , formatted_address:string , location_type:string , types:string[])
-         //Response Extraction
-            let place_id:string = results[i].place_id;
-            let formatted_address:string = results[i].formatted_address;
-            let types:string[] =results[i].types;
-            let location_type:string = types[0]; // 'Superversion'/Most precise form of the location type
-            let address:Address; // Forced Declaration
-            let gpslocation:GPSLocation;
-            address = address.createObject( place_id , formatted_address , location_type , types );
-            console.log(address);
-            gpslocation = gpslocation.createGPLocation( location , address );
-            console.log(gpslocation);
-            this.Locations.push( gpslocation );
-            console.log(gpslocation);
+          console.log(  );
+        //   let location:LocationService = new LocationService( results[i].geometry.location.latitude , results[i].geometry.location.longitude ); 
+        //   console.log(location);
+        //  //createObject( place_id :string , formatted_address:string , location_type:string , types:string[])
+        //  //Response Extraction
+        //     let place_id:string = results[i].place_id;
+        //     let formatted_address:string = results[i].formatted_address;
+        //     let types:string[] =results[i].types;
+        //     let location_type:string = types[0]; // 'Superversion'/Most precise form of the location type
+        //     let address:Address; // Forced Declaration
+        //     let gpslocation:GPSLocation;
+        //     address = address.createObject( place_id , formatted_address , location_type , types );
+        //     console.log(address);
+        //     gpslocation = gpslocation.createGPLocation( location , address );
+        //     console.log(gpslocation);
+        //     this.Locations.push( gpslocation );
+        //     console.log(gpslocation);
     
       } }
       //  console.log( results);

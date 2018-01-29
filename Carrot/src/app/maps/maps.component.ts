@@ -3,6 +3,9 @@ import { MapService } from './../services/google/maps.service';
 import { Component } from '@angular/core';
 import { GPSLocation } from '../services/google/models/gpslocation.service';
 import { google } from '@agm/core/services/google-maps-types';
+import { DatabaseService } from '../services/database/database.service';
+import { ThemesService } from '../services/themes.service';
+
 
 @Component({
   selector: 'app-maps',
@@ -10,12 +13,7 @@ import { google } from '@agm/core/services/google-maps-types';
   styleUrls: ['./maps.component.css']
 })
 export class MapsComponent   {
-  location: GPSLocation[];
-  lat;
-  lon;
-
   constructor(public map: MapService) {
 
   }
-
 } 

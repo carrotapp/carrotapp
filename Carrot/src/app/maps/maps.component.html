@@ -1,10 +1,51 @@
-<agm-map id = "map" [latitude]="lat" [longitude]="lon">
-    <!-- <agm-marker *ngFor = "let coord of coordinates" [latitude]="coord.lat" [longitude]="coord.lon"></agm-marker> -->
-    <agm-marker  [latitude]="lat" [longitude]="lon">
-        <agm-info-window>
-            <strong>You are here</strong>
-          </agm-info-window>
-    </agm-marker>
-    
+<div class="container" id="{{theme + '-parent'}}">
+    <div class="row">
+        <div class="col-md-6">
+            <div class=" row">
+                <div class="col-md-2">
+                    <img [src]="Reward.Image" alt="rewards programme" />
+                </div>
+                <div class="col-md-2">
+                    <h3 class="rewardsName" alt="rewards name">{{Reward.Name}}</h3>
+                </div>
 
-</agm-map>
+            </div>
+
+        </div>
+        <div class="col-md-6 ">
+            <div class="row  justify-content-md-right">
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-sm styledButtons" id="{{theme + '-parent-item'}}">My location</button>
+                </div>
+                <div class="col-md-4">
+                    <button type="button " class="btn btn-sm styledButtons" id="{{theme + '-parent-item'}}">Nearest location</button>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn  btn-sm styledButtons" id="{{theme + '-parent-item'}}">Show all locations</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mapStyle justify-content-center">
+
+            <agm-map id="map" [latitude]="lat" [longitude]="lon">
+                <!-- <agm-marker *ngFor = "let coord of coordinates" [latitude]="coord.lat" [longitude]="coord.lon"></agm-marker> -->
+                <agm-marker [latitude]="lat" [longitude]="lon">
+                    <agm-info-window>
+                        <strong>You are here</strong>
+                    </agm-info-window>
+                </agm-marker>
+
+            </agm-map>
+
+        </div>
+        <div class="col-md-6 getAllLocations justify-content-center">
+            <h4 class="labelColour justify-content-center">List of all locations</h4>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</div>
