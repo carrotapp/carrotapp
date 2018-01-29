@@ -63,5 +63,5 @@ export class InfoComponent implements OnInit {
   get Reward() {
     return this.routerListener.getReward;
   }
-
+  X
 }
