@@ -18,7 +18,7 @@
         text-transform: uppercase;
     }
     
-    .locationsBtn {
+    .locationsHeadings {
         font-family: 'Source Sans Pro', sans-serif;
     }
     
@@ -34,4 +34,16 @@
     
     .styledButtons:hover {
         cursor: pointer;
+    }
+    
+    .getAllLocations {
+        margin-top: 15%;
+        width: 100%;
+        height: 600px;
+        background-color: white;
+    }
+    
+    .labelColour {
+        color: black;
+        font-family: 'Source Sans Pro', sans-serif;
     }
