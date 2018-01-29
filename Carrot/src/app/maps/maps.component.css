@@ -47,3 +47,11 @@
         color: black;
         font-family: 'Source Sans Pro', sans-serif;
     }
+    .img {
+        width: 70px;
+        height: 70px;
+        border: 0.5px solid #F3F3F3;
+        float: left;
+        cursor: pointer;
+    }
+    

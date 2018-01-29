@@ -54,18 +54,19 @@ export class CardComponent implements OnInit {
     this.routerListener.activate();
   }
 
-  moreInfo(key) {
+  activateReward(key) {
     this.databaseService.setKey(key);
     this.routerListener.activeReward(this.reward, this.isOnAccount);
-    this.router.navigate(['/main/info']);
   }
-
-  goToAdd() {
-    this.router.navigate(['/main/map']);
-
-  }
-
-  getLocation(){
+move(location:string){
+  this.router.navigate([location]);
+}
+map(reward):void{
+  this.routerListener.setReward( reward );
+  console.log(this.reward)
+  console.log(this.routerListener.reward);
+}
+getLocation(){
        this.search.search( this.reward.ProviderName , this.mapService.userLocation.location , 5000 , this.mapService.key  );
   }
 
