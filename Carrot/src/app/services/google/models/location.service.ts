@@ -15,7 +15,7 @@ export class LocationService {
   }
 
   public toString(): string {
-    return '';
+    return 'Longitude: \t ' + this.longitude + '\nLatitude: \t ' + this.latitude;
   }
 
 }

@@ -11,8 +11,6 @@ import { Search } from './models/search.service';
 export class MapService {
   key:string = 'AIzaSyCJurPZvQtKnlhLIfzImNtbYzUX_ZuH7rE';
   userLocation: GPSLocation;
-  apiList: string[] = [ // Future: Change to object
-    '', '', '', '', '', '', '', '', ''];
 constructor( protected httpRequest: Http ) {   
  if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -32,16 +30,4 @@ constructor( protected httpRequest: Http ) {
   public toString(): string {
     return 'Current Location:\n'+ this.userLocation.toString();
   }
- apiRequest() {
-  return this.httpRequest.get('https://maps.googleapis.com/maps/api/place/textsearch/json?query=ABSA&location=-33.927884,18.425275&radius=10000&key=AIzaSyBvY4nDt3nAbqFqpf8omUbmr4M-rjbGATw').map(results =>{
-           return results.json();
-  });
-        
-}
-/*
-
- getApi(api: number): string {
-   return this.apiList[api];
- }
- */
 }

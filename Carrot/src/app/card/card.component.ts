@@ -27,9 +27,9 @@ export class CardComponent implements OnInit {
   isFlip: boolean; // Controls Styling
   currentLocation:GPSLocation;
 
-  // tslint:disable-next-line:max-line-length
-  constructor(private routerListener: RoutingListenerService, public themes: ThemesService, protected mapService:MapService , protected databaseService: DatabaseService, protected search:Search, protected router: Router) {
-    
+  constructor(private routerListener: RoutingListenerService, public themes: ThemesService, protected mapService:MapService ,
+     protected databaseService: DatabaseService, protected search:Search, protected router: Router) {
+    // Constructor
   }
 
   ngOnInit() {
@@ -66,10 +66,10 @@ export class CardComponent implements OnInit {
   }
 
   onClick(){
-    console.log( this.mapService.userLocation.location);
-  
-   setTimeout(()=>{ this.search.search( this.reward.ProviderName , this.mapService.userLocation.location , 5000 , this.mapService.key  );},1000); 
-   console.log(this.search.Locations);
+
+   setTimeout(()=>{ this.search.search( this.reward.ProviderName , this.mapService.userLocation.location , 5000 , this.mapService.key  );
+  },1000); 
+
   }
 
 }
