@@ -12,6 +12,7 @@ import { GPSLocation } from './gpslocation.service';
 export class Search {
   key:string = 'AIzaSyCJurPZvQtKnlhLIfzImNtbYzUX_ZuH7rE';
   Locations: GPSLocation[] = [];
+  array;
 
   constructor(public httpReq:Http) { 
   }
@@ -20,9 +21,11 @@ export class Search {
 
   search( query:string, currentLocation : LocationService , radius:number , key:string ):void{
     this.connect( query , currentLocation , radius , key ).subscribe(results => {
+      console.log("here1")
+      console.log(results)
       if(results.results[0] !== undefined){
-        for( let i = 0 ; i < results.results.length ; i++ ){
-          console.log(  );
+        // for( let i = 0 ; i < results.results.length ; i++ ){
+          // console.log(results);
         //   let location:LocationService = new LocationService( results[i].geometry.location.latitude , results[i].geometry.location.longitude ); 
         //   console.log(location);
         //  //createObject( place_id :string , formatted_address:string , location_type:string , types:string[])
@@ -40,8 +43,16 @@ export class Search {
         //     this.Locations.push( gpslocation );
         //     console.log(gpslocation);
     
-      } }
-      //  console.log( results);
+      // }
+
+      this.array = results.results;
+      console.log("here")
+      console.log(results.results);
+     }
+
+     this.array = results.results;
+     
+       console.log(results.results);
       });  
   }
   //-33.926892,18.4436838,17z

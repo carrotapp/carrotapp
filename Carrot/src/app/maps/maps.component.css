@@ -41,6 +41,7 @@
         width: 100%;
         height: 600px;
         background-color: white;
+        overflow-y: scroll;
     }
     
     .labelColour {

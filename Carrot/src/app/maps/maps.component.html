@@ -18,10 +18,10 @@
                     <button type="button" class="btn btn-sm styledButtons" id="{{theme + '-parent-item'}}">My location</button>
                 </div>
                 <div class="col-md-4">
-                    <button type="button " class="btn btn-sm styledButtons" id="{{theme + '-parent-item'}}">Nearest location</button>
+                    <button type="button " class="btn btn-sm styledButtons" id="{{theme + '-parent-item'}}" (click) = "radius(5000)">Nearest location</button>
                 </div>
                 <div class="col-md-4">
-                    <button type="button" class="btn  btn-sm styledButtons" id="{{theme + '-parent-item'}}">Show all locations</button>
+                    <button type="button" class="btn  btn-sm styledButtons" id="{{theme + '-parent-item'}}" (click) = "radius(0)">Show all locations</button>
                 </div>
             </div>
 
@@ -30,21 +30,46 @@
     <div class="row">
         <div class="col-md-6 mapStyle justify-content-center">
 
-            <agm-map id="map" [latitude]="lat" [longitude]="lon">
+            <agm-map id="map" [latitude]="lat" [longitude]="lon" [zoom] = 12>
                 <!-- <agm-marker *ngFor = "let coord of coordinates" [latitude]="coord.lat" [longitude]="coord.lon"></agm-marker> -->
                 <agm-marker [latitude]="lat" [longitude]="lon">
                     <agm-info-window>
-                        <strong>You are here</strong>
+                        <strong style = "color: black">You are here</strong>
                     </agm-info-window>
                 </agm-marker>
+                <!-- [iconUrl] -->
+
+                <agm-marker class = "marker" *ngFor = "let arr of array" [latitude]="arr.geometry.location.lat" [longitude]="arr.geometry.location.lng" 
+                
+                >
+                    <agm-info-window>
+                        <strong style = "color: black">
+                            {{arr.name}}
+                            <br>
+                            {{arr.formatted_address}}
+                        </strong>
+                    </agm-info-window>
+                </agm-marker>
+
+                <agm-circle 
+                    [latitude]="lat" 
+                    [longitude]="lon" 
+                    [radius]="circleRadius"
+                    [fillColor]="'red'">
+                </agm-circle>
 
             </agm-map>
 
         </div>
-        <div class="col-md-6 getAllLocations justify-content-center">
+        <div class="col-md-6 getAllLocations">
+            <br>
             <h4 class="labelColour justify-content-center">List of all locations</h4>
             <ul>
-                <li></li>
+                <li style = "color: black" *ngFor = "let arr of array">
+                        {{arr.name}}
+                        <br>
+                        {{arr.formatted_address}}
+                </li>
             </ul>
         </div>
     </div>

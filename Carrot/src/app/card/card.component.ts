@@ -29,7 +29,8 @@ export class CardComponent implements OnInit {
 
   constructor(private routerListener: RoutingListenerService, public themes: ThemesService, protected mapService:MapService ,
      protected databaseService: DatabaseService, protected search:Search, protected router: Router) {
-    // Constructor
+    
+      // this.search.search(this.reward.ProviderName, mapService.userLocation.location, 5000, mapService.key);
   }
 
   ngOnInit() {
@@ -59,6 +60,12 @@ export class CardComponent implements OnInit {
     this.routerListener.activeReward(this.reward, this.isOnAccount);
   }
 move(location:string){
+  console.log("dog")
+  console.log(this.reward.ProviderName)
+  console.log(this.mapService.userLocation.location)
+  console.log(this.mapService.key)
+
+  this.search.search(this.reward.ProviderName, this.mapService.userLocation.location, 5000, this.mapService.key);
   this.router.navigate([location]);
 }
 map(reward):void{
