@@ -15,7 +15,7 @@ export class Address {
   types:string[]=[];
   // possibleLocations:Address[];
 /*
- * Find even you can do it in 10min a way to not having 
+ * Find even you can do it in 10min a way to not having
  * to initialize an object by overriding the default constructor.
  * and create it by simple calls
 */
@@ -33,7 +33,7 @@ createObject( place_id :string , formatted_address:string , location_type:string
   this.types = types;
   return this;
 }
- 
+
 createAddress(lng:number,lat:number):Observable<any>{
   return this.httpReq.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key='+this.key).map(result =>{
    return result.json();
