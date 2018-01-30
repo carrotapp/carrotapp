@@ -22,7 +22,8 @@ export class Address {
 
 
 constructor( lat:number, lng:number, protected httpReq:Http ) {
-    this.location = new LocationService( lat , lng );
+    this.location = new LocationService();
+    this.location.construct( lat , lng );
     // this.initialize( this.location.longitude , this.location.latitude );
 }
 

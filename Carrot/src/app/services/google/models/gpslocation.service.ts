@@ -10,10 +10,14 @@ export class GPSLocation {
   location:LocationService;
   address:Address;
 
-  constructor( accuracy:number, location:LocationService, protected httpRequest:Http) {
-    this.accuracy = accuracy;
-    this.location = location;
-    this.address= new Address( this.location.latitude , this.location.longitude, httpRequest );
+  constructor(protected httpRequest:Http) {
+    
+  }
+
+  construct(acc: number, locationService: LocationService) {
+    this.accuracy = acc;
+    this.location = locationService;
+    this.address= new Address( this.location.latitude , this.location.longitude, this.httpRequest );
     this.createAddress( this.location.longitude , this.location.latitude );
   }
 

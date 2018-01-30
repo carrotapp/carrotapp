@@ -9,7 +9,7 @@
                     <div *ngFor="let coupon of db.coupons | async">
                         <div *ngIf="coupon.Provider === userReward.key">
                             <div *ngFor="let reward of db.rewards | async">
-                                <div *ngIf="reward.key === userReward.key" class="row" (click)="router.navigate(['/main/map'])" data-dismiss="modal">
+                                <div *ngIf="reward.key === userReward.key" class="row" (click)="map(reward); move( '/main/map', coupon)" data-dismiss="modal">
                                     <div class="col-3"><img src={{reward.Image}} alt="logo" class="img-fluid rounded companyLogo" /></div>
                                     <p class="col-9 description">{{coupon.Description}} at {{coupon.Location}}</p>
                                     <div class="expirationDate">{{coupon.ExpirationDate}}</div>

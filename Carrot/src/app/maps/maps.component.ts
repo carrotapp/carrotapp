@@ -28,7 +28,7 @@ export class MapsComponent   {
   // }
 
 
-  constructor(public map: MapService, protected search:Search, protected mapService:MapService,  private routerListener: RoutingListenerService, ) {
+  constructor(public map: MapService, protected search:Search, protected mapService:MapService,  private routerListener: RoutingListenerService, public theme: ThemesService) {
     // this.search.search('Woolworths', this.mapService.userLocation.location, 5000, this.mapService.key);
   }
 

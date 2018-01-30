@@ -9,13 +9,16 @@ export class LocationService {
    * Currently Returns Co-Ordinates based on the Network Providers
    */
 
-  constructor(latitude: number, longitude: number) {
-    this.latitude = latitude;
-    this.longitude = longitude;
+  constructor() {
   }
 
   public toString(): string {
     return 'Longitude: \t ' + this.longitude + '\nLatitude: \t ' + this.latitude;
+  }
+
+  construct(lat:number, long:number) {
+    this.latitude = lat;
+    this.longitude = long;
   }
 
 }
