@@ -46,6 +46,7 @@ import { Search } from './services/google/models/search.service';
 import { Distance } from './services/google/models/distance.service';
 
 import { AgmCoreModule } from '@agm/core';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDUlfMoY9Aq0nOGnZt_ovhRDaUtOJUnZ04',
@@ -101,8 +102,10 @@ export function metaFactory(): MetaLoader {
     FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AngularFirestoreModule,
     MetaModule.forRoot({
       provide: MetaLoader,
       useFactory: (metaFactory)

@@ -1,7 +1,7 @@
 <div class="row text-center justify-content-left dashboard">
     <div *ngFor="let reward of ds.rewards | async">
         <div *ngFor='let usersReward of ds.usersRewards | async'>
-            <div *ngIf='reward.key === usersReward.key'>
+            <div *ngIf='reward.id === usersReward.id'>
                 <app-card [reward]="reward" [userData]="usersReward" [type]="'view'" [isHidden]="send()" class="col-md-3"></app-card>
             </div>
         </div>

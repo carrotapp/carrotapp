@@ -20,10 +20,10 @@ export class DashboardComponent implements OnInit {
   hasRewards = false;
 
   constructor(public ds: DatabaseService, private afAuth: AngularFireAuth, private router: Router) {
-    this.ds.getUsersRewards();
   }
 
   ngOnInit() {
+    this.ds.getUsersRewards();
   }
 
   send() {

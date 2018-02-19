@@ -2,7 +2,7 @@ import { ThemesService } from '../themes.service';
 import { Rewards } from './../../dashboard/Rewards';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -13,7 +13,7 @@ import { DatePipe } from '@angular/common';
 
 @Injectable()
 export class DatabaseService {
-    userRewardsRef: AngularFireList<any>;
+    // userRewardsRef;
     userRewards: Observable<any[]>;
     rewards: Observable<any[]>;
     rewardsOfUser: Observable<any[]>;
@@ -34,18 +34,64 @@ export class DatabaseService {
     Key: string;
     rewardsStatus: any[][];
 
-    // tslint:disable-next-line:max-line-length
-    constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public router: Router, protected _location: Location, protected ts: ThemesService, private datePipe: DatePipe) {
-        // Set the ref for User Rewards in userRewardsRef
-        this.userRewardsRef = afDB.list('/User Rewards');
+    userRewardsRef;
+    rewardsRef;
+    couponsRef;
 
-        // Initialise the data from Rewards and Coupons in rewards and coupons
-        this.rewards = afDB.list('/Rewards').snapshotChanges().map(changes => {
-            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    // tslint:disable-next-line:max-line-length
+    constructor(private afStore: AngularFirestore, private afAuth: AngularFireAuth, public router: Router, protected _location: Location, protected ts: ThemesService, private datePipe: DatePipe) {
+        // Set the ref for User Rewards in userRewardsRef
+        // this.userRewards = afStore.collection('User Rewards').snapshotChanges().map(actions => {
+        //     return actions.map(a => {
+        //         const data = a.payload.doc.data();
+        //         const id = a.payload.doc.id;
+        //         return { id, ...data };
+        //     });
+        // });
+
+        // // Initialise the data from Rewards and Coupons in rewards and coupons
+        // this.rewards = afStore.collection('Rewards', ref => ref.orderBy('ProviderName', 'asc')).snapshotChanges().map(actions => {
+        //     return actions.map(a => {
+        //         const data = a.payload.doc.data();
+        //         const id = a.payload.doc.id;
+        //         return { id, ...data };
+        //     });
+        // });
+        // this.coupons = afStore.collection('Coupons').snapshotChanges().map(actions => {
+        //     return actions.map(a => {
+        //         const data = a.payload.doc.data();
+        //         const id = a.payload.doc.id;
+        //         return { id, ...data };
+        //     });
+        // });
+        this.userRewardsRef = afStore.collection('User Rewards');
+        this.rewardsRef = afStore.collection('Rewards');
+        this.couponsRef = afStore.collection('Coupons');
+
+        this.userRewards = this.userRewardsRef.snapshotChanges().map(actions => {
+            return actions.map(a => {
+                const data = a.payload.doc.data();
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            });
         });
-        this.coupons = afDB.list('/Coupons').snapshotChanges().map(changes => {
-            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+
+        this.rewards = afStore.collection('Rewards', ref => ref.orderBy('ProviderName', 'asc')).snapshotChanges().map(actions => {
+            return actions.map(a => {
+                const data = a.payload.doc.data();
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            });
         });
+
+        this.coupons = this.couponsRef.snapshotChanges().map(actions => {
+            return actions.map(a => {
+                const data = a.payload.doc.data();
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            });
+        });
+
         this.checkCoupons();
     }
 
@@ -61,43 +107,52 @@ export class DatabaseService {
                     this.initializeData();
                     this.router.navigate(['/main/dashboard']);
                 }).catch(
-                (err) => {
-                    alert('Error: ' + err.message);
-                });
+                    (err) => {
+                        alert('Error: ' + err.message);
+                    });
         }
     }
 
     // Opens the google popup with profile and email as options
     googlePopup() {
-        const provider = new firebase.auth.GoogleAuthProvider();
-        provider.addScope('profile');
-        provider.addScope('email');
-        this.userRewards = this.userRewardsRef.snapshotChanges().map(changes => {
-            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-        });
-        this.afAuth.auth.signInWithPopup(provider).then(
-            (success) => {
-                this.userRewards.forEach(element => {
-                    // Determine if a new user is registering and create a new entry in the database or go to the dashboard
-                    let flag: Boolean;
-                    for (let i = 0; i < element.length; i++) {
-                        if (element[i].user === this.getUID()) {
-                            this.theme = element[i].theme;
-                            flag = false;
-                            break;
-                        }
-                    }
-                    if (flag === undefined) {
-                        this.pushToUserRewards(this.getUID());
-                    } else {
-                        this.initializeData();
-                        this.router.navigate(['/main/dashboard']);
-                    }
-                });
+        // this.userRewards = this.userRewardsRef.snapshotChanges().map(actions => {
+        //     return actions.map(a => {
+        //         const data = a.payload.doc.data();
+        //         const id = a.payload.doc.id;
+        //         return { id, ...data };
+        //     });
+        // });
+        this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(
+            response => {
+                // this.userRewards.forEach(element => {
+                //     // Determine if a new user is registering and create a new entry in the database or go to the dashboard
+                //     let flag: Boolean;
+                //     for (let i = 0; i < element.length; i++) {
+                //         if (element[i].user === this.getUID()) {
+                //             this.theme = element[i].theme;
+                //             flag = false;
+                //             break;
+                //         }
+                //     }
+                //     if (flag === undefined) {
+                //         this.pushToUserRewards(this.getUID());
+                //     } else {
+                //         this.initializeData();
+                //         this.router.navigate(['/main/dashboard']);
+                //     }
+                // });
+
+                if (response.additionalUserInfo.isNewUser) {
+                    this.pushToUserRewards(this.getUID());
+                    this.router.navigate(['/main/rewards']);
+                } else {
+                    this.initializeData();
+                    this.router.navigate(['/main/dashboard']);
+                }
             }).catch(
-            (err) => {
-                console.log(err.message);
-            });
+                (err) => {
+                    console.log(err.message);
+                });
     }
 
     // Create a new user with email and password
@@ -107,38 +162,50 @@ export class DatabaseService {
                 this.afAuth.auth.currentUser.updateProfile({ displayName: username, photoURL: this.getAvatar() });
                 this.pushToUserRewards(this.getUID());
             }).catch(
-            (err) => {
-                if (err.message === 'The email address is already in use by another account.') {
-                    alert(err.message);
-                } else {
-                    console.log(err.message);
-                }
-            });
+                (err) => {
+                    if (err.message === 'The email address is already in use by another account.') {
+                        alert(err.message);
+                    } else {
+                        console.log(err.message);
+                    }
+                });
     }
 
     // Create a new user entry in the database after registering and send them to the add rewards screen
     pushToUserRewards(uid: any) {
-        this.userRewardsRef.push({
+        // this.userRewardsRef.push({
+        //     user: uid,
+        //     theme: 'default'
+        // });
+        this.userRewardsRef.add({
             user: uid,
             theme: 'default'
         });
         // Initialise the new user's data
         this.initializeData();
-        const user = this.userRewardsRef.snapshotChanges().map(changes => {
-            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-        });
-        let flag = true;
-        user.forEach(element => {
-            if (flag) {
-                for (let i = 0; i < element.length; i++) {
-                    if (element[i].user === this.getUID()) {
-                        flag = false;
-                        this.router.navigate(['/main/rewards']);
-                        break;
-                    }
-                }
-            }
-        });
+        // const user = this.userRewardsRef.snapshotChanges().map(actions => {
+        //     return actions.map(a => {
+        //         const data = a.payload.doc.data();
+        //         const id = a.payload.doc.id;
+        //         return { id, ...data };
+        //     });
+        // });
+        // user.subscribe(response => {
+        //     response.map(element => {
+
+        //     });
+        // });
+        // user.forEach(element => {
+        //     if (flag) {
+        //         for (let i = 0; i < element.length; i++) {
+        //             if (element[i].user === this.getUID()) {
+        //                 flag = false;
+        //                 this.router.navigate(['/main/rewards']);
+        //                 break;
+        //             }
+        //         }
+        //     }
+        // });
     }
 
     // Logout the current user
@@ -151,7 +218,9 @@ export class DatabaseService {
 
     // Add a new reward provider to the curren user's account
     addRewards(cardNum: string, email: string, password: string, reward) {
-        this.afDB.list(this.rewardPath).set(reward.key, { CardNumber: cardNum, Password: password, Points: 0, Email: email });
+        const segs = this.rewardPath.split('/');
+        // tslint:disable-next-line:max-line-length
+        this.afStore.collection(segs[0]).doc(segs[1]).collection(segs[2]).doc(reward.id).set({ CardNumber: cardNum, Password: password, Points: 0, Email: email });
         this.rewardsArray = [];
         this.router.navigate(['/main/dashboard']);
     }
@@ -159,99 +228,168 @@ export class DatabaseService {
     // Check whether a specific reward is on the current user's account or not
     checkReward(key: string) {
         let flag = true;
-        const users: Observable<any[]> = this.afDB.list('/User Rewards').snapshotChanges().map(changes => {
-            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        const users: Observable<any[]> = this.userRewardsRef.snapshotChanges().map(actions => {
+            return actions.map(a => {
+                const data = a.payload.doc.data();
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            });
         });
-        users.forEach(element => {
-            const uid: String = this.afAuth.auth.currentUser.uid;
-            for (let i = 0; i < element.length; i++) {
-                if (element[i].user === uid) {
-                    this.rewardPath = '/User Rewards/' + element[i].key + '/Rewards';
-                    const rewards: Observable<any[]> = this.afDB.list(this.rewardPath).snapshotChanges().map(changes => {
-                        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        users.subscribe(response => {
+            response.map(element => {
+                if (element.user === this.getUID()) {
+                    this.rewardPath = 'User Rewards/' + element.id + '/Rewards';
+                    // console.log(this.rewardPath);
+                    const rewards = this.userRewardsRef.doc(element.id).collection('Rewards').snapshotChanges().map(actions => {
+                        return actions.map(a => {
+                            const data = a.payload.doc.data();
+                            const id = a.payload.doc.id;
+                            return { id, ...data };
+                        });
                     });
-                    rewards.forEach(rewardsElement => {
-                        if (flag) {
-                            for (let j = 0; j < rewardsElement.length; j++) {
-                                if (rewardsElement[j].key === key) {
-                                    flag = false;
-                                    break;
-                                }
+                    rewards.subscribe(res => {
+                        res.map(ele => {
+                            if (ele.id === key) {
+                                flag = false;
                             }
-                        }
+                        });
                         this.rewardKey = key;
                         this.rewardFlag = flag;
                         return flag;
                     });
                 }
-            }
+            });
         });
+        // users.forEach(element => {
+        //     for (let i = 0; i < element.length; i++) {
+        //         if (element[i].user === this.getUID()) {
+        //             this.rewardPath = '/User Rewards/' + element[i].id + '/Rewards';
+        //             const rewards: Observable<any[]> = this.afStore.collection(this.rewardPath).snapshotChanges().map(actions => {
+        //                 return actions.map(a => {
+        //                     const data = a.payload.doc.data();
+        //                     const id = a.payload.doc.id;
+        //                     return { id, ...data };
+        //                 });
+        //             });
+        //             rewards.forEach(rewardsElement => {
+        //                 if (flag) {
+        //                     for (let j = 0; j < rewardsElement.length; j++) {
+        //                         if (rewardsElement[j].key === key) {
+        //                             flag = false;
+        //                             break;
+        //                         }
+        //                     }
+        //                 }
+        //                 this.rewardKey = key;
+        //                 this.rewardFlag = flag;
+        //                 return flag;
+        //             });
+        //         }
+        //     }
+        // });
     }
 
     // Returns an array of all the rewards providers
-    getRewardsArray(): Rewards[] {
-        let key: string;
-        const uid: string = this.getUID();
-        let path: string;
-        this.userRewards = this.userRewardsRef.snapshotChanges().map(changes => {
-            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-        });
+    getRewardsArray() {
+        // let key: string;
+        // const uid: string = this.getUID();
+        // let path: string;
+        // this.userRewards = this.userRewardsRef
         this.rewardsArray = [];
-        this.userRewards.subscribe(res => {
+        const userRewards = this.userRewardsRef.snapshotChanges().map(actions => {
+            return actions.map(a => {
+                const data = a.payload.doc.data();
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            });
+        });
+        userRewards.subscribe(res => {
             res.map(element => {
-                if (element.user === uid) {
-                    key = element.key;
-                    path = '/User Rewards/' + key + '/Rewards/';
-                    this.generateRewardsArray(path);
+                if (element.user === this.getUID()) {
+                    this.generateRewardsArray(element.id);
                 }
             });
         });
-        return this.rewardsArray;
     }
 
     // Creates an array of all the providers and if the user has the provider on their account then the account information is also added
-    generateRewardsArray(path) {
-        const usersRewards: Observable<any[]> = this.afDB.list(path).snapshotChanges().map(changes => {
-            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    generateRewardsArray(key: string) {
+        const rewards = this.rewardsRef.snapshotChanges().map(actions => {
+            return actions.map(a => {
+                const data = a.payload.doc.data();
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            });
         });
-        const value: Observable<any[]> = this.afDB.list(path).valueChanges();
-        usersRewards.forEach(element => {
-            for (let i = 0; i < element.length; i++) {
-                this.rewards.forEach(dataElement => {
-                    value.forEach(valueElement => {
-                        for (let j = 0; j < dataElement.length; j++) {
-                            if (dataElement[j].key === element[i].key) {
-                                this.rewardsArray.push(
-                                    new Rewards(dataElement[j], valueElement[i], element[i])
-                                );
-                            }
+        const usersRewards = this.userRewardsRef.doc(key).collection('Rewards').valueChanges();
+        usersRewards.subscribe(response => {
+            rewards.subscribe(res => {
+                response.map(element => {
+                    res.map(e => {
+                        if (element.id === e.id) {
+                            this.rewardsArray.push(
+                                new Rewards(element, e)
+                            );
                         }
                     });
                 });
-            }
+            });
         });
+        // const value: Observable<any[]> = this.afStore.collection(path).valueChanges();
+        // usersRewards.forEach(element => {
+        //     for (let i = 0; i < element.length; i++) {
+        //         this.rewards.forEach(dataElement => {
+        //             value.forEach(valueElement => {
+        //                 for (let j = 0; j < dataElement.length; j++) {
+        //                     if (dataElement[j].key === element[i].key) {
+        //                         this.rewardsArray.push(
+        //                             new Rewards(dataElement[j], valueElement[i], element[i])
+        //                         );
+        //                     }
+        //                 }
+        //             });
+        //         });
+        //     }
+        // });
     }
 
     // Gets all the account data of the providers added to the current user's account
     getUsersRewards() {
-        this.userRewards = this.userRewardsRef.snapshotChanges().map(changes => {
-            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        const userRewards = this.userRewardsRef.snapshotChanges().map(actions => {
+            return actions.map(a => {
+                const data = a.payload.doc.data();
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            });
         });
-        this.userRewards.subscribe(res => {
+        userRewards.subscribe(res => {
             res.map(element => {
                 if (element.user === this.getUID()) {
-                    this.usersRewards = this.afDB.list('/User Rewards/' + element.key + '/Rewards/').snapshotChanges().map(changes => {
-                        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+                    // tslint:disable-next-line:max-line-length
+                    this.usersRewards = this.userRewardsRef.doc(element.id).collection('Rewards').snapshotChanges().map(actions => {
+                        return actions.map(a => {
+                            const data = a.payload.doc.data();
+                            const id = a.payload.doc.id;
+                            return { id, ...data };
+                        });
                     });
+                    const rewards = this.rewardsRef.snapshotChanges().map(actions => {
+                        return actions.map(a => {
+                            const data = a.payload.doc.data();
+                            const id = a.payload.doc.id;
+                            return { id, ...data };
+                        });
+                    });
+                    // console.log('Users Rewards' + this.usersRewards);
 
                     this.usersRewards.subscribe(results => {
-                        this.rewards.subscribe(response => {
+                        rewards.subscribe(response => {
                             this.totalPoints = 0;
                             this.totalRandValue = 0;
                             results.map(elements => {
                                 this.totalPoints += elements.Points;
                                 response.map(e => {
-                                    if (e.key === elements.key) {
+                                    if (e.id === elements.id) {
                                         this.totalRandValue += elements.Points / e.Ratio;
                                     }
                                 });
@@ -315,21 +453,35 @@ export class DatabaseService {
 
     // Updates the theme for the current user
     updateTheme(theme: string) {
-        const users: Observable<any[]> = this.userRewardsRef.snapshotChanges().map(changes => {
-            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-        });
         let flag = true;
-        users.forEach(element => {
-            if (flag) {
-                for (let i = 0; i < element.length; i++) {
-                    if (element[i].user === this.getUID()) {
-                        this.afDB.list('/User Rewards/' + element[i].key).set('theme', theme);
-                        flag = false;
-                        break;
-                    }
-                }
-            }
+        const userRewards = this.userRewardsRef.snapshotChanges().map(actions => {
+            return actions.map(a => {
+                const data = a.payload.doc.data();
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            });
         });
+
+        userRewards.subscribe(response => {
+            response.map(element => {
+                if (element.user === this.getUID() && flag) {
+                    this.userRewardsRef.doc(element.id).update({ 'theme': theme });
+                    flag = false;
+                }
+            });
+        });
+
+        // userRewards.forEach(element => {
+        //     if (flag) {
+        //         for (let i = 0; i < element.length; i++) {
+        //             if (element[i].user === this.getUID()) {
+        //                 this.userRewardsRef.doc(element[i].id).update({ 'theme': theme });
+        //                 flag = false;
+        //                 break;
+        //             }
+        //         }
+        //     }
+        // });
     }
 
     // Checks whether a user is logged in or not, used by the navbar
@@ -372,8 +524,8 @@ export class DatabaseService {
                     for (let i = 0; i < element.length; i++) {
                         if (element[i].user === this.getUID()) {
                             path = '/User Rewards/' + element[i].key + '/Rewards/' + key;
-                            const ref = this.afDB.database.ref(path);
-                            ref.remove()
+                            const ref = this.afStore.collection(path).doc(key);
+                            ref.delete()
                                 .then(() => {
                                     this.router.navigate(['/main/dashboard']);
                                 })
@@ -394,15 +546,20 @@ export class DatabaseService {
     initializeData() {
         this.initialized = true;
         this.photoUrl = this.afAuth.auth.currentUser.photoURL;
-        const user = this.userRewardsRef.snapshotChanges().map(changes => {
-            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+
+        const userRewards = this.userRewardsRef.snapshotChanges().map(actions => {
+            return actions.map(a => {
+                const data = a.payload.doc.data();
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            });
         });
 
-        user.subscribe(res => {
-            res.map(response => {
-                if (response.user === this.getUID()) {
-                    this.theme = response.theme;
-                    this.ts.setTheme(response.theme);
+        userRewards.subscribe(res => {
+            res.map(element => {
+                if (element.user === this.getUID()) {
+                    this.theme = element.theme;
+                    this.ts.setTheme(element.theme);
                 }
             });
         });
@@ -419,13 +576,20 @@ export class DatabaseService {
     // Finds the coupons relevant to the current user's account and also removes expired coupons from the database
     checkCoupons() {
         const current_date = new Date();
-        this.coupons.subscribe(results => {
+        const coupons = this.couponsRef.snapshotChanges().map(actions => {
+            return actions.map(a => {
+                const data = a.payload.doc.data();
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            });
+        });
+        coupons.subscribe(results => {
             results.map(element => {
                 let expDate: string = element.ExpirationDate;
                 expDate = expDate.replace(/-/g, '');
                 if (parseInt(expDate, 10) < parseInt(this.datePipe.transform(current_date, 'yyyyMMdd'), 10)) {
-                    const key = element.key;
-                    this.afDB.list('/Coupons').remove(key);
+                    const key = element.id;
+                    this.afStore.collection('Coupons').doc(key).delete();
                 }
             });
         });

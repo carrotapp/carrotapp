@@ -39,7 +39,7 @@ export class RoutingListenerService {
       this.action = parameters.type;
     });
   }
-  setReward(reward):void{
+  setReward(reward): void {
     this.reward = reward;
   }
   get getAcivity() {

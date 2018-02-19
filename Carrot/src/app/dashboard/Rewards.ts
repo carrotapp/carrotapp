@@ -17,18 +17,19 @@ export class Rewards {
   Key;
 
 
-  constructor(array, Value, detailsArray) {
+  // constructor(array, Value, detailsArray) {
+  constructor(array, detailsArray) {
     this.Currency = array.Currency;
     this.Image = array.Image;
     this.ProviderName = array.ProviderName;
     this.Name = array.Name;
     this.Ratio = array.Ratio;
-    this.Value = Value;
-    this.infoUrl = array.infoUrl;
-    this.summary = array.summary;
-    this.Key = array.key;
-    this.how = array.how;
-    this.where = array.where;
+    // this.Value = Value;
+    this.infoUrl = array.InfoUrl;
+    this.summary = array.Summary;
+    this.Key = array.id;
+    this.how = array.How;
+    this.where = array.Where;
     this.CardNumber = detailsArray.CardNumber;
     this.Email = detailsArray.Email;
     this.Password = detailsArray.Password;
