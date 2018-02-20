@@ -27,7 +27,7 @@ export class RoutingListenerService {
     this.isOnAccount = isOnAccount;
   }
   activate(): void {
-    this.databaseService.checkReward(this.reward.key);
+    this.databaseService.checkReward(this.reward.id);
     RoutingListenerService.isActivated = !RoutingListenerService.isActivated;
   }
 

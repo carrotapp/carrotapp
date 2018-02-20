@@ -13,9 +13,6 @@ import { DatePipe } from '@angular/common';
 
 @Injectable()
 export class DatabaseService {
-    // userRewardsRef;
-    userRewards: Observable<any[]>;
-    rewards: Observable<any[]>;
     rewardsOfUser: Observable<any[]>;
     rewardsArray: Rewards[] = [];
     detailsArray: any[] = [];
@@ -27,7 +24,6 @@ export class DatabaseService {
     rewardFlag: boolean;
     initialized = false;
     loggedIn: boolean;
-    coupons: Observable<any[]>;
     usersRewards: Observable<any[]>;
     totalPoints = 0;
     totalRandValue = 0;
@@ -40,58 +36,9 @@ export class DatabaseService {
 
     // tslint:disable-next-line:max-line-length
     constructor(private afStore: AngularFirestore, private afAuth: AngularFireAuth, public router: Router, protected _location: Location, protected ts: ThemesService, private datePipe: DatePipe) {
-        // Set the ref for User Rewards in userRewardsRef
-        // this.userRewards = afStore.collection('User Rewards').snapshotChanges().map(actions => {
-        //     return actions.map(a => {
-        //         const data = a.payload.doc.data();
-        //         const id = a.payload.doc.id;
-        //         return { id, ...data };
-        //     });
-        // });
-
-        // // Initialise the data from Rewards and Coupons in rewards and coupons
-        // this.rewards = afStore.collection('Rewards', ref => ref.orderBy('ProviderName', 'asc')).snapshotChanges().map(actions => {
-        //     return actions.map(a => {
-        //         const data = a.payload.doc.data();
-        //         const id = a.payload.doc.id;
-        //         return { id, ...data };
-        //     });
-        // });
-        // this.coupons = afStore.collection('Coupons').snapshotChanges().map(actions => {
-        //     return actions.map(a => {
-        //         const data = a.payload.doc.data();
-        //         const id = a.payload.doc.id;
-        //         return { id, ...data };
-        //     });
-        // });
         this.userRewardsRef = afStore.collection('User Rewards');
-        this.rewardsRef = afStore.collection('Rewards');
+        this.rewardsRef = afStore.collection('Rewards', ref => ref.orderBy('ProviderName', 'asc'));
         this.couponsRef = afStore.collection('Coupons');
-
-        this.userRewards = this.userRewardsRef.snapshotChanges().map(actions => {
-            return actions.map(a => {
-                const data = a.payload.doc.data();
-                const id = a.payload.doc.id;
-                return { id, ...data };
-            });
-        });
-
-        this.rewards = afStore.collection('Rewards', ref => ref.orderBy('ProviderName', 'asc')).snapshotChanges().map(actions => {
-            return actions.map(a => {
-                const data = a.payload.doc.data();
-                const id = a.payload.doc.id;
-                return { id, ...data };
-            });
-        });
-
-        this.coupons = this.couponsRef.snapshotChanges().map(actions => {
-            return actions.map(a => {
-                const data = a.payload.doc.data();
-                const id = a.payload.doc.id;
-                return { id, ...data };
-            });
-        });
-
         this.checkCoupons();
     }
 
@@ -115,33 +62,8 @@ export class DatabaseService {
 
     // Opens the google popup with profile and email as options
     googlePopup() {
-        // this.userRewards = this.userRewardsRef.snapshotChanges().map(actions => {
-        //     return actions.map(a => {
-        //         const data = a.payload.doc.data();
-        //         const id = a.payload.doc.id;
-        //         return { id, ...data };
-        //     });
-        // });
         this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(
             response => {
-                // this.userRewards.forEach(element => {
-                //     // Determine if a new user is registering and create a new entry in the database or go to the dashboard
-                //     let flag: Boolean;
-                //     for (let i = 0; i < element.length; i++) {
-                //         if (element[i].user === this.getUID()) {
-                //             this.theme = element[i].theme;
-                //             flag = false;
-                //             break;
-                //         }
-                //     }
-                //     if (flag === undefined) {
-                //         this.pushToUserRewards(this.getUID());
-                //     } else {
-                //         this.initializeData();
-                //         this.router.navigate(['/main/dashboard']);
-                //     }
-                // });
-
                 if (response.additionalUserInfo.isNewUser) {
                     this.pushToUserRewards(this.getUID());
                     this.router.navigate(['/main/rewards']);
@@ -173,39 +95,11 @@ export class DatabaseService {
 
     // Create a new user entry in the database after registering and send them to the add rewards screen
     pushToUserRewards(uid: any) {
-        // this.userRewardsRef.push({
-        //     user: uid,
-        //     theme: 'default'
-        // });
         this.userRewardsRef.add({
             user: uid,
             theme: 'default'
         });
-        // Initialise the new user's data
         this.initializeData();
-        // const user = this.userRewardsRef.snapshotChanges().map(actions => {
-        //     return actions.map(a => {
-        //         const data = a.payload.doc.data();
-        //         const id = a.payload.doc.id;
-        //         return { id, ...data };
-        //     });
-        // });
-        // user.subscribe(response => {
-        //     response.map(element => {
-
-        //     });
-        // });
-        // user.forEach(element => {
-        //     if (flag) {
-        //         for (let i = 0; i < element.length; i++) {
-        //             if (element[i].user === this.getUID()) {
-        //                 flag = false;
-        //                 this.router.navigate(['/main/rewards']);
-        //                 break;
-        //             }
-        //         }
-        //     }
-        // });
     }
 
     // Logout the current user
@@ -227,7 +121,6 @@ export class DatabaseService {
 
     // Check whether a specific reward is on the current user's account or not
     checkReward(key: string) {
-        let flag = true;
         const users: Observable<any[]> = this.userRewardsRef.snapshotChanges().map(actions => {
             return actions.map(a => {
                 const data = a.payload.doc.data();
@@ -239,62 +132,13 @@ export class DatabaseService {
             response.map(element => {
                 if (element.user === this.getUID()) {
                     this.rewardPath = 'User Rewards/' + element.id + '/Rewards';
-                    // console.log(this.rewardPath);
-                    const rewards = this.userRewardsRef.doc(element.id).collection('Rewards').snapshotChanges().map(actions => {
-                        return actions.map(a => {
-                            const data = a.payload.doc.data();
-                            const id = a.payload.doc.id;
-                            return { id, ...data };
-                        });
-                    });
-                    rewards.subscribe(res => {
-                        res.map(ele => {
-                            if (ele.id === key) {
-                                flag = false;
-                            }
-                        });
-                        this.rewardKey = key;
-                        this.rewardFlag = flag;
-                        return flag;
-                    });
                 }
             });
         });
-        // users.forEach(element => {
-        //     for (let i = 0; i < element.length; i++) {
-        //         if (element[i].user === this.getUID()) {
-        //             this.rewardPath = '/User Rewards/' + element[i].id + '/Rewards';
-        //             const rewards: Observable<any[]> = this.afStore.collection(this.rewardPath).snapshotChanges().map(actions => {
-        //                 return actions.map(a => {
-        //                     const data = a.payload.doc.data();
-        //                     const id = a.payload.doc.id;
-        //                     return { id, ...data };
-        //                 });
-        //             });
-        //             rewards.forEach(rewardsElement => {
-        //                 if (flag) {
-        //                     for (let j = 0; j < rewardsElement.length; j++) {
-        //                         if (rewardsElement[j].key === key) {
-        //                             flag = false;
-        //                             break;
-        //                         }
-        //                     }
-        //                 }
-        //                 this.rewardKey = key;
-        //                 this.rewardFlag = flag;
-        //                 return flag;
-        //             });
-        //         }
-        //     }
-        // });
     }
 
     // Returns an array of all the rewards providers
     getRewardsArray() {
-        // let key: string;
-        // const uid: string = this.getUID();
-        // let path: string;
-        // this.userRewards = this.userRewardsRef
         this.rewardsArray = [];
         const userRewards = this.userRewardsRef.snapshotChanges().map(actions => {
             return actions.map(a => {
@@ -314,6 +158,7 @@ export class DatabaseService {
 
     // Creates an array of all the providers and if the user has the provider on their account then the account information is also added
     generateRewardsArray(key: string) {
+        this.rewardsArray = [];
         const rewards = this.rewardsRef.snapshotChanges().map(actions => {
             return actions.map(a => {
                 const data = a.payload.doc.data();
@@ -321,36 +166,26 @@ export class DatabaseService {
                 return { id, ...data };
             });
         });
-        const usersRewards = this.userRewardsRef.doc(key).collection('Rewards').valueChanges();
+        const usersRewards = this.userRewardsRef.doc(key).collection('Rewards').snapshotChanges().map(actions => {
+            return actions.map(a => {
+                const data = a.payload.doc.data();
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            });
+        });
         usersRewards.subscribe(response => {
             rewards.subscribe(res => {
                 response.map(element => {
                     res.map(e => {
                         if (element.id === e.id) {
                             this.rewardsArray.push(
-                                new Rewards(element, e)
+                                new Rewards(e, element)
                             );
                         }
                     });
                 });
             });
         });
-        // const value: Observable<any[]> = this.afStore.collection(path).valueChanges();
-        // usersRewards.forEach(element => {
-        //     for (let i = 0; i < element.length; i++) {
-        //         this.rewards.forEach(dataElement => {
-        //             value.forEach(valueElement => {
-        //                 for (let j = 0; j < dataElement.length; j++) {
-        //                     if (dataElement[j].key === element[i].key) {
-        //                         this.rewardsArray.push(
-        //                             new Rewards(dataElement[j], valueElement[i], element[i])
-        //                         );
-        //                     }
-        //                 }
-        //             });
-        //         });
-        //     }
-        // });
     }
 
     // Gets all the account data of the providers added to the current user's account
@@ -380,7 +215,6 @@ export class DatabaseService {
                             return { id, ...data };
                         });
                     });
-                    // console.log('Users Rewards' + this.usersRewards);
 
                     this.usersRewards.subscribe(results => {
                         rewards.subscribe(response => {
@@ -399,19 +233,6 @@ export class DatabaseService {
                 }
             });
         });
-    }
-
-    // Gets a reward based on a specified provider
-    getReward(provider: string): Rewards {
-        provider = this.capitalize(provider.split('.'));
-        let reward: Rewards;
-        for (let i = 0; i < this.rewardsArray.length; i++) {
-            if (this.rewardsArray[i].Name.toLowerCase() === provider.toLowerCase()) {
-                reward = this.rewardsArray[i];
-                break;
-            }
-        }
-        return reward;
     }
 
     getUID() {
@@ -465,23 +286,14 @@ export class DatabaseService {
         userRewards.subscribe(response => {
             response.map(element => {
                 if (element.user === this.getUID() && flag) {
-                    this.userRewardsRef.doc(element.id).update({ 'theme': theme });
+                    element.theme = theme;
+                    const id = element.id;
+                    delete element['id'];
+                    this.userRewardsRef.doc(id).set(element);
                     flag = false;
                 }
             });
         });
-
-        // userRewards.forEach(element => {
-        //     if (flag) {
-        //         for (let i = 0; i < element.length; i++) {
-        //             if (element[i].user === this.getUID()) {
-        //                 this.userRewardsRef.doc(element[i].id).update({ 'theme': theme });
-        //                 flag = false;
-        //                 break;
-        //             }
-        //         }
-        //     }
-        // });
     }
 
     // Checks whether a user is logged in or not, used by the navbar
@@ -516,27 +328,21 @@ export class DatabaseService {
 
     // Removes a specific reward
     removeReward(key) {
-        let path;
         if (key !== undefined) {
-            let flag = true;
-            this.userRewards.forEach(element => {
-                if (flag) {
-                    for (let i = 0; i < element.length; i++) {
-                        if (element[i].user === this.getUID()) {
-                            path = '/User Rewards/' + element[i].key + '/Rewards/' + key;
-                            const ref = this.afStore.collection(path).doc(key);
-                            ref.delete()
-                                .then(() => {
-                                    this.router.navigate(['/main/dashboard']);
-                                })
-                                .catch(error => {
-                                    alert('Remove failed: ' + error);
-                                });
-                            flag = false;
-                            break;
-                        }
+            const userRewards = this.userRewardsRef.snapshotChanges().map(actions => {
+                return actions.map(a => {
+                    const data = a.payload.doc.data();
+                    const id = a.payload.doc.id;
+                    return { id, ...data };
+                });
+            });
+
+            userRewards.subscribe(response => {
+                response.map(element => {
+                    if (element.user === this.getUID()) {
+                        this.afStore.collection('User Rewards').doc(element.id).collection('Rewards').doc(key).delete();
                     }
-                }
+                });
             });
         }
 
@@ -588,8 +394,7 @@ export class DatabaseService {
                 let expDate: string = element.ExpirationDate;
                 expDate = expDate.replace(/-/g, '');
                 if (parseInt(expDate, 10) < parseInt(this.datePipe.transform(current_date, 'yyyyMMdd'), 10)) {
-                    const key = element.id;
-                    this.afStore.collection('Coupons').doc(key).delete();
+                    this.afStore.collection('Coupons').doc(element.id).delete();
                 }
             });
         });

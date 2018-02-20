@@ -9,27 +9,27 @@ import { Search } from './models/search.service';
 
 @Injectable()
 export class MapService {
-  key:string = 'AIzaSyCJurPZvQtKnlhLIfzImNtbYzUX_ZuH7rE';
+  key = 'AIzaSyCJurPZvQtKnlhLIfzImNtbYzUX_ZuH7rE';
   userLocation: GPSLocation;
-constructor( protected httpRequest: Http, protected gps: GPSLocation  ) {   
- if (navigator.geolocation) {
+  constructor(protected httpRequest: Http, protected gps: GPSLocation) {
+    if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
-        let location:LocationService = new LocationService();
-        location.construct( position.coords.latitude , position.coords.longitude );
-        this.currentLocation( position.coords.accuracy , location );
+        const location: LocationService = new LocationService();
+        location.construct(position.coords.latitude, position.coords.longitude);
+        this.currentLocation(position.coords.accuracy, location);
       });
- }
-}
-
-  currentLocation( accuracy:number , co_ordinates:LocationService) {   
-     this.userLocation = this.gps;
-     this.userLocation.construct(accuracy, co_ordinates);
+    }
   }
 
-  get getCurrentLocation():GPSLocation {
+  currentLocation(accuracy: number, co_ordinates: LocationService) {
+    this.userLocation = this.gps;
+    this.userLocation.construct(accuracy, co_ordinates);
+  }
+
+  get getCurrentLocation(): GPSLocation {
     return this.userLocation;
   }
   public toString(): string {
-    return 'Current Location:\n'+ this.userLocation.toString();
+    return 'Current Location:\n' + this.userLocation.toString();
   }
 }

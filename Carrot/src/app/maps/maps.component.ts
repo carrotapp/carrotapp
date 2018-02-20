@@ -1,3 +1,4 @@
+import { OnInit } from '@angular/core';
 // import { Coordinate } from './Coordinate';
 import { MapService } from './../services/google/maps.service';
 import { Component } from '@angular/core';
@@ -14,59 +15,61 @@ import { Search } from '../services/google/models/search.service';
   templateUrl: './maps.component.html',
   styleUrls: ['./maps.component.css']
 })
-export class MapsComponent   {
+export class MapsComponent implements OnInit {
   lat;
   lon;
   array;
-  rKey:string;
+  rKey: string;
   rewards;
   circleRadius;
 
+  // tslint:disable-next-line:max-line-length
   // constructor(public map: MapService , public dbs: DatabaseService , private routerListener: RoutingListenerService, private search:Search, protected mapService:MapService ) {
   // this.search.search( this.reward.ProviderName , this.map.userLocation.location , 5000 , this.map.key  );
-    
+
   // }
 
 
-  constructor(public map: MapService, protected search:Search, protected mapService:MapService,  private routerListener: RoutingListenerService, public theme: ThemesService) {
+  // tslint:disable-next-line:max-line-length
+  constructor(public map: MapService, protected search: Search, protected mapService: MapService, private routerListener: RoutingListenerService, public theme: ThemesService) {
     // this.search.search('Woolworths', this.mapService.userLocation.location, 5000, this.mapService.key);
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     // this.search.search('Woolworths', this.mapService.userLocation.location, 5000, this.mapService.key);
     this.array = this.search.array;
 
-    console.log("cat");
-    console.log(this.array)
+    // console.log("cat");
+    // console.log(this.array)
     // for(let i = 0; i < this.array.length; i++){
     //   console.log(this.array[i].geometry.location);
     // }
     // console.log(this.array)
     this.getUserLocation();
-    // this.array = 
+    // this.array =
 
     // console.log(this.search.getArray())
-    } 
+  }
 
   // private getLocation(){
   //  this.array = this.search.getArray();
   // }
 
-  get reward(){
+  get reward() {
     return this.routerListener.getReward;
   }
 
-  radius(rad){
+  radius(rad) {
     this.circleRadius = rad;
   }
- 
-  private getUserLocation() { 
- 
-   if (navigator.geolocation) { 
-      navigator.geolocation.getCurrentPosition(position => { 
-       this.lat = position.coords.latitude; 
-       this.lon = position.coords.longitude; 
-     }); 
-   } 
+
+  private getUserLocation() {
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.lat = position.coords.latitude;
+        this.lon = position.coords.longitude;
+      });
+    }
   }
-} 
+}
