@@ -25,12 +25,12 @@ export class CardComponent implements OnInit {
   isHidden: boolean;
   isOnAccount = false;
   isFlip: boolean; // Controls Styling
-  currentLocation:GPSLocation;
+  currentLocation: GPSLocation;
 
-  constructor(private routerListener: RoutingListenerService, public themes: ThemesService, protected mapService:MapService ,
-     protected databaseService: DatabaseService, protected search:Search, protected router: Router) {
-    
-      // this.search.search(this.reward.ProviderName, mapService.userLocation.location, 5000, mapService.key);
+  constructor(private routerListener: RoutingListenerService, public themes: ThemesService, protected mapService: MapService,
+    protected databaseService: DatabaseService, protected search: Search, protected router: Router) {
+
+    // this.search.search(this.reward.ProviderName, mapService.userLocation.location, 5000, mapService.key);
   }
 
   ngOnInit() {
@@ -59,22 +59,15 @@ export class CardComponent implements OnInit {
     this.databaseService.setKey(key);
     this.routerListener.activeReward(this.reward, this.isOnAccount);
   }
-move(location:string){
-  console.log("dog")
-  console.log(this.reward.ProviderName)
-  console.log(this.mapService.userLocation.location)
-  console.log(this.mapService.key)
-
-  this.search.search(this.reward.ProviderName, this.mapService.userLocation.location, 5000, this.mapService.key);
-  this.router.navigate([location]);
-}
-map(reward):void{
-  this.routerListener.setReward( reward );
-  console.log(this.reward)
-  console.log(this.routerListener.reward);
-}
-getLocation(){
-       this.search.search( this.reward.ProviderName , this.mapService.userLocation.location , 5000 , this.mapService.key  );
+  move(location: string) {
+    this.search.search(this.reward.ProviderName, this.mapService.userLocation.location, 5000, this.mapService.key);
+    this.router.navigate([location]);
+  }
+  map(reward): void {
+    this.routerListener.setReward(reward);
+  }
+  getLocation() {
+    this.search.search(this.reward.ProviderName, this.mapService.userLocation.location, 5000, this.mapService.key);
   }
 
 

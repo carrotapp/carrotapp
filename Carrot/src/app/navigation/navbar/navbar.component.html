@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col">
                 <div [hidden]="login" id="{{theme+'-parent-item'}}" class="selectable">
-                    <coupons *ngIf="this.ds.getCurrentUser()"></coupons>
+                    <app-coupons *ngIf="this.ds.getCurrentUser()"></app-coupons>
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@
         <div class="col">
             <div class="h1" id="{{theme+'-parent-item'}}"> {{ heading }} </div>
         </div>
-        <div *ngIf="databaseService.userRewards !== undefined && router.url.includes('dashboard')" class="col-md-4">
+        <div *ngIf="userRewards !== undefined && router.url.includes('dashboard')" class="col-md-4">
             <div class="rectangle mx-auto">
                 <div class="pill line-right">
                     <p>TOTAL POINTS</p>

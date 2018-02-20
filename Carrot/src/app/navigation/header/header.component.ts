@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { InfoComponent } from './../info/info.component';
 import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -35,9 +36,17 @@ export class HeaderComponent implements OnInit {
   hasRewards: boolean;
   date: Date = new Date();
   links: string[];
+  userRewards: Observable<any>;
 
   // tslint:disable-next-line:max-line-length
   constructor(public themes: ThemesService, private route: ActivatedRoute, public router: Router, private routerListener: RoutingListenerService, public databaseService: DatabaseService) {
+    this.userRewards = databaseService.userRewardsRef.snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data();
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    });
     this.showBtn = true;
     this.showRemove = false;
     this.showAdd = true;
@@ -119,7 +128,7 @@ export class HeaderComponent implements OnInit {
     }
     if (this.router.url.includes('rewards')) {
       this.h1 = 'Add Rewards';
-      this.btn_title = 'dashboard'; this.icon = 'fa-chevron-left'
+      this.btn_title = 'dashboard'; this.icon = 'fa-chevron-left';
       this.showRemove = false;
       this.showAdd = true;
     }
@@ -156,6 +165,7 @@ export class HeaderComponent implements OnInit {
         this.databaseService.removeReward(this.databaseService.getKey());
         this.showAdd = true;
         this.showRemove = false;
+        this.router.navigate(['/main/dashboard']);
       }
     }
   }

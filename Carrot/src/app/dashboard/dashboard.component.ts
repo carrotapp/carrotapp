@@ -13,14 +13,21 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 })
 
 export class DashboardComponent implements OnInit {
-  rewards: Observable<any[]>;
+  rewards: Observable<any>;
   username: string;
   path_username;
   showReward: boolean;
   hasRewards = false;
 
   constructor(public ds: DatabaseService, private afAuth: AngularFireAuth, private router: Router) {
-    this.ds.getUsersRewards();
+    this.rewards = ds.rewardsRef.snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data();
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    });
+    ds.getUsersRewards();
   }
 
   ngOnInit() {

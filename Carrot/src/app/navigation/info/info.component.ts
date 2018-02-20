@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Rx';
 import { element } from 'protractor';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Rewards } from './../../dashboard/Rewards';
@@ -20,20 +21,29 @@ export class InfoComponent implements OnInit {
   Points: number;
   Ratio: number;
   show: boolean;
+  rewards: Observable<any>;
 
   // tslint:disable-next-line:max-line-length
   constructor(public dbs: DatabaseService, private route: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer, public themes: ThemesService, private routerListener: RoutingListenerService) {
     this.show = false;
+    this.rewards = dbs.rewardsRef.snapshotChanges().map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data();
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    });
+    dbs.getUsersRewards();
   }
 
   ngOnInit() {
     this.getReward();
     this.rKey = this.dbs.getKey();
-    this.dbs.rewards.subscribe(result => {
+    this.rewards.subscribe(result => {
       this.dbs.usersRewards.subscribe(res => {
         result.map(reward => {
           res.map(userReward => {
-            if (userReward.key === this.rKey) {
+            if (userReward.id === this.rKey) {
               this.show = true;
               this.Points = userReward.Points;
               this.Ratio = userReward.Points / reward.Ratio;
@@ -45,7 +55,7 @@ export class InfoComponent implements OnInit {
   }
 
   getReward() {
-    this.Reward.infoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.Reward.infoUrl);
+    this.Reward.InfoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.Reward.InfoUrl);
   }
 
   back() {
@@ -63,5 +73,5 @@ export class InfoComponent implements OnInit {
   get Reward() {
     return this.routerListener.getReward;
   }
-  X
+
 }
