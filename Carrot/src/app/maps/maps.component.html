@@ -1,76 +1,30 @@
-<div class="container" id="{{theme + '-parent'}}">
-    <div class="row">
-        <div class="col-md-6">
-            <div class=" row">
-                <div class="col-md-2">
-                    <img class="img" [src]="reward.Image" alt="rewards programme" />
-                </div>
-                <div class="col-md-2">
-                    <h3 class="rewardsName" alt="rewards name">{{reward.Name}}</h3>
-                </div>
 
-            </div>
+<!-- <div class="container" id="{{theme + '-parent'}}"> -->
+<div class="row">
+<div *ngIf="origin.lat!==0 && origin.lng!==0">
+        <agm-map id="map" [latitude]="lat" [longitude]="lng" [zoom]="15" [streetViewControl]="false" [zoomControl]="false" (mapReady)="mapReady($event)">
 
-        </div>
-        <div class="col-md-6 ">
-            <div class="row  justify-content-md-right">
-                <div class="col-md-4">
-                    <button type="button" class="btn btn-sm styledButtons" id="{{theme + '-parent-item'}}">My location</button>
-                </div>
-                <div class="col-md-4">
-                    <button type="button " class="btn btn-sm styledButtons" id="{{theme + '-parent-item'}}" (click) = "radius(5000)">Nearest location</button>
-                </div>
-                <div class="col-md-4">
-                    <button type="button" class="btn  btn-sm styledButtons" id="{{theme + '-parent-item'}}" (click) = "radius(0)">Show all locations</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 mapStyle justify-content-center">
-
-            <agm-map id="map" [latitude]="lat" [longitude]="lon" [zoom] = 12>
-                <!-- <agm-marker *ngFor = "let coord of coordinates" [latitude]="coord.lat" [longitude]="coord.lon"></agm-marker> -->
-                <agm-marker [latitude]="lat" [longitude]="lon">
-                    <agm-info-window>
-                        <strong style = "color: black">You are here</strong>
-                    </agm-info-window>
+                <agm-marker [latitude]="lat" [longitude]="lng">
+                  <agm-info-window>You Are Here</agm-info-window>
                 </agm-marker>
-                <!-- [iconUrl] -->
+                <div *ngIf="origin.lat!==0 && origin.lng!==0">
+                  <agm-marker *ngFor="let l of nearestLocations" [latitude]="l.geometry.location.lat()" [longitude]="l.geometry.location.lng()">
+                    <agm-info-window>{{l.name}}
 
-                <agm-marker class = "marker" *ngFor = "let arr of array" [latitude]="arr.geometry.location.lat" [longitude]="arr.geometry.location.lng" 
-                
-                >
-                    <agm-info-window>
-                        <strong style = "color: black">
-                            {{arr.name}}
-                            <br>
-                            {{arr.formatted_address}}
-                        </strong>
+                        <!-- Button to navigate to a location -->
+                      <!-- <button (click)="setDestination(l.geometry.location.lat(),l.geometry.location.lng())">Navigate</button> -->
+                     
                     </agm-info-window>
-                </agm-marker>
+                  </agm-marker>
+                </div>
 
-                <agm-circle 
-                    [latitude]="lat" 
-                    [longitude]="lon" 
-                    [radius]="circleRadius"
-                    [fillColor]="'red'">
-                </agm-circle>
+                <!-- Directive which display the path -->
+                <!-- <div *ngIf="destination.lat!==0 && destination.lng!==0">
+                  <appMapDirections [directionsDisplay]="directionsDisplay" [origin]="origin" [destination]="destination"></appMapDirections>
+                </div> -->
+              </agm-map>
 
-            </agm-map>
-
-        </div>
-        <div class="col-md-6 getAllLocations">
-            <br>
-            <h4 class="labelColour justify-content-center">List of all locations</h4>
-            <ul>
-                <li style = "color: black" *ngFor = "let arr of array">
-                        {{arr.name}}
-                        <br>
-                        {{arr.formatted_address}}
-                </li>
-            </ul>
-        </div>
-    </div>
 </div>
+  
+</div>
+<!-- </div> -->

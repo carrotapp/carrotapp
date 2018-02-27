@@ -4,11 +4,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { DatabaseService } from '../database/database.service';
+import { RoutingListenerService } from '../routing-listener.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-    constructor(protected afAuth: AngularFireAuth, protected router: Router, protected ds: DatabaseService) { }
+    constructor(protected afAuth: AngularFireAuth, protected router: Router, protected ds: DatabaseService, protected routingListener: RoutingListenerService) { }
 
     canActivate(): Observable<boolean> {
         return Observable.from(this.afAuth.authState)
@@ -21,6 +22,7 @@ export class AuthGuard implements CanActivate {
                     if (!this.ds.initialized) {
                         this.ds.initializeData();
                     }
+                  
                 }
             });
     }

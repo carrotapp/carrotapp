@@ -42,8 +42,9 @@ export class CouponsComponent implements OnInit {
     this.search.search(reward.ProviderName, this.mapService.userLocation.location, 5000, this.mapService.key);
     this.router.navigate([location]);
   }
-  map(reward): void {
+  map(reward, coupon): void {
     this.routerListener.setReward(reward);
+    this.routerListener.setCoupon(coupon);
   }
 
 }
