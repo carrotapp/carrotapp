@@ -69,9 +69,16 @@ export class HeaderComponent implements OnInit {
   btnTitle() {
     if (this.router.url.includes('dashboard')) {
       this.redirect('/main/rewards');
-      this.btn_title = 'dashboard';
-      this.icon = 'fa-chevron-left'; this.showRemove = false;
-    } else {
+      this.btn_title = 'Dashboard';
+      this.icon = 'fa-chevron-left';
+      this.showRemove = false;
+    } else if (this.router.url.includes('map')) {
+      if (this.routerListener.isOnAccount) {
+        this.redirect('/main/dashboard');
+      } else {
+        this.redirect('/main/rewards');
+      }
+    }else {
       this.redirect('/main/dashboard');
       this.btn_title = 'add reward';
       this.icon = 'fa-plus';
@@ -128,15 +135,30 @@ export class HeaderComponent implements OnInit {
     }
     if (this.router.url.includes('rewards')) {
       this.h1 = 'Add Rewards';
-      this.btn_title = 'dashboard'; this.icon = 'fa-chevron-left';
+      this.btn_title = 'Dashboard';
+      this.icon = 'fa-chevron-left';
       this.showRemove = false;
       this.showAdd = true;
     }
     if (this.router.url.includes('dashboard')) {
       this.h1 = 'My Rewards';
       this.showRemove = false;
-      this.btn_title = 'add reward';
+      this.btn_title = 'Add Reward';
       this.icon = 'fa-plus';
+    }
+    if (this.router.url.includes('map')) {
+      if (this.routerListener.isOnAccount) {
+        this.btn_title = 'Dashboard';
+        this.icon = 'fa-chevron-left';
+        this.showRemove = false;
+        this.showAdd = true;
+      } else {
+        this.btn_title = 'Rewards';
+        this.icon = 'fa-plus';
+        this.showRemove = false;
+        this.add = false;
+        this.action = 'Add Reward';
+      }
     }
   }
 

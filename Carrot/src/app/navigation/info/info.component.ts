@@ -26,32 +26,39 @@ export class InfoComponent implements OnInit {
   // tslint:disable-next-line:max-line-length
   constructor(public dbs: DatabaseService, private route: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer, public themes: ThemesService, private routerListener: RoutingListenerService) {
     this.show = false;
-    this.rewards = dbs.rewardsRef.snapshotChanges().map(actions => {
+    this.rewards = this.dbs.rewardsRef.snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data();
         const id = a.payload.doc.id;
         return { id, ...data };
       });
     });
-    dbs.getUsersRewards();
+    this.dbs.getUsersRewards();
   }
 
   ngOnInit() {
-    this.getReward();
-    this.rKey = this.dbs.getKey();
-    this.rewards.subscribe(result => {
-      this.dbs.usersRewards.subscribe(res => {
-        result.map(reward => {
-          res.map(userReward => {
-            if (userReward.id === this.rKey) {
-              this.show = true;
-              this.Points = userReward.Points;
-              this.Ratio = userReward.Points / reward.Ratio;
-            }
+    if (this.dbs.getKey() === undefined) {
+      this.router.navigate(['/main/dashboard']);
+    } else {
+      this.getReward();
+      this.rKey = this.dbs.getKey();
+      this.rewards.subscribe(result => {
+        this.dbs.usersRewards.subscribe(res => {
+          result.map(reward => {
+            res.map(userReward => {
+              if (userReward.id === this.rKey) {
+                this.show = true;
+                this.Points = userReward.Points;
+                const dbreward = this.dbs.rewardsRef.doc(this.rKey).valueChanges();
+                dbreward.subscribe(r => {
+                  this.Ratio = userReward.Points / r.Ratio;
+                });
+              }
+            });
           });
         });
       });
-    });
+    }
   }
 
   getReward() {

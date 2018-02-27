@@ -13,22 +13,22 @@ import { DatePipe } from '@angular/common';
 
 @Injectable()
 export class DatabaseService {
-    rewardsOfUser: Observable<any[]>;
+    // rewardsOfUser: Observable<any[]>;
     rewardsArray: Rewards[] = [];
-    detailsArray: any[] = [];
+    // detailsArray: any[] = [];
     photoUrl: any;
-    rewardKey: string;
+    // rewardKey: string;
     rewardPath: string;
     theme: string;
-    reward: Rewards;
-    rewardFlag: boolean;
+    // reward: Rewards;
+    // rewardFlag: boolean;
     initialized = false;
-    loggedIn: boolean;
+    // loggedIn: boolean;
     usersRewards: Observable<any[]>;
     totalPoints = 0;
     totalRandValue = 0;
     Key: string;
-    rewardsStatus: any[][];
+    // rewardsStatus: any[][];
 
     userRewardsRef;
     rewardsRef;
