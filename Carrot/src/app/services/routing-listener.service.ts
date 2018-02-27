@@ -5,6 +5,7 @@ import { Rewards } from '../dashboard/Rewards';
 
 @Injectable()
 export class RoutingListenerService {
+  coupon: any;
   static isActivated = true;
   private username: string;
   private rewardName: string;
@@ -41,6 +42,9 @@ export class RoutingListenerService {
   }
   setReward(reward): void {
     this.reward = reward;
+  }
+  setCoupon(coupon): void {
+    this.coupon = coupon;
   }
   get getAcivity() {
     return RoutingListenerService.isActivated;

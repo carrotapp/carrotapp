@@ -47,6 +47,7 @@ import { Distance } from './services/google/models/distance.service';
 
 import { AgmCoreModule } from '@agm/core';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { MapDirectionsDirective } from './maps/map-directions.directive';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyDUlfMoY9Aq0nOGnZt_ovhRDaUtOJUnZ04',
@@ -94,7 +95,8 @@ export function metaFactory(): MetaLoader {
     ConfirmPasswordComponent,
     FirstTimeCardComponent,
     MapsComponent,
-    CouponsComponent
+    CouponsComponent,
+    MapDirectionsDirective
   ],
   imports: [
     BrowserModule,
@@ -111,7 +113,8 @@ export function metaFactory(): MetaLoader {
       useFactory: (metaFactory)
     }),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAz-CK7i3m_BEBkE6KRysWbwiqbjHUyFPQ'
+      apiKey: 'AIzaSyAz-CK7i3m_BEBkE6KRysWbwiqbjHUyFPQ',
+      libraries:['places']
     })
   ],
 
