@@ -1,4 +1,4 @@
-<div class="row m-0 text-center justify-content-center">
+<div class="rewards">
     <div *ngFor="let item of data | async">
         <app-card *ngIf="check(item.id)" [reward]="item" [userData]='[]' [type]="'add'"></app-card>
     </div>

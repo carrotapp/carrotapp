@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   path_username;
   showReward: boolean;
   hasRewards = false;
+  cnt = 0;
 
   constructor(public ds: DatabaseService, private afAuth: AngularFireAuth, private router: Router) {
     this.rewards = ds.rewardsRef.snapshotChanges().map(actions => {

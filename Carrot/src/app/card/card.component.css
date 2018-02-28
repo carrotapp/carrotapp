@@ -11,12 +11,16 @@
         border: solid 1px rgba(219, 223, 227, 0.3);
         box-shadow: 0 12px 20px 6px rgb(207, 211, 214);
         /* Spacing */
-        margin: 0px 20px;
+        /* margin: 0px 20px; */
         cursor: pointer;
         /* -webkit-transform: rotateY(180deg);
         -moz-transform: rotateY(180deg);
         -o-transform: rotateY(180deg);
         transform: rotateY(180deg); */
+        /* flex-flow: row wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+        margin: auto; */
     }
     
     .img {

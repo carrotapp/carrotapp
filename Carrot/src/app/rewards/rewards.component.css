@@ -11,6 +11,12 @@
 
 .add_button:hover {
     background-color: aliceblue;
-    color:  #535657;
+    color: #535657;
     cursor: pointer;
+}
+
+.rewards {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 }

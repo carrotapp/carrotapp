@@ -14,8 +14,9 @@ import { Component, OnInit } from '@angular/core';
 export class RewardsComponent implements OnInit {
   data: Observable<any[]>;
   rewards: Rewards[] = [];
+  amountRewards = 0;
 
-  constructor(private databaseService: DatabaseService) {
+  constructor(protected databaseService: DatabaseService) {
     this.data = this.databaseService.rewardsRef.snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data();
@@ -23,6 +24,7 @@ export class RewardsComponent implements OnInit {
         return { id, ...data };
       });
     });
+    databaseService.getUsersRewards();
     databaseService.rewardsArray = [];
     databaseService.getRewardsArray();
   }

@@ -73,11 +73,12 @@ export class HeaderComponent implements OnInit {
       this.icon = 'fa-chevron-left';
       this.showRemove = false;
     } else if (this.router.url.includes('map')) {
-      if (this.routerListener.isOnAccount) {
-        this.redirect('/main/dashboard');
-      } else {
-        this.redirect('/main/rewards');
-      }
+      this.databaseService.back();
+      // if (this.routerListener.isOnAccount) {
+        // this.redirect('/main/dashboard');
+      // } else {
+      //   this.redirect('/main/rewards');
+      // }
     }else {
       this.redirect('/main/dashboard');
       this.btn_title = 'add reward';
@@ -147,18 +148,19 @@ export class HeaderComponent implements OnInit {
       this.icon = 'fa-plus';
     }
     if (this.router.url.includes('map')) {
-      if (this.routerListener.isOnAccount) {
-        this.btn_title = 'Dashboard';
+      this.h1 = 'Map';
+      // if (this.routerListener.isOnAccount) {
+        this.btn_title = 'Back';
         this.icon = 'fa-chevron-left';
         this.showRemove = false;
         this.showAdd = true;
-      } else {
-        this.btn_title = 'Rewards';
-        this.icon = 'fa-plus';
-        this.showRemove = false;
-        this.add = false;
-        this.action = 'Add Reward';
-      }
+      // } else {
+      //   this.btn_title = 'Rewards';
+      //   this.icon = 'fa-plus';
+      //   this.showRemove = false;
+      //   this.add = false;
+      //   this.action = 'Add Reward';
+      // }
     }
   }
 

@@ -13,6 +13,7 @@ import { DatePipe } from '@angular/common';
 
 @Injectable()
 export class DatabaseService {
+    amountOfRewards: any;
     // rewardsOfUser: Observable<any[]>;
     rewardsArray: Rewards[] = [];
     // detailsArray: any[] = [];
@@ -217,6 +218,7 @@ export class DatabaseService {
                     });
 
                     this.usersRewards.subscribe(results => {
+                        this.amountOfRewards = results.length;
                         rewards.subscribe(response => {
                             this.totalPoints = 0;
                             this.totalRandValue = 0;

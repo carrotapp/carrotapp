@@ -6,7 +6,6 @@ import { Rewards } from '../dashboard/Rewards';
 @Injectable()
 export class RoutingListenerService {
   coupon: any;
-  static isActivated = true;
   private username: string;
   private rewardName: string;
   private provider: string;
@@ -14,6 +13,8 @@ export class RoutingListenerService {
 
   reward;
   isOnAccount: boolean;
+  // tslint:disable-next-line:member-ordering
+  static isActivated = true;
 
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private databaseService: DatabaseService) {
