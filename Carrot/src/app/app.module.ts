@@ -114,7 +114,7 @@ export function metaFactory(): MetaLoader {
     }),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAz-CK7i3m_BEBkE6KRysWbwiqbjHUyFPQ',
-      libraries:['places']
+      libraries: ['places']
     })
   ],
 
